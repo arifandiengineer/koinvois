@@ -2,19 +2,16 @@ package com.koinvois.generator.ui.estimates.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.EstimatePhoto
 import com.koinvois.generator.databinding.ItemInvoicePhotoBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
-import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainFragmentDirections
-import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 
 class SelectedPhotosForEstimateAdapter(
     private val selectedPhotoList: ArrayList<EstimatePhoto>,
-    private val navController: NavController,
-    private val viewModel: EstimatesMainViewModel
+    private val viewModel: EstimatesMainViewModel,
+    private val onPhotoClick: (EstimatePhoto) -> Unit
 ) :
     RecyclerView.Adapter<SelectedPhotosForEstimateAdapter.SelectedPhotosForInvoiceViewHolder>() {
 
@@ -32,9 +29,7 @@ class SelectedPhotosForEstimateAdapter(
 
         holder.binding.root.setSafeOnClickListener {
             viewModel.currentSelectedPhoto = selectedPhotoList[position]
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentAddPhotoToEstimate(DBEnum.OLD.entryType)
-            navController.navigate(action)
+            onPhotoClick(selectedPhotoList[position])
         }
 
     }

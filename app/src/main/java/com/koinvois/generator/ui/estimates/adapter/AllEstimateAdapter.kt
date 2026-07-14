@@ -4,15 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.database.models.Estimate
 import com.koinvois.generator.databinding.ItemEstimateBinding
-import com.koinvois.generator.ui.estimates.EstimatesMainFragmentDirections
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
-import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.enums.EstimateStatusEnum
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -22,8 +19,8 @@ import kotlinx.coroutines.launch
 
 class AllEstimateAdapter(
     val viewModel: EstimatesMainViewModel,
-    val navController: NavController,
-    val lifecycleOwner: LifecycleOwner
+    val lifecycleOwner: LifecycleOwner,
+    private val onEstimateClick: (Estimate) -> Unit
 ) : BaseRecyclerAdapter<Estimate, ItemEstimateBinding>(EstimateDiffCallback()) {
 
     override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemEstimateBinding =
@@ -57,9 +54,7 @@ class AllEstimateAdapter(
         binding.root.setSafeOnClickListener {
             lifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
                 viewModel.loadViewModelData(item)
-                val action =
-                    EstimatesMainFragmentDirections.actionFragmentEstimateMainToEditEstimate(DBEnum.OLD.entryType)
-                navController.navigate(action)
+                onEstimateClick(item)
             }
         }
     }

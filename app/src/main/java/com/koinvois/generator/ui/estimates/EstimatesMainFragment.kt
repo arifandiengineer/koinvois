@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.database.models.Estimate
 import com.koinvois.generator.databinding.EstimatesMainFragmentBinding
+import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity
 import com.koinvois.generator.ui.estimates.adapter.ViewPagerAdapterEstimates
 import com.koinvois.generator.utilities.enums.EstimateStatusEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -96,8 +96,7 @@ class EstimatesMainFragment : Fragment() {
                         )
                     )
                 }
-                val action = EstimatesMainFragmentDirections.actionFragmentEstimateMainToEditEstimate()
-                findNavController().navigate(action)
+                startActivity(AddEstimateMainActivity.newIntent(requireContext()))
             }
         }
     }

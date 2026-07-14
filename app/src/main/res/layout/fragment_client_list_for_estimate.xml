@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateFragment">
+    tools:context=".ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateActivity">
 
     <include
         android:id="@+id/customToolbar"

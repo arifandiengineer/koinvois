@@ -9,26 +9,21 @@ import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.Color
 import android.net.Uri
-import android.os.Bundle
 import android.os.Environment
-import android.print.PrintAttributes
-import android.print.PrintManager
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
+import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.database.models.Estimate
 import com.koinvois.generator.databinding.FragmentAddEstimateMainBinding
@@ -50,52 +45,49 @@ import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddEstimateMainFragment : Fragment() {
+class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
-    private var binding: FragmentAddEstimateMainBinding? = null
-    private val viewModel: EstimatesMainViewModel by hiltNavGraphViewModels(R.id.estimate_navigation_graph)
+    private val viewModel: EstimatesMainViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentAddEstimateMainBinding.inflate(inflater, container, false)
-
-        setUpViewPagerEditEstimate()
-        activity?.let {
-            setClickListeners(it)
-            backPressed()
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
+                    testPDFJob(webView, this)
+                }
+            }
         }
 
-        return binding?.root
+    override fun inflateBinding(): FragmentAddEstimateMainBinding =
+        FragmentAddEstimateMainBinding.inflate(LayoutInflater.from(this))
+
+    override fun setupView() {
+        setUpViewPagerEditEstimate()
+        setClickListeners(this)
+        onBackPressedDispatcher.addCallback(this) { saveOnBack() }
     }
 
     private fun setClickListeners(context: Context) {
-        binding?.customToolbar?.btnBack?.setSafeOnClickListener {
+        binding.customToolbar.btnBack.setSafeOnClickListener {
             saveOnBack()
         }
 
-        binding?.btnShareEstimate?.setSafeOnClickListener {
+        binding.btnShareEstimate.setSafeOnClickListener {
             shareEstimate(context)
         }
 
-        binding?.customToolbar?.imgSecondaryAction?.setSafeOnClickListener {
+        binding.customToolbar.imgSecondaryAction.setSafeOnClickListener {
             showPopupMenu(it, context)
         }
     }
 
     private fun shareEstimate(context: Context) {
-        // Modern approach: WRITE_EXTERNAL_STORAGE is deprecated for API 29+ 
-        // and not needed for FileProvider sharing from app cache/internal storage.
-        // However, keeping permission check for backward compatibility if needed by the library.
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED) {
-            binding?.root?.findViewById<WebView>(R.id.webView)?.let { webView ->
-                activity?.let { actv ->
-                    testPDFJob(webView, actv)
-                }
+            binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
+                testPDFJob(webView, this)
             }
         } else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             showSnackBar(context)
@@ -122,35 +114,27 @@ class AddEstimateMainFragment : Fragment() {
     }
 
     private fun deleteEstimate() {
-        activity?.let {
-            BaseDialog.confirm(
-                context = it,
-                title = getString(R.string.delete_confirm_title),
-                message = "Are you sure you want to delete this Estimate?",
-                positiveText = getString(R.string.delete_confirm_positive),
-                negativeText = getString(R.string.delete_confirm_negative),
-                onConfirm = {
-                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default)
+        BaseDialog.confirm(
+            context = this,
+            title = getString(R.string.delete_confirm_title),
+            message = "Are you sure you want to delete this Estimate?",
+            positiveText = getString(R.string.delete_confirm_positive),
+            negativeText = getString(R.string.delete_confirm_negative),
+            onConfirm = {
+                lifecycleScope.launch(Dispatchers.Default)
+                {
+                    viewModel.deleteEstimate()
+                    withContext(Dispatchers.Main)
                     {
-                        viewModel.deleteEstimate()
-                        withContext(Dispatchers.Main)
-                        {
-                            findNavController().navigateUp()
-                        }
+                        finish()
                     }
                 }
-            )
-        }
-    }
-
-    private fun backPressed() {
-        activity?.onBackPressedDispatcher?.addCallback(this) {
-            saveOnBack()
-        }
+            }
+        )
     }
 
     private fun saveOnBack() {
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
+        lifecycleScope.launch(Dispatchers.Default) {
             with(viewModel) {
                 updateEstimate(
                     Estimate(
@@ -187,42 +171,27 @@ class AddEstimateMainFragment : Fragment() {
                 clearViewModel()
             }
             withContext(Dispatchers.Main) {
-                findNavController().navigateUp()
+                finish()
             }
         }
     }
 
     private fun setUpViewPagerEditEstimate() {
         val viewPagerAdapter = ViewPagerAdapterEditEstimate(this)
-        binding?.viewPager?.adapter = viewPagerAdapter
-        binding?.viewPager?.visible()
-        binding?.tabLayout?.visible()
-        binding?.viewPager?.offscreenPageLimit = 1
+        binding.viewPager.adapter = viewPagerAdapter
+        binding.viewPager.visible()
+        binding.tabLayout.visible()
+        binding.viewPager.offscreenPageLimit = 1
 
-        binding?.tabLayout?.let { tabLayout ->
-            binding?.viewPager?.let { viewPager ->
-                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-                    tab.text = when (position) {
-                        0 -> "Edit"
-                        1 -> "Preview"
-                        else -> "Edit"
-                    }
-                }.attach()
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = when (position) {
+                0 -> "Edit"
+                1 -> "Preview"
+                else -> "Edit"
             }
-        }
-        binding?.viewPager?.reduceDragSensitivity()
+        }.attach()
+        binding.viewPager.reduceDragSensitivity()
     }
-
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                binding?.root?.findViewById<WebView>(R.id.webView)?.let { webView ->
-                    activity?.let { activity ->
-                        testPDFJob(webView, activity)
-                    }
-                }
-            }
-        }
 
     private fun testPDFJob(webView: WebView, actv: Activity) {
         val directory: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS + "/Estimates/")
@@ -270,32 +239,29 @@ class AddEstimateMainFragment : Fragment() {
     }
 
     private fun showSnackBar(context: Context) {
-        val mySnackbar = binding?.btnShareEstimate?.let { view ->
-            Snackbar.make(
-                view,
-                "Open Settings and allow storage permission to continue !",
-                Snackbar.LENGTH_LONG
-            ).setAction("Open Setting") {
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri: Uri = Uri.fromParts("package", context.packageName, null)
-                intent.data = uri
-                startActivity(intent)
-            }
+        val mySnackbar = Snackbar.make(
+            binding.btnShareEstimate,
+            "Open Settings and allow storage permission to continue !",
+            Snackbar.LENGTH_LONG
+        ).setAction("Open Setting") {
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val uri: Uri = Uri.fromParts("package", context.packageName, null)
+            intent.data = uri
+            startActivity(intent)
         }
-        
-        mySnackbar?.setActionTextColor(ContextCompat.getColor(context, R.color.primary_color))
 
-        val snackbarView = mySnackbar?.view
-        snackbarView?.setBackgroundColor(Color.WHITE)
-        val textView = snackbarView?.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+        mySnackbar.setActionTextColor(ContextCompat.getColor(context, R.color.primary_color))
+
+        val snackbarView = mySnackbar.view
+        snackbarView.setBackgroundColor(Color.WHITE)
+        val textView = snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
         textView?.setTextColor(Color.BLACK)
         textView?.textSize = 18f
 
-        mySnackbar?.show()
+        mySnackbar.show()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+    companion object {
+        fun newIntent(context: Context): Intent = Intent(context, AddEstimateMainActivity::class.java)
     }
 }

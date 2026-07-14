@@ -2,7 +2,6 @@ package com.koinvois.generator.ui.estimates.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.Client
 import com.koinvois.generator.databinding.ItemClientInvoiceBinding
@@ -10,8 +9,8 @@ import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 
 class AllClientsForEstimateAdapter(
     private val clientList: ArrayList<Client>,
-    private val navController: NavController,
-    val viewModel: EstimatesMainViewModel
+    val viewModel: EstimatesMainViewModel,
+    private val onClientClick: (Client) -> Unit
 ) :
     RecyclerView.Adapter<AllClientsForEstimateAdapter.AllClientsForInvoiceViewHolder>() {
 
@@ -29,7 +28,7 @@ class AllClientsForEstimateAdapter(
 
         holder.itemView.setOnClickListener {
             viewModel.selectedClient = clientList[position]
-            navController.navigateUp()
+            onClientClick(clientList[position])
         }
     }
 

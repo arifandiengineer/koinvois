@@ -4,18 +4,24 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.navigation.fragment.findNavController
-import com.koinvois.generator.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.koinvois.generator.databinding.FragmentEditEstimateBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.ui.estimates.adapter.SelectedEstimateItemsAdapter
 import com.koinvois.generator.ui.estimates.adapter.SelectedPhotosForEstimateAdapter
-import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainFragmentDirections
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientDetailForEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EditBusinessDetailsFromEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateInformationActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateSignatureActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateTaxActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemDetailForEstimateActivity
 import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.enums.EstimateStatusEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -24,7 +30,8 @@ import com.koinvois.generator.utilities.extensions.showErrorSnackbar
 class EditEstimateFragment : Fragment() {
 
     private var binding: FragmentEditEstimateBinding? = null
-    private val viewModel: EstimatesMainViewModel by hiltNavGraphViewModels(R.id.estimate_navigation_graph)
+    private val viewModel: EstimatesMainViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,80 +47,54 @@ class EditEstimateFragment : Fragment() {
     private fun setClickListeners() {
 
         binding?.txtSignature?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEstimateEditToSignatureEstimate()
-            findNavController().navigate(action)
+            startActivity(EstimateSignatureActivity.newIntent(requireContext()))
         }
 
         binding?.txtEstimateDate?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentEstimateInformation()
-            findNavController().navigate(action)
+            startActivity(EstimateInformationActivity.newIntent(requireContext()))
         }
 
         binding?.txtEstimateNumber?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentEstimateInformation()
-            findNavController().navigate(action)
+            startActivity(EstimateInformationActivity.newIntent(requireContext()))
         }
 
         binding?.txtBusinessInfo?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentBusinessDetailsFromEstimate()
-            findNavController().navigate(action)
+            startActivity(EditBusinessDetailsFromEstimateActivity.newIntent(requireContext()))
         }
 
         binding?.secondCard?.setSafeOnClickListener {
 
             viewModel.selectedClient?.let {
-                val action =
-                    AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentClientDetailForEstimate()
-                findNavController().navigate(action)
+                startActivity(ClientDetailForEstimateActivity.newIntent(requireContext()))
             } ?: run {
                 when (viewModel.allClients?.isNotEmpty()) {
                     true -> {
-                        val action =
-                            AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentClientsForEstimate()
-                        findNavController().navigate(action)
+                        startActivity(ClientListForEstimateActivity.newIntent(requireContext()))
                     }
                     false -> {
-                        val action =
-                            AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentClientDetailForEstimate()
-                        findNavController().navigate(action)
+                        startActivity(ClientDetailForEstimateActivity.newIntent(requireContext()))
                     }
                     null -> {
-                        binding?.root?.showErrorSnackbar(getString(R.string.error_try_again))
+                        binding?.root?.showErrorSnackbar(getString(com.koinvois.generator.R.string.error_try_again))
                     }
                 }
             }
         }
 
         binding?.txtAddItem?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentItemDetailForEstimate(
-                    DBEnum.NEW.entryType
-                )
-            findNavController().navigate(action)
+            startActivity(ItemDetailForEstimateActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
         }
 
         binding?.txtDiscountPrice?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentDiscountEstimate()
-            findNavController().navigate(action)
+            startActivity(EstimateDiscountActivity.newIntent(requireContext()))
         }
 
         binding?.txtTaxPrice?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentTaxEstimate4()
-            findNavController().navigate(action)
+            startActivity(EstimateTaxActivity.newIntent(requireContext()))
         }
 
         binding?.txtAddPhoto?.setSafeOnClickListener {
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentAddPhotoToEstimate(
-                    DBEnum.NEW.entryType
-                )
-            findNavController().navigate(action)
+            startActivity(AddPhotoToEstimateActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
         }
 
         binding?.btnMarkPaid?.setSafeOnClickListener {
@@ -164,8 +145,6 @@ class EditEstimateFragment : Fragment() {
         }
         binding?.txtTotalAmount?.text = totalItemsCost.toString()
 
-        //   binding?.txtTotalPrice?.text = totalItemsCost - viewModel.dis
-
         viewModel.estimateNumber?.let {
             binding?.txtEstimateNumber?.text = it.toString()
         } ?: run {
@@ -178,12 +157,16 @@ class EditEstimateFragment : Fragment() {
 
         viewModel.selectedItemsList?.let {
             binding?.rvEstimateItems?.adapter =
-                SelectedEstimateItemsAdapter(it, findNavController(), viewModel)
+                SelectedEstimateItemsAdapter(it, viewModel) {
+                    startActivity(ItemDetailForEstimateActivity.newIntent(requireContext(), DBEnum.OLD.entryType))
+                }
         }
 
         viewModel.photosForEstimate?.let {
             binding?.rvPhotos?.adapter =
-                SelectedPhotosForEstimateAdapter(it, findNavController(), viewModel)
+                SelectedPhotosForEstimateAdapter(it, viewModel) {
+                    startActivity(AddPhotoToEstimateActivity.newIntent(requireContext(), DBEnum.OLD.entryType))
+                }
         }
 
         viewModel.discountAmount?.let {

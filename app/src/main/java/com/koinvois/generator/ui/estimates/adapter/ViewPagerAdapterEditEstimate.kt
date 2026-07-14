@@ -1,11 +1,12 @@
 package com.koinvois.generator.ui.estimates.adapter
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.EditEstimateFragment
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.PreviewEstimateFragment
 
-class ViewPagerAdapterEditEstimate(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class ViewPagerAdapterEditEstimate(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int {
         return 2

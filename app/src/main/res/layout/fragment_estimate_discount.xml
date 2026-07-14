@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountFragment">
+    tools:context=".ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountActivity">
 
     <include
         android:id="@+id/customToolbar"

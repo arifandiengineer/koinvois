@@ -66,18 +66,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             
             when (destination.id) {
                 R.id.fragmentSplashMain,
-                R.id.fragmentAddBusinessSplash,
-                R.id.fragmentEditEstimateMain,
-                R.id.fragmentEstimateSignature,
-                R.id.fragmentEstimateInformation,
-                R.id.fragmentBusinessDetailsFromEstimate,
-                R.id.fragmentClientsForEstimate,
-                R.id.fragmentClientDetailForEstimate,
-                R.id.fragmentItemListForEstimate,
-                R.id.fragmentItemDetailForEstimate,
-                R.id.fragmentDiscountEstimate,
-                R.id.fragmentTaxEstimate,
-                R.id.fragmentAddPhotoToEstimate -> {
+                R.id.fragmentAddBusinessSplash -> {
                     binding.navView.hide()
                     binding.headerContainer.hide()
                     windowInsetsController.isAppearanceLightStatusBars = true

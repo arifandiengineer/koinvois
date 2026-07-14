@@ -2,22 +2,18 @@ package com.koinvois.generator.ui.estimates.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.EstimateItem
 import com.koinvois.generator.databinding.ItemItemsInvoiceBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
-import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainFragmentDirections
-import com.koinvois.generator.utilities.enums.DBEnum
-import com.koinvois.generator.utilities.enums.ItemDiscountTypeEnum
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
 
 class SelectedEstimateItemsAdapter(
     private val selectedItemsList: ArrayList<EstimateItem>,
-    private val navController: NavController,
-    private val viewModel: EstimatesMainViewModel
+    private val viewModel: EstimatesMainViewModel,
+    private val onItemClick: (EstimateItem) -> Unit
 ) :
     RecyclerView.Adapter<SelectedEstimateItemsAdapter
     .SelectedInvoiceItemsViewHolder>
@@ -37,11 +33,7 @@ class SelectedEstimateItemsAdapter(
 
         holder.binding.root.setSafeOnClickListener {
             viewModel.currentEstimateItem = selectedItemsList[position]
-            val action =
-                AddEstimateMainFragmentDirections.actionFragmentEditEstimateMainToFragmentItemDetailForEstimate(
-                    DBEnum.OLD.entryType
-                )
-            navController.navigate(action)
+            onItemClick(selectedItemsList[position])
         }
     }
 

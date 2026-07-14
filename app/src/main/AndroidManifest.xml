@@ -125,6 +125,50 @@
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.TaxActivity"
             android:theme="@style/Theme.InvoiceMaker"
             android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateSignatureActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateInformationActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EditBusinessDetailsFromEstimateActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientDetailForEstimateActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemDetailForEstimateActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemListForEstimateActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateTaxActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

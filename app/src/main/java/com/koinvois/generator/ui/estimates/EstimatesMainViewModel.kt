@@ -51,35 +51,84 @@ class EstimatesMainViewModel @Inject constructor(
     private val updateBusinessUseCase: UpdateBusinessUseCase,
     private val getAllClientsUseCase: GetAllClientsUseCase,
     private val getAllItemsUseCase: GetAllItemsUseCase,
+    private val draft: EstimateDraftState,
 ) : ViewModel() {
 
     val allEstimatesLive: LiveData<List<Estimate>> =
         observeAllEstimatesUseCase().map { list -> list.map { it.toEntity() } }.asLiveData()
 
-    var estimatePrimaryId: Long? = null
-    var estimateNumber: Int? = null
-    var estimateDate: String? = null
-    var estimatePoNumber: String? = null
-    var businessUpdateModel: PersonalBusiness? = null
-    var selectedClient: Client? = null
-    var selectedItemsList: ArrayList<EstimateItem>? = arrayListOf()
-    var currentEstimateItem: EstimateItem? = null
-    var currentSelectedPhoto: EstimatePhoto? = null
-    var estimateSubTotal: Float? = null
-    var discountType: String? = null
-    var discountAmount: Float? = null
-    var discountTotalAmount: Float? = null
-    var taxType: String? = null
-    var taxLabel: String? = null
-    var taxRate: Float? = null
-    var taxInclusive: Boolean? = null
-    var estimateTotal: Float? = null
-    var photosForEstimate: ArrayList<EstimatePhoto>? = arrayListOf()
-    var signatureObj: Signature? = null
-    var estimateNotes: String? = null
-    var estimateStatus: String? = null
-    var allClients: ArrayList<Client>? = null
-    var allItems: ArrayList<Item>? = null
+    var estimatePrimaryId: Long?
+        get() = draft.estimatePrimaryId
+        set(value) { draft.estimatePrimaryId = value }
+    var estimateNumber: Int?
+        get() = draft.estimateNumber
+        set(value) { draft.estimateNumber = value }
+    var estimateDate: String?
+        get() = draft.estimateDate
+        set(value) { draft.estimateDate = value }
+    var estimatePoNumber: String?
+        get() = draft.estimatePoNumber
+        set(value) { draft.estimatePoNumber = value }
+    var businessUpdateModel: PersonalBusiness?
+        get() = draft.businessUpdateModel
+        set(value) { draft.businessUpdateModel = value }
+    var selectedClient: Client?
+        get() = draft.selectedClient
+        set(value) { draft.selectedClient = value }
+    var selectedItemsList: ArrayList<EstimateItem>?
+        get() = draft.selectedItemsList
+        set(value) { draft.selectedItemsList = value }
+    var currentEstimateItem: EstimateItem?
+        get() = draft.currentEstimateItem
+        set(value) { draft.currentEstimateItem = value }
+    var currentSelectedPhoto: EstimatePhoto?
+        get() = draft.currentSelectedPhoto
+        set(value) { draft.currentSelectedPhoto = value }
+    var estimateSubTotal: Float?
+        get() = draft.estimateSubTotal
+        set(value) { draft.estimateSubTotal = value }
+    var discountType: String?
+        get() = draft.discountType
+        set(value) { draft.discountType = value }
+    var discountAmount: Float?
+        get() = draft.discountAmount
+        set(value) { draft.discountAmount = value }
+    var discountTotalAmount: Float?
+        get() = draft.discountTotalAmount
+        set(value) { draft.discountTotalAmount = value }
+    var taxType: String?
+        get() = draft.taxType
+        set(value) { draft.taxType = value }
+    var taxLabel: String?
+        get() = draft.taxLabel
+        set(value) { draft.taxLabel = value }
+    var taxRate: Float?
+        get() = draft.taxRate
+        set(value) { draft.taxRate = value }
+    var taxInclusive: Boolean?
+        get() = draft.taxInclusive
+        set(value) { draft.taxInclusive = value }
+    var estimateTotal: Float?
+        get() = draft.estimateTotal
+        set(value) { draft.estimateTotal = value }
+    var photosForEstimate: ArrayList<EstimatePhoto>?
+        get() = draft.photosForEstimate
+        set(value) { draft.photosForEstimate = value }
+    var signatureObj: Signature?
+        get() = draft.signatureObj
+        set(value) { draft.signatureObj = value }
+    var estimateNotes: String?
+        get() = draft.estimateNotes
+        set(value) { draft.estimateNotes = value }
+    var estimateStatus: String?
+        get() = draft.estimateStatus
+        set(value) { draft.estimateStatus = value }
+    var allClients: ArrayList<Client>?
+        get() = draft.allClients
+        set(value) { draft.allClients = value }
+    var allItems: ArrayList<Item>?
+        get() = draft.allItems
+        set(value) { draft.allItems = value }
 
     init {
         viewModelScope.launch(Dispatchers.Default) {

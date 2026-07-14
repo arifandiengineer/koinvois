@@ -3,14 +3,13 @@ package com.koinvois.generator.ui.estimates.add_estimate.sub_fragments
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.FragmentPreviewEstimateBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.utilities.extensions.visible
 import com.koinvois.generator.utilities.utility
 import java.lang.String
@@ -18,7 +17,7 @@ import java.lang.String
 class PreviewEstimateFragment : Fragment() {
 
     private var binding: FragmentPreviewEstimateBinding? = null
-    private val viewModel: EstimatesMainViewModel by hiltNavGraphViewModels(R.id.estimate_navigation_graph)
+    private val viewModel: EstimatesMainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +35,7 @@ class PreviewEstimateFragment : Fragment() {
         binding?.customToolbar?.btnBack?.visible()
         binding?.customToolbar?.txtToolbarTitle?.text = getString(R.string.label_preview_estimate)
         binding?.customToolbar?.btnBack?.setOnClickListener {
-            findNavController().navigateUp()
+            requireActivity().finish()
         }
     }
 

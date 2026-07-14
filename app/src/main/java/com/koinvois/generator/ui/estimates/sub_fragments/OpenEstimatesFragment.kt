@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.FragmentOpenEstimatesBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
+import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity
 import com.koinvois.generator.ui.estimates.adapter.AllEstimateAdapter
 import com.koinvois.generator.utilities.enums.EstimateStatusEnum
 import com.koinvois.generator.utilities.extensions.hide
@@ -43,9 +43,10 @@ class OpenEstimatesFragment : Fragment() {
             if (openEstimates.isNotEmpty()) {
                 val adapter = allEstimateAdapter ?: AllEstimateAdapter(
                     viewModel,
-                    findNavController(),
                     viewLifecycleOwner
-                ).also { newAdapter ->
+                ) {
+                    startActivity(AddEstimateMainActivity.newIntent(requireContext()))
+                }.also { newAdapter ->
                     allEstimateAdapter = newAdapter
                     binding?.rvAllEstimates?.adapter = newAdapter
                 }
