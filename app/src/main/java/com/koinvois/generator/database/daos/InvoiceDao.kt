@@ -10,16 +10,16 @@ interface InvoiceDao {
     @Insert
     suspend fun insertInvoice(invoice: Invoice)
 
-    @Query("SELECT * FROM invoice")
+    @Query("SELECT invoiceId, invoice_number, invoice_date, invoice_terms, invoice_due_date, invoice_po_number, invoice_subtotal, invoice_discount_type, invoice_discount_amount, invoice_discount_total_amount, invoice_tax_type, invoice_tax_label, invoice_tax_rate, invoice_tax_inclusive, invoice_total, invoice_payment_instruction, NULL as invoice_signature, signature_date, invoice_notes, invoice_status, client_pk, client_name, client_email, client_mobile, client_phone, client_fax, client_contact, client_address1, client_address2, client_address3 FROM invoice")
     suspend fun getAllInvoices(): List<Invoice>
 
-    @Query("SELECT * FROM invoice")
+    @Query("SELECT invoiceId, invoice_number, invoice_date, invoice_terms, invoice_due_date, invoice_po_number, invoice_subtotal, invoice_discount_type, invoice_discount_amount, invoice_discount_total_amount, invoice_tax_type, invoice_tax_label, invoice_tax_rate, invoice_tax_inclusive, invoice_total, invoice_payment_instruction, NULL as invoice_signature, signature_date, invoice_notes, invoice_status, client_pk, client_name, client_email, client_mobile, client_phone, client_fax, client_contact, client_address1, client_address2, client_address3 FROM invoice")
     fun observeAllInvoices(): Flow<List<Invoice>>
 
-    @Query("SELECT * FROM invoice Where invoice_status like 'PAID'")
+    @Query("SELECT invoiceId, invoice_number, invoice_date, invoice_terms, invoice_due_date, invoice_po_number, invoice_subtotal, invoice_discount_type, invoice_discount_amount, invoice_discount_total_amount, invoice_tax_type, invoice_tax_label, invoice_tax_rate, invoice_tax_inclusive, invoice_total, invoice_payment_instruction, NULL as invoice_signature, signature_date, invoice_notes, invoice_status, client_pk, client_name, client_email, client_mobile, client_phone, client_fax, client_contact, client_address1, client_address2, client_address3 FROM invoice Where invoice_status like 'PAID'")
     suspend fun getAllPaidInvoices(): List<Invoice>
 
-    @Query("SELECT * FROM invoice")
+    @Query("SELECT invoiceId, invoice_number, invoice_date, invoice_terms, invoice_due_date, invoice_po_number, invoice_subtotal, invoice_discount_type, invoice_discount_amount, invoice_discount_total_amount, invoice_tax_type, invoice_tax_label, invoice_tax_rate, invoice_tax_inclusive, invoice_total, invoice_payment_instruction, NULL as invoice_signature, signature_date, invoice_notes, invoice_status, client_pk, client_name, client_email, client_mobile, client_phone, client_fax, client_contact, client_address1, client_address2, client_address3 FROM invoice")
     fun getAllInvoicesLive(): LiveData<List<Invoice>>
 
     @Query("SELECT * FROM invoice WHERE invoiceId = :invoiceId")

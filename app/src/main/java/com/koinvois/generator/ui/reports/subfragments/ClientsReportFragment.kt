@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.FragmentClientsReportBinding
 import com.koinvois.generator.ui.reports.ReportsMainViewModel
 import com.koinvois.generator.ui.reports.adapter.ClientsAdapter
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.visible
+import kotlinx.coroutines.launch
 
 class ClientsReportFragment : Fragment() {
 
@@ -23,28 +27,38 @@ class ClientsReportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentClientsReportBinding.inflate(inflater, container, false)
-
-        setRecyclerView()
-        viewModel.getClientReport()
-
         return binding?.root
     }
 
-    private fun setRecyclerView() {
-        viewModel.clientReportLoaded.observe(viewLifecycleOwner) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setRecyclerView()
+        observeData()
+    }
 
-            if (viewModel.clientsReportList.size > 0) {
-                val adapter = clientsReportAdapter ?: ClientsAdapter().also {
-                    clientsReportAdapter = it
-                    binding?.rvClientsReport?.adapter = it
+    private fun setRecyclerView() {
+        clientsReportAdapter = ClientsAdapter()
+        binding?.rvClientsReport?.adapter = clientsReportAdapter
+    }
+
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.clientsReport.collect { list ->
+                    if (list.isNotEmpty()) {
+                        clientsReportAdapter?.submitList(list)
+                        binding?.rvClientsReport?.visible()
+                    } else {
+                        binding?.rvClientsReport?.hide()
+                    }
                 }
-                adapter.submitList(viewModel.clientsReportList.toList())
-                binding?.rvClientsReport?.visible()
-            } else {
-                binding?.rvClientsReport?.hide()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

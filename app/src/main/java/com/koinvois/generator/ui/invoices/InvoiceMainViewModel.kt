@@ -280,46 +280,47 @@ class InvoiceMainViewModel @Inject constructor(
     }
 
     suspend fun loadViewModelData(invoice: Invoice) {
-        invoicePrimaryId = invoice.invoiceId.toLong()
-        invoiceNumber = invoice.invoiceNumber
-        invoiceDate = invoice.invoiceDate
-        invoiceDueDate = invoice.invoiceDueDate
-        invoiceNotes = invoice.invoiceNotes
-        invoicePaymentInstructions = invoice.invoicePaymentInstruction
-        invoicePoNumber = invoice.invoicePoNumber
-        invoiceStatus = invoice.invoiceStatus
-        invoiceSubTotal = invoice.invoiceSubtotal
-        invoiceTerms = invoice.invoiceTerms
-        invoiceTotal = invoice.invoiceTotal ?: 0f
+        val fullInvoice = getInvoiceByIdUseCase(invoice.invoiceId)
+        invoicePrimaryId = fullInvoice.invoiceId.toLong()
+        invoiceNumber = fullInvoice.invoiceNumber
+        invoiceDate = fullInvoice.invoiceDate
+        invoiceDueDate = fullInvoice.invoiceDueDate
+        invoiceNotes = fullInvoice.invoiceNotes
+        invoicePaymentInstructions = fullInvoice.invoicePaymentInstruction
+        invoicePoNumber = fullInvoice.invoicePoNumber
+        invoiceStatus = fullInvoice.invoiceStatus
+        invoiceSubTotal = fullInvoice.invoiceSubtotal
+        invoiceTerms = fullInvoice.invoiceTerms
+        invoiceTotal = fullInvoice.invoiceTotal ?: 0f
         businessUpdateModel = getBusinessUseCase(1).toEntity()
-        selectedClient = invoice.clientPK?.let {
+        selectedClient = fullInvoice.clientPK?.let {
             Client(
                 it,
-                invoice.invoiceClientName,
-                invoice.invoiceClientEmail,
-                invoice.invoiceClientMobile,
-                invoice.invoiceClientPhone,
-                invoice.invoiceClientFax,
-                invoice.invoiceClientContact,
-                invoice.invoiceClientAddress1,
-                invoice.invoiceClientAddress2,
-                invoice.invoiceClientAddress3
+                fullInvoice.invoiceClientName,
+                fullInvoice.invoiceClientEmail,
+                fullInvoice.invoiceClientMobile,
+                fullInvoice.invoiceClientPhone,
+                fullInvoice.invoiceClientFax,
+                fullInvoice.invoiceClientContact,
+                fullInvoice.invoiceClientAddress1,
+                fullInvoice.invoiceClientAddress2,
+                fullInvoice.invoiceClientAddress3
             )
         }
-        selectedItemsList = getInvoiceItemsByInvoiceIdUseCase(invoice.invoiceId)
+        selectedItemsList = getInvoiceItemsByInvoiceIdUseCase(fullInvoice.invoiceId)
             .map { it.toEntity() } as? ArrayList<InvoiceItem>
-        photosForInvoice = getInvoicePhotosByInvoiceIdUseCase(invoice.invoiceId)
+        photosForInvoice = getInvoicePhotosByInvoiceIdUseCase(fullInvoice.invoiceId)
             .map { it.toEntity() } as? ArrayList<InvoicePhoto>
-        signatureObj = invoice.invoiceSignature?.let { Signature(it, invoice.signatureDate ?: "") }
+        signatureObj = fullInvoice.invoiceSignature?.let { Signature(it, fullInvoice.signatureDate ?: "") }
 
-        discountType = invoice.invoiceDiscountType
-        discountAmount = invoice.invoiceDiscountAmount
+        discountType = fullInvoice.invoiceDiscountType
+        discountAmount = fullInvoice.invoiceDiscountAmount
         // discountPercentage = invoice.invoiceDiscountPercentage
-        taxType = invoice.invoiceTaxType
-        taxLabel = invoice.invoiceTaxLabel
+        taxType = fullInvoice.invoiceTaxType
+        taxLabel = fullInvoice.invoiceTaxLabel
         currentInvoiceItem = null
-        taxRate = invoice.invoiceTaxRate
-        taxInclusive = invoice.invoiceTaxInclusive
+        taxRate = fullInvoice.invoiceTaxRate
+        taxInclusive = fullInvoice.invoiceTaxInclusive
 
         // TODO: Load payments from database if available
         draft.invoicePaymentsFlow.value = emptyList()

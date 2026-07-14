@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.koinvois.generator.R
 import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.FragmentPaidReportBinding
@@ -13,6 +16,7 @@ import com.koinvois.generator.ui.reports.ReportsMainViewModel
 import com.koinvois.generator.ui.reports.adapter.PaidReportAdapter
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.visible
+import kotlinx.coroutines.launch
 
 
 class PaidReportFragment : Fragment() {
@@ -25,38 +29,46 @@ class PaidReportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentPaidReportBinding.inflate(inflater, container, false)
-
-        setRecyclerView()
-        viewModel.getPaidInvoicesReport()
-
         return binding?.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setRecyclerView()
+        observeData()
+    }
+
     private fun setRecyclerView() {
-        viewModel.paidInvoicesLive.observe(viewLifecycleOwner) { list ->
+        paidReportAdapter = PaidReportAdapter()
+        binding?.rvPaidInvoices?.adapter = paidReportAdapter
+    }
 
-            if (!list.isNullOrEmpty()) {
-                val adapter = paidReportAdapter ?: PaidReportAdapter().also {
-                    paidReportAdapter = it
-                    binding?.rvPaidInvoices?.adapter = it
-                }
-                adapter.submitList(list)
-                
-                // Update summary cards with real data
-                binding?.txtTotalInvoices?.text = list.size.toString()
-                val totalPaid = list.sumOf { (it.invoiceTotal ?: 0f).toDouble() }
-                binding?.txtTotalPaid?.text = CurrencyFormatter.format(totalPaid)
-                if (list.isNotEmpty()) {
-                    binding?.txtAvgInvoice?.text = CurrencyFormatter.format(totalPaid / list.size)
-                }
-                binding?.txtTotalClients?.text = list.map { it.invoiceClientName }.distinct().size.toString()
+    private fun observeData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.paidInvoices.collect { list ->
+                    if (list.isNotEmpty()) {
+                        paidReportAdapter?.submitList(list)
+                        
+                        // Update summary cards with real data from database
+                        binding?.txtTotalInvoices?.text = list.size.toString()
+                        val totalPaid = list.sumOf { (it.invoiceTotal ?: 0f).toDouble() }
+                        binding?.txtTotalPaid?.text = CurrencyFormatter.format(totalPaid)
 
-                binding?.rvPaidInvoices?.visible()
-            } else {
-                binding?.rvPaidInvoices?.hide()
+                        binding?.rvPaidInvoices?.visible()
+                    } else {
+                        binding?.txtTotalInvoices?.text = "0"
+                        binding?.txtTotalPaid?.text = CurrencyFormatter.format(0.0)
+                        binding?.rvPaidInvoices?.hide()
+                    }
+                }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

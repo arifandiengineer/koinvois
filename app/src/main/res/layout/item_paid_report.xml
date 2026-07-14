@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:paddingVertical="@dimen/spacing_12">
 
     <com.google.android.material.card.MaterialCardView
@@ -39,22 +42,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/txtInvoiceId"
+        app:layout_constraintHorizontal_weight="0.4"
         app:layout_constraintStart_toEndOf="@id/avatarContainer"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Acme Corporation" />
-
-    <TextView
-        android:id="@+id/txtInvoiceId"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/color_text_secondary"
-        android:textSize="9sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/txtInvoiceDate"
-        app:layout_constraintStart_toEndOf="@id/txtClientName"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="INV-2024-0024" />
 
     <TextView
         android:id="@+id/txtInvoiceDate"
@@ -64,53 +55,37 @@
         android:textColor="@color/color_text_secondary"
         android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/txtPaidDate"
+        app:layout_constraintEnd_toStartOf="@id/txtAmount"
+        app:layout_constraintHorizontal_weight="0.3"
         app:layout_constraintStart_toEndOf="@id/txtInvoiceId"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="May 20, 2024" />
 
+    <!-- We keep txtInvoiceId for logic but hide it to match new simplified report view if needed,
+         or we can use it to show invoice number as per weight -->
     <TextView
-        android:id="@+id/txtPaidDate"
+        android:id="@+id/txtInvoiceId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/color_text_secondary"
-        android:textSize="9sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/txtAmount"
-        app:layout_constraintStart_toEndOf="@id/txtInvoiceDate"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="May 20, 2024" />
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/txtInvoiceDate"
+        app:layout_constraintStart_toEndOf="@id/txtClientName"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtAmount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
+        android:layout_marginEnd="@dimen/spacing_16"
         android:textColor="@color/color_success"
         android:textSize="@dimen/text_size_10"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/imgArrow"
-        app:layout_constraintStart_toEndOf="@id/txtPaidDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="0.3"
+        app:layout_constraintStart_toEndOf="@id/txtInvoiceDate"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="$850.00" />
-
-    <ImageView
-        android:id="@+id/imgArrow"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="@dimen/spacing_12"
-        android:src="@drawable/btn_forward"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/spacing_12"
-        android:background="@color/color_neutral_surface_light"
-        app:layout_constraintTop_toBottomOf="@id/avatarContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

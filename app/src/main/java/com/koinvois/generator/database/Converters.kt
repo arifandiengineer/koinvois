@@ -9,10 +9,21 @@ import java.io.ByteArrayOutputStream
 class Converters {
 
     @TypeConverter
-    fun fromBitmap(bitmap: Bitmap?): ByteArray {
-        val resized = bitmap?.let { Bitmap.createScaledBitmap(it, (bitmap.width.times(0.8)).toInt(), (bitmap.height.times(0.8)).toInt(), true) }
+    fun fromBitmap(bitmap: Bitmap?): ByteArray? {
+        if (bitmap == null) return null
+        
+        val maxWidth = 1000
+        val maxHeight = 1000
+        
+        val resized = if (bitmap.width > maxWidth || bitmap.height > maxHeight) {
+            val scale = Math.min(maxWidth.toFloat() / bitmap.width, maxHeight.toFloat() / bitmap.height)
+            Bitmap.createScaledBitmap(bitmap, (bitmap.width * scale).toInt(), (bitmap.height * scale).toInt(), true)
+        } else {
+            bitmap
+        }
+
         val outputStream = ByteArrayOutputStream()
-        resized?.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        resized.compress(Bitmap.CompressFormat.JPEG, 70, outputStream)
         return outputStream.toByteArray()
     }
 

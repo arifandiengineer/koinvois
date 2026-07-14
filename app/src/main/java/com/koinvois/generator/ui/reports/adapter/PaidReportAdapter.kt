@@ -18,7 +18,7 @@ class PaidReportAdapter : BaseRecyclerAdapter<Invoice, ItemPaidReportBinding>(In
         binding.txtInitials.text = item.invoiceClientName?.take(2)?.uppercase() ?: "NA"
         binding.txtInvoiceId.text = "INV-${item.invoiceNumber ?: item.invoiceId}"
         binding.txtInvoiceDate.text = item.invoiceDate ?: "No Date"
-        binding.txtPaidDate.text = item.invoiceDate ?: "No Date" // Fallback as paidDate isn't in model
+       // binding.txtPaidDate.text = item.invoiceDate ?: "No Date" // Fallback as paidDate isn't in model
         binding.txtAmount.text = CurrencyFormatter.format(item.invoiceTotal ?: 0f)
     }
 

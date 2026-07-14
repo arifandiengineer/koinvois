@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:paddingVertical="@dimen/spacing_12">
 
     <com.google.android.material.card.MaterialCardView
@@ -39,6 +42,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/txtInvoices"
+        app:layout_constraintHorizontal_weight="0.5"
         app:layout_constraintStart_toEndOf="@id/avatarContainer"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Acme Corporation" />
@@ -52,6 +56,7 @@
         android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/txtPaidAmount"
+        app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintStart_toEndOf="@id/txtClientName"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="5" />
@@ -61,30 +66,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
+        android:layout_marginEnd="@dimen/spacing_16"
         android:textColor="@color/color_success"
         android:textSize="@dimen/text_size_10"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/imgArrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="0.3"
         app:layout_constraintStart_toEndOf="@id/txtInvoices"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="$1,250.00" />
-
-    <ImageView
-        android:id="@+id/imgArrow"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="@dimen/spacing_12"
-        android:src="@drawable/btn_forward"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/spacing_12"
-        android:background="@color/color_neutral_surface_light"
-        app:layout_constraintTop_toBottomOf="@id/avatarContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

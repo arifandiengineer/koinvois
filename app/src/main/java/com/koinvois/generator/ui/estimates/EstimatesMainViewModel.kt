@@ -29,6 +29,7 @@ import java.util.Date
 @HiltViewModel
 class EstimatesMainViewModel @Inject constructor(
     private val observeAllEstimatesUseCase: ObserveAllEstimatesUseCase,
+    private val getEstimateByIdUseCase: GetEstimateByIdUseCase,
     private val addEstimateUseCase: AddEstimateUseCase,
     private val updateEstimateUseCase: UpdateEstimateUseCase,
     private val deleteEstimateUseCase: DeleteEstimateUseCase,
@@ -189,8 +190,8 @@ class EstimatesMainViewModel @Inject constructor(
     }
 
     suspend fun loadEstimateById(id: Int) {
-        val estimate = observeAllEstimatesUseCase().first().find { it.estimateId == id }
-        estimate?.let { loadViewModelData(it.toEntity()) }
+        val estimate = getEstimateByIdUseCase(id)
+        loadViewModelData(estimate.toEntity())
     }
 
     suspend fun updateEstimate(estimate: Estimate) {
@@ -198,44 +199,45 @@ class EstimatesMainViewModel @Inject constructor(
     }
 
     suspend fun loadViewModelData(estimate: Estimate) {
-        estimatePrimaryId = estimate.estimateId.toLong()
-        estimateNumber = estimate.estimateNumber
-        estimateDate = estimate.estimateDate
-        estimateNotes = estimate.estimateNotes
-        estimatePoNumber = estimate.estimatePoNumber
-        estimateStatus = estimate.estimateStatus
-        estimateSubTotal = estimate.estimateSubtotal
-        estimateTotal = estimate.estimateTotal
+        val fullEstimate = getEstimateByIdUseCase(estimate.estimateId).toEntity()
+        estimatePrimaryId = fullEstimate.estimateId.toLong()
+        estimateNumber = fullEstimate.estimateNumber
+        estimateDate = fullEstimate.estimateDate
+        estimateNotes = fullEstimate.estimateNotes
+        estimatePoNumber = fullEstimate.estimatePoNumber
+        estimateStatus = fullEstimate.estimateStatus
+        estimateSubTotal = fullEstimate.estimateSubtotal
+        estimateTotal = fullEstimate.estimateTotal
         businessUpdateModel = getBusinessUseCase(1).toEntity()
-        selectedClient = estimate.clientPK?.let {
+        selectedClient = fullEstimate.clientPK?.let {
             Client(
                 it,
-                estimate.estimateClientName,
-                estimate.estimateClientEmail,
-                estimate.estimateClientMobile,
-                estimate.estimateClientPhone,
-                estimate.estimateClientFax,
-                estimate.estimateClientContact,
-                estimate.estimateClientAddress1,
-                estimate.estimateClientAddress2,
-                estimate.estimateClientAddress3
+                fullEstimate.estimateClientName,
+                fullEstimate.estimateClientEmail,
+                fullEstimate.estimateClientMobile,
+                fullEstimate.estimateClientPhone,
+                fullEstimate.estimateClientFax,
+                fullEstimate.estimateClientContact,
+                fullEstimate.estimateClientAddress1,
+                fullEstimate.estimateClientAddress2,
+                fullEstimate.estimateClientAddress3
             )
         }
-        selectedItemsList = getEstimateItemsByEstimateIdUseCase(estimate.estimateId)
+        selectedItemsList = getEstimateItemsByEstimateIdUseCase(fullEstimate.estimateId)
             .map { it.toEntity() } as? ArrayList<EstimateItem>
-        photosForEstimate = getEstimatePhotosByEstimateIdUseCase(estimate.estimateId)
+        photosForEstimate = getEstimatePhotosByEstimateIdUseCase(fullEstimate.estimateId)
             .map { it.toEntity() } as? ArrayList<EstimatePhoto>
         signatureObj =
-            estimate.estimateSignature?.let { Signature(it, estimate.signatureDate ?: "") }
+            fullEstimate.estimateSignature?.let { Signature(it, fullEstimate.signatureDate ?: "") }
 
-        discountType = estimate.estimateDiscountType
-        discountAmount = estimate.estimateDiscountAmount
+        discountType = fullEstimate.estimateDiscountType
+        discountAmount = fullEstimate.estimateDiscountAmount
         // discountPercentage = invoice.invoiceDiscountPercentage
-        taxType = estimate.estimateTaxType
-        taxLabel = estimate.estimateTaxLabel
+        taxType = fullEstimate.estimateTaxType
+        taxLabel = fullEstimate.estimateTaxLabel
         currentEstimateItem = null
-        taxRate = estimate.estimateTaxRate
-        taxInclusive = estimate.estimateTaxInclusive
+        taxRate = fullEstimate.estimateTaxRate
+        taxInclusive = fullEstimate.estimateTaxInclusive
 
     }
 

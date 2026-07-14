@@ -1,6 +1,5 @@
 package com.koinvois.generator.ui.reports
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.koinvois.generator.R
@@ -10,6 +9,8 @@ import com.koinvois.generator.domain.usecase.reports.GetAllPaidInvoicesForReport
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,33 +21,37 @@ class ReportsMainViewModel @Inject constructor(
     private val getAllPaidInvoicesForReportUseCase: GetAllPaidInvoicesForReportUseCase
 ) : ViewModel() {
 
-    val clientsReportList: ArrayList<ClientReportModel> = arrayListOf()
-    val paidInvoicesLive: MutableLiveData<List<Invoice>> = MutableLiveData()
-    val clientReportLoaded: MutableLiveData<Boolean> = MutableLiveData()
-    val paidClientReportLoaded: MutableLiveData<Boolean> = MutableLiveData()
+    private val _paidInvoices = MutableStateFlow<List<Invoice>>(emptyList())
+    val paidInvoices: StateFlow<List<Invoice>> = _paidInvoices
 
+    private val _clientsReport = MutableStateFlow<List<ClientReportModel>>(emptyList())
+    val clientsReport: StateFlow<List<ClientReportModel>> = _clientsReport
 
-    fun getClientReport() {
-        viewModelScope.launch(Dispatchers.Default) {
-            getAllInvoicesForReportUseCase().forEach {
-                clientsReportList.add(
-                    ClientReportModel(
-                        it.invoiceClientName ?: context.getString(R.string.fallback_no_client),
-                        1,
-                        it.invoiceTotal ?: 0f
-                    )
-                )
-            }
-
-            clientReportLoaded.postValue(true)
-        }
+    init {
+        loadReports()
     }
 
-    fun getPaidInvoicesReport() {
+    fun loadReports() {
         viewModelScope.launch(Dispatchers.Default) {
-            val list = getAllPaidInvoicesForReportUseCase()
-            paidInvoicesLive.postValue(list)
-            paidClientReportLoaded.postValue(true)
+            // Load Paid Invoices
+            val paidList = getAllPaidInvoicesForReportUseCase()
+            _paidInvoices.value = paidList
+
+            // Load Client Revenue Report
+            val allInvoices = getAllInvoicesForReportUseCase()
+            val groupedByClient = allInvoices.groupBy { 
+                it.invoiceClientName ?: context.getString(R.string.fallback_no_client) 
+            }
+
+            val clientReportList = groupedByClient.map { (clientName, invoices) ->
+                ClientReportModel(
+                    client = clientName,
+                    invoicesCount = invoices.size,
+                    invoiceAmount = invoices.sumOf { (it.invoiceTotal ?: 0f).toDouble() }.toFloat()
+                )
+            }.sortedByDescending { it.invoiceAmount }
+
+            _clientsReport.value = clientReportList
         }
     }
 
