@@ -21,6 +21,10 @@
     <string name="label_total_invoices">Total Invoices</string>
     <string name="label_revenue_paid">Revenue Paid</string>
     <string name="label_outstanding">Outstanding</string>
+    <!-- Placeholder trend indicators (not yet computed from real data) -->
+    <string name="label_growth_total_invoices">+12%</string>
+    <string name="label_growth_outstanding">+5%</string>
+    <string name="label_growth_paid">+18%</string>
     <string name="label_open_estimates">Open Estimates</string>
     <string name="label_recent_invoices">Recent Invoices</string>
     <string name="text_no_recent_invoices">No invoices yet</string>
@@ -30,6 +34,7 @@
     <string name="more_menu_client_subtitle">Manage your clients</string>
     <string name="more_menu_item">Item</string>
     <string name="more_menu_item_subtitle">Manage your items</string>
+    <string name="more_menu_settings_subtitle">App preferences and customization</string>
 
     <!-- Toolbar titles -->
     <string name="title_setting">Setting</string>
@@ -218,7 +223,9 @@
     <string name="label_payment">Payment</string>
     <string name="label_balance_due">Balance Due</string>
     <string name="label_mark_paid">Mark Paid</string>
+    <string name="label_mark_unpaid">Mark Unpaid</string>
     <string name="label_mark_closed">Mark Closed</string>
+    <string name="label_mark_open">Mark Open</string>
     <string name="label_amount">Amount</string>
     <string name="label_amount_colon">Amount:</string>
     <string name="label_add_payment">Add Payment</string>

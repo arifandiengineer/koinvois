@@ -39,29 +39,27 @@ class MoreFragment : Fragment() {
     private fun setUpMenuItems() {
         // Business Section
         binding.menuClients.apply {
-            txtTitle.text = "Clients"
-            txtSubtitle.text = "Manage your clients"
+            txtTitle.text = getString(R.string.title_clients)
+            txtSubtitle.text = getString(R.string.more_menu_client_subtitle)
             imgIcon.setImageResource(R.drawable.client_icon)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_stat_green_bg))
             imgIcon.setColorFilter(requireContext().getColor(R.color.color_success))
         }
         binding.menuItems.apply {
-            txtTitle.text = "Items"
-            txtSubtitle.text = "Manage your items"
+            txtTitle.text = getString(R.string.title_items)
+            txtSubtitle.text = getString(R.string.more_menu_item_subtitle)
             imgIcon.setImageResource(R.drawable.items_icon)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_stat_green_bg))
             imgIcon.setColorFilter(requireContext().getColor(R.color.color_success))
         }
 
         binding.menuSettings.apply {
-            txtTitle.text = "Settings"
-            txtSubtitle.text = "App preferences and customization"
+            txtTitle.text = getString(R.string.title_setting)
+            txtSubtitle.text = getString(R.string.more_menu_settings_subtitle)
             imgIcon.setImageResource(R.drawable.icon_setting)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_neutral_surface_light))
             //imgIcon.setColorFilter(requireContext().getColor(R.color.color_text_secondary))
         }
-
-
     }
 
     private fun setClickListeners() {

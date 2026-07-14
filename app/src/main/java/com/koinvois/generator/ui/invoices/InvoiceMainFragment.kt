@@ -66,7 +66,7 @@ class InvoiceMainFragment : Fragment() {
             imgIcon.setImageResource(R.drawable.invoice_icon)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_stat_green_bg))
             imgIcon.setColorFilter(requireContext().getColor(R.color.color_success))
-            txtGrowth.text = "+12%" 
+            txtGrowth.text = getString(R.string.label_growth_total_invoices)
             imgGrowthIcon.setImageResource(R.drawable.ic_arrow_growth_up)
         }
 
@@ -76,7 +76,7 @@ class InvoiceMainFragment : Fragment() {
             imgIcon.setImageResource(R.drawable.estimate_icon)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_stat_orange_bg))
             imgIcon.setColorFilter(requireContext().getColor(R.color.color_stat_orange))
-            txtGrowth.text = "+5%"
+            txtGrowth.text = getString(R.string.label_growth_outstanding)
             txtGrowth.setTextColor(requireContext().getColor(R.color.color_stat_orange))
             imgGrowthIcon.setImageResource(R.drawable.ic_arrow_growth_up)
             imgGrowthIcon.setColorFilter(requireContext().getColor(R.color.color_stat_orange))
@@ -88,7 +88,7 @@ class InvoiceMainFragment : Fragment() {
             imgIcon.setImageResource(R.drawable.business_icon)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_stat_green_bg))
             imgIcon.setColorFilter(requireContext().getColor(R.color.color_success))
-            txtGrowth.text = "+18%"
+            txtGrowth.text = getString(R.string.label_growth_paid)
             imgGrowthIcon.setImageResource(R.drawable.ic_arrow_growth_up)
         }
     }

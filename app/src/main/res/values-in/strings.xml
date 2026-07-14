@@ -21,6 +21,9 @@
     <string name="label_total_invoices">Total Invoice</string>
     <string name="label_revenue_paid">Pendapatan Terbayar</string>
     <string name="label_outstanding">Belum Terbayar</string>
+    <string name="label_growth_total_invoices">+12%</string>
+    <string name="label_growth_outstanding">+5%</string>
+    <string name="label_growth_paid">+18%</string>
     <string name="label_open_estimates">Estimasi Terbuka</string>
     <string name="label_recent_invoices">Invoice Terbaru</string>
     <string name="text_no_recent_invoices">Belum ada invoice</string>
@@ -30,6 +33,7 @@
     <string name="more_menu_client_subtitle">Kelola klien Anda</string>
     <string name="more_menu_item">Barang</string>
     <string name="more_menu_item_subtitle">Kelola barang Anda</string>
+    <string name="more_menu_settings_subtitle">Preferensi dan kustomisasi aplikasi</string>
 
     <!-- Toolbar titles -->
     <string name="title_setting">Pengaturan</string>
@@ -213,7 +217,9 @@
     <string name="label_payment">Pembayaran</string>
     <string name="label_balance_due">Sisa Tagihan</string>
     <string name="label_mark_paid">Tandai Lunas</string>
+    <string name="label_mark_unpaid">Tandai Belum Lunas</string>
     <string name="label_mark_closed">Tandai Ditutup</string>
+    <string name="label_mark_open">Tandai Terbuka</string>
     <string name="label_amount">Jumlah</string>
     <string name="label_amount_colon">Jumlah:</string>
     <string name="label_add_payment">Tambah Pembayaran</string>

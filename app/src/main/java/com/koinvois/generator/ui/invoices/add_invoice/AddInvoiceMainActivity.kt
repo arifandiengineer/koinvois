@@ -172,13 +172,13 @@ class AddInvoiceMainActivity : BaseActivity<FragmentEditInvoiceBinding>() {
         viewModel.invoiceStatus?.let {
             when (it) {
                 InvoiceStatusEnum.UN_PAID.status -> {
-                    binding.btnMarkPaid.setText("Mark Paid")
+                    binding.btnMarkPaid.setText(R.string.label_mark_paid)
                 }
                 InvoiceStatusEnum.PAID.status -> {
-                    binding.btnMarkPaid.setText("Mark Unpaid")
+                    binding.btnMarkPaid.setText(R.string.label_mark_unpaid)
                 }
                 else -> {
-                    binding.btnMarkPaid.setText("Mark Paid")
+                    binding.btnMarkPaid.setText(R.string.label_mark_paid)
                 }
             }
         }
@@ -287,15 +287,15 @@ class AddInvoiceMainActivity : BaseActivity<FragmentEditInvoiceBinding>() {
             when (viewModel.invoiceStatus) {
                 InvoiceStatusEnum.PAID.status -> {
                     viewModel.invoiceStatus = InvoiceStatusEnum.UN_PAID.status
-                    binding.btnMarkPaid.setText("Mark Paid")
+                    binding.btnMarkPaid.setText(R.string.label_mark_paid)
                 }
                 InvoiceStatusEnum.UN_PAID.status -> {
                     viewModel.invoiceStatus = InvoiceStatusEnum.PAID.status
-                    binding.btnMarkPaid.setText("Mark Unpaid")
+                    binding.btnMarkPaid.setText(R.string.label_mark_unpaid)
                 }
                 else -> {
                     viewModel.invoiceStatus = InvoiceStatusEnum.PAID.status
-                    binding.btnMarkPaid.setText("Mark Unpaid")
+                    binding.btnMarkPaid.setText(R.string.label_mark_unpaid)
                 }
             }
         }

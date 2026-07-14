@@ -164,13 +164,13 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
         viewModel.estimateStatus?.let {
             when (it) {
                 EstimateStatusEnum.OPEN.status -> {
-                    content.btnMarkPaid.setText("Mark Closed")
+                    content.btnMarkPaid.setText(R.string.label_mark_closed)
                 }
                 EstimateStatusEnum.CLOSED.status -> {
-                    content.btnMarkPaid.setText("Mark Open")
+                    content.btnMarkPaid.setText(R.string.label_mark_open)
                 }
                 else -> {
-                    content.btnMarkPaid.setText("Mark Closed")
+                    content.btnMarkPaid.setText(R.string.label_mark_closed)
                 }
             }
         }
@@ -252,15 +252,15 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
             when (viewModel.estimateStatus) {
                 EstimateStatusEnum.OPEN.status -> {
                     viewModel.estimateStatus = EstimateStatusEnum.CLOSED.status
-                    content.btnMarkPaid.setText("Mark Open")
+                    content.btnMarkPaid.setText(R.string.label_mark_open)
                 }
                 EstimateStatusEnum.CLOSED.status -> {
                     viewModel.estimateStatus = EstimateStatusEnum.OPEN.status
-                    content.btnMarkPaid.setText("Mark Closed")
+                    content.btnMarkPaid.setText(R.string.label_mark_closed)
                 }
                 else -> {
                     viewModel.estimateStatus = EstimateStatusEnum.CLOSED.status
-                    content.btnMarkPaid.setText("Mark Open")
+                    content.btnMarkPaid.setText(R.string.label_mark_open)
                 }
             }
         }
