@@ -2,16 +2,12 @@ package com.koinvois.generator.ui.item.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.domain.model.Item
 import com.koinvois.generator.databinding.ItemItemsBinding
-import com.koinvois.generator.ui.item.ItemMainFragmentDirections
-import com.koinvois.generator.ui.item.ItemMainViewModel
-import com.koinvois.generator.utilities.constants.Constants
 
-class AllItemsAdapter(private val navController: NavController, val viewModel: ItemMainViewModel) :
+class AllItemsAdapter(private val onItemClick: (Item) -> Unit) :
     BaseRecyclerAdapter<Item, ItemItemsBinding>(ItemDiffCallback()) {
 
     override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemItemsBinding =
@@ -23,9 +19,7 @@ class AllItemsAdapter(private val navController: NavController, val viewModel: I
         binding.txtItemDescription.text = item.itemDetails
 
         binding.root.setOnClickListener {
-            viewModel.itemUpdateModel.postValue(item)
-            val action = ItemMainFragmentDirections.actionMainItemFragmentToAddItemFragment(Constants.EXISTING_ITEM)
-            navController.navigate(action)
+            onItemClick(item)
         }
     }
 

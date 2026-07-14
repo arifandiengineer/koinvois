@@ -19,10 +19,13 @@ class ClientMainViewModel @Inject constructor(
 ) : ViewModel() {
 
     var allClientList: MutableLiveData<ArrayList<Client>> = MutableLiveData()
-    var clientUpdateModel: MutableLiveData<Client?> = MutableLiveData()
 
     suspend fun getAllClients(): ArrayList<Client> {
         return ArrayList(getAllClientsUseCase())
+    }
+
+    suspend fun getClientById(clientId: Int): Client? {
+        return getAllClientsUseCase().find { it.clientId == clientId }
     }
 
     suspend fun addClient(client: Client) {
@@ -33,7 +36,7 @@ class ClientMainViewModel @Inject constructor(
         updateClientUseCase(client)
     }
 
-    suspend fun deleteClient() {
-        clientUpdateModel.value?.let { deleteClientUseCase(it) }
+    suspend fun deleteClient(client: Client) {
+        deleteClientUseCase(client)
     }
 }

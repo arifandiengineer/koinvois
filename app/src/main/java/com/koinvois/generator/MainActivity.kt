@@ -77,8 +77,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.fragmentItemListForInvoice,
                 R.id.fragmentInvoiceInformation,
                 R.id.fragmentAddBusiness,
-                R.id.fragmentAddClient,
-                R.id.fragmentAddItem,
                 R.id.fragmentSetting,
                 R.id.fragmentPayments,
                 R.id.fragmentAddPayment,

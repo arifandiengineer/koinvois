@@ -37,6 +37,23 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.koinvois.generator.ui.client.ClientMainActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.client.add_client.AddClientActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.item.ItemMainActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.item.add_item.AddItemActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.koinvois.generator.provider"

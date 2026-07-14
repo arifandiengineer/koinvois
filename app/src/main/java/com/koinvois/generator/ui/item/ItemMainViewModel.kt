@@ -1,6 +1,5 @@
 package com.koinvois.generator.ui.item
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.koinvois.generator.domain.model.Item
 import com.koinvois.generator.domain.usecase.item.AddItemUseCase
@@ -17,10 +16,12 @@ class ItemMainViewModel @Inject constructor(
     private val updateItemUseCase: UpdateItemUseCase,
     private val deleteItemUseCase: DeleteItemUseCase
 ) : ViewModel() {
-    var itemUpdateModel: MutableLiveData<Item?> = MutableLiveData()
-
     suspend fun getAllItems(): ArrayList<Item> {
         return ArrayList(getAllItemsUseCase())
+    }
+
+    suspend fun getItemById(itemId: Int): Item? {
+        return getAllItemsUseCase().find { it.itemId == itemId }
     }
 
     suspend fun addItem(item: Item) {
@@ -31,7 +32,7 @@ class ItemMainViewModel @Inject constructor(
         updateItemUseCase(item)
     }
 
-    suspend fun deleteItem() {
-        itemUpdateModel.value?.let { deleteItemUseCase(it) }
+    suspend fun deleteItem(item: Item) {
+        deleteItemUseCase(item)
     }
 }

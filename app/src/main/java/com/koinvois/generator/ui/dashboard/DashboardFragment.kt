@@ -15,8 +15,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.FragmentDashboardBinding
+import com.koinvois.generator.ui.client.ClientMainActivity
 import com.koinvois.generator.ui.dashboard.adapter.RecentInvoiceAdapter
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
+import com.koinvois.generator.ui.item.ItemMainActivity
 import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.getScreenWidth
 import com.koinvois.generator.utilities.extensions.hide
@@ -115,10 +117,10 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.estimate_navigation_graph)
         }
         binding.btnQuickAddClient.setSafeOnClickListener {
-            findNavController().navigate(R.id.client_navigation_graph)
+            startActivity(ClientMainActivity.newIntent(requireContext()))
         }
         binding.btnQuickAddItem.setSafeOnClickListener {
-            findNavController().navigate(R.id.item_navigation_graph)
+            startActivity(ItemMainActivity.newIntent(requireContext()))
         }
         binding.btnViewAll.setSafeOnClickListener {
             findNavController().navigate(R.id.invoice_navigation_graph)

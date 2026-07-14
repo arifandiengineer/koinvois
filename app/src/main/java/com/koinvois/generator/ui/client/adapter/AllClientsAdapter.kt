@@ -2,16 +2,12 @@ package com.koinvois.generator.ui.client.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.domain.model.Client
 import com.koinvois.generator.databinding.ItemClientBinding
-import com.koinvois.generator.ui.client.ClientMainFragmentDirections
-import com.koinvois.generator.ui.client.ClientMainViewModel
-import com.koinvois.generator.utilities.constants.Constants
 
-class AllClientsAdapter(private val navController: NavController, val viewModel: ClientMainViewModel) :
+class AllClientsAdapter(private val onClientClick: (Client) -> Unit) :
     BaseRecyclerAdapter<Client, ItemClientBinding>(ClientDiffCallback()) {
 
     override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemClientBinding =
@@ -21,9 +17,7 @@ class AllClientsAdapter(private val navController: NavController, val viewModel:
         binding.txtClientName.text = item.clientName
 
         binding.root.setOnClickListener {
-            viewModel.clientUpdateModel.postValue(item)
-            val action = ClientMainFragmentDirections.actionMainClientToAddClient(Constants.EXISTING_CLIENT)
-            navController.navigate(action)
+            onClientClick(item)
         }
     }
 
