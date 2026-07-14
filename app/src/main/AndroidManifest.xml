@@ -53,6 +53,26 @@
             android:name="com.koinvois.generator.ui.item.add_item.AddItemActivity"
             android:theme="@style/Theme.InvoiceMaker"
             android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.setting.SettingActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.setting.add_business.AddBusinessDetailsActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.lock.EnterPasswordActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.lock.LockMainActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.lock.SavePasswordActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

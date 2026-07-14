@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.databinding.ActivityMainBinding
+import com.koinvois.generator.ui.setting.SettingActivity
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
@@ -66,18 +67,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             when (destination.id) {
                 R.id.fragmentSplashMain,
                 R.id.fragmentAddBusinessSplash,
-                R.id.fragmentEnterPassword,
-                R.id.fragmentLockMainFragment,
                 R.id.fragmentClientsForInvoice,
                 R.id.fragmentAddPhotoToInvoice,
                 R.id.fragmentSignature,
                 R.id.fragmentBusinessDetailsFromInvoice,
-                R.id.fragmentSavePassword,
                 R.id.fragmentItemDetailForInvoice,
                 R.id.fragmentItemListForInvoice,
                 R.id.fragmentInvoiceInformation,
-                R.id.fragmentAddBusiness,
-                R.id.fragmentSetting,
                 R.id.fragmentPayments,
                 R.id.fragmentAddPayment,
                 R.id.fragmentDiscount,
@@ -131,7 +127,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setClickListeners(navController: NavController) {
         binding.imgSetting.setSafeOnClickListener {
-            navController.navigate(R.id.setting_navigation_graph)
+            startActivity(SettingActivity.newIntent(this))
         }
     }
 }

@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.koinvois.generator.MainActivity
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.FragmentMoreBinding
 import com.koinvois.generator.ui.client.ClientMainActivity
 import com.koinvois.generator.ui.item.ItemMainActivity
+import com.koinvois.generator.ui.setting.SettingActivity
 import com.koinvois.generator.utilities.extensions.inVisible
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
@@ -73,7 +72,7 @@ class MoreFragment : Fragment() {
             startActivity(ItemMainActivity.newIntent(requireContext()))
         }
         binding.menuSettings.root.setSafeOnClickListener {
-            findNavController().navigate(R.id.setting_navigation_graph)
+            startActivity(SettingActivity.newIntent(requireContext()))
         }
     }
 

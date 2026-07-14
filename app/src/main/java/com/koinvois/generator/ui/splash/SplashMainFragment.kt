@@ -1,11 +1,13 @@
 package com.koinvois.generator.ui.splash
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
@@ -16,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.koinvois.generator.R
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.databinding.SplashMainFragmentBinding
+import com.koinvois.generator.ui.lock.EnterPasswordActivity
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
@@ -34,6 +37,13 @@ class SplashMainFragment : Fragment() {
     private var binding: SplashMainFragmentBinding? = null
     private var isFirstTime = true
     private var lockMode = false
+
+    private val enterPasswordLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                navigateToDashboard()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -152,20 +162,23 @@ class SplashMainFragment : Fragment() {
                 findNavController().navigate(action)
             }
             lockMode -> {
-                val action = SplashMainFragmentDirections.actionFragmentSplashMainToFragmentEnterPassword()
-                findNavController().navigate(action)
+                enterPasswordLauncher.launch(EnterPasswordActivity.newIntent(requireContext()))
             }
             else -> {
-                findNavController().navigate(
-                    R.id.dashboard_navigation_graph,
-                    null,
-                    navOptions {
-                        popUpTo(R.id.splash_navigation_graph) { inclusive = true }
-                        launchSingleTop = true
-                    }
-                )
+                navigateToDashboard()
             }
         }
+    }
+
+    private fun navigateToDashboard() {
+        findNavController().navigate(
+            R.id.dashboard_navigation_graph,
+            null,
+            navOptions {
+                popUpTo(R.id.splash_navigation_graph) { inclusive = true }
+                launchSingleTop = true
+            }
+        )
     }
 
     override fun onDestroyView() {
