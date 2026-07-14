@@ -56,7 +56,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="Invoice Information"
+                            android:text="@string/label_invoice_information"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/text_size_14"
                             android:textStyle="bold" />
@@ -81,7 +81,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Invoice Number"
+                                android:text="@string/title_invoice_number"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="9sp" />
                             <RelativeLayout
@@ -92,7 +92,7 @@
                                     android:id="@+id/txtInvoiceNumber"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="INV-00012"
+                                    tools:text="INV-00012"
                                     android:textColor="@color/color_text_primary"
                                     android:textSize="@dimen/text_size_12"
                                     android:textStyle="bold" />
@@ -118,7 +118,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Due on receipt"
+                                android:text="@string/label_due_on_receipt"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="9sp" />
                             <RelativeLayout
@@ -129,7 +129,7 @@
                                     android:id="@+id/txtDueOnReceipt"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Due on receipt"
+                                    android:text="@string/label_due_on_receipt"
                                     android:textColor="@color/color_text_primary"
                                     android:textSize="@dimen/text_size_12"
                                     android:textStyle="bold" />
@@ -156,7 +156,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Business Info"
+                                android:text="@string/label_business_info"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="9sp" />
                             <RelativeLayout
@@ -171,7 +171,7 @@
                                     android:layout_toStartOf="@id/iconForward1"
                                     android:ellipsize="end"
                                     android:maxLines="1"
-                                    android:text="PT Nusantara Teknologi"
+                                    android:text="@string/label_default_business_name"
                                     android:textColor="@color/color_text_primary"
                                     android:textSize="@dimen/text_size_12"
                                     android:textStyle="bold" />
@@ -199,7 +199,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Date"
+                                android:text="@string/label_date"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="9sp" />
                             <RelativeLayout
@@ -221,7 +221,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="4dp"
-                                        android:text="12 Jul 2026"
+                                        tools:text="12 Jul 2026"
                                         android:textColor="@color/color_text_primary"
                                         android:textSize="@dimen/text_size_12"
                                         android:textStyle="bold" />
@@ -270,7 +270,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="Client"
+                            android:text="@string/more_menu_client"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/text_size_14"
                             android:textStyle="bold" />
@@ -286,7 +286,7 @@
                             android:id="@+id/txtClientName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PT ABC Indonesia"
+                            tools:text="PT ABC Indonesia"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/text_size_12"
                             android:textStyle="bold" />
@@ -330,7 +330,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="Items"
+                            android:text="@string/title_items"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/text_size_14"
                             android:textStyle="bold" />
@@ -364,7 +364,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="Add Item"
+                            android:text="@string/label_add_item"
                             android:textColor="@color/color_stat_orange"
                             android:textSize="@dimen/text_size_12"
                             android:textStyle="bold" />
@@ -402,7 +402,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="Summary"
+                            android:text="@string/label_summary"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/text_size_14"
                             android:textStyle="bold" />
@@ -421,7 +421,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Subtotal"
+                                android:text="@string/label_subtotal"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="11sp" />
                             <TextView
@@ -429,7 +429,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="$0.00"
+                                tools:text="$0.00"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
@@ -443,7 +443,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Discount"
+                                android:text="@string/label_discount"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="11sp" />
                             <TextView
@@ -451,7 +451,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="-$0.00"
+                                tools:text="-$0.00"
                                 android:textColor="@color/color_stat_orange"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
@@ -466,7 +466,7 @@
                                 android:id="@+id/txtTaxLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tax"
+                                tools:text="Tax"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="11sp" />
                             <TextView
@@ -474,7 +474,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="$0.00"
+                                tools:text="$0.00"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
@@ -487,7 +487,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total"
+                                android:text="@string/label_total"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="11sp" />
                             <TextView
@@ -495,7 +495,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="$0.00"
+                                tools:text="$0.00"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
@@ -509,7 +509,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Payment"
+                                android:text="@string/label_payment"
                                 android:textColor="@color/color_text_secondary"
                                 android:textSize="11sp" />
                             <TextView
@@ -517,7 +517,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="$0.00"
+                                tools:text="$0.00"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
@@ -534,7 +534,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Balance Due"
+                                android:text="@string/label_balance_due"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/text_size_14"
                                 android:textStyle="bold"
@@ -546,7 +546,7 @@
                                 android:id="@+id/txtTotalBalanceAmount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$0.00"
+                                tools:text="$0.00"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/text_size_16"
                                 android:textStyle="bold"
@@ -589,7 +589,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="Photos"
+                            android:text="@string/label_photos"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/text_size_14"
                             android:textStyle="bold" />
@@ -631,7 +631,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/spacing_4"
-                                android:text="Add Photo"
+                                android:text="@string/label_add_photo"
                                 android:textColor="@color/color_stat_orange"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -670,7 +670,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="Payment Instruction"
+                            android:text="@string/label_payment_instruction"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/text_size_14"
                             android:textStyle="bold" />
@@ -683,7 +683,7 @@
                         android:layout_marginTop="@dimen/spacing_12"
                         android:background="@drawable/bg_info_row"
                         android:gravity="top|start"
-                        android:hint="Transfer to BCA\n1234567890 a.n PT Nusantara Teknologi"
+                        android:hint="@string/hint_payment_instruction_example"
                         android:minLines="2"
                         android:padding="@dimen/spacing_12"
                         android:textColor="@color/color_text_primary"
@@ -729,7 +729,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/spacing_4"
-                                android:text="Signature"
+                                android:text="@string/label_signature"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/text_size_12"
                                 android:textStyle="bold" />
@@ -745,7 +745,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tap to add signature"
+                                android:text="@string/label_tap_to_add_signature"
                                 android:textColor="@color/color_stat_orange"
                                 android:textSize="9sp" />
                         </LinearLayout>
@@ -781,7 +781,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/spacing_4"
-                                android:text="Notes"
+                                android:text="@string/label_notes"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/text_size_12"
                                 android:textStyle="bold" />
@@ -793,7 +793,7 @@
                             android:layout_marginTop="@dimen/spacing_8"
                             android:background="@drawable/bg_info_row"
                             android:gravity="top|start"
-                            android:hint="Write additional information..."
+                            android:hint="@string/hint_additional_information"
                             android:padding="@dimen/spacing_8"
                             android:textColor="@color/color_text_primary"
                             android:textSize="9sp" />
@@ -812,7 +812,7 @@
         android:backgroundTint="@color/md_theme_primary"
         android:insetBottom="0dp"
         android:insetTop="0dp"
-        android:text="Mark as Paid"
+        tools:text="Mark as Paid"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_16"

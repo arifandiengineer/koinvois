@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_4"
-                    android:text="from last month"
+                    android:text="@string/label_from_last_month"
                     android:textColor="@color/color_text_secondary"
                     android:textSize="@dimen/text_size_9" />
 

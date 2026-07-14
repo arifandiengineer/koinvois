@@ -151,6 +151,8 @@
     <string name="hint_website">Website</string>
     <string name="hint_description">Description</string>
     <string name="hint_additional_details">Additional Details</string>
+    <string name="hint_quantity_default">1</string>
+    <string name="hint_percentage_default">0%</string>
 
     <!-- Bottom nav -->
     <string name="title_invoice_nav">Invoice</string>
@@ -220,8 +222,20 @@
     <string name="label_tax_colon">Tax:</string>
     <string name="label_total">Total</string>
     <string name="label_total_colon">Total:</string>
+    <string name="label_qty">Qty</string>
+    <string name="label_price">Price</string>
+    <string name="label_from_last_month">from last month</string>
     <string name="label_payment">Payment</string>
     <string name="label_balance_due">Balance Due</string>
+    <string name="label_invoice_information">Invoice Information</string>
+    <string name="label_summary">Summary</string>
+    <string name="label_photos">Photos</string>
+    <string name="label_add_photo">Add Photo</string>
+    <string name="label_payment_instruction">Payment Instruction</string>
+    <string name="label_tap_to_add_signature">Tap to add signature</string>
+    <string name="hint_payment_instruction_example">Transfer to BCA\n1234567890 a.n PT Nusantara Teknologi</string>
+    <string name="hint_additional_information">Write additional information…</string>
+    <string name="label_default_business_name">PT Nusantara Teknologi</string>
     <string name="label_mark_paid">Mark Paid</string>
     <string name="label_mark_unpaid">Mark Unpaid</string>
     <string name="label_mark_closed">Mark Closed</string>
@@ -230,6 +244,7 @@
     <string name="label_amount_colon">Amount:</string>
     <string name="label_add_payment">Add Payment</string>
     <string name="label_paid_amount">Paid amount</string>
+    <string name="label_default_amount">$0.00</string>
     <string name="label_payment_method_colon">Payment Method:</string>
     <string name="label_cash">Cash</string>
     <string name="label_name_column">Name</string>
@@ -253,6 +268,14 @@
     <string name="label_contact_details">Contact Details</string>
     <string name="label_address_details">Address Details</string>
     <string name="hint_contact_person">Contact Person</string>
+    <string name="label_client_details_header">Client Details</string>
+    <string name="label_add_or_edit_client_info">Add or edit client information</string>
+    <string name="label_basic_client_info_desc">Basic information about your client</string>
+    <string name="hint_enter_client_name">Enter client name</string>
+    <string name="hint_enter_email_address_short">Enter email address</string>
+    <string name="label_phone_communication_desc">Phone and communication details</string>
+    <string name="label_client_address_info_desc">Client address information</string>
+    <string name="hint_enter_contact_person">Enter contact person</string>
     <!-- Onboarding -->
     <string name="onboarding_title_1">Create Professional &lt;br/&gt; &lt;font color=\'#4CAF50\'&gt;Invoices Quickly&lt;/font&gt;</string>
     <string name="onboarding_desc_1">Make, send, and manage invoices &lt;br/&gt; in just a few taps.</string>

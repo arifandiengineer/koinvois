@@ -150,6 +150,8 @@
     <string name="hint_website">Situs Web</string>
     <string name="hint_description">Deskripsi</string>
     <string name="hint_additional_details">Detail Tambahan</string>
+    <string name="hint_quantity_default">1</string>
+    <string name="hint_percentage_default">0%</string>
 
     <!-- Bottom nav -->
     <string name="title_invoice_nav">Invoice</string>
@@ -206,6 +208,9 @@
     <string name="label_due_date_colon">Tanggal Jatuh Tempo:</string>
     <string name="label_due_on_receipt">Jatuh tempo saat diterima</string>
     <string name="label_date_header">Tanggal</string>
+    <string name="label_date">Tanggal</string>
+    <string name="label_signature">Tanda Tangan</string>
+    <string name="label_notes">Catatan</string>
     <string name="label_to_colon">Kepada:</string>
     <string name="label_add_item">Tambah Item</string>
     <string name="label_subtotal">Subtotal</string>
@@ -214,8 +219,20 @@
     <string name="label_tax_colon">Pajak:</string>
     <string name="label_total">Total</string>
     <string name="label_total_colon">Total:</string>
+    <string name="label_qty">Jml</string>
+    <string name="label_price">Harga</string>
+    <string name="label_from_last_month">dari bulan lalu</string>
     <string name="label_payment">Pembayaran</string>
     <string name="label_balance_due">Sisa Tagihan</string>
+    <string name="label_invoice_information">Informasi Invoice</string>
+    <string name="label_summary">Ringkasan</string>
+    <string name="label_photos">Foto</string>
+    <string name="label_add_photo">Tambah Foto</string>
+    <string name="label_payment_instruction">Instruksi Pembayaran</string>
+    <string name="label_tap_to_add_signature">Ketuk untuk tambah tanda tangan</string>
+    <string name="hint_payment_instruction_example">Transfer ke BCA\n1234567890 a.n PT Nusantara Teknologi</string>
+    <string name="hint_additional_information">Tulis informasi tambahan…</string>
+    <string name="label_default_business_name">PT Nusantara Teknologi</string>
     <string name="label_mark_paid">Tandai Lunas</string>
     <string name="label_mark_unpaid">Tandai Belum Lunas</string>
     <string name="label_mark_closed">Tandai Ditutup</string>
@@ -224,6 +241,7 @@
     <string name="label_amount_colon">Jumlah:</string>
     <string name="label_add_payment">Tambah Pembayaran</string>
     <string name="label_paid_amount">Jumlah dibayar</string>
+    <string name="label_default_amount">$0.00</string>
     <string name="label_payment_method_colon">Metode Pembayaran:</string>
     <string name="label_cash">Tunai</string>
     <string name="label_name_column">Nama</string>
@@ -343,4 +361,24 @@
     <string name="title_invoice_number">Nomor Invoice</string>
     <string name="title_estimate_number">Nomor Estimasi</string>
     <string name="label_discount_percent_format">Diskon(%1$s%%)</string>
+
+    <!-- Previously-missing English strings, translated to close the EN/ID parity gap -->
+    <string name="action_filter">Filter</string>
+    <string name="action_sort">Urutkan</string>
+    <string name="hint_contact_person">Kontak Person</string>
+    <string name="hint_email_address">Alamat Email</string>
+    <string name="hint_search_invoices">Cari invoice…</string>
+    <string name="label_address_details">Detail Alamat</string>
+    <string name="label_client_information">Informasi Klien</string>
+    <string name="label_contact_details">Detail Kontak</string>
+    <string name="label_photo_additional_details">Detail Tambahan Foto</string>
+    <string name="label_photo_description">Deskripsi Foto</string>
+    <string name="label_client_details_header">Detail Klien</string>
+    <string name="label_add_or_edit_client_info">Tambah atau ubah informasi klien</string>
+    <string name="label_basic_client_info_desc">Informasi dasar tentang klien Anda</string>
+    <string name="hint_enter_client_name">Masukkan nama klien</string>
+    <string name="hint_enter_email_address_short">Masukkan alamat email</string>
+    <string name="label_phone_communication_desc">Detail telepon dan komunikasi</string>
+    <string name="label_client_address_info_desc">Informasi alamat klien</string>
+    <string name="hint_enter_contact_person">Masukkan kontak person</string>
 </resources>
