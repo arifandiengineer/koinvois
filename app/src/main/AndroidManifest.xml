@@ -169,6 +169,14 @@
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateActivity"
             android:theme="@style/Theme.InvoiceMaker"
             android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.home.HomeActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.notifications.NotificationsActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
