@@ -20,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        tools:listitem="@layout/item_items" />
+        tools:listitem="@layout/item_item_main_list" />
 
     <TextView
         android:id="@+id/txtEmptyItemList"

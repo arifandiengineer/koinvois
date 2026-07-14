@@ -86,7 +86,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/paymentTotalView"
                         tools:itemCount="4"
-                        tools:listitem="@layout/item_payment" />
+                        tools:listitem="@layout/item_invoice_payment_list" />
 
                     <TextView
                         android:id="@+id/txtAddPayment"

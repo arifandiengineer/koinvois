@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_background"
     tools:context=".ui.client.add_client.AddClientActivity">
 
     <include
@@ -11,195 +12,451 @@
         layout="@layout/view_custom_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/firstCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_30"
-        android:layout_marginTop="@dimen/spacing_30"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_80"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16">
 
-            <EditText
-                android:id="@+id/editClientName"
-                android:layout_width="0dp"
+            <!-- Card 1: Client Information -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/firstCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_16"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:background="@null"
-                android:hint="@string/hint_client_name"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-            <EditText
-                android:id="@+id/editClientEmail"
-                android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
+
+                    <!-- Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle_blue"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_user_outline"
+                            app:tint="@color/color_stat_blue" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_client_information"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_add_or_edit_client_info"
+                                android:textColor="@color/color_text_secondary"
+                                android:textSize="@dimen/text_size_11" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Client Name -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_20"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_12"
+                        android:paddingVertical="@dimen/spacing_4">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_user_outline"
+                            app:tint="@color/color_icon_grey_medium" />
+
+                        <EditText
+                            android:id="@+id/editClientName"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_client_name"
+                            android:inputType="textPersonName"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
+
+                    <!-- Email -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_12"
+                        android:paddingVertical="@dimen/spacing_4">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_mail_outline"
+                            app:tint="@color/color_icon_grey_medium" />
+
+                        <EditText
+                            android:id="@+id/editClientEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_email"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
+
+                    <!-- Mobile -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="120dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/bg_label_box"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="@dimen/spacing_12">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_phone"
+                                app:tint="@color/color_stat_blue" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_8"
+                                android:text="@string/label_mobile"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_14"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/editMobileNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_input_border"
+                            android:hint="@string/hint_mobile_number"
+                            android:inputType="phone"
+                            android:paddingHorizontal="@dimen/spacing_12"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
+
+                    <!-- Phone -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="120dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/bg_label_box"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="@dimen/spacing_12">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_phone"
+                                app:tint="@color/color_stat_blue" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_8"
+                                android:text="@string/label_phone_colon"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_14"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/editPhoneNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_input_border"
+                            android:hint="@string/hint_phone_number"
+                            android:inputType="phone"
+                            android:paddingHorizontal="@dimen/spacing_12"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
+
+                    <!-- Fax -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="120dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/bg_label_box"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="@dimen/spacing_12">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_fax_outline"
+                                app:tint="@color/color_stat_blue" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_8"
+                                android:text="@string/label_fax"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_14"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/editFaxNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_input_border"
+                            android:hint="@string/hint_fax_number"
+                            android:inputType="phone"
+                            android:paddingHorizontal="@dimen/spacing_12"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card 2: Contact/Address -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/secondCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_26"
-                android:background="@null"
-                android:hint="@string/hint_email"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintEnd_toEndOf="@id/editClientName"
-                app:layout_constraintStart_toStartOf="@id/editClientName"
-                app:layout_constraintTop_toBottomOf="@id/editClientName" />
+                android:layout_marginTop="@dimen/spacing_16"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-            <TextView
-                android:id="@+id/txtMobile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_26"
-                android:text="@string/label_mobile"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintStart_toStartOf="@id/editClientEmail"
-                app:layout_constraintTop_toBottomOf="@id/editClientEmail" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
 
-            <TextView
-                android:id="@+id/txtPhone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_26"
-                android:text="@string/label_phone"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintEnd_toEndOf="@+id/txtMobile"
-                app:layout_constraintStart_toStartOf="@id/txtMobile"
-                app:layout_constraintTop_toBottomOf="@id/txtMobile" />
+                    <!-- Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtFax"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_26"
-                android:layout_marginBottom="@dimen/spacing_26"
-                android:text="@string/label_fax"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/txtPhone"
-                app:layout_constraintStart_toStartOf="@id/txtPhone"
-                app:layout_constraintTop_toBottomOf="@id/txtPhone" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle_green"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_location"
+                            app:tint="@color/color_success" />
 
-            <EditText
-                android:id="@+id/editMobileNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_32"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_mobile_number"
-                android:inputType="number"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintBottom_toBottomOf="@+id/txtMobile"
-                app:layout_constraintEnd_toEndOf="@+id/editClientEmail"
-                app:layout_constraintStart_toEndOf="@+id/txtMobile"
-                app:layout_constraintTop_toTopOf="@+id/txtMobile" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editPhoneNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_phone_number"
-                android:inputType="number"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintBottom_toBottomOf="@+id/txtPhone"
-                app:layout_constraintEnd_toEndOf="@+id/editMobileNumber"
-                app:layout_constraintStart_toStartOf="@+id/editMobileNumber"
-                app:layout_constraintTop_toTopOf="@+id/txtPhone" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/more_menu_client"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_14"
+                                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editFaxNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_fax_number"
-                android:inputType="number"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintBottom_toBottomOf="@+id/txtFax"
-                app:layout_constraintEnd_toEndOf="@+id/editPhoneNumber"
-                app:layout_constraintStart_toStartOf="@+id/editPhoneNumber"
-                app:layout_constraintTop_toTopOf="@+id/txtFax" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_enter_client_address"
+                                android:textColor="@color/color_text_secondary"
+                                android:textSize="@dimen/text_size_11" />
+                        </LinearLayout>
+                    </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                    <!-- Contact Person -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_20"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_12"
+                        android:paddingVertical="@dimen/spacing_4">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/secondCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_16"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="@id/firstCard"
-        app:layout_constraintStart_toStartOf="@id/firstCard"
-        app:layout_constraintTop_toBottomOf="@id/firstCard">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_business"
+                            app:tint="@color/color_icon_grey_medium" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                        <EditText
+                            android:id="@+id/editContact"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_contact"
+                            android:inputType="textPersonName"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
 
-            <EditText
-                android:id="@+id/editContact"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_16"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:background="@null"
-                android:hint="@string/hint_contact"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <!-- Address 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_12"
+                        android:paddingVertical="@dimen/spacing_4">
 
-            <EditText
-                android:id="@+id/editAddress1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_24"
-                android:background="@null"
-                android:hint="@string/hint_address_1"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintEnd_toEndOf="@id/editContact"
-                app:layout_constraintStart_toStartOf="@id/editContact"
-                app:layout_constraintTop_toBottomOf="@id/editContact" />
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_home_outline"
+                            app:tint="@color/color_icon_grey_medium" />
 
-            <EditText
-                android:id="@+id/editAddress2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_24"
-                android:background="@null"
-                android:hint="@string/hint_address_2"
-                app:layout_constraintEnd_toEndOf="@id/editAddress1"
-                app:layout_constraintStart_toStartOf="@id/editAddress1"
-                app:layout_constraintTop_toBottomOf="@id/editAddress1" />
+                        <EditText
+                            android:id="@+id/editAddress1"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_address_1"
+                            android:inputType="textPostalAddress"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
 
-            <EditText
-                android:id="@+id/editAddress3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_24"
-                android:layout_marginBottom="@dimen/spacing_24"
-                android:background="@null"
-                android:hint="@string/hint_address_3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/editAddress2"
-                app:layout_constraintStart_toStartOf="@id/editAddress2"
-                app:layout_constraintTop_toBottomOf="@id/editAddress2" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <!-- Address 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_12"
+                        android:paddingVertical="@dimen/spacing_4">
 
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_home_outline"
+                            app:tint="@color/color_icon_grey_medium" />
 
-    </androidx.cardview.widget.CardView>
+                        <EditText
+                            android:id="@+id/editAddress2"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_address_2"
+                            android:inputType="textPostalAddress"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
 
+                    <!-- Address 3 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_12"
+                        android:paddingVertical="@dimen/spacing_4">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_home_outline"
+                            app:tint="@color/color_icon_grey_medium" />
+
+                        <EditText
+                            android:id="@+id/editAddress3"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_address_3"
+                            android:inputType="textPostalAddress"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveClient"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/spacing_16"
+        android:backgroundTint="@color/color_success"
+        android:text="@string/label_save_client"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/ic_save"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/spacing_8"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,7 @@
     <string name="title_items">Barang</string>
     <string name="title_report">Laporan</string>
     <string name="label_add_client">Tambah Klien</string>
+    <string name="label_save_client">Simpan Klien</string>
     <string name="label_edit_client">Edit Klien</string>
     <string name="label_edit_item">Edit Item</string>
     <string name="label_edit_invoice">Edit Invoice</string>
@@ -213,6 +214,7 @@
     <string name="label_notes">Catatan</string>
     <string name="label_to_colon">Kepada:</string>
     <string name="label_add_item">Tambah Item</string>
+    <string name="label_save_item">Simpan Item</string>
     <string name="label_subtotal">Subtotal</string>
     <string name="label_discount">Diskon</string>
     <string name="label_tax">Pajak</string>

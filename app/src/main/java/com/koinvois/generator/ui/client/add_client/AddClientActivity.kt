@@ -33,7 +33,14 @@ class AddClientActivity : BaseActivity<ActivityClientAddBinding>() {
 
     override fun setupView() {
         setToolbar()
-        onBackPressedDispatcher.addCallback(this) { saveOnBack() }
+
+
+        binding.btnSaveClient.setSafeOnClickListener {
+            saveOnBack()
+        }
+        binding.customToolbar.btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         if (clientType == Constants.EXISTING_CLIENT) {
             lifecycleScope.launch(Dispatchers.Main) {
@@ -60,8 +67,13 @@ class AddClientActivity : BaseActivity<ActivityClientAddBinding>() {
 
     private fun setToolbar() {
         binding.customToolbar.btnBack.visible()
-        binding.customToolbar.txtToolbarTitle.text = if (clientType == Constants.EXISTING_CLIENT)
-            getString(R.string.label_edit_client) else getString(R.string.label_add_client)
+        if (clientType == Constants.EXISTING_CLIENT) {
+            binding.customToolbar.txtToolbarTitle.text = getString(R.string.label_edit_client)
+            binding.btnSaveClient.text = getString(R.string.label_save_changes)
+        } else {
+            binding.customToolbar.txtToolbarTitle.text = getString(R.string.label_add_client)
+            binding.btnSaveClient.text = getString(R.string.label_save_client)
+        }
 
         if (clientType == Constants.EXISTING_CLIENT) {
             binding.customToolbar.imgRightAction.visible()
@@ -95,9 +107,6 @@ class AddClientActivity : BaseActivity<ActivityClientAddBinding>() {
             }
         }
 
-        binding.customToolbar.btnBack.setOnClickListener {
-            saveOnBack()
-        }
     }
 
     private fun saveOnBack() {

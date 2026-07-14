@@ -33,7 +33,11 @@ class AddItemActivity : BaseActivity<ActivityItemAddBinding>() {
 
     override fun setupView() {
         setUpToolbar()
-        onBackPressedDispatcher.addCallback(this) { saveOnBack() }
+        onBackPressedDispatcher.addCallback(this) { finish() }
+
+        binding.btnSaveItem.setSafeOnClickListener {
+            saveItem()
+        }
 
         if (itemType == Constants.EXISTING_ITEM) {
             lifecycleScope.launch(Dispatchers.Main) {
@@ -55,8 +59,13 @@ class AddItemActivity : BaseActivity<ActivityItemAddBinding>() {
 
     private fun setUpToolbar() {
         binding.customToolbar.btnBack.visible()
-        binding.customToolbar.txtToolbarTitle.text = if (itemType == Constants.EXISTING_ITEM)
-            getString(R.string.label_edit_item) else getString(R.string.label_add_item)
+        if (itemType == Constants.EXISTING_ITEM) {
+            binding.customToolbar.txtToolbarTitle.text = getString(R.string.label_edit_item)
+            binding.btnSaveItem.text = getString(R.string.label_save_changes)
+        } else {
+            binding.customToolbar.txtToolbarTitle.text = getString(R.string.label_add_item)
+            binding.btnSaveItem.text = getString(R.string.label_save_item)
+        }
 
         if (itemType == Constants.EXISTING_ITEM) {
             binding.customToolbar.imgRightAction.visible()
@@ -91,11 +100,11 @@ class AddItemActivity : BaseActivity<ActivityItemAddBinding>() {
         }
 
         binding.customToolbar.btnBack.setOnClickListener {
-            saveOnBack()
+            finish()
         }
     }
 
-    private fun saveOnBack() {
+    private fun saveItem() {
         if (binding.editItemDescription.text.toString().isNotEmpty()) {
             when (itemType) {
                 Constants.NEW_ITEM -> {
@@ -133,7 +142,7 @@ class AddItemActivity : BaseActivity<ActivityItemAddBinding>() {
             }
             finish()
         } else {
-            finish()
+            binding.root.showErrorSnackbar(getString(R.string.error_enter_item_name))
         }
     }
 
