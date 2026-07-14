@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.fragment.app.activityViewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.FragmentPreviewInvoiceBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
@@ -16,7 +16,7 @@ import java.lang.String
 class PreviewInvoiceFragment : Fragment() {
 
     private var binding: FragmentPreviewInvoiceBinding? = null
-    private val viewModel: InvoiceMainViewModel by hiltNavGraphViewModels(R.id.invoice_navigation_graph)
+    private val viewModel: InvoiceMainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
