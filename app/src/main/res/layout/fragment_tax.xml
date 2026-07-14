@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_background"
     tools:context=".ui.invoices.add_invoice.invoice_edit_fragments.TaxActivity">
 
     <include
@@ -11,177 +12,335 @@
         layout="@layout/view_custom_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/firstCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_30"
-        android:layout_marginTop="@dimen/spacing_16"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_16"
+            android:paddingTop="@dimen/spacing_16">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/viewTax"
-                android:layout_width="0dp"
+            <!-- First Card: Tax, Label, Rate -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/firstCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                <TextView
-                    android:id="@+id/txtTax"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_16"
-                    android:paddingVertical="@dimen/spacing_16"
-                    android:text="@string/tax_label_tax"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
 
-                <TextView
-                    android:id="@+id/txtTaxType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_16"
-                    android:paddingVertical="@dimen/spacing_16"
-                    android:text="@string/tax_label_none"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <!-- Tax Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/viewTax"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/viewLabel"
-                android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/imgTaxIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle_gold"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_taxable"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_secondary" />
+
+                        <TextView
+                            android:id="@+id/lblTax"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/tax_label_tax"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@id/txtTaxType"
+                            app:layout_constraintStart_toEndOf="@id/imgTaxIcon"
+                            app:layout_constraintTop_toTopOf="@id/imgTaxIcon" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Select the tax to apply"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintEnd_toEndOf="@id/lblTax"
+                            app:layout_constraintStart_toStartOf="@id/lblTax"
+                            app:layout_constraintTop_toBottomOf="@id/lblTax" />
+
+                        <TextView
+                            android:id="@+id/txtTaxType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tax_label_none"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14"
+                            app:drawableEndCompat="@drawable/btn_forward"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_text_secondary" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="@dimen/spacing_16"
+                        android:background="@color/color_divider" />
+
+                    <!-- Label Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/viewLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imgLabelIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle_gold"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_document_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_secondary" />
+
+                        <TextView
+                            android:id="@+id/lblLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/tax_label_label"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@id/editTaxLabel"
+                            app:layout_constraintStart_toEndOf="@id/imgLabelIcon"
+                            app:layout_constraintTop_toTopOf="@id/imgLabelIcon" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Displayed on invoice"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintEnd_toEndOf="@id/lblLabel"
+                            app:layout_constraintStart_toStartOf="@id/lblLabel"
+                            app:layout_constraintTop_toBottomOf="@id/lblLabel" />
+
+                        <EditText
+                            android:id="@+id/editTaxLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="Tax"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/imgLabelForward"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imgLabelForward"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="@dimen/spacing_4"
+                            android:src="@drawable/btn_forward"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_text_secondary" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="@dimen/spacing_16"
+                        android:background="@color/color_divider" />
+
+                    <!-- Rate Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/viewRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imgRateIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle_gold"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_unit_cost"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_secondary" />
+
+                        <TextView
+                            android:id="@+id/lblRate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/tax_label_rate"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@id/editRate"
+                            app:layout_constraintStart_toEndOf="@id/imgRateIcon"
+                            app:layout_constraintTop_toTopOf="@id/imgRateIcon" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Tax percentage"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintEnd_toEndOf="@id/lblRate"
+                            app:layout_constraintStart_toStartOf="@id/lblRate"
+                            app:layout_constraintTop_toBottomOf="@id/lblRate" />
+
+                        <EditText
+                            android:id="@+id/editRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="0%"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/imgRateForward"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imgRateForward"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="@dimen/spacing_4"
+                            android:src="@drawable/btn_forward"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_text_secondary" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Second Card: Inclusive -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/secondCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewTax">
+                android:layout_marginTop="@dimen/spacing_16"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                <TextView
-                    android:id="@+id/txtLabel"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_16"
-                    android:paddingVertical="@dimen/spacing_16"
-                    android:text="@string/tax_label_label"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:padding="@dimen/spacing_16">
 
-                <EditText
-                    android:id="@+id/editTaxLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_16"
-                    android:background="@null"
-                    android:hint="Tax"
-                    android:paddingVertical="@dimen/spacing_16"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/imgInclusiveIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_icon_circle_gold"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_all_set_check"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/color_secondary" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/viewRate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewLabel">
+                    <TextView
+                        android:id="@+id/lblInclusive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        android:text="@string/tax_label_inclusive"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_16"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/switchInclusive"
+                        app:layout_constraintStart_toEndOf="@id/imgInclusiveIcon"
+                        app:layout_constraintTop_toTopOf="@id/imgInclusiveIcon" />
 
-                <TextView
-                    android:id="@+id/txtRate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_16"
-                    android:paddingVertical="@dimen/spacing_16"
-                    android:text="@string/tax_label_rate"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tax_desc_inclusive"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="@dimen/text_size_12"
+                        app:layout_constraintEnd_toEndOf="@id/lblInclusive"
+                        app:layout_constraintStart_toStartOf="@id/lblInclusive"
+                        app:layout_constraintTop_toBottomOf="@id/lblInclusive" />
 
-                <EditText
-                    android:id="@+id/editRate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_16"
-                    android:background="@null"
-                    android:hint="0%"
-                    android:paddingVertical="@dimen/spacing_16"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchInclusive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@id/imgInclusiveIcon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/imgInclusiveIcon" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <!-- Info Box -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/infoBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:background="@drawable/bg_info_box_tax"
+                        android:padding="@dimen/spacing_12"
+                        app:layout_constraintTop_toBottomOf="@id/imgInclusiveIcon">
 
-    </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/imgInfo"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_info_outline"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_secondary" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/secondCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_30"
-        android:layout_marginTop="@dimen/spacing_16"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstCard">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_8"
+                            android:text="When enabled, all item prices will be treated as tax-inclusive."
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgInfo"
+                            app:layout_constraintTop_toTopOf="@id/imgInfo" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/txtInclusive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_16"
-                android:paddingVertical="@dimen/spacing_16"
-                android:text="@string/tax_label_inclusive"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switchInclusive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_16"
-                android:paddingVertical="@dimen/spacing_16"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/txtInclusiveMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_16"
-                android:paddingBottom="@dimen/spacing_8"
-                android:text="@string/tax_desc_inclusive"
-                android:textColor="@color/greyish"
-                android:textSize="@dimen/text_size_18"
-                app:layout_constraintStart_toStartOf="@id/txtInclusive"
-                app:layout_constraintTop_toBottomOf="@id/txtInclusive" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

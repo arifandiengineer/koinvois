@@ -54,7 +54,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total"
+                        android:text="@string/label_total"
                         android:textColor="@color/color_text_secondary"
                         android:textSize="9sp" />
 
@@ -62,7 +62,7 @@
                         android:id="@+id/txtTotalCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18"
+                        tools:text="18"
                         android:textColor="@color/color_success"
                         android:textSize="@dimen/text_size_14"
                         android:textStyle="bold" />
@@ -76,7 +76,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+10%"
+                            android:text="@string/label_growth_estimate_total"
                             android:textColor="@color/color_success"
                             android:textSize="8sp"
                             android:textStyle="bold" />
@@ -128,7 +128,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Open"
+                        android:text="@string/status_open"
                         android:textColor="@color/color_text_secondary"
                         android:textSize="9sp" />
 
@@ -136,7 +136,7 @@
                         android:id="@+id/txtOpenCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7"
+                        tools:text="7"
                         android:textColor="@color/color_stat_orange"
                         android:textSize="@dimen/text_size_14"
                         android:textStyle="bold" />
@@ -150,7 +150,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+2"
+                            android:text="@string/label_growth_estimate_open"
                             android:textColor="@color/color_stat_orange"
                             android:textSize="8sp"
                             android:textStyle="bold" />
@@ -201,7 +201,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Closed"
+                        android:text="@string/status_closed"
                         android:textColor="@color/color_text_secondary"
                         android:textSize="9sp" />
 
@@ -209,7 +209,7 @@
                         android:id="@+id/txtClosedCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11"
+                        tools:text="11"
                         android:textColor="@color/color_stat_blue"
                         android:textSize="@dimen/text_size_14"
                         android:textStyle="bold" />
@@ -223,7 +223,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+8"
+                            android:text="@string/label_growth_estimate_closed"
                             android:textColor="@color/color_stat_blue"
                             android:textSize="8sp"
                             android:textStyle="bold" />

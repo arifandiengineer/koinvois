@@ -70,7 +70,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Business Information"
+                            android:text="@string/label_business_information"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Business Name"
+                        android:text="@string/hint_business_name"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -98,7 +98,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="@dimen/spacing_12"
                         android:background="@drawable/bg_input_border"
-                        android:hint="Enter business name"
+                        android:hint="@string/hint_enter_business_name"
                         android:padding="@dimen/spacing_12"
                         android:textSize="14sp" />
 
@@ -106,7 +106,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Business Owner Name"
+                        android:text="@string/hint_business_owner_name"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -118,7 +118,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="@dimen/spacing_12"
                         android:background="@drawable/bg_input_border"
-                        android:hint="Enter business owner name"
+                        android:hint="@string/hint_enter_business_owner_name"
                         android:padding="@dimen/spacing_12"
                         android:textSize="14sp" />
 
@@ -126,7 +126,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Business Number"
+                        android:text="@string/hint_business_number"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/bg_input_border"
-                        android:hint="Enter business number"
+                        android:hint="@string/hint_enter_business_number"
                         android:padding="@dimen/spacing_12"
                         android:textSize="14sp" />
 
@@ -178,7 +178,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Business Address"
+                            android:text="@string/label_business_address"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -194,7 +194,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address Line 1"
+                        android:text="@string/hint_address_line_1"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -206,7 +206,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="@dimen/spacing_12"
                         android:background="@drawable/bg_input_border"
-                        android:hint="Enter address line 1"
+                        android:hint="@string/hint_enter_address_line_1"
                         android:padding="@dimen/spacing_12"
                         android:textSize="14sp" />
 
@@ -214,7 +214,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address Line 2"
+                        android:text="@string/hint_address_line_2"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -226,7 +226,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="@dimen/spacing_12"
                         android:background="@drawable/bg_input_border"
-                        android:hint="Enter address line 2"
+                        android:hint="@string/hint_enter_address_line_2"
                         android:padding="@dimen/spacing_12"
                         android:textSize="14sp" />
 
@@ -234,7 +234,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address Line 3"
+                        android:text="@string/hint_address_line_3"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -245,7 +245,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/bg_input_border"
-                        android:hint="Enter address line 3"
+                        android:hint="@string/hint_enter_address_line_3"
                         android:padding="@dimen/spacing_12"
                         android:textSize="14sp" />
 
@@ -286,7 +286,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Contact Information"
+                            android:text="@string/label_contact_information"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -310,7 +310,7 @@
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Email"
+                            android:text="@string/hint_email"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -321,7 +321,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/bg_input_border"
-                            android:hint="Enter email"
+                            android:hint="@string/hint_enter_email"
                             android:padding="@dimen/spacing_12"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -344,7 +344,7 @@
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Phone"
+                            android:text="@string/hint_phone"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -355,7 +355,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/bg_input_border"
-                            android:hint="Enter phone"
+                            android:hint="@string/hint_enter_phone"
                             android:inputType="phone"
                             android:padding="@dimen/spacing_12"
                             android:textSize="14sp" />
@@ -379,7 +379,7 @@
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Mobile"
+                            android:text="@string/hint_mobile"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -390,7 +390,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/bg_input_border"
-                            android:hint="Enter mobile"
+                            android:hint="@string/hint_enter_mobile"
                             android:inputType="phone"
                             android:padding="@dimen/spacing_12"
                             android:textSize="14sp" />
@@ -413,7 +413,7 @@
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Website"
+                            android:text="@string/hint_website"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -424,7 +424,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/bg_input_border"
-                            android:hint="Enter website"
+                            android:hint="@string/hint_enter_website"
                             android:padding="@dimen/spacing_12"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -440,7 +440,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="@dimen/spacing_16"
-        android:text="Save Changes"
+        android:text="@string/label_save_changes"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:cornerRadius="12dp"

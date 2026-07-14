@@ -61,7 +61,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/spacing_12"
-                            android:text="Add Photo"
+                            android:text="@string/label_add_photo"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -69,7 +69,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tap to select photo"
+                            android:text="@string/label_tap_to_select_photo"
                             android:textColor="@color/dim_text_color"
                             android:textSize="14sp" />
 
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_12"
-                        android:text="Description"
+                        android:text="@string/hint_description"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -121,7 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_12"
                         android:background="@drawable/bg_input_border"
-                        android:hint="Enter description"
+                        android:hint="@string/hint_enter_description"
                         android:inputType="text"
                         android:padding="@dimen/spacing_12"
                         android:textColor="@color/black"
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_12"
-                        android:text="Additional Details"
+                        android:text="@string/hint_additional_details"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -169,7 +169,7 @@
                         android:layout_marginTop="@dimen/spacing_12"
                         android:background="@drawable/bg_input_border"
                         android:gravity="top"
-                        android:hint="Enter additional details"
+                        android:hint="@string/hint_enter_additional_details"
                         android:inputType="textMultiLine"
                         android:padding="@dimen/spacing_12"
                         android:textColor="@color/black"

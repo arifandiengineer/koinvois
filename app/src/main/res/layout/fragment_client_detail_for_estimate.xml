@@ -32,7 +32,7 @@
             android:id="@+id/txtHeaderTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Client Details"
+            android:text="@string/label_client_details_header"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -44,7 +44,7 @@
             android:id="@+id/txtHeaderSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add or edit client information"
+            android:text="@string/label_add_or_edit_client_info"
             android:textColor="@color/dim_text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/spacing_16"
             android:padding="@dimen/spacing_8"
-            android:text="SAVE"
+            android:text="@string/action_save"
             android:textColor="@color/md_theme_secondary"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -113,7 +113,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Basic Information"
+                            android:text="@string/label_basic_information"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -124,7 +124,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Enter client contact details"
+                            android:text="@string/label_enter_client_contact_details"
                             android:textColor="@color/dim_text_color"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Client name"
+                        android:text="@string/hint_client_name"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -163,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Enter client name"
+                            android:hint="@string/hint_enter_client_name"
                             android:inputType="textPersonName"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -172,7 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email"
+                        android:text="@string/hint_email"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -199,7 +199,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Enter email address"
+                            android:hint="@string/hint_enter_email_address_short"
                             android:inputType="textEmailAddress"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -208,7 +208,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mobile"
+                        android:text="@string/hint_mobile"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -234,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="+62"
+                            android:text="@string/label_phone_country_code"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -257,7 +257,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
-                            android:hint="Mobile number"
+                            android:hint="@string/hint_mobile_number"
                             android:inputType="phone"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -266,7 +266,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Phone"
+                        android:text="@string/label_phone"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -294,7 +294,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Phone number"
+                            android:hint="@string/hint_phone_number"
                             android:inputType="phone"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -303,7 +303,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fax"
+                        android:text="@string/hint_fax"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -329,7 +329,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Fax number"
+                            android:hint="@string/hint_fax_number"
                             android:inputType="phone"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -373,7 +373,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_12"
-                            android:text="Address"
+                            android:text="@string/label_address_header"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -384,7 +384,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Enter client address"
+                            android:text="@string/label_enter_client_address"
                             android:textColor="@color/dim_text_color"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -396,7 +396,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact"
+                        android:text="@string/hint_contact"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -423,7 +423,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Contact person (optional)"
+                            android:hint="@string/hint_contact_person_optional"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -431,7 +431,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address 1"
+                        android:text="@string/hint_address_1"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -458,7 +458,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Address line 1"
+                            android:hint="@string/hint_address_line_1"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -466,7 +466,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address 2"
+                        android:text="@string/hint_address_2"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -493,7 +493,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Address line 2 (optional)"
+                            android:hint="@string/hint_address_line_2_optional"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -501,7 +501,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address 3"
+                        android:text="@string/hint_address_3"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -527,7 +527,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@null"
-                            android:hint="Address line 3 (optional)"
+                            android:hint="@string/hint_address_line_3_optional"
                             android:textSize="14sp" />
                     </LinearLayout>
 
