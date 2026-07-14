@@ -2,7 +2,6 @@ package com.koinvois.generator.ui.invoices.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.Item
 import com.koinvois.generator.database.models.InvoiceItem
@@ -11,8 +10,8 @@ import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 
 class AllItemsForInvoiceAdapter(
     private val itemList: ArrayList<Item>,
-    private val navController: NavController,
-    val viewModel: InvoiceMainViewModel
+    val viewModel: InvoiceMainViewModel,
+    private val onItemClick: () -> Unit
 ) :
     RecyclerView.Adapter<AllItemsForInvoiceAdapter.AllItemsViewHolder>() {
 
@@ -42,7 +41,7 @@ class AllItemsForInvoiceAdapter(
                     null
                 )
 
-            navController.navigateUp()
+            onItemClick()
         }
     }
 

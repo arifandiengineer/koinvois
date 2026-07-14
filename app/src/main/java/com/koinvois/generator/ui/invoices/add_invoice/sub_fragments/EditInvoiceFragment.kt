@@ -11,14 +11,22 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.FragmentEditInvoiceBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.ui.invoices.adapter.SelectedInvoiceItemsAdapter
 import com.koinvois.generator.ui.invoices.adapter.SelectedPhotosForInvoiceAdapter
-import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainFragment
-import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainFragmentDirections
+import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientDetailForInvoiceActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientListForInvoiceActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.DiscountActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.AddPhotoToInvoiceActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.EditBusinessDetailsFromInvoiceActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoiceInformationActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoicePaymentsListActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ItemDetailForInvoiceActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.SignatureActivity
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.TaxActivity
 import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.enums.InvoiceStatusEnum
 import com.koinvois.generator.utilities.extensions.*
@@ -63,12 +71,12 @@ class EditInvoiceFragment : Fragment() {
         binding?.customToolbar?.apply {
             btnBack.visible()
             txtToolbarTitle.text = getString(R.string.label_edit_invoice)
-            
+
             // Three-dot menu for Share/Delete
             imgSecondaryAction.visible()
             imgSecondaryAction.setImageResource(R.drawable.icon_three_dot)
             imgSecondaryAction.setSafeOnClickListener {
-                (parentFragment as? AddInvoiceMainFragment)?.showPopupMenu(it)
+                (activity as? AddInvoiceMainActivity)?.showPopupMenu(it)
             }
 
             // Forward button for Tab navigation
@@ -76,7 +84,7 @@ class EditInvoiceFragment : Fragment() {
             imgRightAction.setImageResource(R.drawable.btn_forward)
             imgRightAction.setColorFilter(requireContext().getColor(R.color.yellow_tab_indicator))
             imgRightAction.setSafeOnClickListener {
-                (parentFragment as? AddInvoiceMainFragment)?.binding?.viewPager?.currentItem = 1
+                (activity as? AddInvoiceMainActivity)?.binding?.viewPager?.currentItem = 1
             }
 
             btnBack.setOnClickListener {
@@ -88,63 +96,44 @@ class EditInvoiceFragment : Fragment() {
     private fun setClickListeners() {
 
         binding?.txtTaxPrice?.setSafeOnClickListener {
-            val action = AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentTax()
-            findNavController().navigate(action)
+            startActivity(TaxActivity.newIntent(requireContext()))
         }
 
         binding?.txtSignature?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentSignature()
-            findNavController().navigate(action)
+            startActivity(SignatureActivity.newIntent(requireContext()))
         }
 
         binding?.txtAddPhoto?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentAddPhoto(DBEnum.NEW.entryType)
-            findNavController().navigate(action)
+            startActivity(AddPhotoToInvoiceActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
         }
 
         binding?.btnInvoiceDate?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentInvoiceInformation()
-            findNavController().navigate(action)
+            startActivity(InvoiceInformationActivity.newIntent(requireContext()))
         }
 
         binding?.btnInvoiceNumber?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentInvoiceInformation()
-            findNavController().navigate(action)
+            startActivity(InvoiceInformationActivity.newIntent(requireContext()))
         }
 
         binding?.btnDueOnReceipt?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentInvoiceInformation()
-            findNavController().navigate(action)
+            startActivity(InvoiceInformationActivity.newIntent(requireContext()))
         }
 
         binding?.btnBusinessInfo?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentBusinessDetail()
-            findNavController().navigate(action)
+            startActivity(EditBusinessDetailsFromInvoiceActivity.newIntent(requireContext()))
         }
 
         binding?.secondCard?.setSafeOnClickListener {
 
             viewModel.selectedClient?.let {
-                val action =
-                    AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentClientDetail()
-                findNavController().navigate(action)
+                startActivity(ClientDetailForInvoiceActivity.newIntent(requireContext()))
             } ?: run {
                 when (viewModel.allClients?.isNotEmpty()) {
                     true -> {
-                        val action =
-                            AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentClientList()
-                        findNavController().navigate(action)
+                        startActivity(ClientListForInvoiceActivity.newIntent(requireContext()))
                     }
                     false -> {
-                        val action =
-                            AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentClientDetail()
-                        findNavController().navigate(action)
+                        startActivity(ClientDetailForInvoiceActivity.newIntent(requireContext()))
                     }
                     null -> {
                         binding?.root?.showErrorSnackbar(getString(R.string.error_try_again))
@@ -154,17 +143,11 @@ class EditInvoiceFragment : Fragment() {
         }
 
         binding?.txtAddItem?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentItemDetailForInvoice(
-                    DBEnum.NEW.entryType
-                )
-            findNavController().navigate(action)
+            startActivity(ItemDetailForInvoiceActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
         }
 
         binding?.txtDiscountPrice?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentDiscount()
-            findNavController().navigate(action)
+            startActivity(DiscountActivity.newIntent(requireContext()))
         }
 
         binding?.btnMarkPaid?.setSafeOnClickListener {
@@ -186,9 +169,7 @@ class EditInvoiceFragment : Fragment() {
         }
 
         binding?.txtPaymentPrice?.setSafeOnClickListener {
-            val action =
-                AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentPayments()
-            findNavController().navigate(action)
+            startActivity(InvoicePaymentsListActivity.newIntent(requireContext()))
         }
 
         binding?.txtNotes?.addTextChangedListener(object : TextWatcher {
@@ -248,12 +229,16 @@ class EditInvoiceFragment : Fragment() {
 
         viewModel.selectedItemsList?.let {
             binding?.rvInvoiceItems?.adapter =
-                SelectedInvoiceItemsAdapter(it, findNavController(), viewModel)
+                SelectedInvoiceItemsAdapter(it, viewModel) {
+                    startActivity(ItemDetailForInvoiceActivity.newIntent(requireContext(), DBEnum.OLD.entryType))
+                }
         }
 
         viewModel.photosForInvoice?.let {
             binding?.rvPhotos?.adapter =
-                SelectedPhotosForInvoiceAdapter(it, findNavController(), viewModel)
+                SelectedPhotosForInvoiceAdapter(it, viewModel) {
+                    startActivity(AddPhotoToInvoiceActivity.newIntent(requireContext(), DBEnum.OLD.entryType))
+                }
         }
 
         viewModel.invoicePaymentInstructions?.let {

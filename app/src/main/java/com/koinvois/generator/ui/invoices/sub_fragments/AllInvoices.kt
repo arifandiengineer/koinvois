@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.state.bind
 import com.koinvois.generator.databinding.AllInvoicesFragmentBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
+import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
 import com.koinvois.generator.ui.invoices.adapter.AllInvoiceAdapter
+import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.visible
 
@@ -38,9 +39,10 @@ class AllInvoices : Fragment() {
             if (!it.isNullOrEmpty()) {
                 val adapter = allInvoiceAdapter ?: AllInvoiceAdapter(
                     viewModel,
-                    findNavController(),
                     viewLifecycleOwner
-                ).also { newAdapter ->
+                ) {
+                    startActivity(AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.OLD.entryType))
+                }.also { newAdapter ->
                     allInvoiceAdapter = newAdapter
                     binding?.rvAllInvoices?.adapter = newAdapter
                 }

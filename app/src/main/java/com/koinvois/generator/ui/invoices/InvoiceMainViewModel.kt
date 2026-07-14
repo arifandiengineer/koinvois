@@ -68,6 +68,7 @@ class InvoiceMainViewModel @Inject constructor(
     private val getAllClientsUseCase: GetAllClientsUseCase,
     private val getAllItemsUseCase: GetAllItemsUseCase,
     private val appPreferences: AppPreferencesDataStore,
+    private val draft: InvoiceDraftState,
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
@@ -87,63 +88,112 @@ class InvoiceMainViewModel @Inject constructor(
         _searchQuery.value = query
     }
 
-    var invoicePrimaryId: Long? = null
-    var invoiceNumber: Int? = null
-    var invoiceDate: String? = null
-    var invoiceTerms: String? = null
-    var invoiceDueDate: String? = null
-    var invoicePoNumber: String? = null
-    var businessUpdateModel: PersonalBusiness? = null
-    var selectedClient: Client? = null
-    var selectedItemsList: ArrayList<InvoiceItem>? = arrayListOf()
-    var currentInvoiceItem: InvoiceItem? = null
-    var currentSelectedPhoto: InvoicePhoto? = null
-    var invoiceSubTotal: Float? = null
+    var invoicePrimaryId: Long?
+        get() = draft.invoicePrimaryId
+        set(value) { draft.invoicePrimaryId = value }
+    var invoiceNumber: Int?
+        get() = draft.invoiceNumber
+        set(value) { draft.invoiceNumber = value }
+    var invoiceDate: String?
+        get() = draft.invoiceDate
+        set(value) { draft.invoiceDate = value }
+    var invoiceTerms: String?
+        get() = draft.invoiceTerms
+        set(value) { draft.invoiceTerms = value }
+    var invoiceDueDate: String?
+        get() = draft.invoiceDueDate
+        set(value) { draft.invoiceDueDate = value }
+    var invoicePoNumber: String?
+        get() = draft.invoicePoNumber
+        set(value) { draft.invoicePoNumber = value }
+    var businessUpdateModel: PersonalBusiness?
+        get() = draft.businessUpdateModel
+        set(value) { draft.businessUpdateModel = value }
+    var selectedClient: Client?
+        get() = draft.selectedClient
+        set(value) { draft.selectedClient = value }
+    var selectedItemsList: ArrayList<InvoiceItem>?
+        get() = draft.selectedItemsList
+        set(value) { draft.selectedItemsList = value }
+    var currentInvoiceItem: InvoiceItem?
+        get() = draft.currentInvoiceItem
+        set(value) { draft.currentInvoiceItem = value }
+    var currentSelectedPhoto: InvoicePhoto?
+        get() = draft.currentSelectedPhoto
+        set(value) { draft.currentSelectedPhoto = value }
+    var invoiceSubTotal: Float?
+        get() = draft.invoiceSubTotal
+        set(value) { draft.invoiceSubTotal = value }
 
-    //    var discount: MutableLiveData<InvoiceDiscount?>? = MutableLiveData()
-    var discountType: String? = null
-    var discountAmount: Float? = null
+    var discountType: String?
+        get() = draft.discountType
+        set(value) { draft.discountType = value }
+    var discountAmount: Float?
+        get() = draft.discountAmount
+        set(value) { draft.discountAmount = value }
+    var discountTotalAmount: Float?
+        get() = draft.discountTotalAmount
+        set(value) { draft.discountTotalAmount = value }
+    var taxType: String?
+        get() = draft.taxType
+        set(value) { draft.taxType = value }
+    var taxLabel: String?
+        get() = draft.taxLabel
+        set(value) { draft.taxLabel = value }
+    var taxRate: Float?
+        get() = draft.taxRate
+        set(value) { draft.taxRate = value }
+    var taxInclusive: Boolean?
+        get() = draft.taxInclusive
+        set(value) { draft.taxInclusive = value }
 
-    // var discountPercentage: Float? = null
-    var discountTotalAmount: Float? = null
-    var taxType: String? = null
-    var taxLabel: String? = null
-    var taxRate: Float? = null
-    var taxInclusive: Boolean? = null
-    
-    private val _invoiceTotal = MutableStateFlow(0f)
     var invoiceTotal: Float
-        get() = _invoiceTotal.value
-        set(value) { _invoiceTotal.value = value }
+        get() = draft.invoiceTotal
+        set(value) { draft.invoiceTotal = value }
 
-    var taxAmount: Float = 0f
+    var taxAmount: Float
+        get() = draft.taxAmount
+        set(value) { draft.taxAmount = value }
 
-    private val _invoicePayments = MutableStateFlow<List<InvoicePaymentsModel>>(emptyList())
-    val invoicePaymentsState: StateFlow<List<InvoicePaymentsModel>> = _invoicePayments.asStateFlow()
+    val invoicePaymentsState: StateFlow<List<InvoicePaymentsModel>> = draft.invoicePaymentsFlow.asStateFlow()
 
-    val totalPaidAmount: StateFlow<Float> = _invoicePayments.map { list ->
+    val totalPaidAmount: StateFlow<Float> = draft.invoicePaymentsFlow.map { list ->
         list.sumOf { (it.amount ?: 0f).toDouble() }.toFloat()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0f)
 
-    val balanceDue: StateFlow<Float> = combine(_invoicePayments, _invoiceTotal) { payments, total ->
+    val balanceDue: StateFlow<Float> = combine(draft.invoicePaymentsFlow, draft.invoiceTotalFlow) { payments, total ->
         val totalPaid = payments.sumOf { (it.amount ?: 0f).toDouble() }.toFloat()
         total - totalPaid
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0f)
 
     fun addPayment(payment: InvoicePaymentsModel) {
-        _invoicePayments.update { currentList ->
+        draft.invoicePaymentsFlow.update { currentList ->
             currentList + payment
         }
     }
 
-    var photosForInvoice: ArrayList<InvoicePhoto>? = arrayListOf()
-    var invoicePaymentInstructions: String? = null
-    var signatureObj: Signature? = null
-    var invoiceNotes: String? = null
-    var invoiceStatus: String? = null
+    var photosForInvoice: ArrayList<InvoicePhoto>?
+        get() = draft.photosForInvoice
+        set(value) { draft.photosForInvoice = value }
+    var invoicePaymentInstructions: String?
+        get() = draft.invoicePaymentInstructions
+        set(value) { draft.invoicePaymentInstructions = value }
+    var signatureObj: Signature?
+        get() = draft.signatureObj
+        set(value) { draft.signatureObj = value }
+    var invoiceNotes: String?
+        get() = draft.invoiceNotes
+        set(value) { draft.invoiceNotes = value }
+    var invoiceStatus: String?
+        get() = draft.invoiceStatus
+        set(value) { draft.invoiceStatus = value }
 
-    var allClients: ArrayList<Client>? = null
-    var allItems: ArrayList<Item>? = null
+    var allClients: ArrayList<Client>?
+        get() = draft.allClients
+        set(value) { draft.allClients = value }
+    var allItems: ArrayList<Item>?
+        get() = draft.allItems
+        set(value) { draft.allItems = value }
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
@@ -226,7 +276,7 @@ class InvoiceMainViewModel @Inject constructor(
         taxInclusive = null
         photosForInvoice = null
         signatureObj = null
-        _invoicePayments.value = emptyList()
+        draft.invoicePaymentsFlow.value = emptyList()
     }
 
     suspend fun loadViewModelData(invoice: Invoice) {
@@ -270,9 +320,9 @@ class InvoiceMainViewModel @Inject constructor(
         currentInvoiceItem = null
         taxRate = invoice.invoiceTaxRate
         taxInclusive = invoice.invoiceTaxInclusive
-        
+
         // TODO: Load payments from database if available
-        _invoicePayments.value = emptyList() 
+        draft.invoicePaymentsFlow.value = emptyList()
 
     }
 
@@ -310,12 +360,12 @@ class InvoiceMainViewModel @Inject constructor(
     suspend fun prepareNewInvoice() {
         val tsLong = System.currentTimeMillis()
         val invoiceNumberFromPref = appPreferences.getInvoiceNumber().first()
-        
+
         invoicePrimaryId = tsLong.div(1000)
         invoiceNumber = invoiceNumberFromPref
         invoiceStatus = InvoiceStatusEnum.UN_PAID.status
         invoiceTotal = 0f
-        
+
         insertInvoice(
             Invoice(
                 invoiceId = (tsLong.div(1000)).toInt(),

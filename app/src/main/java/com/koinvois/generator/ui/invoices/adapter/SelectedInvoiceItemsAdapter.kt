@@ -2,22 +2,16 @@ package com.koinvois.generator.ui.invoices.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.InvoiceItem
 import com.koinvois.generator.databinding.ItemItemsInvoiceBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
-import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainFragmentDirections
-import com.koinvois.generator.utilities.enums.DBEnum
-import com.koinvois.generator.utilities.enums.ItemDiscountTypeEnum
-import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
-import com.koinvois.generator.utilities.extensions.visible
 
 class SelectedInvoiceItemsAdapter(
     private val selectedItemsList: ArrayList<InvoiceItem>,
-    private val navController: NavController,
-    private val viewModel: InvoiceMainViewModel
+    private val viewModel: InvoiceMainViewModel,
+    private val onItemClick: (InvoiceItem) -> Unit
 ) :
     RecyclerView.Adapter<SelectedInvoiceItemsAdapter
     .SelectedInvoiceItemsViewHolder>
@@ -33,8 +27,7 @@ class SelectedInvoiceItemsAdapter(
 
         holder.binding.root.setSafeOnClickListener {
             viewModel.currentInvoiceItem = selectedItemsList[position]
-            val action = AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentItemDetailForInvoice(DBEnum.OLD.entryType)
-            navController.navigate(action)
+            onItemClick(selectedItemsList[position])
         }
     }
 

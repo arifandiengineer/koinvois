@@ -2,19 +2,16 @@ package com.koinvois.generator.ui.invoices.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.InvoicePhoto
 import com.koinvois.generator.databinding.ItemInvoicePhotoBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
-import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainFragmentDirections
-import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 
 class SelectedPhotosForInvoiceAdapter(
     private val selectedPhotoList: ArrayList<InvoicePhoto>,
-    private val navController: NavController,
-    private val viewModel: InvoiceMainViewModel
+    private val viewModel: InvoiceMainViewModel,
+    private val onPhotoClick: (InvoicePhoto) -> Unit
 ) :
     RecyclerView.Adapter<SelectedPhotosForInvoiceAdapter.SelectedPhotosForInvoiceViewHolder>() {
 
@@ -28,8 +25,7 @@ class SelectedPhotosForInvoiceAdapter(
 
         holder.binding.root.setSafeOnClickListener {
             viewModel.currentSelectedPhoto = selectedPhotoList[position]
-            val action = AddInvoiceMainFragmentDirections.actionFragmentInvoiceEditToFragmentAddPhoto(DBEnum.OLD.entryType)
-            navController.navigate(action)
+            onPhotoClick(selectedPhotoList[position])
         }
 
     }

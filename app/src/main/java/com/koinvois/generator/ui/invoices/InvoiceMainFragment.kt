@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
 import com.koinvois.generator.database.models.Invoice
 import com.koinvois.generator.databinding.InvoiceMainFragmentBinding
+import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
 import com.koinvois.generator.ui.invoices.adapter.ViewPagerAdapter
 import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.enums.InvoiceStatusEnum
@@ -106,8 +106,7 @@ class InvoiceMainFragment : Fragment() {
         binding.btnAddInvoice.setSafeOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
                 viewModel.prepareNewInvoice()
-                val action = InvoiceMainFragmentDirections.actionFragmentInvoiceMainToEditMain(DBEnum.NEW.entryType)
-                findNavController().navigate(action)
+                startActivity(AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
             }
         }
     }

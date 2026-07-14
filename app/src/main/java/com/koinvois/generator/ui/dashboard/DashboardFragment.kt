@@ -18,6 +18,7 @@ import com.koinvois.generator.databinding.FragmentDashboardBinding
 import com.koinvois.generator.ui.client.ClientMainActivity
 import com.koinvois.generator.ui.dashboard.adapter.RecentInvoiceAdapter
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
+import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
 import com.koinvois.generator.ui.item.ItemMainActivity
 import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.getScreenWidth
@@ -62,11 +63,9 @@ class DashboardFragment : Fragment() {
         recentInvoiceAdapter = RecentInvoiceAdapter { invoice ->
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
                 invoiceViewModel.loadInvoiceById(invoice.invoiceId)
-                val action = DashboardFragmentDirections.actionFragmentDashboardMainToFragmentEditInvoiceMain(
-                    invoiceType = DBEnum.OLD.entryType,
-                    invoiceId = invoice.invoiceId
+                startActivity(
+                    AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.OLD.entryType, invoice.invoiceId)
                 )
-                findNavController().navigate(action)
             }
         }
         binding.rvRecentInvoices.adapter = recentInvoiceAdapter
@@ -107,10 +106,7 @@ class DashboardFragment : Fragment() {
         binding.btnQuickNewInvoice.setSafeOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
                 invoiceViewModel.prepareNewInvoice()
-                val action = DashboardFragmentDirections.actionFragmentDashboardMainToFragmentEditInvoiceMain(
-                    invoiceType = DBEnum.NEW.entryType
-                )
-                findNavController().navigate(action)
+                startActivity(AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
             }
         }
         binding.btnQuickNewEstimate.setSafeOnClickListener {

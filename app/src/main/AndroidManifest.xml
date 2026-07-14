@@ -73,6 +73,58 @@
             android:name="com.koinvois.generator.ui.lock.SavePasswordActivity"
             android:theme="@style/Theme.InvoiceMaker"
             android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.SignatureActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.EditBusinessDetailsFromInvoiceActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoicePaymentsListActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoiceInformationActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.DiscountActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ItemDetailForInvoiceActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientDetailForInvoiceActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientListForInvoiceActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ItemsListForInvoiceActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.AddPhotoToInvoiceActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoiceAddPaymentActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
+        <activity
+            android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.TaxActivity"
+            android:theme="@style/Theme.InvoiceMaker"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

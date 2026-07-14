@@ -5,21 +5,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.core.common.dialog.BaseDialog
 import com.koinvois.generator.database.models.Invoice
-import com.koinvois.generator.databinding.ItemClientBinding
-import com.koinvois.generator.ui.invoices.InvoiceMainFragmentDirections
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
-import com.koinvois.generator.utilities.enums.DBEnum
-import com.koinvois.generator.utilities.enums.InvoiceStatusEnum
-import com.koinvois.generator.utilities.extensions.hide
-import com.koinvois.generator.utilities.extensions.inVisible
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
-import com.koinvois.generator.utilities.extensions.visible
+import com.koinvois.generator.utilities.enums.InvoiceStatusEnum
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -27,8 +20,8 @@ import com.koinvois.generator.databinding.ItemInvoiceBinding
 
 class AllInvoiceAdapter(
     val viewModel: InvoiceMainViewModel,
-    val navController: NavController,
-    val lifecycleOwner: LifecycleOwner
+    val lifecycleOwner: LifecycleOwner,
+    private val onInvoiceClick: (Invoice) -> Unit
 ) : BaseRecyclerAdapter<Invoice, ItemInvoiceBinding>(InvoiceDiffCallback()) {
 
     override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemInvoiceBinding =
@@ -83,8 +76,7 @@ class AllInvoiceAdapter(
         binding.root.setSafeOnClickListener {
             lifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
                 viewModel.loadViewModelData(item)
-                val action = InvoiceMainFragmentDirections.actionFragmentInvoiceMainToEditMain(DBEnum.OLD.entryType)
-                navController.navigate(action)
+                onInvoiceClick(item)
             }
         }
 

@@ -7,29 +7,23 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.print.PrintAttributes
-import android.print.PrintManager
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebView
-import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
+import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.database.models.Invoice
 import com.koinvois.generator.databinding.AddInvoiceMainFragmentBinding
@@ -47,40 +41,39 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
-class AddInvoiceMainFragment : Fragment() {
+class AddInvoiceMainActivity : BaseActivity<AddInvoiceMainFragmentBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
-    var binding: AddInvoiceMainFragmentBinding? = null
-    private val viewModel: InvoiceMainViewModel by hiltNavGraphViewModels(R.id.invoice_navigation_graph)
+    private val viewModel: InvoiceMainViewModel by viewModels()
 
     private val invoiceSenderLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             Log.e("sender", result.data?.action.toString())
         }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = AddInvoiceMainFragmentBinding.inflate(inflater, container, false)
-        setUpViewPagerEditInvoice()
-        activity?.let {
-            backPressed()
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
+                    testPDFJob(webView, this)
+                }
+            }
         }
 
-        return binding?.root
-    }
+    override fun inflateBinding(): AddInvoiceMainFragmentBinding =
+        AddInvoiceMainFragmentBinding.inflate(LayoutInflater.from(this))
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val invoiceType = arguments?.getString("invoiceType") ?: "new"
-        val invoiceId = arguments?.getInt("invoiceId", -1) ?: -1
+    override fun setupView() {
+        setUpViewPagerEditInvoice()
+        onBackPressedDispatcher.addCallback(this) { saveOnBack() }
+
+        val invoiceType = intent.getStringExtra(EXTRA_INVOICE_TYPE) ?: "new"
+        val invoiceId = intent.getIntExtra(EXTRA_INVOICE_ID, -1)
 
         if (viewModel.invoicePrimaryId == null) {
-            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            lifecycleScope.launch(Dispatchers.Main) {
                 if (invoiceType == "new") {
                     viewModel.prepareNewInvoice()
                 } else if (invoiceId != -1) {
@@ -91,39 +84,36 @@ class AddInvoiceMainFragment : Fragment() {
     }
 
     fun shareInvoice() {
-        val context = activity ?: return
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED) {
-            binding?.root?.findViewById<WebView>(R.id.webView)?.let { webView ->
-                testPDFJob(webView, context)
+            binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
+                testPDFJob(webView, this)
             }
         } else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            showSnackBar(context)
+            showSnackBar(this)
         } else {
             launcher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
     }
 
     fun deleteInvoice() {
-        activity?.let {
-            BaseDialog.confirm(
-                context = it,
-                title = getString(R.string.delete_confirm_title),
-                message = "Are you sure you want to delete this Invoice?",
-                positiveText = getString(R.string.delete_confirm_positive),
-                negativeText = getString(R.string.delete_confirm_negative),
-                onConfirm = {
-                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default)
+        BaseDialog.confirm(
+            context = this,
+            title = getString(R.string.delete_confirm_title),
+            message = "Are you sure you want to delete this Invoice?",
+            positiveText = getString(R.string.delete_confirm_positive),
+            negativeText = getString(R.string.delete_confirm_negative),
+            onConfirm = {
+                lifecycleScope.launch(Dispatchers.Default)
+                {
+                    viewModel.deleteInvoice()
+                    withContext(Dispatchers.Main)
                     {
-                        viewModel.deleteInvoice()
-                        withContext(Dispatchers.Main)
-                        {
-                            findNavController().navigateUp()
-                        }
+                        finish()
                     }
                 }
-            )
-        }
+            }
+        )
     }
 
     fun showPopupMenu(view: View) {
@@ -143,14 +133,8 @@ class AddInvoiceMainFragment : Fragment() {
         }.show()
     }
 
-    private fun backPressed() {
-        activity?.onBackPressedDispatcher?.addCallback(this) {
-            saveOnBack()
-        }
-    }
-
     private fun saveOnBack() {
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
+        lifecycleScope.launch(Dispatchers.Default) {
             with(viewModel) {
                 updateInvoice(
                     Invoice(
@@ -190,28 +174,17 @@ class AddInvoiceMainFragment : Fragment() {
                 clearViewModel()
             }
             withContext(Dispatchers.Main) {
-                findNavController().navigateUp()
+                finish()
             }
         }
     }
 
     private fun setUpViewPagerEditInvoice() {
         val viewPagerAdapter = ViewPagerAdapterEditInvoice(this)
-        binding?.viewPager?.adapter = viewPagerAdapter
-        binding?.viewPager?.offscreenPageLimit = 1
-        binding?.viewPager?.reduceDragSensitivity()
+        binding.viewPager.adapter = viewPagerAdapter
+        binding.viewPager.offscreenPageLimit = 1
+        binding.viewPager.reduceDragSensitivity()
     }
-
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                binding?.root?.findViewById<WebView>(R.id.webView)?.let { webView ->
-                    activity?.let { activity ->
-                        testPDFJob(webView, activity)
-                    }
-                }
-            }
-        }
 
     private fun testPDFJob(webView: WebView, activity: Activity) {
         val directory: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS + "/Invoices/")
@@ -259,24 +232,28 @@ class AddInvoiceMainFragment : Fragment() {
     }
 
     private fun showSnackBar(context: Context) {
-        val mySnackbar = binding?.root?.let { view ->
-            Snackbar.make(
-                view,
-                "Open Settings and allow storage permission to continue !",
-                Snackbar.LENGTH_LONG
-            ).setAction("Open Setting") {
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri: Uri = Uri.fromParts("package", context.packageName, null)
-                intent.data = uri
-                startActivity(intent)
-            }
+        val mySnackbar = Snackbar.make(
+            binding.root,
+            "Open Settings and allow storage permission to continue !",
+            Snackbar.LENGTH_LONG
+        ).setAction("Open Setting") {
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val uri: Uri = Uri.fromParts("package", context.packageName, null)
+            intent.data = uri
+            startActivity(intent)
         }
-        mySnackbar?.setActionTextColor(ContextCompat.getColor(context, R.color.primary_color))
-        mySnackbar?.show()
+        mySnackbar.setActionTextColor(ContextCompat.getColor(context, R.color.primary_color))
+        mySnackbar.show()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+    companion object {
+        private const val EXTRA_INVOICE_TYPE = "extra_invoice_type"
+        private const val EXTRA_INVOICE_ID = "extra_invoice_id"
+
+        fun newIntent(context: Context, invoiceType: String, invoiceId: Int = -1): Intent =
+            Intent(context, AddInvoiceMainActivity::class.java).apply {
+                putExtra(EXTRA_INVOICE_TYPE, invoiceType)
+                putExtra(EXTRA_INVOICE_ID, invoiceId)
+            }
     }
 }
