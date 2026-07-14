@@ -3,6 +3,7 @@ package com.koinvois.generator.ui.estimates.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.EstimateItem
 import com.koinvois.generator.databinding.ItemItemsInvoiceBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
@@ -50,8 +51,8 @@ class SelectedEstimateItemsAdapter(
                 txtItemName.text = singleInvoiceItem?.estimateItemName
                 txtItemDescription.text = singleInvoiceItem?.estimateItemDetails ?: ""
                 txtItemQuantity.text = singleInvoiceItem?.estimateItemQuantity.toString()
-                txtItemUnitCost.text = "Rp${singleInvoiceItem?.estimateItemUnitCost}"
-                txtItemTotalCost.text = "Rp${singleInvoiceItem?.itemTotal}"
+                txtItemUnitCost.text = CurrencyFormatter.format(singleInvoiceItem?.estimateItemUnitCost ?: 0f)
+                txtItemTotalCost.text = CurrencyFormatter.format(singleInvoiceItem?.itemTotal ?: 0f)
             }
         }
     }

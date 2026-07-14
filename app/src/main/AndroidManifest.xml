@@ -39,143 +39,143 @@
 
         <activity
             android:name="com.koinvois.generator.ui.client.ClientMainActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.client.add_client.AddClientActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.item.ItemMainActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.item.add_item.AddItemActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.setting.SettingActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.setting.add_business.AddBusinessDetailsActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.lock.EnterPasswordActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.lock.LockMainActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.lock.SavePasswordActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.SignatureActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.EditBusinessDetailsFromInvoiceActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoicePaymentsListActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoiceInformationActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.DiscountActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ItemDetailForInvoiceActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientDetailForInvoiceActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientListForInvoiceActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ItemsListForInvoiceActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.AddPhotoToInvoiceActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.InvoiceAddPaymentActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.TaxActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateSignatureActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateInformationActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EditBusinessDetailsFromEstimateActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientDetailForEstimateActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemDetailForEstimateActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemListForEstimateActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateTaxActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.home.HomeActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
         <activity
             android:name="com.koinvois.generator.ui.notifications.NotificationsActivity"
-            android:theme="@style/Theme.InvoiceMaker"
+            android:theme="@style/Theme.Koinvois"
             android:exported="false" />
 
         <provider
@@ -188,6 +188,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/paths" />
         </provider>
+
+        <!-- Lets AppCompatDelegate.setApplicationLocales persist the chosen
+             language across process death on API < 33 (framework LocaleManager
+             handles it natively on 33+). Required for the per-app language API. -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
     </application>
 
 </manifest>

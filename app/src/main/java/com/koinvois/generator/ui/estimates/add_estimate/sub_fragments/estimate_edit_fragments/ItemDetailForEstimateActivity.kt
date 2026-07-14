@@ -2,8 +2,14 @@ package com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.dialog.BaseDialog
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.EstimateItem
 import com.koinvois.generator.databinding.FragmentItemDetailForEstimateBinding
 import com.koinvois.generator.domain.calculation.ItemCalculator
@@ -59,7 +66,7 @@ class ItemDetailForEstimateActivity : BaseActivity<FragmentItemDetailForEstimate
                     0f
                 }
 
-                binding.txtTotalBalanceAmount.text = (unitPrice * quantity).toString()
+                binding.txtTotalBalanceAmount.text = CurrencyFormatter.format(unitPrice * quantity)
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -74,9 +81,17 @@ class ItemDetailForEstimateActivity : BaseActivity<FragmentItemDetailForEstimate
                 } else {
                     1
                 }
-                binding.txtTotalBalanceAmount.text = (unitPrice * quantity).toString()
+                binding.txtTotalBalanceAmount.text = CurrencyFormatter.format(unitPrice * quantity)
             }
 
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.editItemDetails.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.txtDetailsCharCount.text = "${s?.length ?: 0} / 500"
+            }
             override fun afterTextChanged(s: Editable?) {}
         })
     }
@@ -213,7 +228,16 @@ class ItemDetailForEstimateActivity : BaseActivity<FragmentItemDetailForEstimate
     }
 
     private fun setUpToolbar() {
-        binding.customToolbar.txtToolbarTitle.text = getString(R.string.more_menu_item)
+        val title = "Item Detail"
+        val subtitle = "\nfor Estimate"
+        val spannable = SpannableStringBuilder(title + subtitle)
+        spannable.setSpan(RelativeSizeSpan(0.7f), title.length, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(ForegroundColorSpan(getColor(R.color.color_text_secondary)), title.length, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(StyleSpan(Typeface.NORMAL), title.length, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        binding.customToolbar.txtToolbarTitle.text = spannable
+        binding.customToolbar.txtToolbarTitle.setLineSpacing(0f, 1.1f)
+
         when (itemType) {
             DBEnum.NEW.entryType -> {
                 binding.customToolbar.imgRightAction.setImageResource(R.drawable.icon_search)
@@ -265,7 +289,7 @@ class ItemDetailForEstimateActivity : BaseActivity<FragmentItemDetailForEstimate
                 }
 
                 item.itemTotal?.let { total ->
-                    txtTotalBalanceAmount.text = total.toString()
+                    txtTotalBalanceAmount.text = CurrencyFormatter.format(total)
                 }
 
                 item.estimateItemDetails?.let { detail ->

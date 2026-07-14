@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.toColorInt
+import androidx.core.os.BundleCompat
 import androidx.core.text.isDigitsOnly
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -63,7 +64,9 @@ class AddBusinessDetailsSplashFragment : Fragment() {
     private val cameraLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val imageBitmap = result.data?.extras?.get("data") as Bitmap
+                val imageBitmap = result.data?.extras?.let {
+                    BundleCompat.getParcelable(it, "data", Bitmap::class.java)
+                } as Bitmap
                 binding?.imgSelectedImage?.setImageBitmap(imageBitmap)
             }
         }

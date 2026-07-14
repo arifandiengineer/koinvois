@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import com.koinvois.generator.MainActivity
 import com.koinvois.generator.R
 import com.koinvois.generator.databinding.ReportsMainFragmentBinding
@@ -63,14 +62,13 @@ class ReportsMainFragment : Fragment() {
         for (i in 0 until tabCount) {
             val tabView: View = (binding?.tabLayout?.getChildAt(0) as ViewGroup).getChildAt(i)
             tabView.requestLayout()
-            ViewCompat.setBackground(tabView, activity?.let { setImageButtonStateNew(it) })
-            ViewCompat.setPaddingRelative(
-                tabView,
+            tabView.background = activity?.let { setImageButtonStateNew(it) }
+            tabView.setPaddingRelative(
                 tabView.paddingStart,
                 tabView.paddingTop,
                 tabView.paddingEnd,
                 tabView.paddingBottom
-            );
+            )
         }
 
 

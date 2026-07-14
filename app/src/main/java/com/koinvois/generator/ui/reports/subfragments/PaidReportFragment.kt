@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.koinvois.generator.R
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.FragmentPaidReportBinding
 import com.koinvois.generator.ui.reports.ReportsMainViewModel
 import com.koinvois.generator.ui.reports.adapter.PaidReportAdapter
@@ -46,9 +47,9 @@ class PaidReportFragment : Fragment() {
                 // Update summary cards with real data
                 binding?.txtTotalInvoices?.text = list.size.toString()
                 val totalPaid = list.sumOf { (it.invoiceTotal ?: 0f).toDouble() }
-                binding?.txtTotalPaid?.text = "$${String.format("%.2f", totalPaid)}"
+                binding?.txtTotalPaid?.text = CurrencyFormatter.format(totalPaid)
                 if (list.isNotEmpty()) {
-                    binding?.txtAvgInvoice?.text = "$${String.format("%.2f", totalPaid / list.size)}"
+                    binding?.txtAvgInvoice?.text = CurrencyFormatter.format(totalPaid / list.size)
                 }
                 binding?.txtTotalClients?.text = list.map { it.invoiceClientName }.distinct().size.toString()
 

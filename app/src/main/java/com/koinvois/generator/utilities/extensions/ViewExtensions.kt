@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Rect
 import android.graphics.drawable.Animatable
-import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -77,10 +75,7 @@ fun DialogFragment.setFullScreen() {
 }
 
 fun Context.getScreenWidth(): Int {
-    val displayMetrics = DisplayMetrics()
-    val windowManager = this.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-    windowManager.defaultDisplay.getMetrics(displayMetrics)
-    return displayMetrics.widthPixels
+    return resources.displayMetrics.widthPixels
 }
 
 fun ViewPager2.reduceDragSensitivity(f: Int = 4) {

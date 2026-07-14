@@ -3,6 +3,7 @@ package com.koinvois.generator.ui.invoices.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.InvoiceItem
 import com.koinvois.generator.databinding.ItemItemsInvoiceBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
@@ -43,8 +44,8 @@ class SelectedInvoiceItemsAdapter(
                 txtItemName.text = singleInvoiceItem?.invoiceItemName
                 txtItemDescription.text = singleInvoiceItem?.invoiceItemDetails ?: ""
                 txtItemQuantity.text = singleInvoiceItem?.invoiceItemQuantity.toString()
-                txtItemUnitCost.text = "Rp${singleInvoiceItem?.invoiceItemUnitCost}"
-                txtItemTotalCost.text = "Rp${singleInvoiceItem?.itemTotal}"
+                txtItemUnitCost.text = CurrencyFormatter.format(singleInvoiceItem?.invoiceItemUnitCost ?: 0f)
+                txtItemTotalCost.text = CurrencyFormatter.format(singleInvoiceItem?.itemTotal ?: 0f)
             }
         }
     }

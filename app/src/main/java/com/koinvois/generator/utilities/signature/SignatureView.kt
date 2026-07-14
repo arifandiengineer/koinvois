@@ -11,6 +11,8 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import androidx.core.content.ContextCompat
+import androidx.core.os.BundleCompat
 import com.koinvois.generator.R.styleable
 
 import java.util.*
@@ -67,9 +69,9 @@ class SignatureView(context: Context, attrs: AttributeSet?) : View(context, attr
         var state: Parcelable? = state
         if (state is Bundle) {
             val bundle = state
-            setSignatureBitmap(bundle.getParcelable<Parcelable>("signatureBitmap") as Bitmap)
-            mBitmapSavedState = bundle.getParcelable("signatureBitmap")
-            state = bundle.getParcelable("superState")
+            setSignatureBitmap(BundleCompat.getParcelable(bundle, "signatureBitmap", Bitmap::class.java) as Bitmap)
+            mBitmapSavedState = BundleCompat.getParcelable(bundle, "signatureBitmap", Bitmap::class.java)
+            state = BundleCompat.getParcelable(bundle, "superState", Parcelable::class.java)
         }
         mHasEditState = false
         super.onRestoreInstanceState(state)
@@ -83,7 +85,7 @@ class SignatureView(context: Context, attrs: AttributeSet?) : View(context, attr
      */
     fun setPenColorRes(colorRes: Int) {
         try {
-            setPenColor(resources.getColor(colorRes))
+            setPenColor(ContextCompat.getColor(context, colorRes))
         } catch (ex: NotFoundException) {
             setPenColor(Color.parseColor("#000000"))
         }
@@ -173,13 +175,7 @@ class SignatureView(context: Context, attrs: AttributeSet?) : View(context, attr
             }
             else -> return false
         }
-        //invalidate();
-        invalidate(
-            (mDirtyRect.left - mMaxWidth).toInt(),
-            (mDirtyRect.top - mMaxWidth).toInt(),
-            (mDirtyRect.right + mMaxWidth).toInt(),
-            (mDirtyRect.bottom + mMaxWidth).toInt()
-        )
+        invalidate()
         return true
     }
 

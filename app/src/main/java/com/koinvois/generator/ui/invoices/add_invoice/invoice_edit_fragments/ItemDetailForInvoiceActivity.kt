@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.dialog.BaseDialog
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.InvoiceItem
 import com.koinvois.generator.databinding.FragmentItemDetailForInvoiceBinding
 import com.koinvois.generator.domain.calculation.ItemCalculator
@@ -60,7 +61,7 @@ class ItemDetailForInvoiceActivity : BaseActivity<FragmentItemDetailForInvoiceBi
                     0f
                 }
 
-                binding.txtTotalBalanceAmount.text = (unitPrice * quantity).toString()
+                binding.txtTotalBalanceAmount.text = CurrencyFormatter.format(unitPrice * quantity)
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -75,7 +76,7 @@ class ItemDetailForInvoiceActivity : BaseActivity<FragmentItemDetailForInvoiceBi
                 } else {
                     1
                 }
-                binding.txtTotalBalanceAmount.text = (unitPrice * quantity).toString()
+                binding.txtTotalBalanceAmount.text = CurrencyFormatter.format(unitPrice * quantity)
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -271,7 +272,7 @@ class ItemDetailForInvoiceActivity : BaseActivity<FragmentItemDetailForInvoiceBi
                 }
 
                 item.itemTotal?.let { total ->
-                    txtTotalBalanceAmount.text = total.toString()
+                    txtTotalBalanceAmount.text = CurrencyFormatter.format(total)
                 }
 
                 item.invoiceItemDetails?.let { detail ->

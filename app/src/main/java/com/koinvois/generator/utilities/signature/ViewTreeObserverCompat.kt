@@ -1,7 +1,5 @@
 package com.koinvois.generator.utilities.signature
 
-import android.annotation.SuppressLint
-import android.os.Build
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 
@@ -11,15 +9,10 @@ object ViewTreeObserverCompat {
      * @param observer the view observer
      * @param victim the victim
      */
-    @SuppressLint("NewApi")
     fun removeOnGlobalLayoutListener(
         observer: ViewTreeObserver,
         victim: OnGlobalLayoutListener?
-    ) { // Future (API16+)...
-        if (Build.VERSION.SDK_INT >= 16) {
-            observer.removeOnGlobalLayoutListener(victim)
-        } else {
-            observer.removeGlobalOnLayoutListener(victim)
-        }
+    ) {
+        observer.removeOnGlobalLayoutListener(victim)
     }
 }

@@ -59,7 +59,6 @@ class ClientMainActivity : BaseActivity<ClientMainFragmentBinding>() {
 
     private fun setUpToolbar() {
         binding.customToolbar.imgRightAction.visible()
-        binding.customToolbar.btnBack.inVisible()
         binding.customToolbar.imgSecondaryAction.inVisible()
         binding.customToolbar.txtToolbarTitle.text = getString(R.string.title_clients)
     }

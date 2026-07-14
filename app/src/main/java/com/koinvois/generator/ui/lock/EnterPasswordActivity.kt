@@ -3,7 +3,6 @@ package com.koinvois.generator.ui.lock
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
@@ -50,9 +49,6 @@ class EnterPasswordActivity : BaseActivity<FragmentEnterPasswordBinding>() {
         binding.pinLockView.attachIndicatorDots(binding.indicatorDots)
         binding.pinLockView.setPinLockListener(object : PinLockListener {
             override fun onComplete(pin: String) {
-                Log.e("pin", pin)
-                Log.e("pin", savedPin)
-
                 if (pin == savedPin) {
                     correctPin()
                 } else {
@@ -62,9 +58,7 @@ class EnterPasswordActivity : BaseActivity<FragmentEnterPasswordBinding>() {
 
             override fun onEmpty() {}
 
-            override fun onPinChange(pinLength: Int, intermediatePin: String) {
-                Log.e("pin", "changed")
-            }
+            override fun onPinChange(pinLength: Int, intermediatePin: String) {}
         })
     }
 

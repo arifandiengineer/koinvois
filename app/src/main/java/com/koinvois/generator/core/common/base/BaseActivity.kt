@@ -7,10 +7,21 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.viewbinding.ViewBinding
+import com.koinvois.generator.core.utils.CurrencyFormatter
 
 /**
  * ViewBinding + edge-to-edge scaffolding shared by every Activity.
  * Activities only wire up views/observers here — no business logic.
+ *
+ * Locale is handled by [androidx.appcompat.app.AppCompatDelegate]'s per-app
+ * language API (see SettingActivity.updateLanguage) — AppCompat applies and
+ * persists it automatically, so no attachBaseContext override is needed here.
+ *
+ * Currency has no equivalent OS-level mechanism, so it's tracked here instead:
+ * every screen remembers which currency it was built with, and recreates
+ * itself the moment it resumes with a stale one (e.g. after the user changed
+ * it in Settings and navigated back). That re-runs onCreate, which re-fetches
+ * and re-formats everything — no full app restart needed.
  */
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
@@ -18,16 +29,26 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     val binding: VB
         get() = requireNotNull(_binding) { "Binding accessed outside onCreate()/onDestroy() window" }
 
+    private var boundCurrencyCode: String? = null
+
     protected abstract fun inflateBinding(): VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        boundCurrencyCode = CurrencyFormatter.getCurrencyCode()
         _binding = inflateBinding()
         setContentView(binding.root)
         applyDefaultSystemBarPadding()
         setupView()
         setupObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (boundCurrencyCode != null && boundCurrencyCode != CurrencyFormatter.getCurrencyCode()) {
+            recreate()
+        }
     }
 
     /**

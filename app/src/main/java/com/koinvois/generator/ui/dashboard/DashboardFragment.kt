@@ -10,14 +10,14 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.koinvois.generator.R
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.FragmentDashboardBinding
 import com.koinvois.generator.ui.client.ClientMainActivity
 import com.koinvois.generator.ui.dashboard.adapter.RecentInvoiceAdapter
-import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
+import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity
 import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
 import com.koinvois.generator.ui.item.ItemMainActivity
 import com.koinvois.generator.utilities.enums.DBEnum
@@ -26,8 +26,6 @@ import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
@@ -37,7 +35,6 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: DashboardViewModel by viewModels()
-    private val invoiceViewModel: InvoiceMainViewModel by hiltNavGraphViewModels(R.id.invoice_navigation_graph)
 
     private var recentInvoiceAdapter: RecentInvoiceAdapter? = null
 
@@ -61,12 +58,9 @@ class DashboardFragment : Fragment() {
 
     private fun setupAdapter() {
         recentInvoiceAdapter = RecentInvoiceAdapter { invoice ->
-            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
-                invoiceViewModel.loadInvoiceById(invoice.invoiceId)
-                startActivity(
-                    AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.OLD.entryType, invoice.invoiceId)
-                )
-            }
+            startActivity(
+                AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.OLD.entryType, invoice.invoiceId)
+            )
         }
         binding.rvRecentInvoices.adapter = recentInvoiceAdapter
     }
@@ -77,10 +71,10 @@ class DashboardFragment : Fragment() {
                 txtTotalInvoices.text = summary.totalInvoices.toString()
                 txtTotalInvoicesTrend.text = summary.totalInvoicesTrend
                 
-                txtRevenuePaid.text = String.format(Locale.getDefault(), "$%.2f", summary.totalRevenuePaid)
+                txtRevenuePaid.text = CurrencyFormatter.format(summary.totalRevenuePaid)
                 txtRevenueTrend.text = summary.revenueTrend
                 
-                txtOutstanding.text = String.format(Locale.getDefault(), "$%.2f", summary.totalOutstandingAmount)
+                txtOutstanding.text = CurrencyFormatter.format(summary.totalOutstandingAmount)
                 txtOutstandingTrend.text = summary.outstandingTrend
                 
                 txtOpenEstimates.text = summary.openEstimateCount.toString()
@@ -104,13 +98,10 @@ class DashboardFragment : Fragment() {
 
     private fun setClickListeners() {
         binding.btnQuickNewInvoice.setSafeOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
-                invoiceViewModel.prepareNewInvoice()
-                startActivity(AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
-            }
+            startActivity(AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
         }
         binding.btnQuickNewEstimate.setSafeOnClickListener {
-            findNavController().navigate(R.id.estimate_navigation_graph)
+            startActivity(AddEstimateMainActivity.newIntent(requireContext(), DBEnum.NEW.entryType))
         }
         binding.btnQuickAddClient.setSafeOnClickListener {
             startActivity(ClientMainActivity.newIntent(requireContext()))

@@ -160,12 +160,27 @@
 
     <!-- Settings -->
     <string name="label_information">Information</string>
+    <string name="label_information_desc">Manage your app preferences and information</string>
+    <string name="label_business_profile_desc">Manage your business information</string>
+    <string name="label_lock_desc">Require PIN or biometric to open the app</string>
+    <string name="label_theme_desc">Choose your app appearance</string>
+    <string name="label_language_desc">Change app language (English / Indonesia)</string>
+    <string name="label_privacy_policy_desc">View our privacy policy</string>
     <string name="label_business_profile">Business Profile</string>
     <string name="label_lock">Lock</string>
     <string name="label_about_us">About Us</string>
     <string name="label_rate_us">Rate Us</string>
     <string name="label_privacy_policy">Privacy Policy</string>
     <string name="label_contact_us">Contact Us</string>
+    <string name="label_language">Language</string>
+    <string name="label_select_language">Select Language</string>
+    <string name="language_english">English</string>
+    <string name="language_indonesia">Bahasa Indonesia</string>
+    <string name="label_currency">Currency</string>
+    <string name="label_currency_desc">Change display currency (USD / IDR)</string>
+    <string name="label_select_currency">Select Currency</string>
+    <string name="currency_usd">US Dollar (USD)</string>
+    <string name="currency_idr">Indonesian Rupiah (IDR)</string>
 
     <!-- Accessibility: content descriptions for icon-only actionable views -->
     <string name="cd_settings">Settings</string>
@@ -187,6 +202,11 @@
     <string name="label_due_date_colon">Due Date:</string>
     <string name="label_due_on_receipt">Due on receipt</string>
     <string name="label_date_header">Date</string>
+    <string name="label_date">Date</string>
+    <string name="label_photo_description">Photo Description</string>
+    <string name="label_photo_additional_details">Photo Additional Details</string>
+    <string name="label_signature">Signature</string>
+    <string name="label_notes">Notes</string>
     <string name="label_to_colon">To:</string>
     <string name="label_add_item">Add Item</string>
     <string name="label_subtotal">Subtotal</string>

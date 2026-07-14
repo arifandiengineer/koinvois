@@ -160,12 +160,27 @@
 
     <!-- Settings -->
     <string name="label_information">Informasi</string>
+    <string name="label_information_desc">Kelola preferensi dan informasi aplikasi Anda</string>
+    <string name="label_business_profile_desc">Kelola informasi bisnis Anda</string>
+    <string name="label_lock_desc">Memerlukan PIN atau biometrik untuk membuka aplikasi</string>
+    <string name="label_theme_desc">Pilih tampilan aplikasi Anda</string>
+    <string name="label_language_desc">Ubah bahasa aplikasi (English / Indonesia)</string>
+    <string name="label_privacy_policy_desc">Lihat kebijakan privasi kami</string>
     <string name="label_business_profile">Profil Bisnis</string>
     <string name="label_lock">Kunci</string>
     <string name="label_about_us">Tentang Kami</string>
     <string name="label_rate_us">Beri Rating</string>
     <string name="label_privacy_policy">Kebijakan Privasi</string>
     <string name="label_contact_us">Hubungi Kami</string>
+    <string name="label_language">Bahasa</string>
+    <string name="label_select_language">Pilih Bahasa</string>
+    <string name="language_english">English</string>
+    <string name="language_indonesia">Bahasa Indonesia</string>
+    <string name="label_currency">Mata Uang</string>
+    <string name="label_currency_desc">Ubah mata uang tampilan (USD / IDR)</string>
+    <string name="label_select_currency">Pilih Mata Uang</string>
+    <string name="currency_usd">Dolar AS (USD)</string>
+    <string name="currency_idr">Rupiah Indonesia (IDR)</string>
 
     <!-- Accessibility: content descriptions for icon-only actionable views -->
     <string name="cd_settings">Pengaturan</string>

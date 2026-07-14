@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.core.common.dialog.BaseDialog
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Invoice
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -45,7 +46,7 @@ class AllInvoiceAdapter(
         binding.txtInvoiceIdAndDate.text = "$invoiceIdStr • ${item.invoiceDate ?: ""}"
 
         // Amount
-        binding.txtAmount.text = "$${String.format("%.2f", item.invoiceTotal ?: 0f)}"
+        binding.txtAmount.text = CurrencyFormatter.format(item.invoiceTotal ?: 0f)
 
         // Due Date
         binding.txtDueDate.text = "Due: ${item.invoiceDueDate ?: "N/A"}"

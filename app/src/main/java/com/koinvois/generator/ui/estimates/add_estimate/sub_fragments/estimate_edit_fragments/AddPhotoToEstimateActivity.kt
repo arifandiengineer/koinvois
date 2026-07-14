@@ -14,6 +14,7 @@ import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.os.BundleCompat
 import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
@@ -63,7 +64,9 @@ class AddPhotoToEstimateActivity : BaseActivity<FragmentAddPhotoToEstimateBindin
     private val cameraLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val imageBitmap = result.data?.extras?.get("data") as Bitmap
+                val imageBitmap = result.data?.extras?.let {
+                    BundleCompat.getParcelable(it, "data", Bitmap::class.java)
+                } as Bitmap
                 binding.imgPhoto.layoutParams?.height = 500
                 binding.imgPhoto.layoutParams?.width = 500
                 binding.imgPhoto.requestLayout()

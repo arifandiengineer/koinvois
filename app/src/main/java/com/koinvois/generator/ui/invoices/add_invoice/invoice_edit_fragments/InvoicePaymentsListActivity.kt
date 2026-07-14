@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.FragmentInvoicePaymentsListBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.ui.invoices.adapter.PaymentsAdapter
@@ -41,13 +42,13 @@ class InvoicePaymentsListActivity : BaseActivity<FragmentInvoicePaymentsListBind
 
                 launch {
                     viewModel.totalPaidAmount.collect { total ->
-                        binding.txtPaidAmount.text = String.format("%.2f", total)
+                        binding.txtPaidAmount.text = CurrencyFormatter.format(total)
                     }
                 }
 
                 launch {
                     viewModel.balanceDue.collect { balance ->
-                        binding.txtBalanceDueAfterPaymentAmount.text = String.format("%.2f", balance)
+                        binding.txtBalanceDueAfterPaymentAmount.text = CurrencyFormatter.format(balance)
                     }
                 }
             }

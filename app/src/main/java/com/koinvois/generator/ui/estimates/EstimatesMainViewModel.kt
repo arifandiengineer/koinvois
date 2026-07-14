@@ -8,28 +8,22 @@ import com.koinvois.generator.data.mapper.toDomain
 import com.koinvois.generator.data.mapper.toEntity
 import com.koinvois.generator.data_models.Signature
 import com.koinvois.generator.database.models.*
+import com.koinvois.generator.utilities.enums.EstimateStatusEnum
+import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.domain.usecase.business.AddBusinessUseCase
 import com.koinvois.generator.domain.usecase.business.GetBusinessUseCase
 import com.koinvois.generator.domain.usecase.business.UpdateBusinessUseCase
 import com.koinvois.generator.domain.usecase.client.GetAllClientsUseCase
-import com.koinvois.generator.domain.usecase.estimate.AddEstimateItemUseCase
-import com.koinvois.generator.domain.usecase.estimate.AddEstimatePhotoUseCase
-import com.koinvois.generator.domain.usecase.estimate.AddEstimateUseCase
-import com.koinvois.generator.domain.usecase.estimate.DeleteEstimateItemUseCase
-import com.koinvois.generator.domain.usecase.estimate.DeleteEstimatePhotoUseCase
-import com.koinvois.generator.domain.usecase.estimate.DeleteEstimateUseCase
-import com.koinvois.generator.domain.usecase.estimate.GetEstimateItemsByEstimateIdUseCase
-import com.koinvois.generator.domain.usecase.estimate.GetEstimatePhotosByEstimateIdUseCase
-import com.koinvois.generator.domain.usecase.estimate.ObserveAllEstimatesUseCase
-import com.koinvois.generator.domain.usecase.estimate.UpdateEstimateItemUseCase
-import com.koinvois.generator.domain.usecase.estimate.UpdateEstimatePhotoUseCase
-import com.koinvois.generator.domain.usecase.estimate.UpdateEstimateUseCase
+import com.koinvois.generator.domain.usecase.estimate.*
 import com.koinvois.generator.domain.usecase.item.GetAllItemsUseCase
+import com.koinvois.generator.utilities.extensions.toStringFormat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import java.util.Date
 
 
 @HiltViewModel
@@ -51,6 +45,7 @@ class EstimatesMainViewModel @Inject constructor(
     private val updateBusinessUseCase: UpdateBusinessUseCase,
     private val getAllClientsUseCase: GetAllClientsUseCase,
     private val getAllItemsUseCase: GetAllItemsUseCase,
+    private val appPreferences: AppPreferencesDataStore,
     private val draft: EstimateDraftState,
 ) : ViewModel() {
 
@@ -171,6 +166,31 @@ class EstimatesMainViewModel @Inject constructor(
 
     suspend fun insertEstimate(estimate: Estimate) {
         addEstimateUseCase(estimate.toDomain())
+    }
+
+    suspend fun prepareNewEstimate() {
+        clearViewModel()
+        val tsLong = System.currentTimeMillis()
+        val nextNumber = appPreferences.getEstimateNumber().first()
+        
+        estimatePrimaryId = tsLong.div(1000)
+        estimateNumber = nextNumber
+        estimateStatus = EstimateStatusEnum.OPEN.status
+        estimateDate = Date().toStringFormat("dd/MM/yyyy")
+
+        insertEstimate(
+            Estimate(
+                estimateId = (estimatePrimaryId?.toInt() ?: 0),
+                estimateNumber = estimateNumber,
+                estimateDate = estimateDate,
+                estimateStatus = estimateStatus
+            )
+        )
+    }
+
+    suspend fun loadEstimateById(id: Int) {
+        val estimate = observeAllEstimatesUseCase().first().find { it.estimateId == id }
+        estimate?.let { loadViewModelData(it.toEntity()) }
     }
 
     suspend fun updateEstimate(estimate: Estimate) {

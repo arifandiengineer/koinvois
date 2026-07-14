@@ -28,6 +28,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Invoice
 import com.koinvois.generator.databinding.FragmentEditInvoiceBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
@@ -56,7 +57,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -127,15 +127,15 @@ class AddInvoiceMainActivity : BaseActivity<FragmentEditInvoiceBinding>() {
         viewModel.recalculateInvoiceSubTotal()
         viewModel.recalculateInvoiceTotal()
 
-        binding.txtSubtotal.text = String.format(Locale.getDefault(), "$%.2f", viewModel.invoiceSubTotal ?: 0f)
-        binding.txtDiscountValue.text = String.format(Locale.getDefault(), "-$%.2f", viewModel.discountTotalAmount ?: 0f)
+        binding.txtSubtotal.text = CurrencyFormatter.format(viewModel.invoiceSubTotal ?: 0f)
+        binding.txtDiscountValue.text = "-" + CurrencyFormatter.format(viewModel.discountTotalAmount ?: 0f)
         binding.txtTaxLabel.text = if (viewModel.taxRate != null) {
             "Tax (${viewModel.taxRate?.let { rate -> if (rate == rate.toInt().toFloat()) rate.toInt().toString() else rate.toString() }}%)"
         } else {
             "Tax"
         }
-        binding.txtTaxValue.text = String.format(Locale.getDefault(), "$%.2f", viewModel.taxAmount)
-        binding.txtTotalAmount.text = String.format(Locale.getDefault(), "$%.2f", viewModel.invoiceTotal)
+        binding.txtTaxValue.text = CurrencyFormatter.format(viewModel.taxAmount)
+        binding.txtTotalAmount.text = CurrencyFormatter.format(viewModel.invoiceTotal)
 
         viewModel.invoiceNumber?.let {
             binding.txtInvoiceNumber.text = "INV-$it"
@@ -189,12 +189,12 @@ class AddInvoiceMainActivity : BaseActivity<FragmentEditInvoiceBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.totalPaidAmount.collect { total ->
-                        binding.txtPaymentValue.text = String.format(Locale.getDefault(), "$%.2f", total)
+                        binding.txtPaymentValue.text = CurrencyFormatter.format(total)
                     }
                 }
                 launch {
                     viewModel.balanceDue.collect { balance ->
-                        binding.txtTotalBalanceAmount.text = String.format(Locale.getDefault(), "$%.2f", balance)
+                        binding.txtTotalBalanceAmount.text = CurrencyFormatter.format(balance)
                     }
                 }
             }

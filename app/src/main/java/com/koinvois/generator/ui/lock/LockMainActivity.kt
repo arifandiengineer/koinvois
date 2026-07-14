@@ -3,7 +3,6 @@ package com.koinvois.generator.ui.lock
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
@@ -42,7 +41,6 @@ class LockMainActivity : BaseActivity<LockMainFragmentBinding>() {
     override fun setupView() {
         lifecycleScope.launch(Dispatchers.Main) {
             secretAnswer = appPreferences.getSecurityAnswer().first()
-            Log.e("ans", secretAnswer.toString())
             setClickListeners()
         }
     }

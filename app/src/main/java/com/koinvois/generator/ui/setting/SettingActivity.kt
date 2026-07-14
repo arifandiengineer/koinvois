@@ -3,19 +3,23 @@ package com.koinvois.generator.ui.setting
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.core.data.preferences.ThemeMode
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.SettingFragmentBinding
 import com.koinvois.generator.ui.lock.LockMainActivity
 import com.koinvois.generator.ui.setting.add_business.AddBusinessDetailsActivity
 import com.koinvois.generator.utilities.enums.PinTypeEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -42,6 +46,19 @@ class SettingActivity : BaseActivity<SettingFragmentBinding>() {
         super.onResume()
         setSwitch()
         setThemeValue()
+        setLanguageValue()
+        setCurrencyValue()
+    }
+
+    private fun setLanguageValue() {
+        val currentLocale = AppCompatDelegate.getApplicationLocales().get(0)
+        val languageCode = currentLocale?.language ?: "en"
+        binding.txtSelectedLanguage.text = if (languageCode == "in") getString(R.string.language_indonesia) else getString(R.string.language_english)
+    }
+
+    private fun setCurrencyValue() {
+        binding.txtSelectedCurrency.text = if (CurrencyFormatter.getCurrencyCode() == "IDR")
+            getString(R.string.currency_idr) else getString(R.string.currency_usd)
     }
 
     private fun setUpToolbar() {
@@ -99,6 +116,74 @@ class SettingActivity : BaseActivity<SettingFragmentBinding>() {
                 }
                 AppCompatDelegate.setDefaultNightMode(ThemeMode.toNightMode(selectedMode))
             }
+        }
+
+        binding.txtLanguage.setSafeOnClickListener {
+            showLanguageSelection()
+        }
+
+        binding.txtSelectedLanguage.setSafeOnClickListener {
+            showLanguageSelection()
+        }
+
+        binding.txtCurrency.setSafeOnClickListener {
+            showCurrencySelection()
+        }
+
+        binding.txtSelectedCurrency.setSafeOnClickListener {
+            showCurrencySelection()
+        }
+    }
+
+    private fun showLanguageSelection() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_language)
+
+        bottomSheetDialog.findViewById<TextView>(R.id.btnEnglish)?.setOnClickListener {
+            updateLanguage("en")
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.findViewById<TextView>(R.id.btnIndonesia)?.setOnClickListener {
+            updateLanguage("in")
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.show()
+    }
+
+    private fun updateLanguage(languageCode: String) {
+        // AppCompatDelegate persists the locale and automatically recreates every
+        // currently-alive AppCompatActivity (this one included) to apply it —
+        // no manual finish()/restart and no full app restart needed.
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageCode))
+    }
+
+    private fun showCurrencySelection() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_currency)
+
+        bottomSheetDialog.findViewById<TextView>(R.id.btnUsd)?.setOnClickListener {
+            updateCurrency("USD")
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.findViewById<TextView>(R.id.btnIdr)?.setOnClickListener {
+            updateCurrency("IDR")
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.show()
+    }
+
+    private fun updateCurrency(currencyCode: String) {
+        // Update the in-memory formatter immediately so any screen resumed
+        // after this one re-renders with the new currency automatically
+        // (see BaseActivity.onResume) — no restart needed.
+        CurrencyFormatter.setCurrencyCode(currencyCode)
+        setCurrencyValue()
+        lifecycleScope.launch(Dispatchers.Default) {
+            appPreferences.setCurrencyCode(currencyCode)
         }
     }
 

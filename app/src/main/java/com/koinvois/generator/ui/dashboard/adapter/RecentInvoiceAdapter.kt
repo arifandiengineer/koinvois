@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.ItemRecentInvoiceBinding
 import com.koinvois.generator.domain.model.Invoice
 import com.koinvois.generator.utilities.extensions.visible
@@ -20,7 +21,7 @@ class RecentInvoiceAdapter(
         with(binding) {
             txtClientName.text = item.invoiceClientName ?: root.context.getString(R.string.fallback_no_client)
             txtInvoiceDetails.text = String.format("INV-%04d • %s", item.invoiceNumber ?: 0, item.invoiceDate ?: "")
-            txtAmount.text = String.format("$%.2f", item.invoiceTotal ?: 0f)
+            txtAmount.text = CurrencyFormatter.format(item.invoiceTotal ?: 0f)
             
             // Status badge logic
             val isPaid = item.invoiceStatus?.equals("PAID", ignoreCase = true) == true

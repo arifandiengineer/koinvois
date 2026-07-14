@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.os.LocaleListCompat
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -37,6 +39,7 @@ class SplashMainFragment : Fragment() {
     private var binding: SplashMainFragmentBinding? = null
     private var isFirstTime = true
     private var lockMode = false
+    private var languageChosen = false
 
     private val enterPasswordLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -95,17 +98,18 @@ class SplashMainFragment : Fragment() {
         setupIndicators(onboardingItems.size)
         setCurrentIndicator(0)
 
+        // The very first slide is a mandatory language gate: it can't be swiped
+        // past or skipped until a language is chosen. Once chosen (here or
+        // already chosen on a previous run), swiping and Skip work normally.
+        languageChosen = !AppCompatDelegate.getApplicationLocales().isEmpty
+        binding?.viewPagerOnboarding?.isUserInputEnabled = languageChosen
+        updateFirstSlideGate(position = 0, slideCount = onboardingItems.size)
+
         binding?.viewPagerOnboarding?.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 setCurrentIndicator(position)
-                if (position == onboardingItems.size - 1) {
-                    binding?.btnNext?.hide()
-                    binding?.btnGetStarted?.visible()
-                } else {
-                    binding?.btnNext?.visible()
-                    binding?.btnGetStarted?.hide()
-                }
+                updateFirstSlideGate(position, onboardingItems.size)
             }
         })
 
@@ -122,6 +126,49 @@ class SplashMainFragment : Fragment() {
         binding?.btnGetStarted?.setSafeOnClickListener {
             navigateToNextScreen()
         }
+
+        binding?.btnOnboardingEnglish?.setSafeOnClickListener {
+            chooseOnboardingLanguage("en")
+        }
+
+        binding?.btnOnboardingIndonesia?.setSafeOnClickListener {
+            chooseOnboardingLanguage("in")
+        }
+    }
+
+    /**
+     * Slide 0 shows the language picker instead of Skip/indicators/Next until
+     * a language is chosen; every other slide always shows normal navigation.
+     */
+    private fun updateFirstSlideGate(position: Int, slideCount: Int) {
+        if (position == 0 && !languageChosen) {
+            binding?.txtChooseLanguage?.visible()
+            binding?.layoutLanguagePicker?.visible()
+            binding?.btnSkip?.hide()
+            binding?.layoutIndicators?.hide()
+            binding?.btnNext?.hide()
+            binding?.btnGetStarted?.hide()
+        } else {
+            binding?.txtChooseLanguage?.hide()
+            binding?.layoutLanguagePicker?.hide()
+            binding?.btnSkip?.visible()
+            binding?.layoutIndicators?.visible()
+            if (position == slideCount - 1) {
+                binding?.btnNext?.hide()
+                binding?.btnGetStarted?.visible()
+            } else {
+                binding?.btnNext?.visible()
+                binding?.btnGetStarted?.hide()
+            }
+        }
+    }
+
+    private fun chooseOnboardingLanguage(languageCode: String) {
+        languageChosen = true
+        // Triggers AppCompatDelegate to persist the locale and recreate the host
+        // Activity; the recreated SplashMainFragment re-detects languageChosen
+        // from AppCompatDelegate.getApplicationLocales() and unlocks slide 0.
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageCode))
     }
 
     private fun setupIndicators(count: Int) {

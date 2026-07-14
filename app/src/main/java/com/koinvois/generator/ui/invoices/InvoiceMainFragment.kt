@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Invoice
 import com.koinvois.generator.databinding.InvoiceMainFragmentBinding
 import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
@@ -71,7 +72,7 @@ class InvoiceMainFragment : Fragment() {
 
         binding.cardOutstanding.apply {
             txtLabel.text = getString(R.string.label_outstanding)
-            txtValue.text = "$${String.format("%.2f", outstandingAmount)}"
+            txtValue.text = CurrencyFormatter.format(outstandingAmount)
             imgIcon.setImageResource(R.drawable.estimate_icon)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_stat_orange_bg))
             imgIcon.setColorFilter(requireContext().getColor(R.color.color_stat_orange))
@@ -83,7 +84,7 @@ class InvoiceMainFragment : Fragment() {
 
         binding.cardPaid.apply {
             txtLabel.text = getString(R.string.label_paid_summary)
-            txtValue.text = "$${String.format("%.2f", paidAmount)}"
+            txtValue.text = CurrencyFormatter.format(paidAmount)
             imgIcon.setImageResource(R.drawable.business_icon)
             iconContainer.setCardBackgroundColor(requireContext().getColor(R.color.color_stat_green_bg))
             imgIcon.setColorFilter(requireContext().getColor(R.color.color_success))

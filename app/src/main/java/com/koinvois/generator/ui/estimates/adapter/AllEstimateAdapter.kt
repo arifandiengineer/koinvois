@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Estimate
 import com.koinvois.generator.databinding.ItemEstimateBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
@@ -32,7 +33,7 @@ class AllEstimateAdapter(
         
         binding.txtEstimateIdAndDate.text = "EST-${item.estimateNumber ?: item.estimateId} • ${item.estimateDate ?: "No Date"}"
         binding.txtValidUntil.text = "Valid until: ${item.estimateDate ?: "No Date"}"
-        binding.txtAmount.text = "$${item.estimateTotal ?: "0.00"}"
+        binding.txtAmount.text = CurrencyFormatter.format(item.estimateTotal ?: 0f)
 
         val context = binding.root.context
         when (item.estimateStatus) {

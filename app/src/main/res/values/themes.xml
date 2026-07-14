@@ -3,7 +3,7 @@
     <!-- Base application theme (Material 3, day). Edge-to-edge is applied in
          code (BaseActivity.enableEdgeToEdge) so no status/nav bar color is
          hardcoded here. -->
-    <style name="Theme.InvoiceMaker" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Koinvois" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorOnPrimary">@color/color_on_primary</item>
         <item name="colorPrimaryContainer">@color/color_primary_container</item>
@@ -39,14 +39,14 @@
 
     <!-- Pre-content launch screen (androidx.core.splashscreen).
          Applied to <application>; installSplashScreen() in MainActivity
-         switches to Theme.InvoiceMaker via postSplashScreenTheme. -->
+         switches to Theme.Koinvois via postSplashScreenTheme. -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/color_surface</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
-        <item name="postSplashScreenTheme">@style/Theme.InvoiceMaker</item>
+        <item name="postSplashScreenTheme">@style/Theme.Koinvois</item>
     </style>
 
-    <style name="Dialog.App" parent="Theme.InvoiceMaker">
+    <style name="Dialog.App" parent="Theme.Koinvois">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsFloating">false</item>

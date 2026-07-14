@@ -94,6 +94,19 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
                 saveOnBack()
             }
         }
+
+        val estimateType = intent.getStringExtra(EXTRA_ESTIMATE_TYPE) ?: "new"
+        val estimateId = intent.getIntExtra(EXTRA_ESTIMATE_ID, -1)
+
+        if (viewModel.estimatePrimaryId == null) {
+            lifecycleScope.launch(Dispatchers.Main) {
+                if (estimateType == "new") {
+                    viewModel.prepareNewEstimate()
+                } else if (estimateId != -1) {
+                    viewModel.loadEstimateById(estimateId)
+                }
+            }
+        }
     }
 
     override fun onResume() {
@@ -181,10 +194,6 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
             saveOnBack()
         }
 
-        binding.btnShareEstimate.setSafeOnClickListener {
-            shareEstimate(context)
-        }
-
         binding.customToolbar.imgSecondaryAction.setSafeOnClickListener {
             showPopupMenu(it, context)
         }
@@ -205,7 +214,7 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
             startActivity(EditBusinessDetailsFromEstimateActivity.newIntent(this))
         }
 
-        content.secondCard.setSafeOnClickListener {
+        content.cardClient.setSafeOnClickListener {
             viewModel.selectedClient?.let {
                 startActivity(ClientDetailForEstimateActivity.newIntent(this))
             } ?: run {
@@ -415,7 +424,7 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
 
     private fun showSnackBar(context: Context) {
         val mySnackbar = Snackbar.make(
-            binding.btnShareEstimate,
+            binding.root,
             "Open Settings and allow storage permission to continue !",
             Snackbar.LENGTH_LONG
         ).setAction("Open Setting") {
@@ -437,6 +446,13 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
     }
 
     companion object {
-        fun newIntent(context: Context): Intent = Intent(context, AddEstimateMainActivity::class.java)
+        private const val EXTRA_ESTIMATE_TYPE = "extra_estimate_type"
+        private const val EXTRA_ESTIMATE_ID = "extra_estimate_id"
+
+        fun newIntent(context: Context, estimateType: String, estimateId: Int = -1): Intent =
+            Intent(context, AddEstimateMainActivity::class.java).apply {
+                putExtra(EXTRA_ESTIMATE_TYPE, estimateType)
+                putExtra(EXTRA_ESTIMATE_ID, estimateId)
+            }
     }
 }

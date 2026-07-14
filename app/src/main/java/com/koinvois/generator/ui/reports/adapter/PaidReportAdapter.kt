@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.ItemPaidReportBinding
 import com.koinvois.generator.domain.model.Invoice
 
@@ -18,7 +19,7 @@ class PaidReportAdapter : BaseRecyclerAdapter<Invoice, ItemPaidReportBinding>(In
         binding.txtInvoiceId.text = "INV-${item.invoiceNumber ?: item.invoiceId}"
         binding.txtInvoiceDate.text = item.invoiceDate ?: "No Date"
         binding.txtPaidDate.text = item.invoiceDate ?: "No Date" // Fallback as paidDate isn't in model
-        binding.txtAmount.text = "$${item.invoiceTotal ?: "0.00"}"
+        binding.txtAmount.text = CurrencyFormatter.format(item.invoiceTotal ?: 0f)
     }
 
     class InvoiceDiffCallback : DiffUtil.ItemCallback<Invoice>() {

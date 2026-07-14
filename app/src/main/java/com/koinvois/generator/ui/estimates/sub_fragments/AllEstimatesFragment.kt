@@ -13,6 +13,7 @@ import com.koinvois.generator.databinding.FragmentAllEstimatesBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity
 import com.koinvois.generator.ui.estimates.adapter.AllEstimateAdapter
+import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.visible
 
@@ -42,8 +43,8 @@ class AllEstimatesFragment : Fragment() {
                 val adapter = allEstimateAdapter ?: AllEstimateAdapter(
                     viewModel,
                     viewLifecycleOwner
-                ) {
-                    startActivity(AddEstimateMainActivity.newIntent(requireContext()))
+                ) { estimate ->
+                    startActivity(AddEstimateMainActivity.newIntent(requireContext(), DBEnum.OLD.entryType, estimate.estimateId))
                 }.also { newAdapter ->
                     allEstimateAdapter = newAdapter
                     binding?.rvAllEstimates?.adapter = newAdapter

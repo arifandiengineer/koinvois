@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.databinding.ItemPaidClientsBinding
 import com.koinvois.generator.ui.reports.ReportsMainViewModel
 
@@ -21,7 +22,7 @@ class ClientsAdapter : BaseRecyclerAdapter<ReportsMainViewModel.ClientReportMode
 
         binding.txtClientName.text = item.client
         binding.txtInitials.text = item.client.take(2).uppercase()
-        binding.txtPaidAmount.text = "$${String.format("%.2f", item.invoiceAmount)}"
+        binding.txtPaidAmount.text = CurrencyFormatter.format(item.invoiceAmount)
         binding.txtInvoices.text = item.invoicesCount.toString()
     }
 
