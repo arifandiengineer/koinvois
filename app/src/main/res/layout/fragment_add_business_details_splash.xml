@@ -501,7 +501,7 @@
                                         android:id="@+id/txtPreviewName"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Your Business Name"
+                                        tools:text="Your Business Name"
                                         android:textColor="@color/color_text_primary"
                                         android:textSize="@dimen/text_size_14"
                                         android:textStyle="bold" />
@@ -510,7 +510,7 @@
                                         android:id="@+id/txtPreviewAddress"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Address Line 1, City, State"
+                                        tools:text="Address Line 1, City, State"
                                         android:textColor="@color/color_text_secondary"
                                         android:textSize="@dimen/text_size_11" />
                                 </LinearLayout>

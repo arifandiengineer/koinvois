@@ -415,4 +415,54 @@
     <string name="hint_zero_decimal_default">0.0</string>
     <string name="hint_estimate_number_default">0001</string>
     <string name="hint_po_number">Nomor PO</string>
+
+    <!-- Final hardcoded-string cleanup batch -->
+    <string name="hint_terms">Ketentuan</string>
+    <string name="hint_due_date">Jatuh Tempo</string>
+    <string name="hint_invoice_number_default">0001</string>
+    <string name="hint_tax">Pajak</string>
+    <string name="label_select_tax_to_apply">Pilih pajak yang akan diterapkan</string>
+    <string name="label_displayed_on_invoice">Ditampilkan pada invoice</string>
+    <string name="label_tax_percentage">Persentase pajak</string>
+    <string name="label_tax_inclusive_desc">Jika diaktifkan, semua harga barang akan dianggap sudah termasuk pajak.</string>
+
+    <string name="label_total_billed">Total Ditagih</string>
+
+    <string name="label_item_details_title">Detail Barang</string>
+    <string name="label_enter_item_information">Masukkan informasi barang</string>
+    <string name="hint_enter_item_description">Masukkan deskripsi barang</string>
+    <string name="label_additional_details_subtitle">Tambahkan informasi ekstra (opsional)</string>
+
+    <string name="label_default_billed_amount">0.00$</string>
+
+    <string name="label_clients_revenue">Pendapatan Klien</string>
+
+    <string name="label_total_paid">Total Terbayar</string>
+    <string name="label_avg_invoice">Rata-rata Invoice</string>
+    <string name="label_total_clients">Total Klien</string>
+    <string name="label_growth_total_clients">+8%</string>
+    <string name="label_paid_amount_overview">Ringkasan Jumlah Terbayar</string>
+    <string name="label_line_chart">Grafik Garis</string>
+    <string name="label_vs_last_month">vs Bulan Lalu</string>
+    <string name="label_paid_invoices">Invoice Terbayar</string>
+    <string name="label_inv_date">Tgl Invoice</string>
+    <string name="label_paid_date">Tgl Bayar</string>
+    <string name="label_top_client_paid">Klien Teratas (Lunas)</string>
+    <string name="label_most_invoices">Invoice Terbanyak</string>
+    <string name="label_top_category_paid">Kategori Teratas (Lunas)</string>
+    <string name="mock_client_name_bright_future">Bright Future Ltd.</string>
+    <string name="mock_client_name_acme">Acme Corporation</string>
+    <string name="mock_category_services">Layanan</string>
+    <string name="mock_amount_1250">$1,250.00</string>
+    <string name="mock_amount_2450">$2,450.00</string>
+    <string name="mock_invoice_count_5">5 Invoice</string>
+
+    <string name="label_business_section">Bisnis</string>
+    <string name="label_tools_section">Peralatan</string>
+    <string name="label_data_safe_title">Data Anda aman dan terlindungi</string>
+    <string name="label_data_safe_desc">Kami memastikan data bisnis Anda selalu terlindungi.</string>
+
+    <string name="label_print_button">cetak</string>
+    <string name="label_default_time">10:50</string>
+    <string name="label_default_date">Sat,nov,2022</string>
 </resources>

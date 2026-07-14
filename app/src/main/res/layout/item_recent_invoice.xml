@@ -39,7 +39,7 @@
             android:id="@+id/txtClientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acme Corporation"
+            tools:text="Acme Corporation"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/text_size_14"
             android:textStyle="bold" />
@@ -48,7 +48,7 @@
             android:id="@+id/txtInvoiceDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="INV-2024-0012 • May 20, 2024"
+            tools:text="INV-2024-0012 • May 20, 2024"
             android:textColor="@color/color_text_secondary"
             android:textSize="@dimen/text_size_11" />
     </LinearLayout>
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_8"
-        android:text="$850.00"
+        tools:text="$850.00"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_14"
         android:textStyle="bold"

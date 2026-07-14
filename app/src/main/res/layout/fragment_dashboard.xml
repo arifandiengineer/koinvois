@@ -117,7 +117,7 @@
                                 android:id="@+id/txtTotalInvoices"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="24"
+                                tools:text="24"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/text_size_18"
                                 android:textStyle="bold" />
@@ -130,7 +130,7 @@
                                     android:id="@+id/txtTotalInvoicesTrend"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="+12% from last month"
+                                    tools:text="+12% from last month"
                                     android:textColor="@color/primary_color"
                                     android:textSize="@dimen/text_size_9" />
                                 <ImageView
@@ -182,7 +182,7 @@
                                 android:id="@+id/txtRevenuePaid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$3,540.00"
+                                tools:text="$3,540.00"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/text_size_18"
                                 android:textStyle="bold" />
@@ -195,7 +195,7 @@
                                     android:id="@+id/txtRevenueTrend"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="+18% from last month"
+                                    tools:text="+18% from last month"
                                     android:textColor="@color/primary_color"
                                     android:textSize="@dimen/text_size_9" />
                                 <ImageView
@@ -247,7 +247,7 @@
                                 android:id="@+id/txtOutstanding"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$1,250.00"
+                                tools:text="$1,250.00"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/text_size_18"
                                 android:textStyle="bold" />
@@ -260,7 +260,7 @@
                                     android:id="@+id/txtOutstandingTrend"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="+5% from last month"
+                                    tools:text="+5% from last month"
                                     android:textColor="@color/color_stat_orange"
                                     android:textSize="@dimen/text_size_9" />
                                 <ImageView
@@ -312,7 +312,7 @@
                                 android:id="@+id/txtOpenEstimates"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="7"
+                                tools:text="7"
                                 android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/text_size_18"
                                 android:textStyle="bold" />
@@ -325,7 +325,7 @@
                                     android:id="@+id/txtEstimatesTrend"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="+2 from last month"
+                                    tools:text="+2 from last month"
                                     android:textColor="@color/color_stat_blue"
                                     android:textSize="@dimen/text_size_9" />
                                 <ImageView

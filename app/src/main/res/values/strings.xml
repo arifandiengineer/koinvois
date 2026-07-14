@@ -414,4 +414,59 @@
     <string name="title_invoice_number">Invoice Number</string>
     <string name="title_estimate_number">Estimate Number</string>
     <string name="label_discount_percent_format">Discount(%1$s%%)</string>
+
+    <!-- Final hardcoded-string cleanup batch -->
+    <string name="hint_terms">Terms</string>
+    <string name="hint_due_date">Due Date</string>
+    <string name="hint_invoice_number_default">0001</string>
+    <string name="hint_tax">Tax</string>
+    <string name="label_select_tax_to_apply">Select the tax to apply</string>
+    <string name="label_displayed_on_invoice">Displayed on invoice</string>
+    <string name="label_tax_percentage">Tax percentage</string>
+    <string name="label_tax_inclusive_desc">When enabled, all item prices will be treated as tax-inclusive.</string>
+
+    <string name="label_total_billed">Total Billed</string>
+
+    <string name="label_item_details_title">Item Details</string>
+    <string name="label_enter_item_information">Enter item information</string>
+    <string name="hint_enter_item_description">Enter item description</string>
+    <string name="label_additional_details_subtitle">Add any extra information (optional)</string>
+
+    <string name="label_default_billed_amount">0.00$</string>
+
+    <string name="label_clients_revenue">Clients Revenue</string>
+
+    <string name="label_total_paid">Total Paid</string>
+    <string name="label_avg_invoice">Avg Invoice</string>
+    <string name="label_total_clients">Total Clients</string>
+    <string name="label_growth_total_clients">+8%</string>
+    <string name="label_paid_amount_overview">Paid Amount Overview</string>
+    <string name="label_line_chart">Line Chart</string>
+    <string name="label_vs_last_month">vs Last Month</string>
+    <string name="label_paid_invoices">Paid Invoices</string>
+    <string name="label_inv_date">Inv Date</string>
+    <string name="label_paid_date">Paid Date</string>
+    <string name="label_top_client_paid">Top Client (Paid)</string>
+    <string name="label_most_invoices">Most Invoices</string>
+    <string name="label_top_category_paid">Top Category (Paid)</string>
+    <!-- Mock/example data — this whole card is not yet wired to real report data -->
+    <string name="mock_client_name_bright_future">Bright Future Ltd.</string>
+    <string name="mock_client_name_acme">Acme Corporation</string>
+    <string name="mock_category_services">Services</string>
+    <string name="mock_amount_1250">$1,250.00</string>
+    <string name="mock_amount_2450">$2,450.00</string>
+    <string name="mock_invoice_count_5">5 Invoices</string>
+
+    <string name="label_business_section">Business</string>
+    <string name="label_tools_section">Tools</string>
+    <string name="label_data_safe_title">Your data is safe and secure</string>
+    <string name="label_data_safe_desc">We ensure your business data is always protected.</string>
+
+    <!-- Dead placeholders on the lock screen — txtSystemTime/txtDate are never
+         assigned in EnterPasswordActivity.kt, so these always show verbatim.
+         Extracted as-is per directive; not a live clock, flagging as a gap. -->
+    <string name="label_default_time">10:50</string>
+    <string name="label_default_date">Sat,nov,2022</string>
+
+    <string name="label_print_button">print</string>
 </resources>

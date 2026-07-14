@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_16"
-                    android:text="Clients Revenue"
+                    android:text="@string/label_clients_revenue"
                     android:textColor="@color/color_text_primary"
                     android:textSize="@dimen/text_size_14"
                     android:textStyle="bold" />
@@ -50,7 +50,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
-                        android:text="Client Name"
+                        android:text="@string/label_client_name"
                         android:textColor="@color/color_text_secondary"
                         android:textSize="@dimen/text_size_10" />
                     <TextView
@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:gravity="center"
-                        android:text="Invoices"
+                        android:text="@string/title_invoices"
                         android:textColor="@color/color_text_secondary"
                         android:textSize="@dimen/text_size_10" />
                     <TextView
@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:gravity="end"
-                        android:text="Paid Amount"
+                        android:text="@string/label_paid_amount"
                         android:textColor="@color/color_text_secondary"
                         android:textSize="@dimen/text_size_10" />
                 </LinearLayout>

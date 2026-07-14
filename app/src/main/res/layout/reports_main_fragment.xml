@@ -35,13 +35,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_check_circle_filled"
-            android:text="Paid" />
+            android:text="@string/report_tab_paid" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_people"
-            android:text="Clients" />
+            android:text="@string/report_tab_clients" />
     </com.google.android.material.tabs.TabLayout>
 
     <!-- ViewPager for Reports Content -->
