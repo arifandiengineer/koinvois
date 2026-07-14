@@ -26,13 +26,6 @@
         tools:layout="@layout/fragment_paid_invoices" />
 
     <fragment
-        android:id="@+id/fragmentEditInvoices"
-        android:name="com.koinvois.generator.ui.invoices.add_invoice.sub_fragments.EditInvoiceFragment"
-        tools:layout="@layout/fragment_edit_invoice">
-
-    </fragment>
-
-    <fragment
         android:id="@+id/fragmentPreviewFragment"
         android:name="com.koinvois.generator.ui.invoices.add_invoice.sub_fragments.PreviewInvoiceFragment"
         tools:layout="@layout/fragment_preview_invoice" />

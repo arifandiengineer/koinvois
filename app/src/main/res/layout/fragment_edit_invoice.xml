@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_background"
-    tools:context=".ui.invoices.add_invoice.sub_fragments.EditInvoiceFragment">
+    tools:context=".ui.invoices.add_invoice.AddInvoiceMainActivity">
 
     <!-- Custom Toolbar specifically for this Fragment -->
     <include
@@ -823,5 +823,15 @@
         app:iconPadding="@dimen/spacing_8"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/previewContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
