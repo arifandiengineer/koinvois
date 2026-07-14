@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.SettingFragment">
+
+    <include
+        android:id="@+id/customToolbar"
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_30"
+        android:layout_marginTop="@dimen/spacing_30"
+        android:text="@string/label_information"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customToolbar" />
+
+    <ImageView
+        android:id="@+id/imgBusiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_60"
+        android:importantForAccessibility="no"
+        android:src="@drawable/business_icon"
+        app:layout_constraintStart_toStartOf="@id/txtInformation"
+        app:layout_constraintTop_toBottomOf="@id/txtInformation" />
+
+    <TextView
+        android:id="@+id/txtPersonalBusiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_24"
+        android:text="@string/label_business_profile"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBusiness"
+        app:layout_constraintStart_toEndOf="@+id/imgBusiness"
+        app:layout_constraintTop_toTopOf="@+id/imgBusiness" />
+
+    <ImageView
+        android:id="@+id/imgLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_32"
+        android:importantForAccessibility="no"
+        android:src="@drawable/lock_icon"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/imgBusiness"
+        app:layout_constraintTop_toBottomOf="@id/imgBusiness" />
+
+    <TextView
+        android:id="@+id/txtLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_lock"
+        android:textSize="@dimen/text_size_20"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/imgLock"
+        app:layout_constraintStart_toStartOf="@+id/txtPersonalBusiness"
+        app:layout_constraintTop_toTopOf="@+id/imgLock" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_30"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/txtLock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtLock" />
+
+    <ImageView
+        android:id="@+id/imgTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_32"
+        android:contentDescription="@null"
+        android:src="@drawable/theme_icon"
+        app:layout_constraintStart_toStartOf="@+id/imgLock"
+        app:layout_constraintTop_toBottomOf="@id/imgLock" />
+
+    <TextView
+        android:id="@+id/txtTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_theme"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTheme"
+        app:layout_constraintStart_toStartOf="@+id/txtLock"
+        app:layout_constraintTop_toTopOf="@+id/imgTheme" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchDarkMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_30"
+        app:layout_constraintBottom_toBottomOf="@id/txtTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtTheme" />
+
+    <ImageView
+        android:id="@+id/imgAboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_36"
+        android:importantForAccessibility="no"
+        android:src="@drawable/about_us_icon"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/imgTheme"
+        app:layout_constraintTop_toBottomOf="@id/imgTheme" />
+
+    <TextView
+        android:id="@+id/txtAboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_about_us"
+        android:textColor="@color/setting_text_color"
+        android:textSize="@dimen/text_size_20"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/imgAboutUs"
+        app:layout_constraintStart_toStartOf="@+id/txtLock"
+        app:layout_constraintTop_toTopOf="@id/imgAboutUs" />
+
+    <ImageView
+        android:id="@+id/imgRateUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_36"
+        android:importantForAccessibility="no"
+        android:src="@drawable/rate_us_icon"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/imgAboutUs"
+        app:layout_constraintTop_toBottomOf="@id/imgAboutUs" />
+
+    <TextView
+        android:id="@+id/txtRateUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_rate_us"
+        android:textColor="@color/setting_text_color"
+        android:textSize="@dimen/text_size_20"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imgRateUs"
+        app:layout_constraintStart_toStartOf="@+id/txtAboutUs"
+        app:layout_constraintTop_toTopOf="@+id/imgRateUs" />
+
+    <ImageView
+        android:id="@+id/imgPrivacyPolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_36"
+        android:importantForAccessibility="no"
+        android:src="@drawable/privacy_policy_icon"
+        app:layout_constraintStart_toStartOf="@id/imgRateUs"
+        app:layout_constraintTop_toBottomOf="@id/imgRateUs" />
+
+    <TextView
+        android:id="@+id/txtPrivacyPolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_privacy_policy"
+        android:textColor="@color/setting_text_color"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPrivacyPolicy"
+        app:layout_constraintStart_toStartOf="@+id/txtRateUs"
+        app:layout_constraintTop_toTopOf="@+id/imgPrivacyPolicy" />
+
+    <ImageView
+        android:id="@+id/imgContactUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_36"
+        android:importantForAccessibility="no"
+        android:src="@drawable/contact_us_icon"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/imgPrivacyPolicy"
+        app:layout_constraintTop_toBottomOf="@id/imgPrivacyPolicy" />
+
+    <TextView
+        android:id="@+id/txtContactUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_contact_us"
+        android:textColor="@color/setting_text_color"
+        android:textSize="@dimen/text_size_20"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imgContactUs"
+        app:layout_constraintStart_toStartOf="@+id/txtPrivacyPolicy"
+        app:layout_constraintTop_toTopOf="@+id/imgContactUs" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

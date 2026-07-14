@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+    <!-- Content (Scrollable) -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Overview Header Section -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dashboard_overview"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/text_size_18"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_rounded_8dp"
+                    android:backgroundTint="@color/color_surface"
+                    android:elevation="1dp"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/spacing_12"
+                    android:paddingVertical="@dimen/spacing_6">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/report_icon"
+                        app:tint="@color/color_text_secondary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_6"
+                        android:text="@string/dashboard_this_month"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="@dimen/text_size_12" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginStart="@dimen/spacing_4"
+                        android:src="@drawable/btn_forward"
+                        android:rotation="90" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- Overview Cards Grid (Horizontal Layout inside Cards) -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_12"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:columnCount="2">
+
+                <!-- Total Invoices Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/spacing_8"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_12">
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/shape_rounded_12dp"
+                            android:backgroundTint="@color/color_stat_green_bg"
+                            android:padding="@dimen/spacing_12"
+                            android:src="@drawable/invoice_icon"
+                            app:tint="@color/primary_color" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_10"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dashboard_total_invoices"
+                                android:textColor="@color/color_text_secondary"
+                                android:textSize="@dimen/text_size_11" />
+                            <TextView
+                                android:id="@+id/txtTotalInvoices"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="24"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_18"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/txtTotalInvoicesTrend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="+12% from last month"
+                                    android:textColor="@color/primary_color"
+                                    android:textSize="@dimen/text_size_9" />
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_marginStart="@dimen/spacing_2"
+                                    android:src="@drawable/icon_referesh"
+                                    android:rotation="45" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Revenue Paid Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/spacing_8"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_12">
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/shape_rounded_12dp"
+                            android:backgroundTint="@color/color_stat_teal_bg"
+                            android:padding="@dimen/spacing_12"
+                            android:src="@drawable/report_icon"
+                            app:tint="@color/color_stat_teal" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_10"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dashboard_revenue_paid"
+                                android:textColor="@color/color_text_secondary"
+                                android:textSize="@dimen/text_size_11" />
+                            <TextView
+                                android:id="@+id/txtRevenuePaid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$3,540.00"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_18"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/txtRevenueTrend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="+18% from last month"
+                                    android:textColor="@color/primary_color"
+                                    android:textSize="@dimen/text_size_9" />
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_marginStart="@dimen/spacing_2"
+                                    android:src="@drawable/icon_referesh"
+                                    android:rotation="45" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Outstanding Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/spacing_8"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_12">
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/shape_rounded_12dp"
+                            android:backgroundTint="@color/color_stat_orange_bg"
+                            android:padding="@dimen/spacing_12"
+                            android:src="@drawable/rb_share_icon"
+                            app:tint="@color/color_stat_orange" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_10"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dashboard_outstanding"
+                                android:textColor="@color/color_text_secondary"
+                                android:textSize="@dimen/text_size_11" />
+                            <TextView
+                                android:id="@+id/txtOutstanding"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$1,250.00"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_18"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/txtOutstandingTrend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="+5% from last month"
+                                    android:textColor="@color/color_stat_orange"
+                                    android:textSize="@dimen/text_size_9" />
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_marginStart="@dimen/spacing_2"
+                                    android:src="@drawable/icon_referesh"
+                                    android:rotation="45" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Open Estimates Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/spacing_8"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_12">
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/shape_rounded_12dp"
+                            android:backgroundTint="@color/color_stat_blue_bg"
+                            android:padding="@dimen/spacing_12"
+                            android:src="@drawable/estimate_icon"
+                            app:tint="@color/color_stat_blue" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_10"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dashboard_open_estimates"
+                                android:textColor="@color/color_text_secondary"
+                                android:textSize="@dimen/text_size_11" />
+                            <TextView
+                                android:id="@+id/txtOpenEstimates"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="7"
+                                android:textColor="@color/color_text_primary"
+                                android:textSize="@dimen/text_size_18"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/txtEstimatesTrend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="+2 from last month"
+                                    android:textColor="@color/color_stat_blue"
+                                    android:textSize="@dimen/text_size_9" />
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_marginStart="@dimen/spacing_2"
+                                    android:src="@drawable/icon_referesh"
+                                    android:rotation="45" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </GridLayout>
+
+            <!-- Recent Invoices Section -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dashboard_recent_invoices"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/text_size_18"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnViewAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/dashboard_view_all"
+                    android:textColor="@color/color_accent_deep_green"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_12"
+                app:cardBackgroundColor="@color/color_surface"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecentInvoices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_recent_invoice" />
+
+                <TextView
+                    android:id="@+id/txtNoRecentInvoices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_32"
+                    android:text="@string/text_no_recent_invoices"
+                    android:textColor="@color/color_text_secondary"
+                    android:visibility="gone" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Quick Actions Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:text="@string/dashboard_quick_actions"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/text_size_18"
+                android:textStyle="bold" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_12"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:columnCount="4">
+
+                <LinearLayout
+                    android:id="@+id/btnQuickNewInvoice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_8">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/shape_rounded_16dp"
+                        android:backgroundTint="@color/white"
+                        android:elevation="4dp"
+                        android:padding="@dimen/spacing_16"
+                        android:src="@drawable/invoice_icon"
+                        app:tint="@color/primary_color" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:text="@string/dashboard_new_invoice"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_10"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnQuickNewEstimate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_8">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/shape_rounded_16dp"
+                        android:backgroundTint="@color/white"
+                        android:elevation="4dp"
+                        android:padding="@dimen/spacing_16"
+                        android:src="@drawable/estimate_icon"
+                        app:tint="@color/color_stat_blue" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:text="@string/dashboard_new_estimate"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_10"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnQuickAddClient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_8">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/shape_rounded_16dp"
+                        android:backgroundTint="@color/white"
+                        android:elevation="4dp"
+                        android:padding="@dimen/spacing_16"
+                        android:src="@drawable/client_icon"
+                        app:tint="@color/color_stat_purple" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:text="@string/dashboard_add_client"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_10"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnQuickAddItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_8">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/shape_rounded_16dp"
+                        android:backgroundTint="@color/white"
+                        android:elevation="4dp"
+                        android:padding="@dimen/spacing_16"
+                        android:src="@drawable/items_icon"
+                        app:tint="@color/color_stat_orange" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:text="@string/dashboard_add_item"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_10"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </GridLayout>
+
+            <!-- Spacer for Bottom Navigation -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

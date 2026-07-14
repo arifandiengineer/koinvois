@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_navigation_graph"
+    app:startDestination="@id/fragmentDashboardMain">
+
+    <fragment
+        android:id="@+id/fragmentDashboardMain"
+        android:name="com.koinvois.generator.ui.dashboard.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_fragmentDashboardMain_to_fragmentEditInvoiceMain"
+            app:destination="@id/fragmentEditInvoiceMain"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit">
+            <argument
+                android:name="invoiceType"
+                android:defaultValue="new"
+                app:argType="string" />
+            <argument
+                android:name="invoiceId"
+                android:defaultValue="-1"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
+</navigation>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Material 3 dark tones — rebranded to Koinvois seed colors
+         (Navy #262E37 / Gold #C5955B), replacing the previous green
+         seed #4CAF50. Same roles as values/colors.xml, only the raw
+         md_theme_* values differ; the alias names never change.
+         Rebrand date: 2026-07-12 -->
+
+    <!-- Primary (was green #8CD887 → now Navy, light-on-dark) -->
+    <color name="md_theme_primary">#C1CCD7</color>
+    <color name="md_theme_onPrimary">#28333E</color>
+    <color name="md_theme_primaryContainer">#3C4C5D</color>
+    <color name="md_theme_onPrimaryContainer">#E0E6EB</color>
+
+    <!-- Secondary (was muted green #B9CCB3 → now Gold) -->
+    <color name="md_theme_secondary">#D7B68E</color>
+    <color name="md_theme_onSecondary">#4B351B</color>
+    <color name="md_theme_secondaryContainer">#715028</color>
+    <color name="md_theme_onSecondaryContainer">#F2E7D9</color>
+
+    <!-- Tertiary (was teal #A0CFD4 → now slate-blue, same family as light) -->
+    <color name="md_theme_tertiary">#C1CCD7</color>
+    <color name="md_theme_onTertiary">#28333E</color>
+    <color name="md_theme_tertiaryContainer">#3C4C5D</color>
+    <color name="md_theme_onTertiaryContainer">#E0E6EB</color>
+
+    <!-- Error (unchanged — functional color, not brand color) -->
+    <color name="md_theme_error">#FFB4AB</color>
+    <color name="md_theme_onError">#690005</color>
+    <color name="md_theme_errorContainer">#93000A</color>
+    <color name="md_theme_onErrorContainer">#FFDAD6</color>
+
+    <!-- Surface / Background (was green-tinted dark → now Koinvois neutral dark) -->
+    <color name="md_theme_background">#191815</color>
+    <color name="md_theme_onBackground">#E8E6E3</color>
+    <color name="md_theme_surface">#191815</color>
+    <color name="md_theme_onSurface">#E8E6E3</color>
+    <color name="md_theme_surfaceVariant">#4E4A40</color>
+    <color name="md_theme_onSurfaceVariant">#D1CEC7</color>
+    <color name="md_theme_outline">#9A968E</color>
+    <color name="md_theme_outlineVariant">#4E4A40</color>
+
+    <!-- App-specific semantic roles (unchanged — invoice status colors
+         are functional, not brand identity: paid stays green, etc.) -->
+    <color name="md_theme_success">#8CD887</color>
+    <color name="md_theme_onSuccess">#00390D</color>
+    <color name="md_theme_successContainer">#175E1D</color>
+    <color name="md_theme_onSuccessContainer">#A8F5A0</color>
+
+    <color name="md_theme_warning">#FFB945</color>
+    <color name="md_theme_onWarning">#452B00</color>
+    <color name="md_theme_warningContainer">#674100</color>
+    <color name="md_theme_onWarningContainer">#FFDDB1</color>
+
+    <color name="md_theme_info">#9FCAFF</color>
+    <color name="md_theme_onInfo">#003258</color>
+    <color name="md_theme_infoContainer">#00497D</color>
+    <color name="md_theme_onInfoContainer">#D1E4FF</color>
+
+</resources>

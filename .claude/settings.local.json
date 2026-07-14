@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(timeout 100 ./gradlew --version)",
+      "Bash(./gradlew --version)",
+      "Bash(./gradlew :app:compileDebugKotlin --stacktrace)",
+      "Bash(xargs -0 -I{} sh -c 'head -1 \"{}\" | grep -q \"^<!--\" && echo \"{}\"')",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/domain/model)",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/domain/repository)",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/data/mapper)",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/data/repository)",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/core/data/preferences)",
+      "Bash(./gradlew :app:compileDebugKotlin --console=plain)",
+      "Bash(./gradlew :app:compileDebugKotlin --console=plain -q)",
+      "Bash(xargs -I{} sh -c 'echo ==={}===; cat {}')",
+      "Bash(xargs -I{} sh -c 'echo \"=== {} ===\"; cat {}')",
+      "Bash(xargs -I{} basename {})",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/domain/usecase/dashboard)",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/ui/more)",
+      "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/ui/dashboard/adapter)",
+      "Bash(python3 *)"
+    ]
+  }
+}

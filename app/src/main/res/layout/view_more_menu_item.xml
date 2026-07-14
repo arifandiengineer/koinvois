@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingVertical="@dimen/spacing_12">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/iconContainer"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/spacing_16"
+        app:cardBackgroundColor="@color/color_stat_green_bg"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@drawable/client_icon"
+            android:tint="@color/color_success" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_16"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/text_size_14"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/txtSubtitle"
+        app:layout_constraintEnd_toStartOf="@id/imgChevron"
+        app:layout_constraintStart_toEndOf="@id/iconContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Clients" />
+
+    <TextView
+        android:id="@+id/txtSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/txtTitle"
+        app:layout_constraintStart_toStartOf="@id/txtTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        tools:text="Manage your clients" />
+
+    <ImageView
+        android:id="@+id/imgChevron"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="@dimen/spacing_16"
+        android:src="@drawable/btn_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

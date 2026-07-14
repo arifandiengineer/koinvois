@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/spacing_16"
+    android:paddingBottom="@dimen/spacing_24">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginBottom="@dimen/spacing_8"
+        android:text="@string/quick_action_title"
+        android:textAppearance="@style/TextAppearance.App.Title" />
+
+    <LinearLayout
+        android:id="@+id/rowNewInvoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_12"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_24"
+            android:layout_height="@dimen/icon_size_24"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_dashboard_black_24dp"
+            app:tint="?attr/colorPrimary"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:text="@string/action_new_invoice"
+            android:textAppearance="@style/TextAppearance.App.Body.Large" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rowNewEstimate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_12"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_24"
+            android:layout_height="@dimen/icon_size_24"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_dashboard_black_24dp"
+            app:tint="?attr/colorPrimary"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:text="@string/action_new_estimate"
+            android:textAppearance="@style/TextAppearance.App.Body.Large" />
+    </LinearLayout>
+
+</LinearLayout>

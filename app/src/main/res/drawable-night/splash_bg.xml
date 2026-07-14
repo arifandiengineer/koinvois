@@ -1,0 +1,34 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="428dp"
+    android:height="926dp"
+    android:viewportWidth="428"
+    android:viewportHeight="926">
+  <group>
+    <clip-path
+        android:pathData="M0,0h428v926h-428z"/>
+    <path
+        android:pathData="M0,0h428v926h-428z"
+        android:fillColor="@color/color_surface"/>
+    <path
+        android:pathData="M38,38m-89,0a89,89 0,1 1,178 0a89,89 0,1 1,-178 0"
+        android:fillColor="@color/color_icon_amber"/>
+    <path
+        android:pathData="M375.5,42.5m-13.5,0a13.5,13.5 0,1 1,27 0a13.5,13.5 0,1 1,-27 0"
+        android:fillColor="@color/color_icon_blue_bright"/>
+    <path
+        android:pathData="M375.5,42.5m-13.5,0a13.5,13.5 0,1 1,27 0a13.5,13.5 0,1 1,-27 0"
+        android:fillColor="@color/color_icon_amber"/>
+    <path
+        android:pathData="M211,42m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"
+        android:fillColor="@color/color_icon_blue_bright"/>
+    <path
+        android:pathData="M211,42m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"
+        android:fillColor="@color/color_icon_blue_bright"/>
+    <path
+        android:pathData="M232,121m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+        android:fillColor="@color/color_icon_blue_bright"/>
+    <path
+        android:pathData="M232,121m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+        android:fillColor="@color/color_icon_bright_green"/>
+  </group>
+</vector>

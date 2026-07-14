@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.lock.LockMainFragment">
+
+    <ImageView
+        android:id="@+id/imgLockScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_100"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtRecoveryDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_50"
+        android:layout_marginTop="@dimen/spacing_28"
+        android:layout_marginEnd="@dimen/spacing_50"
+        android:gravity="center"
+        android:text="@string/label_security_question_hint"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgLockScreen" />
+
+    <TextView
+        android:id="@+id/txtRecoveryQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_40"
+        android:layout_marginTop="@dimen/spacing_70"
+        android:text="@string/label_nickname_question"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtRecoveryDescription" />
+
+    <EditText
+        android:id="@+id/editRecoverAnswer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtRecoveryQuestion" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveSecurity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_70"
+        android:paddingHorizontal="@dimen/spacing_100"
+        android:paddingVertical="@dimen/spacing_10"
+        android:text="@string/action_save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/primary_color"
+        android:textSize="@dimen/text_size_20"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,333 @@
+<resources>
+    <string name="app_name">Koinvois</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="label_greeting">Hello, John 👋</string>
+
+    <string name="ok">Ok</string>
+    <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_menu_item">Delete</string>
+    <string name="sort_name_asc_menu_item">Name (A-Z)</string>
+    <string name="sort_name_desc_menu_item">Name (Z-A)</string>
+    <string name="sort_recently_added_menu_item">Recently Added</string>
+    <string name="search_client_hint">Search client</string>
+    <string name="no_clients_empty_state">No Clients !</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_more">More</string>
+    <string name="label_total_invoices">Total Invoices</string>
+    <string name="label_revenue_paid">Revenue Paid</string>
+    <string name="label_outstanding">Outstanding</string>
+    <string name="label_open_estimates">Open Estimates</string>
+    <string name="label_recent_invoices">Recent Invoices</string>
+    <string name="text_no_recent_invoices">No invoices yet</string>
+    <string name="action_new_invoice">New Invoice</string>
+    <string name="action_new_estimate">New Estimate</string>
+    <string name="more_menu_client">Client</string>
+    <string name="more_menu_client_subtitle">Manage your clients</string>
+    <string name="more_menu_item">Item</string>
+    <string name="more_menu_item_subtitle">Manage your items</string>
+
+    <!-- Toolbar titles -->
+    <string name="title_setting">Setting</string>
+    <string name="title_clients">Clients</string>
+    <string name="title_items">Items</string>
+    <string name="title_report">Report</string>
+    <string name="label_add_client">Add Client</string>
+    <string name="label_edit_client">Edit Client</string>
+    <string name="label_edit_item">Edit Item</string>
+    <string name="label_edit_invoice">Edit Invoice</string>
+    <string name="label_preview_invoice">Preview Invoice</string>
+    <string name="label_preview_estimate">Preview Estimate</string>
+
+    <!-- Theme -->
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System</string>
+    <string name="label_theme">Theme</string>
+
+    <!-- Errors / validation -->
+    <string name="error_invalid_email">Enter valid email address!</string>
+    <string name="error_password_length">Password should be 4 digits</string>
+    <string name="error_password_mismatch">Password miss-match</string>
+    <string name="error_incorrect_pin">Incorrect PIN please try again !</string>
+    <string name="error_enter_nickname">Please enter your nick name</string>
+    <string name="error_enter_correct_nickname">Please enter your correct nick name to unlock!</string>
+    <string name="error_try_again">Try Again</string>
+    <string name="error_enter_client_name">Please Enter Client name!</string>
+    <string name="error_invalid_invoice_number">Enter a valid Invoice number</string>
+    <string name="error_invalid_estimate_number">Enter a valid Estimate number</string>
+    <string name="error_choose_photo">Please choose a photo</string>
+    <string name="error_enter_item_name">Please enter item name</string>
+
+    <!-- Fallback text -->
+    <string name="fallback_no_client">No Client</string>
+    <string name="no_items_empty_state">No Items !</string>
+    <string name="no_invoices_empty_state">No Invoices !</string>
+    <string name="no_estimates_empty_state">No Estimates !</string>
+    <string name="retry">Retry</string>
+    <string name="delete_confirm_title">Delete</string>
+    <string name="delete_confirm_positive">Delete</string>
+    <string name="delete_confirm_negative">Cancel</string>
+    <string name="delete_client_confirm_message">Are you sure you want to delete this client?</string>
+    <string name="delete_item_confirm_message">Are you sure you want to delete this item?</string>
+    <string name="delete_photo_confirm_message">Are you sure you want to delete this photo?</string>
+    <string name="delete_invoice_confirm_message">Are you sure you want to delete this invoice?</string>
+    <string name="quick_action_title">Quick Actions</string>
+    <string name="status_paid">Paid</string>
+    <string name="status_unpaid">Unpaid</string>
+    <string name="status_open">Open</string>
+    <string name="status_closed">Closed</string>
+
+    <!-- Reports -->
+    <string name="report_tab_paid">Paid</string>
+    <string name="report_tab_clients">Clients</string>
+    <string name="label_client_name">Client Name</string>
+    <string name="label_invoice">Invoice</string>
+    <string name="label_nothing_to_show">Nothing to show yet !</string>
+
+    <!-- Add Client -->
+    <string name="label_mobile">Mobile:</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_fax">Fax:</string>
+
+    <!-- Business Details (Splash onboarding) -->
+    <string name="label_business_info">Business Info</string>
+    <string name="label_fields_optional">(All fields are optional)</string>
+    <string name="label_business_name">Business name:</string>
+    <string name="label_email">Email:</string>
+    <string name="label_phone_colon">Phone:</string>
+    <string name="label_address_1">Address line 1:</string>
+    <string name="label_address_2">Address line 2:</string>
+    <string name="label_address_3">Address line 3:</string>
+    <string name="label_business_logo">Business Logo</string>
+    <string name="label_logo_hint">Appears on all Invoices. Can be edited any time.</string>
+    <string name="action_choose_image">Chose Image</string>
+    <string name="label_all_set">All Set!</string>
+    <string name="label_ready_first_invoice">You are ready to create your first Invoice.</string>
+    <string name="action_create_invoice">Create Invoice</string>
+
+    <!-- Add Item -->
+    <string name="label_unit_cost">Unit Cost:</string>
+    <string name="label_taxable">Taxable</string>
+
+    <!-- Lock / Password -->
+    <string name="label_enter_password">Enter Password</string>
+    <string name="action_forgot_password">Forgot Password?</string>
+    <string name="label_password_hint_long">Please Enter your password, password must be greater than 6 digits.</string>
+    <string name="label_new_password">New Password</string>
+    <string name="label_confirm_password">Confirm Password</string>
+    <string name="action_save">Save</string>
+    <string name="label_security_question_hint">Please answer the below security question to recover your password if forgotten.</string>
+    <string name="label_nickname_question">What is your nick name ?</string>
+    <string name="hint_pin_4_digit">4 digit PIN</string>
+
+    <!-- Hints -->
+    <string name="hint_client_name">Client name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_mobile_number">Mobile Number</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_fax_number">Fax Number</string>
+    <string name="hint_contact">Contact</string>
+    <string name="hint_address_1">Address 1</string>
+    <string name="hint_address_2">Address 2</string>
+    <string name="hint_address_3">Address 3</string>
+    <string name="hint_business_name">Business Name</string>
+    <string name="hint_business_owner_name">Business Owner Name</string>
+    <string name="hint_business_number">Business Number</string>
+    <string name="hint_address_line_1">Address Line 1</string>
+    <string name="hint_address_line_2">Address Line 2</string>
+    <string name="hint_address_line_3">Address Line 3</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_mobile">Mobile</string>
+    <string name="hint_website">Website</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_additional_details">Additional Details</string>
+
+    <!-- Bottom nav -->
+    <string name="title_invoice_nav">Invoice</string>
+    <string name="title_estimate_nav">Estimate</string>
+    <string name="title_reports_nav">Reports</string>
+    <string name="title_business_details">Business Details</string>
+
+    <!-- Splash -->
+    <string name="label_create">Create</string>
+    <string name="label_professional">Professional</string>
+    <string name="label_invoices_quickly">Invoices quickly</string>
+
+    <!-- Settings -->
+    <string name="label_information">Information</string>
+    <string name="label_business_profile">Business Profile</string>
+    <string name="label_lock">Lock</string>
+    <string name="label_about_us">About Us</string>
+    <string name="label_rate_us">Rate Us</string>
+    <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="label_contact_us">Contact Us</string>
+
+    <!-- Accessibility: content descriptions for icon-only actionable views -->
+    <string name="cd_settings">Settings</string>
+    <string name="cd_back">Back</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_delete">Delete</string>
+    <string name="cd_more_options">More options</string>
+    <string name="cd_refresh">Refresh</string>
+    <string name="cd_continue">Continue</string>
+    <string name="cd_choose_business_logo">Choose business logo</string>
+    <string name="cd_add_photo">Add photo</string>
+
+    <!-- Invoice / Estimate wizard (Fase 10 closing sweep) -->
+    <string name="label_estimate_number_colon">Estimate Number:</string>
+    <string name="label_invoice_number_colon">Invoice Number:</string>
+    <string name="label_date_colon">Date:</string>
+    <string name="label_po_number_colon">PO Number:</string>
+    <string name="label_terms_colon">Terms:</string>
+    <string name="label_due_date_colon">Due Date:</string>
+    <string name="label_due_on_receipt">Due on receipt</string>
+    <string name="label_date_header">Date</string>
+    <string name="label_to_colon">To:</string>
+    <string name="label_add_item">Add Item</string>
+    <string name="label_subtotal">Subtotal</string>
+    <string name="label_discount">Discount</string>
+    <string name="label_tax">Tax</string>
+    <string name="label_tax_colon">Tax:</string>
+    <string name="label_total">Total</string>
+    <string name="label_total_colon">Total:</string>
+    <string name="label_payment">Payment</string>
+    <string name="label_balance_due">Balance Due</string>
+    <string name="label_mark_paid">Mark Paid</string>
+    <string name="label_mark_closed">Mark Closed</string>
+    <string name="label_amount">Amount</string>
+    <string name="label_amount_colon">Amount:</string>
+    <string name="label_add_payment">Add Payment</string>
+    <string name="label_paid_amount">Paid amount</string>
+    <string name="label_payment_method_colon">Payment Method:</string>
+    <string name="label_cash">Cash</string>
+    <string name="label_name_column">Name</string>
+    <string name="label_number_of_invoices">Number of invoices</string>
+    <string name="label_quantity_colon">Quantity:</string>
+    <string name="label_percentage">percentage</string>
+    <string name="label_discount_amount">Discount Amount</string>
+    <string name="label_taxable_colon">Taxable:</string>
+    <string name="label_tax_rate_colon">Tax Rate:</string>
+    <string name="label_none">None</string>
+    <string name="label_label_colon">Label:</string>
+    <string name="label_rate_colon">Rate:</string>
+    <string name="label_inclusive_colon">Inclusive:</string>
+    <string name="desc_tax_inclusive">Turn on if prices already include Tax</string>
+    <string name="no_open_estimates_empty_state">No Open Estimates !</string>
+    <string name="no_outstanding_invoices_empty_state">No Outstanding Invoices !</string>
+    <string name="no_paid_invoices_empty_state">No Paid Invoices !</string>
+    <string name="no_closed_estimates_empty_state">No Closed Estimates !</string>
+    <string name="label_client_information">Client Information</string>
+    <string name="hint_email_address">Email Address</string>
+    <string name="label_contact_details">Contact Details</string>
+    <string name="label_address_details">Address Details</string>
+    <string name="hint_contact_person">Contact Person</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Create Professional &lt;br/&gt; &lt;font color=\'#4CAF50\'&gt;Invoices Quickly&lt;/font&gt;</string>
+    <string name="onboarding_desc_1">Make, send, and manage invoices &lt;br/&gt; in just a few taps.</string>
+    <string name="onboarding_title_2">Track Your Business &lt;br/&gt; &lt;font color=\'#4CAF50\'&gt;in Real-Time&lt;/font&gt;</string>
+    <string name="onboarding_desc_2">Monitor invoices, payments, and &lt;br/&gt; outstanding amounts anytime.</string>
+    <string name="onboarding_title_3">Share &amp; Get Paid &lt;br/&gt; &lt;font color=\'#4CAF50\'&gt;Faster&lt;/font&gt;</string>
+    <string name="onboarding_desc_3">Export, send, and receive payments &lt;br/&gt; faster than ever.</string>
+    <string name="action_skip">Skip</string>
+    <string name="action_get_started">Get Started</string>
+    <string name="label_business_name_row">Business Name</string>
+    <string name="hint_enter_business_name">Enter your business name</string>
+    <string name="label_email_address_row">Email Address</string>
+    <string name="hint_enter_email_address">Enter your email address</string>
+    <string name="label_phone_number_row">Phone Number</string>
+    <string name="hint_enter_phone_number">Enter your phone number</string>
+    <string name="label_address_line_1_row">Address Line 1</string>
+    <string name="hint_street_address">Street address or P.O. Box</string>
+    <string name="label_secure_info">Your information is secure</string>
+    <string name="desc_secure_info">This information is stored only on your device and never shared.</string>
+    <string name="action_continue">Continue</string>
+    <string name="label_owner_name">Owner Name</string>
+    <string name="label_business_number_row">Business Number</string>
+    <string name="label_website_row">Website</string>
+    <string name="label_address_line_2_row">Address Line 2 (Optional)</string>
+    <string name="label_address_line_3_row">Address Line 3 (Optional)</string>
+    <string name="hint_address_line_2_splash">Apartment, suite, unit, etc.</string>
+    <string name="hint_address_line_3_splash">City, state, or region</string>
+    <string name="label_secure_info_desc">This information is stored only on your device and never shared.</string>
+    <string name="label_business_logo_desc">Add your business logo to make your invoices look professional.</string>
+    <string name="label_choose_image">Choose Image</string>
+    <string name="label_image_formats">PNG, JPG or JPEG (Max. 2MB)</string>
+    <string name="action_select_from_gallery">Select from Gallery</string>
+    <string name="label_or">or</string>
+    <string name="action_take_a_photo">Take a Photo</string>
+    <string name="label_preview">Preview</string>
+    <string name="label_will_appear_on_invoices">Will appear on all invoices</string>
+    <string name="label_change_logo_hint">You can &lt;b&gt;change your logo&lt;/b&gt; anytime from settings.</string>
+    <string name="label_create_fast">Create Fast</string>
+    <string name="desc_create_fast">Make invoices in seconds</string>
+    <string name="label_stay_organized">Stay Organized</string>
+    <string name="desc_stay_organized">Manage clients, items &amp; payments</string>
+    <string name="label_grow_business">Grow Business</string>
+    <string name="desc_grow_business">Track your business and grow more</string>
+
+    <!-- Resource Audit 4: closing sweep of remaining hardcoded UI text -->
+    <string name="bs_logo_take_photo">Take photo</string>
+    <string name="bs_logo_choose_library">Chose from library</string>
+    <string name="bs_discount_no_discount">No Discount</string>
+    <string name="bs_discount_percentage">Percentage</string>
+    <string name="bs_discount_flat_amount">Flat Amount</string>
+    <string name="bs_payment_cash">Cash</string>
+    <string name="bs_payment_cheque">Cheque</string>
+    <string name="bs_payment_bank">Bank</string>
+    <string name="bs_payment_credit_card">Credit Card</string>
+    <string name="bs_payment_paypal">PayPal</string>
+    <string name="bs_payment_other">Other</string>
+    <string name="bs_terms_none">None</string>
+    <string name="bs_terms_due_on_receipt">Due on receipt</string>
+    <string name="bs_terms_next_date">Next Dat</string>
+    <string name="bs_terms_2_days">2 Days</string>
+    <string name="bs_terms_1_week">1 Week</string>
+    <string name="bs_terms_custom">Custom</string>
+    <string name="bs_tax_none">None</string>
+    <string name="bs_tax_on_total">On The Total</string>
+    <string name="bs_tax_deducted">Deducted</string>
+    <string name="bs_tax_per_item">Per Item</string>
+    <string name="exit_dialog_title">Exit !</string>
+    <string name="exit_dialog_message">Are you sure you want to quit this app?</string>
+    <string name="delete_photo_confirm_message_legacy">Are you sure you want to delete photo ?</string>
+    <string name="tax_label_tax">Tax:</string>
+    <string name="tax_label_none">None</string>
+    <string name="tax_label_label">Label:</string>
+    <string name="tax_label_rate">Rate:</string>
+    <string name="tax_label_inclusive">Inclusive:</string>
+    <string name="tax_desc_inclusive">Turn on if prices already include Tax</string>
+    <string name="discount_label_discount">Discount</string>
+    <string name="discount_label_amount">Amount:</string>
+    <string name="dashboard_overview">Overview</string>
+    <string name="dashboard_this_month">This Month</string>
+    <string name="dashboard_total_invoices">Total Invoices</string>
+    <string name="dashboard_revenue_paid">Revenue Paid</string>
+    <string name="dashboard_outstanding">Outstanding</string>
+    <string name="dashboard_open_estimates">Open Estimates</string>
+    <string name="dashboard_recent_invoices">Recent Invoices</string>
+    <string name="dashboard_view_all">View All &gt;</string>
+    <string name="dashboard_quick_actions">Quick Actions</string>
+    <string name="dashboard_new_invoice">New Invoice</string>
+    <string name="dashboard_new_estimate">New Estimate</string>
+    <string name="dashboard_add_client">Add Client</string>
+    <string name="dashboard_add_item">Add Item</string>
+    <string name="wait_please">Wait Please</string>
+    <string name="preview_business_name_placeholder">Your Business Name</string>
+    <string name="preview_business_address_placeholder">Address Line 1, City, State</string>
+    <string name="title_invoices">Invoices</string>
+    <string name="hint_search_invoices">Search invoices...</string>
+    <string name="action_sort">Sort</string>
+    <string name="action_filter">Filter</string>
+    <string name="label_paid_summary">Paid</string>
+    <string name="title_estimates">Estimates</string>
+    <string name="title_photo">Photo</string>
+    <string name="title_signature">Signature</string>
+    <string name="title_invoice_number">Invoice Number</string>
+    <string name="title_estimate_number">Estimate Number</string>
+    <string name="label_discount_percent_format">Discount(%1$s%%)</string>
+</resources>

@@ -1,0 +1,103 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.navigation.safeargs)
+}
+
+android {
+    namespace 'com.koinvois.generator'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.koinvois.generator"
+        minSdk 26
+        targetSdk 35
+        versionCode 2
+        versionName "1.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+            arg("room.incremental", "true")
+            arg("room.expandProjection", "true")
+        }
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+        buildConfig true
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.core.splashscreen
+
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+
+    implementation libs.kotlinx.coroutines.android
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.core
+
+    // Hilt
+    implementation libs.hilt.android
+    ksp libs.hilt.compiler
+    implementation libs.hilt.navigation.fragment
+
+    // Room
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+    ksp libs.androidx.room.compiler
+
+    // DataStore
+    implementation libs.androidx.datastore
+    implementation libs.androidx.datastore.preferences
+
+    // Image loading (company logo)
+    implementation libs.coil
+
+    implementation libs.commons.lang3
+
+    // Pin lock UI (local module)
+    implementation project(":pinlockview")
+
+    // PDF preview/export (WebView -> PDF)
+    // TODO(sprint core/pdf): third-party JitPack lib pending replacement with
+    // an androidx.print.PrintedPdfDocument-based core/pdf module, see Migration Notes.
+    implementation 'com.github.pramodkr123:ConvertWebViewToPdfDemo:1.0.5'
+}

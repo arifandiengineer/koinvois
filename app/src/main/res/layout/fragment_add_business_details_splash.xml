@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_accent_deep_green"
+    tools:context=".ui.splash.splash_business.AddBusinessDetailsSplashFragment">
+
+    <!-- Header Section (Common for all steps) -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnBackGlobal"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/spacing_16"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:background="@drawable/shape_rounded_24dp"
+        android:contentDescription="@string/cd_back"
+        android:padding="@dimen/spacing_12"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/stepIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/btnBackGlobal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBackGlobal">
+
+        <TextView
+            android:id="@+id/txtStep1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/shape_rounded_12dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/spacing_8"
+            android:background="@color/color_opaque_accent_pale" />
+
+        <TextView
+            android:id="@+id/txtStep2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/shape_rounded_12dp"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/spacing_8"
+            android:background="@color/color_opaque_accent_pale" />
+
+        <TextView
+            android:id="@+id/txtStep3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/shape_rounded_12dp"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="@color/color_accent_deep_green"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <!-- Main View Container (Custom rounded background) -->
+
+
+    <!-- Step 1 View: Business Information -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/firstBusinessView"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stepIndicator">
+
+        <TextView
+            android:id="@+id/txtBusinessInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_business_info"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_24"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtAllField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_4"
+            android:text="@string/label_fields_optional"
+            android:textColor="@color/color_translucent_white_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBusinessInfo" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAllField">
+
+            <View
+                android:id="@+id/mainCardStep1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_top_32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="@dimen/spacing_24"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.koinvois.generator.ui.splash.BusinessInputView
+                        android:id="@+id/editBusinessName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_12"
+                        android:inputType="textPersonName"
+                        app:inputHint="@string/hint_enter_business_name"
+                        app:inputIcon="@drawable/business_icon"
+                        app:inputIconTint="@color/primary_color"
+                        app:inputLabel="@string/label_business_name_row" />
+
+                    <com.koinvois.generator.ui.splash.BusinessInputView
+                        android:id="@+id/editBusinessEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_12"
+                        android:inputType="textEmailAddress"
+                        app:inputHint="@string/hint_enter_email_address"
+                        app:inputIcon="@drawable/contact_us_icon"
+                        app:inputIconTint="@color/primary_color"
+                        app:inputLabel="@string/label_email_address_row" />
+
+                    <com.koinvois.generator.ui.splash.BusinessInputView
+                        android:id="@+id/editBusinessPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_12"
+                        android:inputType="phone"
+                        app:inputHint="@string/hint_enter_phone_number"
+                        app:inputIcon="@drawable/ic_phone"
+                        app:inputIconTint="@color/primary_color"
+                        app:inputLabel="@string/label_phone_number_row" />
+
+                    <com.koinvois.generator.ui.splash.BusinessInputView
+                        android:id="@+id/editBusinessAddressLine1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_12"
+                        android:inputType="textPostalAddress"
+                        app:inputHint="@string/hint_street_address"
+                        app:inputIcon="@drawable/ic_location"
+                        app:inputIconTint="@color/primary_color"
+                        app:inputLabel="@string/label_address_line_1_row" />
+
+                    <com.koinvois.generator.ui.splash.BusinessInputView
+                        android:id="@+id/editBusinessAddressLine2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_12"
+                        android:inputType="textPostalAddress"
+                        app:inputHint="@string/hint_address_line_2_splash"
+                        app:inputIcon="@drawable/business_icon"
+                        app:inputIconTint="@color/primary_color"
+                        app:inputLabel="@string/label_address_line_2_row" />
+
+                    <com.koinvois.generator.ui.splash.BusinessInputView
+                        android:id="@+id/editBusinessAddressLine3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_12"
+                        android:inputType="textPostalAddress"
+                        app:inputHint="@string/hint_address_line_3_splash"
+                        app:inputIcon="@drawable/ic_location"
+                        app:inputIconTint="@color/primary_color"
+                        app:inputLabel="@string/label_address_line_3_row" />
+
+                    <!-- Secure Info Box -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:background="@drawable/bg_secure_info"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_16">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/lock_icon"
+                            app:tint="@color/primary_color" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_secure_info"
+                                android:textColor="@color/color_accent_deep_green"
+                                android:textSize="@dimen/text_size_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_secure_info_desc"
+                                android:textColor="@color/color_accent_deep_green"
+                                android:textSize="@dimen/text_size_11" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+
+        </RelativeLayout>
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnForward1"
+            style="@style/Widget.App.Button"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="@dimen/spacing_24"
+            android:layout_marginBottom="@dimen/spacing_40"
+            android:backgroundTint="@color/primary_color"
+            android:text="@string/action_continue"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_size_16"
+            app:cornerRadius="16dp"
+            app:layout_constraintBottom_toTopOf="@id/dotIndicator1" />
+
+        <LinearLayout
+            android:id="@+id/dotIndicator1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_16"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/primary_color" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/color_neutral_border_light" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/color_neutral_border_light" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Step 2 View: Business Logo -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/secondBusinessView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stepIndicator">
+
+        <TextView
+            android:id="@+id/txtBusinessLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:text="@string/label_business_logo"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_24"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtBusinessLogoInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_40"
+            android:layout_marginTop="@dimen/spacing_4"
+            android:gravity="center"
+            android:text="@string/label_business_logo_desc"
+            android:textColor="@color/color_translucent_white_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBusinessLogo" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBusinessLogoInfo">
+            <View
+                android:id="@+id/mainCardStep2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_top_32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="@dimen/spacing_16"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toTopOf="@id/btnForward2"
+                app:layout_constraintTop_toBottomOf="@id/txtBusinessLogoInfo">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/uploadArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_dashed_border"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_16">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="32dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/spacing_16"
+                                android:src="@drawable/ic_cloud_upload"
+                                app:tint="@color/primary_color" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/label_choose_image"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:text="@string/label_image_formats"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_12" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnChoseImage"
+                            style="@style/Widget.App.Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/action_select_from_gallery"
+                            android:textAllCaps="false"
+                            android:backgroundTint="@color/primary_color"
+                            app:cornerRadius="12dp"
+                            app:icon="@drawable/ic_gallery" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/spacing_12"
+                            android:text="@string/label_or"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_12" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTakePhoto"
+                            style="@style/Widget.App.Button.Outlined"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/action_take_a_photo"
+                            android:textAllCaps="false"
+                            android:textColor="@color/primary_color"
+                            app:cornerRadius="12dp"
+                            app:icon="@drawable/ic_camera"
+                            app:iconTint="@color/primary_color"
+                            app:strokeColor="@color/color_neutral_border_light" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:text="@string/label_preview"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_16"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="1dp"
+                        app:strokeColor="@color/color_neutral_surface_light"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_16">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    app:cardBackgroundColor="@color/color_neutral_surface_light"
+                                    app:cardCornerRadius="8dp"
+                                    app:cardElevation="0dp">
+                                    <ImageView
+                                        android:id="@+id/imgSelectedImage"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="@dimen/spacing_12"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/image_ph"
+                                        app:tint="@color/color_neutral_icon_grey" />
+                                </com.google.android.material.card.MaterialCardView>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/spacing_16"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/txtPreviewName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Your Business Name"
+                                        android:textColor="@color/color_text_primary"
+                                        android:textSize="@dimen/text_size_14"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/txtPreviewAddress"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Address Line 1, City, State"
+                                        android:textColor="@color/color_text_secondary"
+                                        android:textSize="@dimen/text_size_11" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginVertical="@dimen/spacing_16"
+                                android:background="@color/color_neutral_surface_light" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/label_will_appear_on_invoices"
+                                android:textColor="@color/primary_color"
+                                android:textSize="@dimen/text_size_11"
+                                app:drawableStartCompat="@drawable/onboarding_indicator_active"
+                                app:drawableTint="@color/primary_color"
+                                android:drawablePadding="8dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_24"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/rb_share_icon"
+                            app:tint="@color/color_text_secondary" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_8"
+                            android:text="@string/label_change_logo_hint"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_12" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="100dp" />
+
+                </LinearLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnForward2"
+            style="@style/Widget.App.Button"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginHorizontal="@dimen/spacing_24"
+            android:layout_marginBottom="@dimen/spacing_40"
+            android:backgroundTint="@color/primary_color"
+            android:text="@string/action_continue"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_size_16"
+            app:cornerRadius="16dp"
+            app:layout_constraintBottom_toTopOf="@id/dotIndicator2" />
+
+        <LinearLayout
+            android:id="@+id/dotIndicator2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_16"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/color_neutral_border_light" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/primary_color" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/color_neutral_border_light" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnBack2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:contentDescription="@null" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Step 3 View: All Set -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/thirdBusinessView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stepIndicator">
+
+        <!-- All Set Illustration Area -->
+        <FrameLayout
+            android:id="@+id/allSetIllustration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_all_set_check" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/txtAllSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:text="@string/label_all_set"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/allSetIllustration" />
+
+        <TextView
+            android:id="@+id/txtYouAreReady"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_60"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:gravity="center"
+            android:text="@string/label_ready_first_invoice"
+            android:textColor="@color/color_translucent_white_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtAllSet" />
+
+        <!-- Feature Card -->
+        <LinearLayout
+            android:id="@+id/featureCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_24"
+            android:layout_marginTop="@dimen/spacing_32"
+            android:background="@drawable/bg_translucent_card"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_20"
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@id/txtYouAreReady">
+
+            <!-- Feature 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_rounded_24dp"
+                    android:backgroundTint="@color/color_translucent_white_20"
+                    android:padding="@dimen/spacing_10"
+                    android:src="@drawable/ic_onboarding_fast" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_10"
+                    android:text="@string/label_create_fast"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_11"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:gravity="center"
+                    android:text="@string/desc_create_fast"
+                    android:textColor="@color/color_translucent_white_text"
+                    android:textSize="@dimen/text_size_8" />
+            </LinearLayout>
+
+            <!-- Feature 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_rounded_24dp"
+                    android:backgroundTint="@color/color_translucent_white_20"
+                    android:padding="@dimen/spacing_10"
+                    android:src="@drawable/ic_onboarding_organized" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_10"
+                    android:text="@string/label_stay_organized"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_11"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:gravity="center"
+                    android:text="@string/desc_stay_organized"
+                    android:textColor="@color/color_translucent_white_text"
+                    android:textSize="@dimen/text_size_8" />
+            </LinearLayout>
+
+            <!-- Feature 3 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_rounded_24dp"
+                    android:backgroundTint="@color/color_translucent_white_20"
+                    android:padding="@dimen/spacing_10"
+                    android:src="@drawable/ic_onboarding_grow" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_10"
+                    android:text="@string/label_grow_business"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_11"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:gravity="center"
+                    android:text="@string/desc_grow_business"
+                    android:textColor="@color/color_translucent_white_text"
+                    android:textSize="@dimen/text_size_8" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCreateInvoice"
+            style="@style/Widget.App.Button"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginHorizontal="@dimen/spacing_24"
+            android:layout_marginBottom="@dimen/spacing_40"
+            android:backgroundTint="@color/white"
+            android:text="@string/action_create_invoice"
+            android:textAllCaps="false"
+            android:textColor="@color/color_accent_deep_green"
+            android:textSize="@dimen/text_size_16"
+            app:cornerRadius="16dp"
+            app:layout_constraintBottom_toTopOf="@id/dotIndicator3" />
+
+        <LinearLayout
+            android:id="@+id/dotIndicator3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_16"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/color_neutral_border_light" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/color_neutral_border_light" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_rounded_12dp"
+                android:backgroundTint="@color/primary_color" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnBack3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:contentDescription="@null" />
+
+        <ImageButton
+            android:id="@+id/btnForward3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:contentDescription="@null" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

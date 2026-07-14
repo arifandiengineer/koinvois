@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/spacing_12">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/iconContainer"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        app:cardBackgroundColor="@color/color_stat_orange_bg"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgItemIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@drawable/items_icon"
+            app:tint="@color/color_stat_orange" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/nameContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_12"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/iconContainer"
+        app:layout_constraintEnd_toStartOf="@id/qtyContainer"
+        app:layout_constraintStart_toEndOf="@id/iconContainer"
+        app:layout_constraintTop_toTopOf="@id/iconContainer">
+
+        <TextView
+            android:id="@+id/txtItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            tools:text="Laptop Lenovo" />
+
+        <TextView
+            android:id="@+id/txtItemDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="9sp"
+            tools:text="Gaming Laptop" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/qtyContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_12"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/priceContainer"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qty"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/txtItemQuantity"
+            android:layout_width="32dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_qty_box"
+            android:gravity="center"
+            android:textColor="@color/color_text_primary"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:text="2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/priceContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_12"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/totalContainer"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/txtItemUnitCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/color_text_primary"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:text="Rp5.000.000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/totalContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_8"
+        android:gravity="end"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgMore"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/txtItemTotalCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/color_text_primary"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:text="Rp10.000.000" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgMore"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/icon_three_dot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/spacing_12"
+        android:background="@color/color_neutral_surface_light"
+        app:layout_constraintTop_toBottomOf="@id/iconContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

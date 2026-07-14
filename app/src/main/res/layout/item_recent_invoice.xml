@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:paddingHorizontal="@dimen/spacing_16"
+    android:paddingVertical="@dimen/spacing_12">
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rounded_8dp"
+        android:backgroundTint="@color/color_stat_green_bg"
+        android:paddingHorizontal="@dimen/spacing_8"
+        android:paddingVertical="@dimen/spacing_4"
+        android:text="PAID"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/text_size_10"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_12"
+        android:layout_marginEnd="@dimen/spacing_12"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtAmount"
+        app:layout_constraintStart_toEndOf="@id/txtStatus"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtClientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acme Corporation"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtInvoiceDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INV-2024-0012 • May 20, 2024"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/text_size_11" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_8"
+        android:text="$850.00"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_14"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgChevron"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgChevron"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/btn_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

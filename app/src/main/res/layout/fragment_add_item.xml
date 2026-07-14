@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".ui.item.add_item.AddItemFragment">
+
+    <include
+        android:id="@+id/customToolbar"
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16">
+
+            <!-- Item Details Section -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_16"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_16">
+
+                    <!-- Header -->
+                    <ImageView
+                        android:id="@+id/imgHeaderItemDetails"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_icon_circle_green"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_item_details"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/titleItemDetails"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_12"
+                        android:text="Item Details"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgHeaderItemDetails"
+                        app:layout_constraintTop_toTopOf="@id/imgHeaderItemDetails" />
+
+                    <TextView
+                        android:id="@+id/subtitleItemDetails"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Enter item information"
+                        android:textColor="@color/dim_text_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/titleItemDetails"
+                        app:layout_constraintTop_toBottomOf="@id/titleItemDetails" />
+
+                    <!-- Description Field -->
+                    <LinearLayout
+                        android:id="@+id/layoutItemDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_24"
+                        android:background="@drawable/bg_input_border"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_12"
+                        app:layout_constraintTop_toBottomOf="@id/imgHeaderItemDetails">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Description"
+                            android:textColor="@color/dim_text_color"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/editItemDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="Enter item description"
+                            android:inputType="text"
+                            android:paddingVertical="@dimen/spacing_4"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <!-- Unit Cost Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutUnitCost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_16"
+                        app:layout_constraintTop_toBottomOf="@id/layoutItemDescription">
+
+                        <ImageView
+                            android:id="@+id/imgUnitCost"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_icon_circle_green"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_unit_cost"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txtItemUnitCostLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:text="@string/label_unit_cost"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgUnitCost"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/editItemUnitCost"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:hint="$0.00"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/dim_text_color"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/txtItemUnitCostLabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/spacing_12"
+                            android:background="@color/color_divider"
+                            app:layout_constraintTop_toBottomOf="@id/imgUnitCost" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Taxable Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutTaxable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_24"
+                        app:layout_constraintTop_toBottomOf="@id/layoutUnitCost">
+
+                        <ImageView
+                            android:id="@+id/imgTaxable"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_icon_circle_green"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_taxable"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txtItemTaxableLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:text="@string/label_taxable"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgTaxable"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchItemTaxable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Additional Details Section -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_16">
+
+                    <!-- Header -->
+                    <ImageView
+                        android:id="@+id/imgHeaderAdditionalDetails"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_icon_circle_green"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_additional_details"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/titleAdditionalDetails"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_12"
+                        android:text="Additional Details"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgHeaderAdditionalDetails"
+                        app:layout_constraintTop_toTopOf="@id/imgHeaderAdditionalDetails" />
+
+                    <TextView
+                        android:id="@+id/subtitleAdditionalDetails"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Add any extra information (optional)"
+                        android:textColor="@color/dim_text_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/titleAdditionalDetails"
+                        app:layout_constraintTop_toBottomOf="@id/titleAdditionalDetails" />
+
+                    <!-- Additional Details Field -->
+                    <EditText
+                        android:id="@+id/editAdditionalItemDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="@dimen/spacing_24"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="top"
+                        android:hint="Enter additional details"
+                        android:inputType="textMultiLine"
+                        android:padding="@dimen/spacing_12"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toBottomOf="@id/imgHeaderAdditionalDetails" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/report_navigation_graph"
+    app:startDestination="@id/fragmentMainReport">
+
+    <fragment
+        android:id="@+id/fragmentMainReport"
+        android:name="com.koinvois.generator.ui.reports.ReportsMainFragment"
+        tools:layout="@layout/reports_main_fragment" />
+
+    <fragment
+        android:id="@+id/fragmentClientReport"
+        android:name="com.koinvois.generator.ui.reports.subfragments.ClientsReportFragment"
+        tools:layout="@layout/fragment_clients_report" />
+
+    <fragment
+        android:id="@+id/fragmentPaidReport"
+        android:name="com.koinvois.generator.ui.reports.subfragments.PaidReportFragment"
+        tools:layout="@layout/fragment_paid_report" />
+
+</navigation>

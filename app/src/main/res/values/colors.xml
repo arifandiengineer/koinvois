@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================================================
+         Material 3 color roles — rebranded to Koinvois seed colors
+         (Navy #262E37 / Gold #C5955B), replacing the previous green
+         seed #4CAF50. WCAG AA contrast re-checked for the new pairs.
+         Swap for Material Theme Builder output any time without
+         touching code, since only these names are referenced from
+         themes.xml / layouts.
+         Rebrand date: 2026-07-12
+         ============================================================ -->
+
+    <!-- Primary (was green #2E7D32 → now Navy) -->
+    <color name="md_theme_primary">#29323D</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#E0E5EB</color>
+    <color name="md_theme_onPrimaryContainer">#14191F</color>
+
+    <!-- Secondary (was muted green #52634F → now Gold) -->
+    <color name="md_theme_secondary">#BC8543</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#F2E7D9</color>
+    <color name="md_theme_onSecondaryContainer">#261B0D</color>
+
+    <!-- Tertiary (was teal #38656A → now slate-blue, bridges Navy/Gold) -->
+    <color name="md_theme_tertiary">#45586B</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#D6E1EC</color>
+    <color name="md_theme_onTertiaryContainer">#051829</color>
+
+    <!-- Error (unchanged — functional color, not brand color) -->
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+
+    <!-- Surface / Background (was green-tinted white → now Koinvois off-white) -->
+    <color name="md_theme_background">#F1F0EE</color>
+    <color name="md_theme_onBackground">#1A1A19</color>
+    <color name="md_theme_surface">#FDFCFC</color>
+    <color name="md_theme_onSurface">#1A1A19</color>
+    <color name="md_theme_surfaceVariant">#E6E6E5</color>
+    <color name="md_theme_onSurfaceVariant">#46494D</color>
+    <color name="md_theme_outline">#797C80</color>
+    <color name="md_theme_outlineVariant">#C7CACD</color>
+
+    <!-- App-specific semantic roles (unchanged — invoice status colors
+         are functional, not brand identity: paid stays green, etc.) -->
+    <color name="md_theme_success">#2E7D32</color>
+    <color name="md_theme_onSuccess">#FFFFFF</color>
+    <color name="md_theme_successContainer">#A8F5A0</color>
+    <color name="md_theme_onSuccessContainer">#002106</color>
+
+    <color name="md_theme_warning">#8A5700</color>
+    <color name="md_theme_onWarning">#FFFFFF</color>
+    <color name="md_theme_warningContainer">#FFDDB1</color>
+    <color name="md_theme_onWarningContainer">#2B1700</color>
+
+    <color name="md_theme_info">#0061A4</color>
+    <color name="md_theme_onInfo">#FFFFFF</color>
+    <color name="md_theme_infoContainer">#D1E4FF</color>
+    <color name="md_theme_onInfoContainer">#001D36</color>
+
+    <!-- ============================================================
+         Stable aliases — reference these from layouts/code, never the
+         md_theme_* raw values or a literal hex, so day/night and future
+         re-theming stay a resource-only change.
+         (unchanged — still point at md_theme_*, so they inherit the
+         rebrand automatically)
+         ============================================================ -->
+    <color name="color_primary">@color/md_theme_primary</color>
+    <color name="color_on_primary">@color/md_theme_onPrimary</color>
+    <color name="color_primary_container">@color/md_theme_primaryContainer</color>
+    <color name="color_on_primary_container">@color/md_theme_onPrimaryContainer</color>
+    <color name="color_secondary">@color/md_theme_secondary</color>
+    <color name="color_secondary_container">@color/md_theme_secondaryContainer</color>
+    <color name="color_tertiary">@color/md_theme_tertiary</color>
+    <color name="color_surface">@color/md_theme_surface</color>
+    <color name="color_background">@color/md_theme_background</color>
+    <color name="color_error">@color/md_theme_error</color>
+    <color name="color_success">@color/md_theme_success</color>
+    <color name="color_warning">@color/md_theme_warning</color>
+    <color name="color_info">@color/md_theme_info</color>
+    <color name="color_outline">@color/md_theme_outline</color>
+    <color name="color_divider">@color/md_theme_outlineVariant</color>
+    <color name="color_text_primary">@color/md_theme_onSurface</color>
+    <color name="color_text_secondary">@color/md_theme_onSurfaceVariant</color>
+
+    <!-- ============================================================
+         Dashboard / onboarding accent palette — UNCHANGED.
+         These are hardcoded literal accents extracted during the
+         2026-07-12 Resource Audit, kept intentionally non-theme-
+         reactive. Rebranding these to Navy/Gold is a separate,
+         deliberate design pass (icons/onboarding artwork depend on
+         several of these), not part of this M3 role swap.
+         ============================================================ -->
+    <color name="color_accent_deep_green">#1B5E20</color>
+    <color name="color_onboarding_background">#12140F</color>
+    <color name="color_notification_badge">#EF5350</color>
+    <color name="color_translucent_white_text">#CCFFFFFF</color>
+    <color name="color_translucent_white_15">#26FFFFFF</color>
+    <color name="color_translucent_white_20">#33FFFFFF</color>
+    <color name="color_translucent_white_30">#4DFFFFFF</color>
+    <color name="color_opaque_accent_pale">#FFFFFF33</color>
+    <color name="color_opaque_accent_pale_2">#FFFFFF4D</color>
+    <color name="color_neutral_surface_light">#F5F5F5</color>
+    <color name="color_neutral_border_light">#E0E0E0</color>
+    <color name="color_neutral_icon_grey">#BDBDBD</color>
+    <color name="color_icon_grey_medium">#999999</color>
+    <color name="color_icon_navy_deep">#194F82</color>
+    <color name="color_icon_blue_bright">#0085FF</color>
+    <color name="color_icon_blue_bright_2">#FF5278FE</color>
+    <color name="color_icon_navy_translucent">#FF2C4088</color>
+    <color name="color_icon_amber">#FFC107</color>
+    <color name="color_icon_amber_alt">#FFC10D</color>
+    <color name="color_icon_sky_blue">#56ACE0</color>
+    <color name="color_icon_bright_green">#00FF47</color>
+    <color name="color_navy_shade_1">#FF223168</color>
+    <color name="color_navy_shade_2">#FF19254E</color>
+    <color name="color_navy_shade_3">#FF121A37</color>
+    <color name="color_navy_shade_4">#FF0D1227</color>
+    <color name="color_stat_teal">#009688</color>
+    <color name="color_stat_teal_bg">#E0F2F1</color>
+    <color name="color_stat_orange">#FF9800</color>
+    <color name="color_stat_orange_bg">#FFF3E0</color>
+    <color name="color_stat_blue">#2196F3</color>
+    <color name="color_stat_blue_bg">#E3F2FD</color>
+    <color name="color_stat_green_bg">#E8F5E9</color>
+    <color name="color_stat_purple">#9C27B0</color>
+
+    <!-- ============================================================
+         Legacy resources — UNCHANGED, per the existing Fase 1 audit
+         note. primary_color (#4CAF50) still visibly differs from the
+         new md_theme_primary and is a real migration candidate, but
+         per the documented plan it moves module-by-module (Fase
+         3/5/6/7/9) with on-screen verification, not as a global
+         rename bundled into this rebrand.
+         ============================================================ -->
+    <color name="primary_color">#4CAF50</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dim_white">#33FFFFFF</color>
+    <color name="grey_invoice_bg">#9B9B9B</color>
+    <color name="text_color">#000000</color>
+    <color name="dim_text_color">#808080</color>
+    <color name="setting_text_color">#8D8D8D</color>
+    <color name="yellow_tab_indicator">#FFAB48</color>
+    <color name="separator">#C4C4C4</color>
+    <color name="rv_seperator_color">#DBDBDB</color>
+    <color name="tab_stroke_color">#DFDFDF</color>
+    <color name="transparentColor">#00FFFFFF</color>
+
+</resources>

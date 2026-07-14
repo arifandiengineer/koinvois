@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_16"
+        android:layout_marginTop="@dimen/spacing_12"
+        app:cardCornerRadius="@dimen/corner_radius_16"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/color_neutral_border_light">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_16">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatarContainer"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:cardBackgroundColor="@color/color_stat_green_bg"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtInitials"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/color_success"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="bold"
+                    tools:text="AC" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/txtClientName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/imgMore"
+                app:layout_constraintStart_toEndOf="@id/avatarContainer"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Acme Corporation" />
+
+            <TextView
+                android:id="@+id/txtInvoiceIdAndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/text_size_11"
+                app:layout_constraintEnd_toEndOf="@id/txtClientName"
+                app:layout_constraintStart_toStartOf="@id/txtClientName"
+                app:layout_constraintTop_toBottomOf="@id/txtClientName"
+                tools:text="INV-2024-0024 • May 20, 2024" />
+
+            <LinearLayout
+                android:id="@+id/statusAndDueContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/txtAmount"
+                app:layout_constraintStart_toStartOf="@id/txtClientName"
+                app:layout_constraintTop_toBottomOf="@id/txtInvoiceIdAndDate">
+
+                <TextView
+                    android:id="@+id/txtStatusBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_4dp"
+                    android:backgroundTint="@color/color_stat_green_bg"
+                    android:paddingHorizontal="@dimen/spacing_8"
+                    android:paddingVertical="@dimen/spacing_2"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_success"
+                    android:textSize="@dimen/text_size_9"
+                    android:textStyle="bold"
+                    tools:text="PAID" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="@dimen/spacing_12"
+                    android:src="@drawable/estimate_icon"
+                    app:tint="@color/color_text_secondary" />
+
+                <TextView
+                    android:id="@+id/txtDueDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_4"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/text_size_10"
+                    tools:text="Due: May 20, 2024" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgMore"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_three_dot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_8"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/statusAndDueContainer"
+                app:layout_constraintEnd_toStartOf="@id/imgArrow"
+                app:layout_constraintTop_toTopOf="@id/statusAndDueContainer"
+                tools:text="$850.00" />
+
+            <ImageView
+                android:id="@+id/imgArrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_arrow_forward_white"
+                app:layout_constraintBottom_toBottomOf="@id/txtAmount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtAmount"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

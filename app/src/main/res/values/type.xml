@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Centralized typography — thin aliases over the stock Material 3 type
+         scale (already provided by Theme.Material3.*). Reference these from
+         layouts instead of ad-hoc android:textSize, so the whole app shares
+         one type scale. -->
+
+    <style name="TextAppearance.App.Display" parent="TextAppearance.Material3.DisplaySmall" />
+    <style name="TextAppearance.App.Headline" parent="TextAppearance.Material3.HeadlineSmall" />
+    <style name="TextAppearance.App.Title.Large" parent="TextAppearance.Material3.TitleLarge" />
+    <style name="TextAppearance.App.Title" parent="TextAppearance.Material3.TitleMedium" />
+    <style name="TextAppearance.App.Title.Small" parent="TextAppearance.Material3.TitleSmall" />
+    <style name="TextAppearance.App.Body.Large" parent="TextAppearance.Material3.BodyLarge" />
+    <style name="TextAppearance.App.Body" parent="TextAppearance.Material3.BodyMedium" />
+    <style name="TextAppearance.App.Body.Small" parent="TextAppearance.Material3.BodySmall" />
+    <style name="TextAppearance.App.Label" parent="TextAppearance.Material3.LabelLarge" />
+    <style name="TextAppearance.App.Label.Small" parent="TextAppearance.Material3.LabelSmall" />
+
+    <!-- UI Fase 1: sizes named in the UI/UX modernization type scale
+         (Caption 10sp / Small 12sp / Body 14sp / Default 16sp / Title 18sp /
+         Toolbar 20sp / Section Header 22sp) that had no exact match above.
+         Small=Body.Small, Body=Body, Default=Body.Large and Section
+         Header=Title.Large already exist verbatim — only these three were
+         missing. Additive only: nothing existing was resized. -->
+    <style name="TextAppearance.App.Caption" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">10sp</item>
+    </style>
+    <style name="TextAppearance.App.Subtitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="TextAppearance.App.Toolbar" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+</resources>

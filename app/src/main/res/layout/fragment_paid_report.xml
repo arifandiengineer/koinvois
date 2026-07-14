@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/spacing_32"
+    tools:context=".ui.reports.subfragments.PaidReportFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_16">
+
+        <!-- Summary Cards Grid -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2">
+
+            <!-- Total Paid -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="@dimen/spacing_4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/spacing_12">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/shape_rounded_8dp"
+                        android:backgroundTint="@color/color_stat_green_bg"
+                        android:padding="@dimen/spacing_8"
+                        android:src="@drawable/ic_wallet"
+                        app:tint="@color/color_success" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Paid"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/txtTotalPaid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$3,540.00"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_14"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+18%"
+                                android:textColor="@color/color_success"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginStart="2dp"
+                                android:rotation="45"
+                                android:src="@drawable/icon_referesh"
+                                app:tint="@color/color_success" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Total Invoices -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="@dimen/spacing_4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/spacing_12">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/shape_rounded_8dp"
+                        android:backgroundTint="@color/color_stat_blue_bg"
+                        android:padding="@dimen/spacing_8"
+                        android:src="@drawable/ic_document_text"
+                        app:tint="@color/color_stat_blue" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Invoices"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/txtTotalInvoices"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+12%"
+                                android:textColor="@color/color_success"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginStart="2dp"
+                                android:rotation="45"
+                                android:src="@drawable/icon_referesh"
+                                app:tint="@color/color_success" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Average Invoice -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="@dimen/spacing_4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/spacing_12">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/shape_rounded_8dp"
+                        android:backgroundTint="@color/color_stat_orange_bg"
+                        android:padding="@dimen/spacing_8"
+                        android:src="@drawable/report_icon"
+                        app:tint="@color/color_stat_orange" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Avg Invoice"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/txtAvgInvoice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$147.50"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+5%"
+                                android:textColor="@color/color_success"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginStart="2dp"
+                                android:rotation="45"
+                                android:src="@drawable/icon_referesh"
+                                app:tint="@color/color_success" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Total Clients -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="@dimen/spacing_4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/spacing_12">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/shape_rounded_8dp"
+                        android:backgroundTint="@color/color_stat_purple"
+                        android:padding="@dimen/spacing_8"
+                        android:src="@drawable/ic_people"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Clients"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/txtTotalClients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_14"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+8%"
+                                android:textColor="@color/color_success"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginStart="2dp"
+                                android:rotation="45"
+                                android:src="@drawable/icon_referesh"
+                                app:tint="@color/color_success" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </GridLayout>
+
+        <!-- Paid Amount Overview -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_16">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Paid Amount Overview"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_14"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/shape_rounded_8dp"
+                        android:backgroundTint="@color/color_neutral_surface_light"
+                        android:paddingHorizontal="@dimen/spacing_8"
+                        android:paddingVertical="@dimen/spacing_4">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/report_icon"
+                            app:tint="@color/color_text_secondary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_4"
+                            android:text="Line Chart"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="10sp" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="@dimen/spacing_4"
+                            android:rotation="90"
+                            android:src="@drawable/btn_forward"
+                            app:tint="@color/color_text_secondary" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!-- Chart Placeholder -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:background="@color/color_neutral_surface_light" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:background="@color/color_neutral_surface_light" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Paid"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$3,540.00"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_14"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="vs Last Month"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="10sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+18%"
+                                android:textColor="@color/color_success"
+                                android:textSize="@dimen/text_size_14"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginStart="@dimen/spacing_4"
+                                android:rotation="45"
+                                android:src="@drawable/icon_referesh"
+                                app:tint="@color/color_success" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Paid Invoices List -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/spacing_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:text="Paid Invoices"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="bold" />
+
+                <!-- Search & Filter -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:orientation="horizontal"
+                    paddingHorizontal="@dimen/spacing_16">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_rounded_12dp"
+                        android:backgroundTint="@color/color_neutral_surface_light"
+                        android:drawableStart="@drawable/icon_search"
+                        android:drawablePadding="@dimen/spacing_8"
+                        android:hint="Search client or invoice..."
+                        android:paddingHorizontal="@dimen/spacing_12"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:background="@drawable/shape_rounded_8dp"
+                        android:backgroundTint="@color/white"
+                        android:elevation="1dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_8">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_filter"
+                            app:tint="@color/color_success" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_4"
+                            android:text="Filter"
+                            android:textColor="@color/color_success"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:background="@drawable/shape_rounded_8dp"
+                        android:backgroundTint="@color/white"
+                        android:elevation="1dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_8">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_export"
+                            app:tint="@color/color_success" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_4"
+                            android:text="Export"
+                            android:textColor="@color/color_success"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Table Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/spacing_16"
+                    android:weightSum="1">
+
+                    <!-- Manual weight/size for columns to match item_paid_report -->
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="Client Name"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.15"
+                        android:gravity="center"
+                        android:text="Invoice"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.15"
+                        android:gravity="center"
+                        android:text="Invoice Date"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.15"
+                        android:gravity="center"
+                        android:text="Paid Date"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:gravity="end"
+                        android:text="Paid Amount"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="8sp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPaidInvoices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_paid_report" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Bottom Stats Cards -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_8"
+                android:layout_weight="1"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_12">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Top Client (Paid)"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="8sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/shape_rounded_8dp"
+                            android:backgroundTint="@color/color_stat_green_bg"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_trophy"
+                            app:tint="@color/color_success" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4"
+                        android:text="Bright Future Ltd."
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$1,250.00"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="9sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_8"
+                android:layout_weight="1"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_12">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Most Invoices"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="8sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/shape_rounded_8dp"
+                            android:backgroundTint="@color/color_stat_blue_bg"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_document_text"
+                            app:tint="@color/color_stat_blue" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4"
+                        android:text="Acme Corporation"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5 Invoices"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="9sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_12">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Top Category (Paid)"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="8sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/shape_rounded_8dp"
+                            android:backgroundTint="@color/color_stat_purple"
+                            android:padding="6dp"
+                            android:src="@drawable/report_icon"
+                            app:tint="@color/white" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4"
+                        android:text="Services"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$2,450.00"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="9sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

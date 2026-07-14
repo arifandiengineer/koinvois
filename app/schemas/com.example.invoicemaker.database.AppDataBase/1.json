@@ -1,0 +1,848 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "5ff8759b39500281788edbfd1a8083da",
+    "entities": [
+      {
+        "tableName": "Client",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`clientId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `client_name` TEXT, `client_email` TEXT, `client_mobile` INTEGER, `client_phone` INTEGER, `client_fax` INTEGER, `client_contact` TEXT, `client_address1` TEXT, `client_address2` TEXT, `client_address3` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "clientId",
+            "columnName": "clientId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clientName",
+            "columnName": "client_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientEmail",
+            "columnName": "client_email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientMobile",
+            "columnName": "client_mobile",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientPhone",
+            "columnName": "client_phone",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientFax",
+            "columnName": "client_fax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientContact",
+            "columnName": "client_contact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientAddress1",
+            "columnName": "client_address1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientAddress2",
+            "columnName": "client_address2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientAddress3",
+            "columnName": "client_address3",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "clientId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Item",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`itemId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `item_name` TEXT, `item_unit_cost` REAL, `item_taxable` INTEGER, `item_details` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "itemId",
+            "columnName": "itemId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "itemName",
+            "columnName": "item_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemUnitCost",
+            "columnName": "item_unit_cost",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemTaxable",
+            "columnName": "item_taxable",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemDetails",
+            "columnName": "item_details",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "itemId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "InvoiceItem",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`invoiceItemId` INTEGER PRIMARY KEY AUTOINCREMENT, `invoice_id_fk` INTEGER, `invoice_item_name` TEXT, `invoice_item_unit_cost` REAL, `invoice_item_quantity` INTEGER, `invoice_item_discount_type` TEXT, `invoice_item_discount_amount` REAL, `invoice_item_taxable` INTEGER, `invoice_item_details` TEXT, `invoice_item_total` REAL, `invoice_item_total_discount` REAL, `invoice_item_tax_rate` REAL)",
+        "fields": [
+          {
+            "fieldPath": "invoiceItemId",
+            "columnName": "invoiceItemId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceIdFK",
+            "columnName": "invoice_id_fk",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceItemName",
+            "columnName": "invoice_item_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceItemUnitCost",
+            "columnName": "invoice_item_unit_cost",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceItemQuantity",
+            "columnName": "invoice_item_quantity",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemDiscountType",
+            "columnName": "invoice_item_discount_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemDiscountAmount",
+            "columnName": "invoice_item_discount_amount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceItemTaxable",
+            "columnName": "invoice_item_taxable",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceItemDetails",
+            "columnName": "invoice_item_details",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemTotal",
+            "columnName": "invoice_item_total",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemTotalDiscount",
+            "columnName": "invoice_item_total_discount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemTaxRate",
+            "columnName": "invoice_item_tax_rate",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "invoiceItemId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Invoice",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`invoiceId` INTEGER NOT NULL, `invoice_number` INTEGER, `invoice_date` TEXT, `invoice_terms` TEXT, `invoice_due_date` TEXT, `invoice_po_number` TEXT, `invoice_subtotal` REAL, `invoice_discount_type` TEXT, `invoice_discount_amount` REAL, `invoice_discount_total_amount` REAL, `invoice_tax_type` TEXT, `invoice_tax_label` TEXT, `invoice_tax_rate` REAL, `invoice_tax_inclusive` INTEGER, `invoice_total` REAL, `invoice_payment_instruction` TEXT, `invoice_signature` BLOB, `signature_date` TEXT, `invoice_notes` TEXT, `invoice_status` TEXT, `client_pk` INTEGER, `client_name` TEXT, `client_email` TEXT, `client_mobile` INTEGER, `client_phone` INTEGER, `client_fax` INTEGER, `client_contact` TEXT, `client_address1` TEXT, `client_address2` TEXT, `client_address3` TEXT, PRIMARY KEY(`invoiceId`))",
+        "fields": [
+          {
+            "fieldPath": "invoiceId",
+            "columnName": "invoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoiceNumber",
+            "columnName": "invoice_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceDate",
+            "columnName": "invoice_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceTerms",
+            "columnName": "invoice_terms",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceDueDate",
+            "columnName": "invoice_due_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoicePoNumber",
+            "columnName": "invoice_po_number",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceSubtotal",
+            "columnName": "invoice_subtotal",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceDiscountType",
+            "columnName": "invoice_discount_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceDiscountAmount",
+            "columnName": "invoice_discount_amount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "discountTotalAmount",
+            "columnName": "invoice_discount_total_amount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceTaxType",
+            "columnName": "invoice_tax_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceTaxLabel",
+            "columnName": "invoice_tax_label",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceTaxRate",
+            "columnName": "invoice_tax_rate",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceTaxInclusive",
+            "columnName": "invoice_tax_inclusive",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceTotal",
+            "columnName": "invoice_total",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoicePaymentInstruction",
+            "columnName": "invoice_payment_instruction",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceSignature",
+            "columnName": "invoice_signature",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "signatureDate",
+            "columnName": "signature_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceNotes",
+            "columnName": "invoice_notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceStatus",
+            "columnName": "invoice_status",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientPK",
+            "columnName": "client_pk",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientName",
+            "columnName": "client_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientEmail",
+            "columnName": "client_email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientMobile",
+            "columnName": "client_mobile",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientPhone",
+            "columnName": "client_phone",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientFax",
+            "columnName": "client_fax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientContact",
+            "columnName": "client_contact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientAddress1",
+            "columnName": "client_address1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientAddress2",
+            "columnName": "client_address2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceClientAddress3",
+            "columnName": "client_address3",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "invoiceId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "InvoicePhoto",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`invoicePhotoId` INTEGER PRIMARY KEY AUTOINCREMENT, `invoice_id_fk` INTEGER, `invoice_photo` BLOB, `invoice_photo_description` TEXT, `invoice_photo_additional_details` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "invoicePhotoId",
+            "columnName": "invoicePhotoId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoiceIdFK",
+            "columnName": "invoice_id_fk",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoicePhoto",
+            "columnName": "invoice_photo",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoicePhotoDescription",
+            "columnName": "invoice_photo_description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "invoicePhotoAdditionalDetails",
+            "columnName": "invoice_photo_additional_details",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "invoicePhotoId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PersonalBusiness",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`Id` INTEGER NOT NULL, `business_logo` BLOB, `business_name` TEXT, `business_owner_name` TEXT, `business_number` TEXT, `business_address1` TEXT, `business_address2` TEXT, `business_address3` TEXT, `business_email` TEXT, `business_phone_number` INTEGER, `business_mobile_number` INTEGER, `business_website` TEXT, PRIMARY KEY(`Id`))",
+        "fields": [
+          {
+            "fieldPath": "Id",
+            "columnName": "Id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessLogo",
+            "columnName": "business_logo",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessName",
+            "columnName": "business_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessOwnerName",
+            "columnName": "business_owner_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessNumber",
+            "columnName": "business_number",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessAddress1",
+            "columnName": "business_address1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessAddress2",
+            "columnName": "business_address2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessAddress3",
+            "columnName": "business_address3",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessEmail",
+            "columnName": "business_email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessPhoneNumber",
+            "columnName": "business_phone_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessMobileNumber",
+            "columnName": "business_mobile_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessWebsite",
+            "columnName": "business_website",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "Id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "EstimateItem",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`estimateItemId` INTEGER PRIMARY KEY AUTOINCREMENT, `estimate_id_fk` INTEGER, `estimate_item_name` TEXT, `estimate_item_unit_cost` REAL, `estimate_item_quantity` INTEGER, `estimate_item_discount_type` TEXT, `estimate_item_discount_amount` REAL, `estimate_item_taxable` INTEGER, `estimate_item_details` TEXT, `estimate_item_total` REAL, `estimate_item_total_discount` REAL, `estimate_item_tax_rate` REAL)",
+        "fields": [
+          {
+            "fieldPath": "estimateItemId",
+            "columnName": "estimateItemId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateIdFK",
+            "columnName": "estimate_id_fk",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateItemName",
+            "columnName": "estimate_item_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateItemUnitCost",
+            "columnName": "estimate_item_unit_cost",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateItemQuantity",
+            "columnName": "estimate_item_quantity",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemDiscountType",
+            "columnName": "estimate_item_discount_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemDiscountAmount",
+            "columnName": "estimate_item_discount_amount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateItemTaxable",
+            "columnName": "estimate_item_taxable",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateItemDetails",
+            "columnName": "estimate_item_details",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemTotal",
+            "columnName": "estimate_item_total",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemTotalDiscount",
+            "columnName": "estimate_item_total_discount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemTaxRate",
+            "columnName": "estimate_item_tax_rate",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "estimateItemId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Estimate",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`estimateId` INTEGER NOT NULL, `estimate_number` INTEGER, `estimate_date` TEXT, `estimate_po_number` TEXT, `estimate_subtotal` REAL, `estimate_discount_type` TEXT, `estimate_discount_amount` REAL, `estimate_discount_total_amount` REAL, `estimate_tax_type` TEXT, `estimate_tax_label` TEXT, `estimate_tax_rate` REAL, `estimate_tax_inclusive` INTEGER, `estimate_total` REAL, `estimate_signature` BLOB, `signature_date` TEXT, `estimate_notes` TEXT, `estimate_status` TEXT, `client_pk` INTEGER, `client_name` TEXT, `client_email` TEXT, `client_mobile` INTEGER, `client_phone` INTEGER, `client_fax` INTEGER, `client_contact` TEXT, `client_address1` TEXT, `client_address2` TEXT, `client_address3` TEXT, PRIMARY KEY(`estimateId`))",
+        "fields": [
+          {
+            "fieldPath": "estimateId",
+            "columnName": "estimateId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estimateNumber",
+            "columnName": "estimate_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateDate",
+            "columnName": "estimate_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimatePoNumber",
+            "columnName": "estimate_po_number",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateSubtotal",
+            "columnName": "estimate_subtotal",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateDiscountType",
+            "columnName": "estimate_discount_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateDiscountAmount",
+            "columnName": "estimate_discount_amount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "discountTotalAmount",
+            "columnName": "estimate_discount_total_amount",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateTaxType",
+            "columnName": "estimate_tax_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateTaxLabel",
+            "columnName": "estimate_tax_label",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateTaxRate",
+            "columnName": "estimate_tax_rate",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateTaxInclusive",
+            "columnName": "estimate_tax_inclusive",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateTotal",
+            "columnName": "estimate_total",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateSignature",
+            "columnName": "estimate_signature",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "signatureDate",
+            "columnName": "signature_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateNotes",
+            "columnName": "estimate_notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateStatus",
+            "columnName": "estimate_status",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clientPK",
+            "columnName": "client_pk",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientName",
+            "columnName": "client_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientEmail",
+            "columnName": "client_email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientMobile",
+            "columnName": "client_mobile",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientPhone",
+            "columnName": "client_phone",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientFax",
+            "columnName": "client_fax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientContact",
+            "columnName": "client_contact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientAddress1",
+            "columnName": "client_address1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientAddress2",
+            "columnName": "client_address2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateClientAddress3",
+            "columnName": "client_address3",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "estimateId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "EstimatePhoto",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`estimatePhotoId` INTEGER PRIMARY KEY AUTOINCREMENT, `estimate_id_fk` INTEGER, `estimate_photo` BLOB, `estimate_photo_description` TEXT, `estimate_photo_additional_details` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "estimatePhotoId",
+            "columnName": "estimatePhotoId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimateIdFK",
+            "columnName": "estimate_id_fk",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimatePhoto",
+            "columnName": "estimate_photo",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimatePhotoDescription",
+            "columnName": "estimate_photo_description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimatePhotoAdditionalDetails",
+            "columnName": "estimate_photo_additional_details",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "estimatePhotoId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5ff8759b39500281788edbfd1a8083da')"
+    ]
+  }
+}

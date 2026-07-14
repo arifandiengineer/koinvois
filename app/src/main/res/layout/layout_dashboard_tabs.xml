@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_rounded_16dp"
+    android:backgroundTint="?attr/colorSurface"
+    android:elevation="4dp"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_8">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_dashboard_black_24dp"
+            app:tint="@color/color_accent_deep_green" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_dashboard"
+            android:textColor="@color/color_accent_deep_green"
+            android:textSize="@dimen/text_size_10"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/spacing_2"
+            android:background="@color/color_accent_deep_green" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/invoice_icon"
+            app:tint="@color/color_text_secondary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_invoice_nav"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/text_size_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/estimate_icon"
+            app:tint="@color/color_text_secondary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_estimate_nav"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/text_size_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/report_icon"
+            app:tint="@color/color_text_secondary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_reports_nav"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/text_size_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_more_nav"
+            app:tint="@color/color_text_secondary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_more"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/text_size_10" />
+    </LinearLayout>
+
+</LinearLayout>

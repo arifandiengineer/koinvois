@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/txtNoTerms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_terms_none"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtDueReceipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_terms_due_on_receipt"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtNoTerms" />
+
+    <TextView
+        android:id="@+id/txtNextDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_terms_next_date"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtDueReceipt" />
+
+    <TextView
+        android:id="@+id/txtTwoDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_terms_2_days"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtNextDay" />
+
+    <TextView
+        android:id="@+id/txtOneWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_terms_1_week"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTwoDays" />
+
+    <TextView
+        android:id="@+id/txtCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_terms_custom"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtOneWeek" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

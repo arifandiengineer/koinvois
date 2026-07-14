@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/estimate_navigation_graph"
+    app:startDestination="@id/fragmentMainEstimate">
+
+    <fragment
+        android:id="@+id/fragmentMainEstimate"
+        android:name="com.koinvois.generator.ui.estimates.EstimatesMainFragment"
+        tools:layout="@layout/estimates_main_fragment">
+        <action
+            android:id="@+id/actionFragmentEstimateMainToEditEstimate"
+            app:destination="@id/fragmentEditEstimateMain"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentEditEstimateMain"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainFragment"
+        tools:layout="@layout/fragment_add_estimate_main">
+        <action
+            android:id="@+id/actionFragmentEstimateEditToSignatureEstimate"
+            app:destination="@id/fragmentEstimateSignature"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentEstimateInformation"
+            app:destination="@id/fragmentEstimateInformation"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentBusinessDetailsFromEstimate"
+            app:destination="@id/fragmentBusinessDetailsFromEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentClientsForEstimate"
+            app:destination="@id/fragmentClientsForEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentClientDetailForEstimate"
+            app:destination="@id/fragmentClientDetailForEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentItemDetailForEstimate"
+            app:destination="@id/fragmentItemDetailForEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentDiscountEstimate"
+            app:destination="@id/fragmentDiscountEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentTaxEstimate4"
+            app:destination="@id/fragmentTaxEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+        <action
+            android:id="@+id/actionFragmentEditEstimateMainToFragmentAddPhotoToEstimate"
+            app:destination="@id/fragmentAddPhotoToEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+
+        <argument
+            android:name="estimate_type"
+            android:defaultValue="new"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentEstimateSignature"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateSignatureFragment"
+        tools:layout="@layout/fragment_signature" />
+
+    <fragment
+        android:id="@+id/fragmentEstimateInformation"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateInformationFragment"
+        tools:layout="@layout/fragment_estimate_information" />
+
+    <fragment
+        android:id="@+id/fragmentBusinessDetailsFromEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EditBusinessDetailsFromEstimateFragment"
+        tools:layout="@layout/fragment_edit_business_details_from_estimate" />
+
+    <fragment
+        android:id="@+id/fragmentClientsForEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateFragment"
+        tools:layout="@layout/fragment_client_list_for_estimate" />
+
+    <fragment
+        android:id="@+id/fragmentClientDetailForEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientDetailForEstimateFragment"
+        tools:layout="@layout/fragment_client_detail_for_estimate" />
+
+    <fragment
+        android:id="@+id/fragmentItemDetailForEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemDetailForEstimateFragment"
+        tools:layout="@layout/fragment_item_detail_for_estimate">
+        <argument
+            android:name="item_type"
+            app:argType="string" />
+        <action
+            android:id="@+id/actionFragmentItemDetailForEstimateToFragmentItemListForEstimate"
+            app:destination="@id/fragmentItemListForEstimate"
+            app:enterAnim="@animator/nav_shared_axis_enter"
+            app:exitAnim="@animator/nav_shared_axis_exit"
+            app:popEnterAnim="@animator/nav_shared_axis_pop_enter"
+            app:popExitAnim="@animator/nav_shared_axis_pop_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentItemListForEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemListForEstimate"
+        tools:layout="@layout/fragment_item_list_for_estimate" />
+
+    <fragment
+        android:id="@+id/fragmentDiscountEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountFragment"
+        tools:layout="@layout/fragment_estimate_discount" />
+
+    <fragment
+        android:id="@+id/fragmentTaxEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateTaxFragment"
+        tools:layout="@layout/fragment_estimate_tax" />
+
+    <fragment
+        android:id="@+id/fragmentAddPhotoToEstimate"
+        android:name="com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateFragment"
+        tools:layout="@layout/fragment_add_photo_to_estimate">
+
+        <argument
+            android:name="photo_type"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>

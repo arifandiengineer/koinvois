@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemDetailForEstimateFragment">
+
+    <include
+        android:id="@+id/customToolbar"
+        layout="@layout/view_custom_toolbar" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/firstCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_30"
+        android:layout_marginTop="@dimen/spacing_40"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customToolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputItemDescription"
+                style="@style/Widget.App.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:hint="Description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editItemDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_16" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtItemUnitCost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_unit_cost"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
+                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
+                app:layout_constraintTop_toBottomOf="@id/inputItemDescription" />
+
+            <EditText
+                android:id="@+id/editItemUnitCost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="$0.00"
+                android:inputType="number"
+                android:paddingEnd="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dim_text_color"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtItemUnitCost"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/txtQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_quantity_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
+                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
+                app:layout_constraintTop_toBottomOf="@+id/editItemUnitCost" />
+
+            <EditText
+                android:id="@+id/editQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="1"
+                android:inputType="number"
+                android:paddingEnd="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dim_text_color"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
+                app:layout_constraintTop_toTopOf="@id/txtQuantity" />
+
+            <TextView
+                android:id="@+id/txtDiscount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_discount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
+                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
+                app:layout_constraintTop_toBottomOf="@+id/editQuantity" />
+
+            <TextView
+                android:id="@+id/txtItemDiscountType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingEnd="@dimen/spacing_14"
+                android:text="@string/label_percentage"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
+                app:layout_constraintTop_toTopOf="@id/txtDiscount" />
+
+            <TextView
+                android:id="@+id/txtDiscountAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_discount_amount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
+                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
+                app:layout_constraintTop_toBottomOf="@+id/txtItemDiscountType" />
+
+            <EditText
+                android:id="@+id/editDiscountAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="0%"
+                android:inputType="number"
+                android:paddingEnd="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
+                app:layout_constraintTop_toTopOf="@id/txtDiscountAmount" />
+
+            <TextView
+                android:id="@+id/txtItemTaxable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_taxable_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
+                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
+                app:layout_constraintTop_toBottomOf="@+id/editDiscountAmount" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchItemTaxable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/txtItemTaxable"
+                app:layout_constraintEnd_toEndOf="@id/editItemUnitCost"
+                app:layout_constraintTop_toTopOf="@id/txtItemTaxable" />
+
+            <TextView
+                android:id="@+id/txtTax"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_tax_rate_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
+                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
+                app:layout_constraintTop_toBottomOf="@+id/switchItemTaxable" />
+
+            <EditText
+                android:id="@+id/editTaxRate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="0%"
+                android:inputType="number"
+                android:paddingEnd="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
+                app:layout_constraintTop_toTopOf="@id/txtTax" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupTaxRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="txtTax,editTaxRate" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_30"
+                android:background="@drawable/invoice_txt_grey_bg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTaxRate">
+
+                <TextView
+                    android:id="@+id/txtTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/spacing_10"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:text="@string/label_total_colon"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTotalBalanceAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/spacing_10"
+                    android:layout_marginEnd="@dimen/spacing_16"
+                    android:text="$0.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/secondCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_30"
+        android:layout_marginTop="@dimen/spacing_36"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstCard">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputItemDetails"
+                style="@style/Widget.App.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Additional Details"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editItemDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|top"
+                    android:lines="4"
+                    android:textSize="@dimen/text_size_16" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

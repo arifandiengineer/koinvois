@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_28"
+    android:layout_marginTop="@dimen/spacing_16">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_2"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtClientName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_14"
+                android:text="Client Name"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintEnd_toStartOf="@+id/txtTotalBilledAmount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtNumberOfInvoices"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:layout_marginBottom="@dimen/spacing_14"
+                android:text="@string/label_number_of_invoices"
+                android:textColor="@color/dim_text_color"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtClientName"
+                app:layout_constraintStart_toStartOf="@id/txtClientName"
+                app:layout_constraintTop_toBottomOf="@id/txtClientName" />
+
+            <TextView
+                android:id="@+id/txtTotalBilledAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_20"
+                android:text="0.00$"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintBottom_toBottomOf="@id/txtNumberOfInvoices"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtClientName" />
+
+            <!-- Optional status Chip (Invoice Paid/Unpaid, Estimate Open/Closed). Gone by
+                 default so Client/Dashboard usages of this shared item layout are unaffected;
+                 only AllInvoiceAdapter/AllEstimateAdapter set it visible. -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipStatus"
+                style="@style/Widget.App.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_14"
+                android:checkable="false"
+                android:clickable="false"
+                android:focusable="false"
+                android:textSize="@dimen/text_size_12"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Paid"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

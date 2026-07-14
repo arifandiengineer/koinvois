@@ -1,0 +1,325 @@
+<resources>
+    <string name="app_name">Koinvois</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_dashboard">Dasbor</string>
+    <string name="title_notifications">Notifikasi</string>
+    <string name="label_greeting">Halo, John 👋</string>
+
+    <string name="ok">Oke</string>
+    <string name="clear">Hapus</string>
+    <string name="cancel">Batal</string>
+    <string name="delete_menu_item">Hapus</string>
+    <string name="sort_name_asc_menu_item">Nama (A-Z)</string>
+    <string name="sort_name_desc_menu_item">Nama (Z-A)</string>
+    <string name="sort_recently_added_menu_item">Baru Ditambahkan</string>
+    <string name="search_client_hint">Cari klien</string>
+    <string name="no_clients_empty_state">Belum Ada Klien!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_more">Lainnya</string>
+    <string name="label_total_invoices">Total Invoice</string>
+    <string name="label_revenue_paid">Pendapatan Terbayar</string>
+    <string name="label_outstanding">Belum Terbayar</string>
+    <string name="label_open_estimates">Estimasi Terbuka</string>
+    <string name="label_recent_invoices">Invoice Terbaru</string>
+    <string name="text_no_recent_invoices">Belum ada invoice</string>
+    <string name="action_new_invoice">Invoice Baru</string>
+    <string name="action_new_estimate">Estimasi Baru</string>
+    <string name="more_menu_client">Klien</string>
+    <string name="more_menu_client_subtitle">Kelola klien Anda</string>
+    <string name="more_menu_item">Barang</string>
+    <string name="more_menu_item_subtitle">Kelola barang Anda</string>
+
+    <!-- Toolbar titles -->
+    <string name="title_setting">Pengaturan</string>
+    <string name="title_clients">Klien</string>
+    <string name="title_items">Barang</string>
+    <string name="title_report">Laporan</string>
+    <string name="label_add_client">Tambah Klien</string>
+    <string name="label_edit_client">Edit Klien</string>
+    <string name="label_edit_item">Edit Item</string>
+    <string name="label_edit_invoice">Edit Invoice</string>
+    <string name="label_preview_invoice">Pratinjau Invoice</string>
+    <string name="label_preview_estimate">Pratinjau Estimasi</string>
+
+    <!-- Theme -->
+    <string name="theme_light">Terang</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="theme_system">Sistem</string>
+    <string name="label_theme">Tema</string>
+
+    <!-- Errors / validation -->
+    <string name="error_invalid_email">Masukkan alamat email yang valid!</string>
+    <string name="error_password_length">Kata sandi harus 4 digit</string>
+    <string name="error_password_mismatch">Kata sandi tidak cocok</string>
+    <string name="error_incorrect_pin">PIN salah, silakan coba lagi!</string>
+    <string name="error_enter_nickname">Silakan masukkan nama panggilan Anda</string>
+    <string name="error_enter_correct_nickname">Masukkan nama panggilan yang benar untuk membuka kunci!</string>
+    <string name="error_try_again">Coba Lagi</string>
+    <string name="error_enter_client_name">Silakan masukkan nama klien!</string>
+    <string name="error_invalid_invoice_number">Masukkan nomor invoice yang valid</string>
+    <string name="error_invalid_estimate_number">Masukkan nomor estimasi yang valid</string>
+    <string name="error_choose_photo">Silakan pilih foto</string>
+    <string name="error_enter_item_name">Silakan masukkan nama item</string>
+
+    <!-- Fallback text -->
+    <string name="fallback_no_client">Tanpa Klien</string>
+    <string name="no_items_empty_state">Belum Ada Barang!</string>
+    <string name="no_invoices_empty_state">Belum Ada Invoice!</string>
+    <string name="no_estimates_empty_state">Belum Ada Estimasi!</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="delete_confirm_title">Hapus</string>
+    <string name="delete_confirm_positive">Hapus</string>
+    <string name="delete_confirm_negative">Batal</string>
+    <string name="delete_client_confirm_message">Yakin ingin menghapus klien ini?</string>
+    <string name="delete_item_confirm_message">Yakin ingin menghapus barang ini?</string>
+    <string name="delete_photo_confirm_message">Yakin ingin menghapus foto ini?</string>
+    <string name="delete_invoice_confirm_message">Yakin ingin menghapus invoice ini?</string>
+    <string name="quick_action_title">Aksi Cepat</string>
+    <string name="status_paid">Lunas</string>
+    <string name="status_unpaid">Belum Lunas</string>
+    <string name="status_open">Terbuka</string>
+    <string name="status_closed">Tertutup</string>
+
+    <!-- Reports -->
+    <string name="report_tab_paid">Lunas</string>
+    <string name="report_tab_clients">Klien</string>
+    <string name="label_client_name">Nama Klien</string>
+    <string name="label_invoice">Invoice</string>
+    <string name="label_nothing_to_show">Belum ada yang bisa ditampilkan!</string>
+
+    <!-- Add Client -->
+    <string name="label_mobile">Ponsel:</string>
+    <string name="label_phone">Telepon</string>
+    <string name="label_fax">Faks:</string>
+
+    <!-- Business Details (Splash onboarding) -->
+    <string name="label_business_info">Info Bisnis</string>
+    <string name="label_fields_optional">(Semua kolom bersifat opsional)</string>
+    <string name="label_business_name">Nama bisnis:</string>
+    <string name="label_email">Email:</string>
+    <string name="label_phone_colon">Telepon:</string>
+    <string name="label_address_1">Alamat baris 1:</string>
+    <string name="label_address_2">Alamat baris 2:</string>
+    <string name="label_address_3">Alamat baris 3:</string>
+    <string name="label_business_logo">Logo Bisnis</string>
+    <string name="label_logo_hint">Muncul di semua Invoice. Dapat diedit kapan saja.</string>
+    <string name="action_choose_image">Pilih Gambar</string>
+    <string name="label_all_set">Semua Siap!</string>
+    <string name="label_ready_first_invoice">Anda siap membuat Invoice pertama Anda.</string>
+    <string name="action_create_invoice">Buat Invoice</string>
+
+    <!-- Add Item -->
+    <string name="label_unit_cost">Harga Satuan:</string>
+    <string name="label_taxable">Kena Pajak</string>
+
+    <!-- Lock / Password -->
+    <string name="label_enter_password">Masukkan Kata Sandi</string>
+    <string name="action_forgot_password">Lupa Kata Sandi?</string>
+    <string name="label_password_hint_long">Masukkan kata sandi Anda, kata sandi harus lebih dari 6 digit.</string>
+    <string name="label_new_password">Kata Sandi Baru</string>
+    <string name="label_confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="action_save">Simpan</string>
+    <string name="label_security_question_hint">Jawab pertanyaan keamanan di bawah ini untuk memulihkan kata sandi jika lupa.</string>
+    <string name="label_nickname_question">Siapa nama panggilan Anda?</string>
+    <string name="hint_pin_4_digit">PIN 4 digit</string>
+
+    <!-- Hints -->
+    <string name="hint_client_name">Nama klien</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_mobile_number">Nomor Ponsel</string>
+    <string name="hint_phone_number">Nomor Telepon</string>
+    <string name="hint_fax_number">Nomor Faks</string>
+    <string name="hint_contact">Kontak</string>
+    <string name="hint_address_1">Alamat 1</string>
+    <string name="hint_address_2">Alamat 2</string>
+    <string name="hint_address_3">Alamat 3</string>
+    <string name="hint_business_name">Nama Bisnis</string>
+    <string name="hint_business_owner_name">Nama Pemilik Bisnis</string>
+    <string name="hint_business_number">Nomor Bisnis</string>
+    <string name="hint_address_line_1">Alamat Baris 1</string>
+    <string name="hint_address_line_2">Alamat Baris 2</string>
+    <string name="hint_address_line_3">Alamat Baris 3</string>
+    <string name="hint_phone">Telepon</string>
+    <string name="hint_mobile">Ponsel</string>
+    <string name="hint_website">Situs Web</string>
+    <string name="hint_description">Deskripsi</string>
+    <string name="hint_additional_details">Detail Tambahan</string>
+
+    <!-- Bottom nav -->
+    <string name="title_invoice_nav">Invoice</string>
+    <string name="title_estimate_nav">Estimasi</string>
+    <string name="title_reports_nav">Laporan</string>
+    <string name="title_business_details">Detail Bisnis</string>
+
+    <!-- Splash -->
+    <string name="label_create">Buat</string>
+    <string name="label_professional">Profesional</string>
+    <string name="label_invoices_quickly">Invoice dengan cepat</string>
+
+    <!-- Settings -->
+    <string name="label_information">Informasi</string>
+    <string name="label_business_profile">Profil Bisnis</string>
+    <string name="label_lock">Kunci</string>
+    <string name="label_about_us">Tentang Kami</string>
+    <string name="label_rate_us">Beri Rating</string>
+    <string name="label_privacy_policy">Kebijakan Privasi</string>
+    <string name="label_contact_us">Hubungi Kami</string>
+
+    <!-- Accessibility: content descriptions for icon-only actionable views -->
+    <string name="cd_settings">Pengaturan</string>
+    <string name="cd_back">Kembali</string>
+    <string name="cd_search">Cari</string>
+    <string name="cd_delete">Hapus</string>
+    <string name="cd_more_options">Opsi lainnya</string>
+    <string name="cd_refresh">Muat ulang</string>
+    <string name="cd_continue">Lanjutkan</string>
+    <string name="cd_choose_business_logo">Pilih logo bisnis</string>
+    <string name="cd_add_photo">Tambah foto</string>
+
+    <!-- Invoice / Estimate wizard (Fase 10 closing sweep) -->
+    <string name="label_estimate_number_colon">Nomor Estimasi:</string>
+    <string name="label_invoice_number_colon">Nomor Invoice:</string>
+    <string name="label_date_colon">Tanggal:</string>
+    <string name="label_po_number_colon">Nomor PO:</string>
+    <string name="label_terms_colon">Ketentuan:</string>
+    <string name="label_due_date_colon">Tanggal Jatuh Tempo:</string>
+    <string name="label_due_on_receipt">Jatuh tempo saat diterima</string>
+    <string name="label_date_header">Tanggal</string>
+    <string name="label_to_colon">Kepada:</string>
+    <string name="label_add_item">Tambah Item</string>
+    <string name="label_subtotal">Subtotal</string>
+    <string name="label_discount">Diskon</string>
+    <string name="label_tax">Pajak</string>
+    <string name="label_tax_colon">Pajak:</string>
+    <string name="label_total">Total</string>
+    <string name="label_total_colon">Total:</string>
+    <string name="label_payment">Pembayaran</string>
+    <string name="label_balance_due">Sisa Tagihan</string>
+    <string name="label_mark_paid">Tandai Lunas</string>
+    <string name="label_mark_closed">Tandai Ditutup</string>
+    <string name="label_amount">Jumlah</string>
+    <string name="label_amount_colon">Jumlah:</string>
+    <string name="label_add_payment">Tambah Pembayaran</string>
+    <string name="label_paid_amount">Jumlah dibayar</string>
+    <string name="label_payment_method_colon">Metode Pembayaran:</string>
+    <string name="label_cash">Tunai</string>
+    <string name="label_name_column">Nama</string>
+    <string name="label_number_of_invoices">Jumlah invoice</string>
+    <string name="label_quantity_colon">Kuantitas:</string>
+    <string name="label_percentage">persentase</string>
+    <string name="label_discount_amount">Jumlah Diskon</string>
+    <string name="label_taxable_colon">Kena Pajak:</string>
+    <string name="label_tax_rate_colon">Tarif Pajak:</string>
+    <string name="label_none">Tidak ada</string>
+    <string name="label_label_colon">Label:</string>
+    <string name="label_rate_colon">Tarif:</string>
+    <string name="label_inclusive_colon">Termasuk Pajak:</string>
+    <string name="desc_tax_inclusive">Aktifkan jika harga sudah termasuk Pajak</string>
+    <string name="no_open_estimates_empty_state">Belum Ada Estimasi Terbuka!</string>
+    <string name="no_outstanding_invoices_empty_state">Belum Ada Invoice Belum Lunas!</string>
+    <string name="no_paid_invoices_empty_state">Belum Ada Invoice Lunas!</string>
+    <string name="no_closed_estimates_empty_state">Belum Ada Estimasi Ditutup!</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Buat Invoice &lt;br/&gt; &lt;font color=\'#4CAF50\'&gt;Profesional Cepat&lt;/font&gt;</string>
+    <string name="onboarding_desc_1">Buat, kirim, dan kelola invoice &lt;br/&gt; hanya dalam beberapa ketukan.</string>
+    <string name="onboarding_title_2">Pantau Bisnis Anda &lt;br/&gt; &lt;font color=\'#4CAF50\'&gt;Secara Real-Time&lt;/font&gt;</string>
+    <string name="onboarding_desc_2">Pantau invoice, pembayaran, dan &lt;br/&gt; jumlah terhutang kapan saja.</string>
+    <string name="onboarding_title_3">Bagikan &amp; Dibayar &lt;br/&gt; &lt;font color=\'#4CAF50\'&gt;Lebih Cepat&lt;/font&gt;</string>
+    <string name="onboarding_desc_3">Ekspor, kirim, dan terima pembayaran &lt;br/&gt; lebih cepat dari sebelumnya.</string>
+    <string name="action_skip">Lewati</string>
+    <string name="action_get_started">Mulai</string>
+    <string name="label_business_name_row">Nama Bisnis</string>
+    <string name="hint_enter_business_name">Masukkan nama bisnis Anda</string>
+    <string name="label_email_address_row">Alamat Email</string>
+    <string name="hint_enter_email_address">Masukkan alamat email Anda</string>
+    <string name="label_phone_number_row">Nomor Telepon</string>
+    <string name="hint_enter_phone_number">Masukkan nomor telepon Anda</string>
+    <string name="label_address_line_1_row">Alamat Baris 1</string>
+    <string name="hint_street_address">Alamat jalan atau Kotak P.O.</string>
+    <string name="label_secure_info">Informasi Anda aman</string>
+    <string name="desc_secure_info">Informasi ini hanya disimpan di perangkat Anda dan tidak pernah dibagikan.</string>
+    <string name="action_continue">Lanjutkan</string>
+    <string name="label_owner_name">Nama Pemilik</string>
+    <string name="label_business_number_row">Nomor Bisnis</string>
+    <string name="label_website_row">Situs Web</string>
+    <string name="label_address_line_2_row">Alamat Baris 2 (Opsional)</string>
+    <string name="label_address_line_3_row">Alamat Baris 3 (Opsional)</string>
+    <string name="hint_address_line_2_splash">Apartemen, suite, unit, dll.</string>
+    <string name="hint_address_line_3_splash">Kota, negara bagian, atau wilayah</string>
+    <string name="label_secure_info_desc">Informasi ini hanya disimpan di perangkat Anda dan tidak pernah dibagikan.</string>
+    <string name="label_business_logo_desc">Tambahkan logo bisnis Anda agar invoice terlihat profesional.</string>
+    <string name="label_choose_image">Pilih Gambar</string>
+    <string name="label_image_formats">PNG, JPG atau JPEG (Maks. 2MB)</string>
+    <string name="action_select_from_gallery">Pilih dari Galeri</string>
+    <string name="label_or">atau</string>
+    <string name="action_take_a_photo">Ambil Foto</string>
+    <string name="label_preview">Pratinjau</string>
+    <string name="label_will_appear_on_invoices">Akan muncul di semua invoice</string>
+    <string name="label_change_logo_hint">Anda dapat &lt;b&gt;mengubah logo&lt;/b&gt; kapan saja dari pengaturan.</string>
+    <string name="label_create_fast">Buat Cepat</string>
+    <string name="desc_create_fast">Buat invoice dalam hitungan detik</string>
+    <string name="label_stay_organized">Tetap Teratur</string>
+    <string name="desc_stay_organized">Kelola klien, barang &amp; pembayaran</string>
+    <string name="label_grow_business">Kembangkan Bisnis</string>
+    <string name="desc_grow_business">Pantau bisnis Anda dan berkembang lebih pesat</string>
+
+    <!-- Resource Audit 4: closing sweep of remaining hardcoded UI text -->
+    <string name="bs_logo_take_photo">Ambil foto</string>
+    <string name="bs_logo_choose_library">Pilih dari galeri</string>
+    <string name="bs_discount_no_discount">Tanpa Diskon</string>
+    <string name="bs_discount_percentage">Persentase</string>
+    <string name="bs_discount_flat_amount">Nominal Tetap</string>
+    <string name="bs_payment_cash">Tunai</string>
+    <string name="bs_payment_cheque">Cek</string>
+    <string name="bs_payment_bank">Bank</string>
+    <string name="bs_payment_credit_card">Kartu Kredit</string>
+    <string name="bs_payment_paypal">PayPal</string>
+    <string name="bs_payment_other">Lainnya</string>
+    <string name="bs_terms_none">Tanpa Syarat</string>
+    <string name="bs_terms_due_on_receipt">Jatuh Tempo Saat Diterima</string>
+    <string name="bs_terms_next_date">Tanggal Berikutnya</string>
+    <string name="bs_terms_2_days">2 Hari</string>
+    <string name="bs_terms_1_week">1 Minggu</string>
+    <string name="bs_terms_custom">Kustom</string>
+    <string name="bs_tax_none">Tanpa Pajak</string>
+    <string name="bs_tax_on_total">Dari Total</string>
+    <string name="bs_tax_deducted">Dipotong</string>
+    <string name="bs_tax_per_item">Per Barang</string>
+    <string name="exit_dialog_title">Keluar!</string>
+    <string name="exit_dialog_message">Apakah Anda yakin ingin keluar dari aplikasi ini?</string>
+    <string name="delete_photo_confirm_message_legacy">Apakah Anda yakin ingin menghapus foto ini?</string>
+    <string name="tax_label_tax">Pajak:</string>
+    <string name="tax_label_none">Tanpa Pajak</string>
+    <string name="tax_label_label">Label:</string>
+    <string name="tax_label_rate">Tarif:</string>
+    <string name="tax_label_inclusive">Termasuk:</string>
+    <string name="tax_desc_inclusive">Aktifkan jika harga sudah termasuk Pajak</string>
+    <string name="discount_label_discount">Diskon</string>
+    <string name="discount_label_amount">Jumlah:</string>
+    <string name="dashboard_overview">Ringkasan</string>
+    <string name="dashboard_this_month">Bulan Ini</string>
+    <string name="dashboard_total_invoices">Total Invoice</string>
+    <string name="dashboard_revenue_paid">Pendapatan Terbayar</string>
+    <string name="dashboard_outstanding">Belum Terbayar</string>
+    <string name="dashboard_open_estimates">Estimasi Terbuka</string>
+    <string name="dashboard_recent_invoices">Invoice Terbaru</string>
+    <string name="dashboard_view_all">Lihat Semua &gt;</string>
+    <string name="dashboard_quick_actions">Aksi Cepat</string>
+    <string name="dashboard_new_invoice">Invoice Baru</string>
+    <string name="dashboard_new_estimate">Estimasi Baru</string>
+    <string name="dashboard_add_client">Tambah Klien</string>
+    <string name="dashboard_add_item">Tambah Barang</string>
+    <string name="wait_please">Mohon Tunggu</string>
+    <string name="preview_business_name_placeholder">Nama Bisnis Anda</string>
+    <string name="preview_business_address_placeholder">Alamat Baris 1, Kota, Provinsi</string>
+    <string name="title_invoices">Invoice</string>
+    <string name="label_paid_summary">Terbayar</string>
+    <string name="title_estimates">Estimasi</string>
+    <string name="title_photo">Foto</string>
+    <string name="title_signature">Tanda Tangan</string>
+    <string name="title_invoice_number">Nomor Invoice</string>
+    <string name="title_estimate_number">Nomor Estimasi</string>
+    <string name="label_discount_percent_format">Diskon(%1$s%%)</string>
+</resources>

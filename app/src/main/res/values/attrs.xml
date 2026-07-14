@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KoinvoisInput">
+        <attr name="android:hint" />
+        <attr name="android:inputType" />
+        <attr name="inputIcon" format="reference" />
+        <attr name="isLabelMode" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="KoinvoisLabel">
+        <attr name="android:text" />
+        <attr name="labelIcon" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="BusinessInputView">
+        <attr name="inputIcon" />
+        <attr name="inputIconTint" format="color" />
+        <attr name="inputLabel" format="string" />
+        <attr name="inputHint" format="string" />
+        <attr name="android:inputType" />
+    </declare-styleable>
+</resources>

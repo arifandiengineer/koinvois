@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.client.add_client.AddClient">
+
+    <include
+        android:id="@+id/customToolbar"
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/firstCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_30"
+        android:layout_marginTop="@dimen/spacing_30"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customToolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editClientName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:background="@null"
+                android:hint="@string/hint_client_name"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editClientEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_26"
+                android:background="@null"
+                android:hint="@string/hint_email"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintEnd_toEndOf="@id/editClientName"
+                app:layout_constraintStart_toStartOf="@id/editClientName"
+                app:layout_constraintTop_toBottomOf="@id/editClientName" />
+
+            <TextView
+                android:id="@+id/txtMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_26"
+                android:text="@string/label_mobile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintStart_toStartOf="@id/editClientEmail"
+                app:layout_constraintTop_toBottomOf="@id/editClientEmail" />
+
+            <TextView
+                android:id="@+id/txtPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_26"
+                android:text="@string/label_phone"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintEnd_toEndOf="@+id/txtMobile"
+                app:layout_constraintStart_toStartOf="@id/txtMobile"
+                app:layout_constraintTop_toBottomOf="@id/txtMobile" />
+
+            <TextView
+                android:id="@+id/txtFax"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_26"
+                android:layout_marginBottom="@dimen/spacing_26"
+                android:text="@string/label_fax"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtPhone"
+                app:layout_constraintStart_toStartOf="@id/txtPhone"
+                app:layout_constraintTop_toBottomOf="@id/txtPhone" />
+
+            <EditText
+                android:id="@+id/editMobileNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_32"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="@string/hint_mobile_number"
+                android:inputType="number"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintBottom_toBottomOf="@+id/txtMobile"
+                app:layout_constraintEnd_toEndOf="@+id/editClientEmail"
+                app:layout_constraintStart_toEndOf="@+id/txtMobile"
+                app:layout_constraintTop_toTopOf="@+id/txtMobile" />
+
+            <EditText
+                android:id="@+id/editPhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="@string/hint_phone_number"
+                android:inputType="number"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintBottom_toBottomOf="@+id/txtPhone"
+                app:layout_constraintEnd_toEndOf="@+id/editMobileNumber"
+                app:layout_constraintStart_toStartOf="@+id/editMobileNumber"
+                app:layout_constraintTop_toTopOf="@+id/txtPhone" />
+
+            <EditText
+                android:id="@+id/editFaxNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="@string/hint_fax_number"
+                android:inputType="number"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintBottom_toBottomOf="@+id/txtFax"
+                app:layout_constraintEnd_toEndOf="@+id/editPhoneNumber"
+                app:layout_constraintStart_toStartOf="@+id/editPhoneNumber"
+                app:layout_constraintTop_toTopOf="@+id/txtFax" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/secondCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="@id/firstCard"
+        app:layout_constraintStart_toStartOf="@id/firstCard"
+        app:layout_constraintTop_toBottomOf="@id/firstCard">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editContact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:background="@null"
+                android:hint="@string/hint_contact"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editAddress1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@null"
+                android:hint="@string/hint_address_1"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintEnd_toEndOf="@id/editContact"
+                app:layout_constraintStart_toStartOf="@id/editContact"
+                app:layout_constraintTop_toBottomOf="@id/editContact" />
+
+            <EditText
+                android:id="@+id/editAddress2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@null"
+                android:hint="@string/hint_address_2"
+                app:layout_constraintEnd_toEndOf="@id/editAddress1"
+                app:layout_constraintStart_toStartOf="@id/editAddress1"
+                app:layout_constraintTop_toBottomOf="@id/editAddress1" />
+
+            <EditText
+                android:id="@+id/editAddress3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:layout_marginBottom="@dimen/spacing_24"
+                android:background="@null"
+                android:hint="@string/hint_address_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/editAddress2"
+                app:layout_constraintStart_toStartOf="@id/editAddress2"
+                app:layout_constraintTop_toBottomOf="@id/editAddress2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

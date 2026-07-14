@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".ui.estimates.EstimatesMainFragment">
+
+    <!-- Summary Cards -->
+    <LinearLayout
+        android:id="@+id/summaryContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_16"
+        android:weightSum="3"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Total Estimates -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:layout_weight="1"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="@dimen/spacing_12"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/shape_rounded_8dp"
+                    android:backgroundTint="@color/color_stat_green_bg"
+                    android:padding="@dimen/spacing_8"
+                    android:src="@drawable/ic_document_text"
+                    app:tint="@color/color_success" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_8"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/txtTotalCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="18"
+                        android:textColor="@color/color_success"
+                        android:textSize="@dimen/text_size_14"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+10%"
+                            android:textColor="@color/color_success"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginStart="@dimen/spacing_2"
+                            android:src="@drawable/ic_arrow_growth_up"
+                            app:tint="@color/color_success" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Open -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:layout_weight="1"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_12"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/shape_rounded_8dp"
+                    android:backgroundTint="@color/color_stat_orange_bg"
+                    android:padding="@dimen/spacing_8"
+                    android:src="@drawable/ic_clock"
+                    app:tint="@color/color_stat_orange" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_8"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Open"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/txtOpenCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:textColor="@color/color_stat_orange"
+                        android:textSize="@dimen/text_size_14"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+2"
+                            android:textColor="@color/color_stat_orange"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginStart="@dimen/spacing_2"
+                            android:src="@drawable/ic_arrow_growth_up"
+                            app:tint="@color/color_stat_orange" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Closed -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_12"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/shape_rounded_8dp"
+                    android:backgroundTint="@color/color_stat_blue_bg"
+                    android:padding="@dimen/spacing_8"
+                    android:src="@drawable/ic_check_circle_filled"
+                    app:tint="@color/color_stat_blue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_8"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Closed"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/txtClosedCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:textColor="@color/color_stat_blue"
+                        android:textSize="@dimen/text_size_14"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+8"
+                            android:textColor="@color/color_stat_blue"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginStart="@dimen/spacing_2"
+                            android:src="@drawable/ic_arrow_growth_up"
+                            app:tint="@color/color_stat_blue" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <!-- Category Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/summaryContainer"
+        app:tabIndicatorColor="@color/color_success"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="3dp"
+        app:tabSelectedTextColor="@color/color_success"
+        app:tabTextColor="@color/color_text_secondary" />
+
+    <!-- Search and Filter Bar -->
+    <LinearLayout
+        android:id="@+id/searchFilterBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_12"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_16"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+        <EditText
+            android:id="@+id/editSearch"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rounded_12dp"
+            android:backgroundTint="@color/color_neutral_surface_light"
+            android:drawableStart="@drawable/icon_search"
+            android:drawablePadding="@dimen/spacing_8"
+            android:hint="Search estimates..."
+            android:inputType="text"
+            android:paddingHorizontal="@dimen/spacing_12"
+            android:textSize="@dimen/text_size_14" />
+
+        <LinearLayout
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/shape_rounded_12dp"
+            android:backgroundTint="@color/color_neutral_surface_light"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/spacing_12">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_sort"
+                app:tint="@color/color_text_secondary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_6"
+                android:text="Sort"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/shape_rounded_12dp"
+            android:backgroundTint="@color/color_neutral_surface_light"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/spacing_12">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_filter"
+                app:tint="@color/color_text_secondary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_6"
+                android:text="Filter"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ViewPager for Lists -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchFilterBar" />
+
+    <!-- Pagination Footer -->
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddEstimate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_16"
+        android:layout_marginBottom="@dimen/spacing_24"
+        android:backgroundTint="@color/color_success"
+        android:src="@drawable/icon_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

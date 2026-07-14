@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_navigation_graph"
+    app:startDestination="@id/fragmentSetting">
+
+    <fragment
+        android:id="@+id/fragmentSetting"
+        android:name="com.koinvois.generator.ui.setting.SettingFragment"
+        tools:layout="@layout/setting_fragment">
+
+        <action
+            android:id="@+id/actionSettingToAddBusiness"
+            app:destination="@id/fragmentAddBusiness" />
+        <action
+            android:id="@+id/action_fragmentSetting_to_fragmentLockMainFragment"
+            app:destination="@id/fragmentLockMainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAddBusiness"
+        android:name="com.koinvois.generator.ui.setting.add_business.AddBusinessDetailsFragment"
+        tools:layout="@layout/fragment_add_business_details">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentLockMainFragment"
+        android:name="com.koinvois.generator.ui.lock.LockMainFragment"
+        tools:layout="@layout/lock_main_fragment">
+
+        <action
+            android:id="@+id/actionFragmentLockMainToFragmentSavePassword"
+            app:destination="@id/fragmentSavePassword" />
+
+        <argument
+            android:name="pin_type"
+            android:defaultValue="new"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSavePassword"
+        android:name="com.koinvois.generator.ui.lock.SavePasswordFragment"
+        tools:layout="@layout/fragment_save_password">
+
+        <action
+            android:id="@+id/actionFragmentSavePasswordToFragmentSetting"
+            app:destination="@id/fragmentSetting"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragmentSetting"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="pin_type"
+            android:defaultValue="new"
+            app:argType="string" />
+
+    </fragment>
+</navigation>

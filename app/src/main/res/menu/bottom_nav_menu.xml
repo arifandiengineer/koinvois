@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboard_navigation_graph"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/invoice_navigation_graph"
+        android:icon="@drawable/invoice_icon"
+        android:title="@string/title_invoice_nav" />
+
+    <item
+        android:id="@+id/estimate_navigation_graph"
+        android:icon="@drawable/estimate_icon"
+        android:title="@string/title_estimate_nav" />
+
+    <item
+        android:id="@+id/report_navigation_graph"
+        android:icon="@drawable/report_icon"
+        android:title="@string/title_reports_nav" />
+
+    <item
+        android:id="@+id/more_navigation_graph"
+        android:icon="@drawable/ic_more_nav"
+        android:title="@string/title_more" />
+
+</menu>

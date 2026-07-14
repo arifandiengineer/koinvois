@@ -1,0 +1,76 @@
+<resources>
+
+    <!-- Centralized Material 3 component styles. Apply via style="@style/..."
+         so every screen shares one look; do not hand-roll per-layout styling. -->
+
+    <style name="Widget.App.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.App.Title.Large</item>
+        <item name="android:background">?attr/colorSurface</item>
+    </style>
+
+    <!-- Filled — primary action (one per screen, e.g. Save/Create). Disabled/pressed
+         state colors are inherited from the Widget.Material3.Button parent, no override needed. -->
+    <style name="Widget.App.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">@dimen/corner_radius_12</item>
+    </style>
+
+    <!-- Filled Tonal — secondary action that still needs emphasis (e.g. "Add photo"). -->
+    <style name="Widget.App.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="cornerRadius">@dimen/corner_radius_12</item>
+    </style>
+
+    <style name="Widget.App.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/corner_radius_12</item>
+    </style>
+
+    <style name="Widget.App.Button.Text" parent="Widget.Material3.Button.TextButton" />
+
+    <!-- Icon-only button (e.g. toolbar/list row actions). -->
+    <style name="Widget.App.Button.Icon" parent="Widget.Material3.Button.IconButton.Filled" />
+
+    <style name="Widget.App.Button.Icon.Outlined" parent="Widget.Material3.Button.IconButton.Outlined" />
+
+    <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">@dimen/corner_radius_16</item>
+        <item name="contentPadding">@dimen/spacing_16</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.TextField</item>
+    </style>
+
+    <style name="ShapeAppearance.App.TextField" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">@dimen/corner_radius_12</item>
+    </style>
+
+    <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Filter" />
+
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.App.BottomSheet</item>
+    </style>
+
+    <style name="Widget.App.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.BottomSheet</item>
+    </style>
+
+    <style name="ShapeAppearance.App.BottomSheet" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSizeTopLeft">@dimen/corner_radius_24</item>
+        <item name="cornerSizeTopRight">@dimen/corner_radius_24</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.Dialog</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Dialog" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">@dimen/corner_radius_24</item>
+    </style>
+
+    <style name="App.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#E8F5E9</item>
+    </style>
+
+</resources>

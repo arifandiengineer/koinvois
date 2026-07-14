@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.invoices.add_invoice.invoice_edit_fragments.InvoiceInformationFragment">
+
+    <include
+        android:id="@+id/customToolbar"
+        layout="@layout/view_custom_toolbar" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/firstCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_30"
+        android:layout_marginTop="@dimen/spacing_40"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customToolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtInvoiceNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_10"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:text="@string/label_invoice_number_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toStartOf="@+id/editInvoiceNumber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editInvoiceNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="0001"
+                android:inputType="number"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintBottom_toBottomOf="@id/txtInvoiceNumber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtInvoiceNumber"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/txtInvoiceDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_10"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:text="@string/label_date_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@+id/txtInvoiceNumber"
+                app:layout_constraintStart_toStartOf="@+id/txtInvoiceNumber"
+                app:layout_constraintTop_toBottomOf="@id/txtInvoiceNumber" />
+
+            <TextView
+                android:id="@+id/editInvoiceDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:hint="Date"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintBottom_toBottomOf="@id/txtInvoiceDate"
+                app:layout_constraintEnd_toEndOf="@+id/editInvoiceNumber"
+                app:layout_constraintStart_toEndOf="@+id/txtInvoiceNumber"
+                app:layout_constraintTop_toTopOf="@id/txtInvoiceDate" />
+
+            <TextView
+                android:id="@+id/txtInvoiceTerms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_10"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:text="@string/label_terms_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@id/txtInvoiceNumber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtInvoiceDate"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/editInvoiceTerms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:hint="Terms"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintBottom_toBottomOf="@id/txtInvoiceTerms"
+                app:layout_constraintEnd_toEndOf="@+id/editInvoiceNumber"
+                app:layout_constraintStart_toStartOf="@id/editInvoiceNumber"
+                app:layout_constraintTop_toTopOf="@id/txtInvoiceTerms" />
+
+            <TextView
+                android:id="@+id/txtInvoiceDueDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_10"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:text="@string/label_due_date_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="@id/txtInvoiceNumber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtInvoiceTerms"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/editInvoiceDueDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:hint="Due Date"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintBottom_toBottomOf="@id/txtInvoiceDueDate"
+                app:layout_constraintEnd_toEndOf="@+id/editInvoiceNumber"
+                app:layout_constraintStart_toStartOf="@id/editInvoiceNumber"
+                app:layout_constraintTop_toTopOf="@id/txtInvoiceDueDate" />
+
+            <TextView
+                android:id="@+id/txtInvoicePoNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_10"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:text="@string/label_po_number_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/txtInvoiceNumber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtInvoiceDueDate"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editInvoicePoNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="PO Number"
+                android:paddingHorizontal="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintBottom_toBottomOf="@id/txtInvoicePoNumber"
+                app:layout_constraintEnd_toEndOf="@+id/editInvoiceNumber"
+                app:layout_constraintStart_toStartOf="@id/editInvoiceNumber"
+                app:layout_constraintTop_toTopOf="@id/txtInvoicePoNumber" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

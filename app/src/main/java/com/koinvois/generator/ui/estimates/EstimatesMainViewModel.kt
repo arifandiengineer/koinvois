@@ -1,0 +1,203 @@
+package com.koinvois.generator.ui.estimates
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.koinvois.generator.data.mapper.toDomain
+import com.koinvois.generator.data.mapper.toEntity
+import com.koinvois.generator.data_models.Signature
+import com.koinvois.generator.database.models.*
+import com.koinvois.generator.domain.usecase.business.AddBusinessUseCase
+import com.koinvois.generator.domain.usecase.business.GetBusinessUseCase
+import com.koinvois.generator.domain.usecase.business.UpdateBusinessUseCase
+import com.koinvois.generator.domain.usecase.client.GetAllClientsUseCase
+import com.koinvois.generator.domain.usecase.estimate.AddEstimateItemUseCase
+import com.koinvois.generator.domain.usecase.estimate.AddEstimatePhotoUseCase
+import com.koinvois.generator.domain.usecase.estimate.AddEstimateUseCase
+import com.koinvois.generator.domain.usecase.estimate.DeleteEstimateItemUseCase
+import com.koinvois.generator.domain.usecase.estimate.DeleteEstimatePhotoUseCase
+import com.koinvois.generator.domain.usecase.estimate.DeleteEstimateUseCase
+import com.koinvois.generator.domain.usecase.estimate.GetEstimateItemsByEstimateIdUseCase
+import com.koinvois.generator.domain.usecase.estimate.GetEstimatePhotosByEstimateIdUseCase
+import com.koinvois.generator.domain.usecase.estimate.ObserveAllEstimatesUseCase
+import com.koinvois.generator.domain.usecase.estimate.UpdateEstimateItemUseCase
+import com.koinvois.generator.domain.usecase.estimate.UpdateEstimatePhotoUseCase
+import com.koinvois.generator.domain.usecase.estimate.UpdateEstimateUseCase
+import com.koinvois.generator.domain.usecase.item.GetAllItemsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+
+@HiltViewModel
+class EstimatesMainViewModel @Inject constructor(
+    private val observeAllEstimatesUseCase: ObserveAllEstimatesUseCase,
+    private val addEstimateUseCase: AddEstimateUseCase,
+    private val updateEstimateUseCase: UpdateEstimateUseCase,
+    private val deleteEstimateUseCase: DeleteEstimateUseCase,
+    private val getEstimateItemsByEstimateIdUseCase: GetEstimateItemsByEstimateIdUseCase,
+    private val addEstimateItemUseCase: AddEstimateItemUseCase,
+    private val updateEstimateItemUseCase: UpdateEstimateItemUseCase,
+    private val deleteEstimateItemUseCase: DeleteEstimateItemUseCase,
+    private val getEstimatePhotosByEstimateIdUseCase: GetEstimatePhotosByEstimateIdUseCase,
+    private val addEstimatePhotoUseCase: AddEstimatePhotoUseCase,
+    private val updateEstimatePhotoUseCase: UpdateEstimatePhotoUseCase,
+    private val deleteEstimatePhotoUseCase: DeleteEstimatePhotoUseCase,
+    private val getBusinessUseCase: GetBusinessUseCase,
+    private val addBusinessUseCase: AddBusinessUseCase,
+    private val updateBusinessUseCase: UpdateBusinessUseCase,
+    private val getAllClientsUseCase: GetAllClientsUseCase,
+    private val getAllItemsUseCase: GetAllItemsUseCase,
+) : ViewModel() {
+
+    val allEstimatesLive: LiveData<List<Estimate>> =
+        observeAllEstimatesUseCase().map { list -> list.map { it.toEntity() } }.asLiveData()
+
+    var estimatePrimaryId: Long? = null
+    var estimateNumber: Int? = null
+    var estimateDate: String? = null
+    var estimatePoNumber: String? = null
+    var businessUpdateModel: PersonalBusiness? = null
+    var selectedClient: Client? = null
+    var selectedItemsList: ArrayList<EstimateItem>? = arrayListOf()
+    var currentEstimateItem: EstimateItem? = null
+    var currentSelectedPhoto: EstimatePhoto? = null
+    var estimateSubTotal: Float? = null
+    var discountType: String? = null
+    var discountAmount: Float? = null
+    var discountTotalAmount: Float? = null
+    var taxType: String? = null
+    var taxLabel: String? = null
+    var taxRate: Float? = null
+    var taxInclusive: Boolean? = null
+    var estimateTotal: Float? = null
+    var photosForEstimate: ArrayList<EstimatePhoto>? = arrayListOf()
+    var signatureObj: Signature? = null
+    var estimateNotes: String? = null
+    var estimateStatus: String? = null
+    var allClients: ArrayList<Client>? = null
+    var allItems: ArrayList<Item>? = null
+
+    init {
+        viewModelScope.launch(Dispatchers.Default) {
+            allClients = getAllClientsUseCase().map { it.toEntity() } as ArrayList<Client>
+            allItems = getAllItemsUseCase().map { it.toEntity() } as ArrayList<Item>
+        }
+    }
+
+    suspend fun getBusiness() {
+        businessUpdateModel = getBusinessUseCase(1).toEntity()
+    }
+
+    suspend fun updateBusiness(business: PersonalBusiness) {
+        updateBusinessUseCase(business.toDomain())
+    }
+
+    suspend fun deleteEstimateItem(estimateItem: EstimateItem) {
+        deleteEstimateItemUseCase(estimateItem.toDomain())
+    }
+
+    suspend fun insertEstimateItem(estimateItem: EstimateItem) {
+        addEstimateItemUseCase(estimateItem.toDomain())
+    }
+
+    suspend fun updateEstimateItem(estimateItem: EstimateItem) {
+        updateEstimateItemUseCase(estimateItem.toDomain())
+    }
+
+    suspend fun insertEstimatePhoto(estimatePhoto: EstimatePhoto) {
+        addEstimatePhotoUseCase(estimatePhoto.toDomain())
+    }
+
+    suspend fun updateEstimatePhoto(estimatePhoto: EstimatePhoto) {
+        updateEstimatePhotoUseCase(estimatePhoto.toDomain())
+    }
+
+    suspend fun deleteEstimatePhoto(estimatePhoto: EstimatePhoto) {
+        deleteEstimatePhotoUseCase(estimatePhoto.toDomain())
+    }
+
+    suspend fun insertEstimate(estimate: Estimate) {
+        addEstimateUseCase(estimate.toDomain())
+    }
+
+    suspend fun updateEstimate(estimate: Estimate) {
+        updateEstimateUseCase(estimate.toDomain())
+    }
+
+    suspend fun loadViewModelData(estimate: Estimate) {
+        estimatePrimaryId = estimate.estimateId.toLong()
+        estimateNumber = estimate.estimateNumber
+        estimateDate = estimate.estimateDate
+        estimateNotes = estimate.estimateNotes
+        estimatePoNumber = estimate.estimatePoNumber
+        estimateStatus = estimate.estimateStatus
+        estimateSubTotal = estimate.estimateSubtotal
+        estimateTotal = estimate.estimateTotal
+        businessUpdateModel = getBusinessUseCase(1).toEntity()
+        selectedClient = estimate.clientPK?.let {
+            Client(
+                it,
+                estimate.estimateClientName,
+                estimate.estimateClientEmail,
+                estimate.estimateClientMobile,
+                estimate.estimateClientPhone,
+                estimate.estimateClientFax,
+                estimate.estimateClientContact,
+                estimate.estimateClientAddress1,
+                estimate.estimateClientAddress2,
+                estimate.estimateClientAddress3
+            )
+        }
+        selectedItemsList = getEstimateItemsByEstimateIdUseCase(estimate.estimateId)
+            .map { it.toEntity() } as? ArrayList<EstimateItem>
+        photosForEstimate = getEstimatePhotosByEstimateIdUseCase(estimate.estimateId)
+            .map { it.toEntity() } as? ArrayList<EstimatePhoto>
+        signatureObj =
+            estimate.estimateSignature?.let { Signature(it, estimate.signatureDate ?: "") }
+
+        discountType = estimate.estimateDiscountType
+        discountAmount = estimate.estimateDiscountAmount
+        // discountPercentage = invoice.invoiceDiscountPercentage
+        taxType = estimate.estimateTaxType
+        taxLabel = estimate.estimateTaxLabel
+        currentEstimateItem = null
+        taxRate = estimate.estimateTaxRate
+        taxInclusive = estimate.estimateTaxInclusive
+
+    }
+
+    fun clearViewModel() {
+//        invoicePrimaryId = null
+        estimateNumber = null
+        estimateDate = null
+        estimateNotes = null
+        estimatePoNumber = null
+        estimateStatus = null
+        estimateSubTotal = null
+        estimateTotal = null
+        businessUpdateModel = null
+        selectedClient = null
+        selectedItemsList = null
+        currentEstimateItem = null
+        discountType = null
+        discountAmount = null
+        // discountPercentage = null
+        discountTotalAmount = null
+        taxType = null
+        taxLabel = null
+        taxRate = null
+        taxInclusive = null
+        photosForEstimate = null
+        signatureObj = null
+    }
+
+    suspend fun deleteEstimate() {
+        estimatePrimaryId?.let {
+            deleteEstimateUseCase(it)
+        }
+    }
+}

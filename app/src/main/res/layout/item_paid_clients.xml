@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/spacing_12">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/avatarContainer"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="@dimen/spacing_16"
+        app:cardBackgroundColor="@color/color_stat_green_bg"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtInitials"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/color_success"
+            android:textSize="@dimen/text_size_10"
+            android:textStyle="bold"
+            tools:text="AC" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtClientName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_12"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/text_size_10"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtInvoices"
+        app:layout_constraintStart_toEndOf="@id/avatarContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Acme Corporation" />
+
+    <TextView
+        android:id="@+id/txtInvoices"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtPaidAmount"
+        app:layout_constraintStart_toEndOf="@id/txtClientName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="5" />
+
+    <TextView
+        android:id="@+id/txtPaidAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textColor="@color/color_success"
+        android:textSize="@dimen/text_size_10"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgArrow"
+        app:layout_constraintStart_toEndOf="@id/txtInvoices"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="$1,250.00" />
+
+    <ImageView
+        android:id="@+id/imgArrow"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="@dimen/spacing_12"
+        android:src="@drawable/btn_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/spacing_12"
+        android:background="@color/color_neutral_surface_light"
+        app:layout_constraintTop_toBottomOf="@id/avatarContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

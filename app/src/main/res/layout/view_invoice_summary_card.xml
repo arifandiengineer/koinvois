@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius_16"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_12">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/iconContainer"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:cardCornerRadius="@dimen/corner_radius_8"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/spacing_8"
+                    android:src="@drawable/business_icon" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/txtLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_12"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/text_size_10"
+                app:layout_constraintBottom_toTopOf="@id/txtValue"
+                app:layout_constraintStart_toEndOf="@id/iconContainer"
+                app:layout_constraintTop_toTopOf="@id/iconContainer"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Total Invoices" />
+
+            <TextView
+                android:id="@+id/txtValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iconContainer"
+                app:layout_constraintStart_toStartOf="@id/txtLabel"
+                app:layout_constraintTop_toBottomOf="@id/txtLabel"
+                tools:text="24" />
+
+            <LinearLayout
+                android:id="@+id/growthContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconContainer">
+
+                <TextView
+                    android:id="@+id/txtGrowth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_success"
+                    android:textSize="@dimen/text_size_9"
+                    android:textStyle="bold"
+                    tools:text="+12%" />
+
+                <TextView
+                    android:id="@+id/txtGrowthLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_4"
+                    android:text="from last month"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/text_size_9" />
+
+                <ImageView
+                    android:id="@+id/imgGrowthIcon"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="@dimen/spacing_4"
+                    android:src="@drawable/ic_arrow_growth_up"
+                    app:tint="@color/color_success" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtCash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_12"
+        android:paddingVertical="@dimen/spacing_12"
+        android:text="@string/bs_payment_cash"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toTopOf="@+id/txtCheque"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCheque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/spacing_12"
+        android:text="@string/bs_payment_cheque"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toTopOf="@+id/txtBank"
+        app:layout_constraintStart_toStartOf="@+id/txtCash"
+        app:layout_constraintTop_toBottomOf="@+id/txtCash" />
+
+    <TextView
+        android:id="@+id/txtBank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/spacing_12"
+        android:text="@string/bs_payment_bank"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toTopOf="@+id/txtCredit"
+        app:layout_constraintStart_toStartOf="@+id/txtCheque"
+        app:layout_constraintTop_toBottomOf="@+id/txtCheque" />
+
+    <TextView
+        android:id="@+id/txtCredit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/spacing_12"
+        android:text="@string/bs_payment_credit_card"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toTopOf="@+id/txtPaypal"
+        app:layout_constraintStart_toStartOf="@+id/txtBank"
+        app:layout_constraintTop_toBottomOf="@+id/txtBank" />
+
+    <TextView
+        android:id="@+id/txtPaypal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/spacing_12"
+        android:text="@string/bs_payment_paypal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toTopOf="@+id/txtOther"
+        app:layout_constraintStart_toStartOf="@+id/txtCredit"
+        app:layout_constraintTop_toBottomOf="@+id/txtCredit" />
+
+    <TextView
+        android:id="@+id/txtOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/spacing_12"
+        android:text="@string/bs_payment_other"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtPaypal"
+        app:layout_constraintTop_toBottomOf="@+id/txtPaypal" />
+</androidx.constraintlayout.widget.ConstraintLayout>

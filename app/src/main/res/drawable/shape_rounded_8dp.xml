@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Standard rounded-rect background, no elevation. Use in place of a
+     CardView/MaterialCardView when the shadow/elevation isn't needed
+     (e.g. a badge, pill label, or flat inline container). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="?attr/colorSurfaceVariant" />
+    <corners android:radius="@dimen/corner_radius_8" />
+</shape>

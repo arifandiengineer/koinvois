@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtNoTax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_tax_none"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtOnTheTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_tax_on_total"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtNoTax" />
+
+    <TextView
+        android:id="@+id/txtDeducted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_tax_deducted"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtOnTheTotal" />
+
+    <TextView
+        android:id="@+id/txtPerItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_24"
+        android:text="@string/bs_tax_per_item"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtDeducted" />
+</androidx.constraintlayout.widget.ConstraintLayout>

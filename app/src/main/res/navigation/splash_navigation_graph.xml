@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_navigation_graph"
+    app:startDestination="@id/fragmentSplashMain">
+
+    <fragment
+        android:id="@+id/fragmentSplashMain"
+        android:name="com.koinvois.generator.ui.splash.SplashMainFragment"
+        tools:layout="@layout/splash_main_fragment">
+
+        <action
+            android:id="@+id/actionFragmentSplashMainToFragmentAddBusinessSplash"
+            app:destination="@id/fragmentAddBusinessSplash" />
+        <action
+            android:id="@+id/actionFragmentSplashMainToFragmentEnterPassword"
+            app:destination="@id/fragmentEnterPassword" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAddBusinessSplash"
+        android:name="com.koinvois.generator.ui.splash.splash_business.AddBusinessDetailsSplashFragment"
+        tools:layout="@layout/fragment_add_business_details_splash" />
+
+    <fragment
+        android:id="@+id/fragmentEnterPassword"
+        android:name="com.koinvois.generator.ui.lock.EnterPasswordFragment"
+        tools:layout="@layout/fragment_enter_password">
+        <action
+            android:id="@+id/action_fragmentEnterPassword_to_fragmentLockMainFragment"
+            app:destination="@id/fragmentLockMainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentLockMainFragment"
+        android:name="com.koinvois.generator.ui.lock.LockMainFragment"
+        tools:layout="@layout/lock_main_fragment">
+
+        <action
+            android:id="@+id/actionFragmentLockMainToFragmentSavePassword"
+            app:destination="@id/fragmentSavePassword" />
+
+        <argument
+            android:name="pin_type"
+            android:defaultValue="new"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSavePassword"
+        android:name="com.koinvois.generator.ui.lock.SavePasswordFragment"
+        tools:layout="@layout/fragment_save_password">
+
+        <action
+            android:id="@+id/actionFragmentSavePasswordToFragmentSetting"
+            app:destination="@id/fragmentSetting"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragmentSetting"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="pin_type"
+            android:defaultValue="new"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

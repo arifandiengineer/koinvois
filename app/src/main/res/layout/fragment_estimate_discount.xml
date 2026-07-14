@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountFragment">
+
+    <include
+        android:id="@+id/customToolbar"
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/firstCard"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_30"
+        android:layout_marginTop="@dimen/spacing_40">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtDiscountType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/spacing_20"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_discount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16" />
+
+            <TextView
+                android:id="@+id/editDiscountType"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDiscountType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtDiscountType"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:hint="No Discount"
+                android:paddingEnd="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dim_text_color"
+                android:textSize="@dimen/text_size_16" />
+
+            <TextView
+                android:id="@+id/txtDiscountAmount"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtDiscountType"
+                app:layout_constraintStart_toStartOf="@+id/txtDiscountType"
+                app:layout_constraintTop_toBottomOf="@+id/editDiscountType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_20"
+                android:paddingStart="@dimen/spacing_14"
+                android:text="@string/label_amount_colon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16" />
+
+            <EditText
+                android:id="@+id/editDiscountAmount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editDiscountType"
+                app:layout_constraintTop_toTopOf="@id/txtDiscountAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="end"
+                android:hint="0.0"
+                android:inputType="number"
+                android:paddingEnd="@dimen/spacing_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dim_text_color"
+                android:textSize="@dimen/text_size_16" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/discountAmountGroup"
+                app:constraint_referenced_ids="txtDiscountAmount,editDiscountAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
