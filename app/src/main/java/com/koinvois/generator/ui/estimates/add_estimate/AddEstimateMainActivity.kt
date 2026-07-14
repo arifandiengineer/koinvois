@@ -11,6 +11,9 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
 import android.provider.Settings
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.webkit.WebView
@@ -28,13 +31,26 @@ import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.database.models.Estimate
 import com.koinvois.generator.databinding.FragmentAddEstimateMainBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
-import com.koinvois.generator.ui.estimates.adapter.ViewPagerAdapterEditEstimate
-import com.koinvois.generator.utilities.extensions.reduceDragSensitivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.PreviewEstimateFragment
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientDetailForEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EditBusinessDetailsFromEstimateActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateDiscountActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateInformationActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateSignatureActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.EstimateTaxActivity
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemDetailForEstimateActivity
+import com.koinvois.generator.ui.estimates.adapter.SelectedEstimateItemsAdapter
+import com.koinvois.generator.ui.estimates.adapter.SelectedPhotosForEstimateAdapter
+import com.koinvois.generator.utilities.enums.DBEnum
+import com.koinvois.generator.utilities.enums.EstimateStatusEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
+import com.koinvois.generator.utilities.extensions.showErrorSnackbar
 import com.koinvois.generator.utilities.extensions.visible
+import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.core.common.dialog.BaseDialog
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayoutMediator
 import com.webviewtopdf.PdfView
 import com.koinvois.generator.utilities.manager.DialogManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,12 +80,103 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
         FragmentAddEstimateMainBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
-        setUpViewPagerEditEstimate()
+        setUpToolbar()
         setClickListeners(this)
-        onBackPressedDispatcher.addCallback(this) { saveOnBack() }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.previewContainer, PreviewEstimateFragment())
+            .commit()
+
+        onBackPressedDispatcher.addCallback(this) {
+            if (binding.previewContainer.visibility == View.VISIBLE) {
+                hidePreview()
+            } else {
+                saveOnBack()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val content = binding.editEstimateContent
+
+        viewModel.selectedClient.let {
+            content.txtClientName.text = it?.clientName
+        }
+
+        viewModel.signatureObj?.let {
+            content.txtSignature.text = "Signed on ${it?.signatureDate}"
+        }
+        var totalItemsCost = 0f
+
+        viewModel.selectedItemsList?.forEach {
+            it.toString().let { it1 -> Log.e("obj", it1) }
+            totalItemsCost += it.itemTotal ?: 0f
+        }
+        content.txtTotalAmount.text = totalItemsCost.toString()
+
+        viewModel.estimateNumber?.let {
+            content.txtEstimateNumber.text = it.toString()
+        } ?: run {
+            content.txtEstimateNumber.text = null
+        }
+
+        viewModel.estimateDate?.let {
+            content.txtEstimateDate.text = it
+        }
+
+        viewModel.selectedItemsList?.let {
+            content.rvEstimateItems.adapter =
+                SelectedEstimateItemsAdapter(it, viewModel) {
+                    startActivity(ItemDetailForEstimateActivity.newIntent(this, DBEnum.OLD.entryType))
+                }
+        }
+
+        viewModel.photosForEstimate?.let {
+            content.rvPhotos.adapter =
+                SelectedPhotosForEstimateAdapter(it, viewModel) {
+                    startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.OLD.entryType))
+                }
+        }
+
+        viewModel.discountAmount?.let {
+            content.txtDiscountPrice.text = it.toString()
+        }
+
+        viewModel.estimateNotes?.let {
+            content.txtNotes.setText(it)
+        }
+
+        viewModel.estimateStatus?.let {
+            when (it) {
+                EstimateStatusEnum.OPEN.status -> {
+                    content.btnMarkPaid.setText("Mark Closed")
+                }
+                EstimateStatusEnum.CLOSED.status -> {
+                    content.btnMarkPaid.setText("Mark Open")
+                }
+                else -> {
+                    content.btnMarkPaid.setText("Mark Closed")
+                }
+            }
+        }
+    }
+
+    private fun setUpToolbar() {
+        binding.customToolbar.apply {
+            imgRightAction.visible()
+            imgRightAction.setImageResource(R.drawable.btn_forward)
+            imgRightAction.setColorFilter(getColor(R.color.yellow_tab_indicator))
+            imgRightAction.setSafeOnClickListener {
+                showPreview()
+            }
+        }
     }
 
     private fun setClickListeners(context: Context) {
+        val content = binding.editEstimateContent
+
         binding.customToolbar.btnBack.setSafeOnClickListener {
             saveOnBack()
         }
@@ -81,6 +188,91 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
         binding.customToolbar.imgSecondaryAction.setSafeOnClickListener {
             showPopupMenu(it, context)
         }
+
+        content.txtSignature.setSafeOnClickListener {
+            startActivity(EstimateSignatureActivity.newIntent(this))
+        }
+
+        content.txtEstimateDate.setSafeOnClickListener {
+            startActivity(EstimateInformationActivity.newIntent(this))
+        }
+
+        content.txtEstimateNumber.setSafeOnClickListener {
+            startActivity(EstimateInformationActivity.newIntent(this))
+        }
+
+        content.txtBusinessInfo.setSafeOnClickListener {
+            startActivity(EditBusinessDetailsFromEstimateActivity.newIntent(this))
+        }
+
+        content.secondCard.setSafeOnClickListener {
+            viewModel.selectedClient?.let {
+                startActivity(ClientDetailForEstimateActivity.newIntent(this))
+            } ?: run {
+                when (viewModel.allClients?.isNotEmpty()) {
+                    true -> {
+                        startActivity(ClientListForEstimateActivity.newIntent(this))
+                    }
+                    false -> {
+                        startActivity(ClientDetailForEstimateActivity.newIntent(this))
+                    }
+                    null -> {
+                        content.root.showErrorSnackbar(getString(R.string.error_try_again))
+                    }
+                }
+            }
+        }
+
+        content.txtAddItem.setSafeOnClickListener {
+            startActivity(ItemDetailForEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
+        }
+
+        content.txtDiscountPrice.setSafeOnClickListener {
+            startActivity(EstimateDiscountActivity.newIntent(this))
+        }
+
+        content.txtTaxPrice.setSafeOnClickListener {
+            startActivity(EstimateTaxActivity.newIntent(this))
+        }
+
+        content.txtAddPhoto.setSafeOnClickListener {
+            startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
+        }
+
+        content.btnMarkPaid.setSafeOnClickListener {
+            when (viewModel.estimateStatus) {
+                EstimateStatusEnum.OPEN.status -> {
+                    viewModel.estimateStatus = EstimateStatusEnum.CLOSED.status
+                    content.btnMarkPaid.setText("Mark Open")
+                }
+                EstimateStatusEnum.CLOSED.status -> {
+                    viewModel.estimateStatus = EstimateStatusEnum.OPEN.status
+                    content.btnMarkPaid.setText("Mark Closed")
+                }
+                else -> {
+                    viewModel.estimateStatus = EstimateStatusEnum.CLOSED.status
+                    content.btnMarkPaid.setText("Mark Open")
+                }
+            }
+        }
+
+        content.txtNotes.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val notes = content.txtNotes.text.toString()
+                viewModel.estimateNotes = notes
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+    }
+
+    private fun showPreview() {
+        binding.previewContainer.visible()
+    }
+
+    private fun hidePreview() {
+        binding.previewContainer.hide()
     }
 
     private fun shareEstimate(context: Context) {
@@ -174,23 +366,6 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
                 finish()
             }
         }
-    }
-
-    private fun setUpViewPagerEditEstimate() {
-        val viewPagerAdapter = ViewPagerAdapterEditEstimate(this)
-        binding.viewPager.adapter = viewPagerAdapter
-        binding.viewPager.visible()
-        binding.tabLayout.visible()
-        binding.viewPager.offscreenPageLimit = 1
-
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> "Edit"
-                1 -> "Preview"
-                else -> "Edit"
-            }
-        }.attach()
-        binding.viewPager.reduceDragSensitivity()
     }
 
     private fun testPDFJob(webView: WebView, actv: Activity) {

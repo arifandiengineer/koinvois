@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:fillViewport="true"
     android:layout_height="match_parent"
-    tools:context=".ui.estimates.add_estimate.sub_fragments.EditEstimateFragment">
+    tools:context=".ui.estimates.add_estimate.AddEstimateMainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
