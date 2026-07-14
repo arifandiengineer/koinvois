@@ -87,7 +87,7 @@ class SignatureView(context: Context, attrs: AttributeSet?) : View(context, attr
         try {
             setPenColor(ContextCompat.getColor(context, colorRes))
         } catch (ex: NotFoundException) {
-            setPenColor(Color.parseColor("#000000"))
+            setPenColor(Color.BLACK)
         }
     }
 

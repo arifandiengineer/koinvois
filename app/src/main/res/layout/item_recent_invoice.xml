@@ -16,7 +16,7 @@
         android:backgroundTint="@color/color_stat_green_bg"
         android:paddingHorizontal="@dimen/spacing_8"
         android:paddingVertical="@dimen/spacing_4"
-        android:text="PAID"
+        tools:text="Paid"
         android:textColor="@color/primary_color"
         android:textSize="@dimen/text_size_10"
         android:textStyle="bold"

@@ -2,6 +2,7 @@ package com.koinvois.generator.ui.dashboard.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
@@ -25,12 +26,13 @@ class RecentInvoiceAdapter(
             
             // Status badge logic
             val isPaid = item.invoiceStatus?.equals("PAID", ignoreCase = true) == true
-            txtStatus.text = if (isPaid) "PAID" else "UNPAID"
+            txtStatus.text = if (isPaid) root.context.getString(R.string.status_paid)
+                else root.context.getString(R.string.status_unpaid)
             txtStatus.backgroundTintList = android.content.res.ColorStateList.valueOf(
-                android.graphics.Color.parseColor(if (isPaid) "#E8F5E9" else "#FFF3E0")
+                ContextCompat.getColor(root.context, if (isPaid) R.color.color_stat_green_bg else R.color.color_stat_orange_bg)
             )
             txtStatus.setTextColor(
-                android.graphics.Color.parseColor(if (isPaid) "#4CAF50" else "#FF9800")
+                ContextCompat.getColor(root.context, if (isPaid) R.color.primary_color else R.color.color_stat_orange)
             )
 
             root.setOnClickListener { onInvoiceClicked(item) }
