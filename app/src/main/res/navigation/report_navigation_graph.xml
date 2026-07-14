@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/fragmentMainReport"
         android:name="com.koinvois.generator.ui.reports.ReportsMainFragment"
-        tools:layout="@layout/reports_main_fragment" />
+        tools:layout="@layout/fragment_report_main" />
 
     <fragment
         android:id="@+id/fragmentClientReport"
         android:name="com.koinvois.generator.ui.reports.subfragments.ClientsReportFragment"
-        tools:layout="@layout/fragment_clients_report" />
+        tools:layout="@layout/fragment_report_clients" />
 
     <fragment
         android:id="@+id/fragmentPaidReport"
         android:name="com.koinvois.generator.ui.reports.subfragments.PaidReportFragment"
-        tools:layout="@layout/fragment_paid_report" />
+        tools:layout="@layout/fragment_report_paid_invoices" />
 
 </navigation>

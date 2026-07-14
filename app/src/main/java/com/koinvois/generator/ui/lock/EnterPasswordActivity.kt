@@ -10,7 +10,7 @@ import com.andrognito.pinlockview.PinLockListener
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
-import com.koinvois.generator.databinding.FragmentEnterPasswordBinding
+import com.koinvois.generator.databinding.ActivityPasswordEnterBinding
 import com.koinvois.generator.utilities.enums.PinTypeEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EnterPasswordActivity : BaseActivity<FragmentEnterPasswordBinding>() {
+class EnterPasswordActivity : BaseActivity<ActivityPasswordEnterBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
@@ -34,8 +34,8 @@ class EnterPasswordActivity : BaseActivity<FragmentEnterPasswordBinding>() {
             }
         }
 
-    override fun inflateBinding(): FragmentEnterPasswordBinding =
-        FragmentEnterPasswordBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityPasswordEnterBinding =
+        ActivityPasswordEnterBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         lifecycleScope.launch(Dispatchers.Main) {

@@ -9,18 +9,18 @@ import androidx.activity.viewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.database.models.Client
-import com.koinvois.generator.databinding.FragmentClientDetailForEstimateBinding
+import com.koinvois.generator.databinding.ActivityEstimateClientDetailBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ClientDetailForEstimateActivity : BaseActivity<FragmentClientDetailForEstimateBinding>() {
+class ClientDetailForEstimateActivity : BaseActivity<ActivityEstimateClientDetailBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentClientDetailForEstimateBinding =
-        FragmentClientDetailForEstimateBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateClientDetailBinding =
+        ActivityEstimateClientDetailBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

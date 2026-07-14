@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import androidx.activity.viewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentSignatureBinding
+import com.koinvois.generator.databinding.ActivitySignatureBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.data_models.Signature
 import com.koinvois.generator.utilities.extensions.*
@@ -15,12 +15,12 @@ import com.koinvois.generator.utilities.signature.SignatureView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignatureActivity : BaseActivity<FragmentSignatureBinding>(), SignatureView.OnSignedListener {
+class SignatureActivity : BaseActivity<ActivitySignatureBinding>(), SignatureView.OnSignedListener {
 
     private val viewModel: InvoiceMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentSignatureBinding =
-        FragmentSignatureBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivitySignatureBinding =
+        ActivitySignatureBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setClickListeners()

@@ -8,26 +8,26 @@
     <fragment
         android:id="@+id/fragmentMainInvoice"
         android:name="com.koinvois.generator.ui.invoices.InvoiceMainFragment"
-        tools:layout="@layout/invoice_main_fragment" />
+        tools:layout="@layout/fragment_invoice_main" />
 
     <fragment
         android:id="@+id/fragmentAllInvoices"
         android:name="com.koinvois.generator.ui.invoices.sub_fragments.AllInvoices"
-        tools:layout="@layout/all_invoices_fragment" />
+        tools:layout="@layout/fragment_invoice_all" />
 
     <fragment
         android:id="@+id/fragmentOutstandingInvoices"
         android:name="com.koinvois.generator.ui.invoices.sub_fragments.OutstandingInvoices"
-        tools:layout="@layout/fragment_outstanding_invoices" />
+        tools:layout="@layout/fragment_invoice_outstanding" />
 
     <fragment
         android:id="@+id/fragmentPaidInvoices"
         android:name="com.koinvois.generator.ui.invoices.sub_fragments.PaidInvoices"
-        tools:layout="@layout/fragment_paid_invoices" />
+        tools:layout="@layout/fragment_invoice_paid" />
 
     <fragment
         android:id="@+id/fragmentPreviewFragment"
         android:name="com.koinvois.generator.ui.invoices.add_invoice.sub_fragments.PreviewInvoiceFragment"
-        tools:layout="@layout/fragment_preview_invoice" />
+        tools:layout="@layout/fragment_invoice_preview" />
 
 </navigation>

@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentItemListForEstimateBinding
+import com.koinvois.generator.databinding.ActivityEstimateItemsListBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.ui.estimates.adapter.AllItemsForEstimateAdapter
 import com.koinvois.generator.utilities.extensions.hide
@@ -18,12 +18,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ItemListForEstimateActivity : BaseActivity<FragmentItemListForEstimateBinding>() {
+class ItemListForEstimateActivity : BaseActivity<ActivityEstimateItemsListBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentItemListForEstimateBinding =
-        FragmentItemListForEstimateBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateItemsListBinding =
+        ActivityEstimateItemsListBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setToolbar()

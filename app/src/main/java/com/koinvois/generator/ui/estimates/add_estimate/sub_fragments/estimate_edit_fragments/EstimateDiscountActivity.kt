@@ -8,7 +8,7 @@ import androidx.activity.addCallback
 import androidx.activity.viewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentEstimateDiscountBinding
+import com.koinvois.generator.databinding.ActivityEstimateDiscountBinding
 import com.koinvois.generator.domain.calculation.DiscountCalculator
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.enums.ItemDiscountTypeEnum
@@ -17,12 +17,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EstimateDiscountActivity : BaseActivity<FragmentEstimateDiscountBinding>() {
+class EstimateDiscountActivity : BaseActivity<ActivityEstimateDiscountBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentEstimateDiscountBinding =
-        FragmentEstimateDiscountBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateDiscountBinding =
+        ActivityEstimateDiscountBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

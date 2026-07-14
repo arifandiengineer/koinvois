@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.Client
-import com.koinvois.generator.databinding.ItemClientInvoiceBinding
+import com.koinvois.generator.databinding.ItemInvoiceClientListBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 
 class AllClientsForInvoiceAdapter(
@@ -15,7 +15,7 @@ class AllClientsForInvoiceAdapter(
     RecyclerView.Adapter<AllClientsForInvoiceAdapter.AllClientsForInvoiceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllClientsForInvoiceViewHolder {
-        val binding = ItemClientInvoiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemInvoiceClientListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AllClientsForInvoiceViewHolder(binding)
     }
 
@@ -32,7 +32,7 @@ class AllClientsForInvoiceAdapter(
         return clientList.size
     }
 
-    class AllClientsForInvoiceViewHolder(private val binding: ItemClientInvoiceBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AllClientsForInvoiceViewHolder(private val binding: ItemInvoiceClientListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(client: Client) {
             binding.txtClientName.text = client.clientName

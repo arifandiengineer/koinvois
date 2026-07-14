@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.data_models.InvoicePaymentsModel
-import com.koinvois.generator.databinding.ItemPaymentBinding
+import com.koinvois.generator.databinding.ItemInvoicePaymentListBinding
 
 class PaymentsAdapter(private val paymentsList: ArrayList<InvoicePaymentsModel>) : RecyclerView.Adapter<PaymentsAdapter.PaymentsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaymentsViewHolder {
-        val binding = ItemPaymentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemInvoicePaymentListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PaymentsViewHolder(binding)
     }
 
@@ -21,7 +21,7 @@ class PaymentsAdapter(private val paymentsList: ArrayList<InvoicePaymentsModel>)
         return paymentsList.size
     }
 
-    class PaymentsViewHolder(val binding: ItemPaymentBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PaymentsViewHolder(val binding: ItemInvoicePaymentListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(payment: InvoicePaymentsModel) {
             binding.paymentAmount.text = payment.amount?.toString() ?: "0.00"

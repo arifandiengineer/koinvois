@@ -3,12 +3,12 @@ package com.koinvois.generator.ui.notifications
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentNotificationsBinding
+import com.koinvois.generator.databinding.ActivityNotificationsBinding
 
-class NotificationsActivity : BaseActivity<FragmentNotificationsBinding>() {
+class NotificationsActivity : BaseActivity<ActivityNotificationsBinding>() {
 
-    override fun inflateBinding(): FragmentNotificationsBinding =
-        FragmentNotificationsBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityNotificationsBinding =
+        ActivityNotificationsBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         val notificationsViewModel =

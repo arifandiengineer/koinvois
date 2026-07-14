@@ -20,7 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.domain.model.PersonalBusiness
-import com.koinvois.generator.databinding.FragmentAddBusinessDetailsBinding
+import com.koinvois.generator.databinding.ActivityBusinessDetailsAddBinding
 import com.koinvois.generator.ui.setting.SettingViewModel
 import com.koinvois.generator.utilities.extensions.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class AddBusinessDetailsActivity : BaseActivity<FragmentAddBusinessDetailsBinding>() {
+class AddBusinessDetailsActivity : BaseActivity<ActivityBusinessDetailsAddBinding>() {
 
     private val viewModel: SettingViewModel by viewModels()
 
@@ -61,8 +61,8 @@ class AddBusinessDetailsActivity : BaseActivity<FragmentAddBusinessDetailsBindin
             }
         }
 
-    override fun inflateBinding(): FragmentAddBusinessDetailsBinding =
-        FragmentAddBusinessDetailsBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityBusinessDetailsAddBinding =
+        ActivityBusinessDetailsAddBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

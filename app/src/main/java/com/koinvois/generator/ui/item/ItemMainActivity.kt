@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.state.bind
-import com.koinvois.generator.databinding.ItemMainFragmentBinding
+import com.koinvois.generator.databinding.ActivityItemMainBinding
 import com.koinvois.generator.domain.model.Item
 import com.koinvois.generator.ui.item.add_item.AddItemActivity
 import com.koinvois.generator.ui.item.adapter.AllItemsAdapter
@@ -21,12 +21,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ItemMainActivity : BaseActivity<ItemMainFragmentBinding>() {
+class ItemMainActivity : BaseActivity<ActivityItemMainBinding>() {
 
     private val viewModel: ItemMainViewModel by viewModels()
 
-    override fun inflateBinding(): ItemMainFragmentBinding =
-        ItemMainFragmentBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityItemMainBinding =
+        ActivityItemMainBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragmentSplashMain"
         android:name="com.koinvois.generator.ui.splash.SplashMainFragment"
-        tools:layout="@layout/splash_main_fragment">
+        tools:layout="@layout/fragment_splash_main">
 
         <action
             android:id="@+id/actionFragmentSplashMainToFragmentAddBusinessSplash"
@@ -18,6 +18,6 @@
     <fragment
         android:id="@+id/fragmentAddBusinessSplash"
         android:name="com.koinvois.generator.ui.splash.splash_business.AddBusinessDetailsSplashFragment"
-        tools:layout="@layout/fragment_add_business_details_splash" />
+        tools:layout="@layout/fragment_splash_business_details_add" />
 
 </navigation>

@@ -10,7 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.koinvois.generator.R
-import com.koinvois.generator.databinding.FragmentClientsReportBinding
+import com.koinvois.generator.databinding.FragmentReportClientsBinding
 import com.koinvois.generator.ui.reports.ReportsMainViewModel
 import com.koinvois.generator.ui.reports.adapter.ClientsAdapter
 import com.koinvois.generator.utilities.extensions.hide
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class ClientsReportFragment : Fragment() {
 
-    private var binding: FragmentClientsReportBinding? = null
+    private var binding: FragmentReportClientsBinding? = null
     private val viewModel: ReportsMainViewModel by hiltNavGraphViewModels(R.id.report_navigation_graph)
     private var clientsReportAdapter: ClientsAdapter? = null
 
@@ -27,7 +27,7 @@ class ClientsReportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentClientsReportBinding.inflate(inflater, container, false)
+        binding = FragmentReportClientsBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

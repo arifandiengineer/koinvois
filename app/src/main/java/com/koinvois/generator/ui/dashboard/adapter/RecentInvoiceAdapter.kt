@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.core.utils.CurrencyFormatter
-import com.koinvois.generator.databinding.ItemRecentInvoiceBinding
+import com.koinvois.generator.databinding.ItemDashboardRecentInvoiceBinding
 import com.koinvois.generator.domain.model.Invoice
 import com.koinvois.generator.utilities.extensions.visible
 
 class RecentInvoiceAdapter(
     private val onInvoiceClicked: (Invoice) -> Unit,
-) : BaseRecyclerAdapter<Invoice, ItemRecentInvoiceBinding>(RecentInvoiceDiffCallback()) {
+) : BaseRecyclerAdapter<Invoice, ItemDashboardRecentInvoiceBinding>(RecentInvoiceDiffCallback()) {
 
-    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemRecentInvoiceBinding =
-        ItemRecentInvoiceBinding.inflate(inflater, parent, false)
+    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemDashboardRecentInvoiceBinding =
+        ItemDashboardRecentInvoiceBinding.inflate(inflater, parent, false)
 
-    override fun onBind(binding: ItemRecentInvoiceBinding, item: Invoice, position: Int) {
+    override fun onBind(binding: ItemDashboardRecentInvoiceBinding, item: Invoice, position: Int) {
         with(binding) {
             txtClientName.text = item.invoiceClientName ?: root.context.getString(R.string.fallback_no_client)
             txtInvoiceDetails.text = String.format("INV-%04d • %s", item.invoiceNumber ?: 0, item.invoiceDate ?: "")

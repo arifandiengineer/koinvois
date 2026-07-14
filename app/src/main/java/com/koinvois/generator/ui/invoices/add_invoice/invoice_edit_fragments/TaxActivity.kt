@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentTaxBinding
+import com.koinvois.generator.databinding.ActivityInvoiceTaxBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.enums.ItemTaxTypeEnum
 import com.koinvois.generator.utilities.extensions.*
@@ -19,12 +19,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TaxActivity : BaseActivity<FragmentTaxBinding>() {
+class TaxActivity : BaseActivity<ActivityInvoiceTaxBinding>() {
 
     private val viewModel: InvoiceMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentTaxBinding =
-        FragmentTaxBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityInvoiceTaxBinding =
+        ActivityInvoiceTaxBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setClickListeners()

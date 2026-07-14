@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.data_models.InvoicePaymentsModel
-import com.koinvois.generator.databinding.FragmentInvoiceAddPaymentBinding
+import com.koinvois.generator.databinding.ActivityInvoicePaymentAddBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.enums.PaymentMethodEnum
 import com.koinvois.generator.utilities.extensions.*
@@ -20,12 +20,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class InvoiceAddPaymentActivity : BaseActivity<FragmentInvoiceAddPaymentBinding>() {
+class InvoiceAddPaymentActivity : BaseActivity<ActivityInvoicePaymentAddBinding>() {
 
     private val viewModel: InvoiceMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentInvoiceAddPaymentBinding =
-        FragmentInvoiceAddPaymentBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityInvoicePaymentAddBinding =
+        ActivityInvoicePaymentAddBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         val c: Date = Calendar.getInstance().time

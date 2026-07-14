@@ -9,7 +9,7 @@ import com.koinvois.generator.R
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Estimate
-import com.koinvois.generator.databinding.ItemEstimateBinding
+import com.koinvois.generator.databinding.ItemEstimateListBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.enums.EstimateStatusEnum
 import com.koinvois.generator.utilities.extensions.hide
@@ -22,12 +22,12 @@ class AllEstimateAdapter(
     val viewModel: EstimatesMainViewModel,
     val lifecycleOwner: LifecycleOwner,
     private val onEstimateClick: (Estimate) -> Unit
-) : BaseRecyclerAdapter<Estimate, ItemEstimateBinding>(EstimateDiffCallback()) {
+) : BaseRecyclerAdapter<Estimate, ItemEstimateListBinding>(EstimateDiffCallback()) {
 
-    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemEstimateBinding =
-        ItemEstimateBinding.inflate(inflater, parent, false)
+    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemEstimateListBinding =
+        ItemEstimateListBinding.inflate(inflater, parent, false)
 
-    override fun onBind(binding: ItemEstimateBinding, item: Estimate, position: Int) {
+    override fun onBind(binding: ItemEstimateListBinding, item: Estimate, position: Int) {
         binding.txtClientName.text = item.estimateClientName ?: "No Client"
         binding.txtInitials.text = item.estimateClientName?.take(2)?.uppercase() ?: "NA"
         

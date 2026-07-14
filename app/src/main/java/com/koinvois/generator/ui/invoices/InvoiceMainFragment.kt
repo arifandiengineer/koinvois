@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Invoice
-import com.koinvois.generator.databinding.InvoiceMainFragmentBinding
+import com.koinvois.generator.databinding.FragmentInvoiceMainBinding
 import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
 import com.koinvois.generator.ui.invoices.adapter.ViewPagerAdapter
 import com.koinvois.generator.utilities.enums.DBEnum
@@ -27,14 +27,14 @@ import androidx.core.widget.addTextChangedListener
 class InvoiceMainFragment : Fragment() {
 
     private val viewModel: InvoiceMainViewModel by hiltNavGraphViewModels(R.id.invoice_navigation_graph)
-    private var _binding: InvoiceMainFragmentBinding? = null
+    private var _binding: FragmentInvoiceMainBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = InvoiceMainFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentInvoiceMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 

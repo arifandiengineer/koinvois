@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.state.bind
-import com.koinvois.generator.databinding.AllInvoicesFragmentBinding
+import com.koinvois.generator.databinding.FragmentInvoiceAllBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.ui.invoices.add_invoice.AddInvoiceMainActivity
 import com.koinvois.generator.ui.invoices.adapter.AllInvoiceAdapter
@@ -18,7 +18,7 @@ import com.koinvois.generator.utilities.extensions.visible
 
 class AllInvoices : Fragment() {
 
-    private var binding: AllInvoicesFragmentBinding? = null
+    private var binding: FragmentInvoiceAllBinding? = null
     private val viewModel: InvoiceMainViewModel by hiltNavGraphViewModels(R.id.invoice_navigation_graph)
     private var allInvoiceAdapter: AllInvoiceAdapter? = null
 
@@ -27,7 +27,7 @@ class AllInvoices : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = AllInvoicesFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentInvoiceAllBinding.inflate(inflater, container, false)
 
         setUpRecyclerView()
 

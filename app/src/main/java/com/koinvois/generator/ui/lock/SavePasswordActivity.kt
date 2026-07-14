@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
-import com.koinvois.generator.databinding.FragmentSavePasswordBinding
+import com.koinvois.generator.databinding.ActivityPasswordSaveBinding
 import com.koinvois.generator.ui.setting.SettingActivity
 import com.koinvois.generator.utilities.enums.PinTypeEnum
 import com.koinvois.generator.utilities.extensions.getString
@@ -19,14 +19,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SavePasswordActivity : BaseActivity<FragmentSavePasswordBinding>() {
+class SavePasswordActivity : BaseActivity<ActivityPasswordSaveBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
     private val pinType: String by lazy { intent.getStringExtra(EXTRA_PIN_TYPE) ?: PinTypeEnum.NEW.type }
 
-    override fun inflateBinding(): FragmentSavePasswordBinding =
-        FragmentSavePasswordBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityPasswordSaveBinding =
+        ActivityPasswordSaveBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setClickListener()

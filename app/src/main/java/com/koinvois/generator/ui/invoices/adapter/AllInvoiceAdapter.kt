@@ -17,18 +17,18 @@ import com.koinvois.generator.utilities.enums.InvoiceStatusEnum
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-import com.koinvois.generator.databinding.ItemInvoiceBinding
+import com.koinvois.generator.databinding.ItemInvoiceListBinding
 
 class AllInvoiceAdapter(
     val viewModel: InvoiceMainViewModel,
     val lifecycleOwner: LifecycleOwner,
     private val onInvoiceClick: (Invoice) -> Unit
-) : BaseRecyclerAdapter<Invoice, ItemInvoiceBinding>(InvoiceDiffCallback()) {
+) : BaseRecyclerAdapter<Invoice, ItemInvoiceListBinding>(InvoiceDiffCallback()) {
 
-    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemInvoiceBinding =
-        ItemInvoiceBinding.inflate(inflater, parent, false)
+    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemInvoiceListBinding =
+        ItemInvoiceListBinding.inflate(inflater, parent, false)
 
-    override fun onBind(binding: ItemInvoiceBinding, item: Invoice, position: Int) {
+    override fun onBind(binding: ItemInvoiceListBinding, item: Invoice, position: Int) {
         val context = binding.root.context
         
         binding.txtClientName.text = item.invoiceClientName ?: "No Client"

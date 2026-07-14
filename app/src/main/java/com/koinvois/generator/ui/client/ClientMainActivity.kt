@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.state.bind
-import com.koinvois.generator.databinding.ClientMainFragmentBinding
+import com.koinvois.generator.databinding.ActivityClientMainBinding
 import com.koinvois.generator.domain.model.Client
 import com.koinvois.generator.ui.client.add_client.AddClientActivity
 import com.koinvois.generator.ui.client.adapter.AllClientsAdapter
@@ -20,12 +20,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ClientMainActivity : BaseActivity<ClientMainFragmentBinding>() {
+class ClientMainActivity : BaseActivity<ActivityClientMainBinding>() {
 
     private val viewModel: ClientMainViewModel by viewModels()
 
-    override fun inflateBinding(): ClientMainFragmentBinding =
-        ClientMainFragmentBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityClientMainBinding =
+        ActivityClientMainBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

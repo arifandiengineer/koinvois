@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.koinvois.generator.MainActivity
 import com.koinvois.generator.R
-import com.koinvois.generator.databinding.ReportsMainFragmentBinding
+import com.koinvois.generator.databinding.FragmentReportMainBinding
 import com.koinvois.generator.ui.reports.adapter.ViewPagerAdapterReport
 import com.koinvois.generator.utilities.extensions.inVisible
 import com.koinvois.generator.utilities.extensions.visible
@@ -20,13 +20,13 @@ class ReportsMainFragment : Fragment() {
 
 
     private lateinit var viewModel: ReportsMainViewModel
-    private var binding: ReportsMainFragmentBinding? = null
+    private var binding: FragmentReportMainBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = ReportsMainFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentReportMainBinding.inflate(inflater, container, false)
 
 
         setUpViewPager()

@@ -13,7 +13,7 @@ import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.core.data.preferences.ThemeMode
 import com.koinvois.generator.core.utils.CurrencyFormatter
-import com.koinvois.generator.databinding.SettingFragmentBinding
+import com.koinvois.generator.databinding.ActivitySettingBinding
 import com.koinvois.generator.ui.lock.LockMainActivity
 import com.koinvois.generator.ui.setting.add_business.AddBusinessDetailsActivity
 import com.koinvois.generator.utilities.enums.PinTypeEnum
@@ -28,14 +28,14 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SettingActivity : BaseActivity<SettingFragmentBinding>() {
+class SettingActivity : BaseActivity<ActivitySettingBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
     private val viewModel: SettingViewModel by viewModels()
 
-    override fun inflateBinding(): SettingFragmentBinding =
-        SettingFragmentBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivitySettingBinding =
+        ActivitySettingBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

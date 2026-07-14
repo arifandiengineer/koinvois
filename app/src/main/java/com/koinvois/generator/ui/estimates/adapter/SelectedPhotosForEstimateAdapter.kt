@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.EstimatePhoto
-import com.koinvois.generator.databinding.ItemInvoicePhotoBinding
+import com.koinvois.generator.databinding.ItemInvoicePhotoListBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 
@@ -20,7 +20,7 @@ class SelectedPhotosForEstimateAdapter(
         viewType: Int
     ): SelectedPhotosForInvoiceViewHolder {
         val binding =
-            ItemInvoicePhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemInvoicePhotoListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SelectedPhotosForInvoiceViewHolder(binding)
     }
 
@@ -38,7 +38,7 @@ class SelectedPhotosForEstimateAdapter(
         return selectedPhotoList.size
     }
 
-    class SelectedPhotosForInvoiceViewHolder(val binding: ItemInvoicePhotoBinding) :
+    class SelectedPhotosForInvoiceViewHolder(val binding: ItemInvoicePhotoListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(singleInvoicePhoto: EstimatePhoto) {

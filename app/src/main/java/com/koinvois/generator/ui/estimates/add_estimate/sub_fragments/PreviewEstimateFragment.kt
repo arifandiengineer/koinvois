@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.koinvois.generator.R
-import com.koinvois.generator.databinding.FragmentPreviewEstimateBinding
+import com.koinvois.generator.databinding.FragmentEstimatePreviewBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.extensions.visible
 import com.koinvois.generator.utilities.utility
@@ -16,7 +16,7 @@ import java.lang.String
 
 class PreviewEstimateFragment : Fragment() {
 
-    private var binding: FragmentPreviewEstimateBinding? = null
+    private var binding: FragmentEstimatePreviewBinding? = null
     private val viewModel: EstimatesMainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class PreviewEstimateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentPreviewEstimateBinding.inflate(inflater, container, false)
+        binding = FragmentEstimatePreviewBinding.inflate(inflater, container, false)
         setUpToolbar()
         createHTML()
 

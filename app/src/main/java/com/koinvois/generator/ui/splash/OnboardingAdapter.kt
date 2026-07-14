@@ -4,14 +4,14 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.koinvois.generator.databinding.ItemOnboardingBinding
+import com.koinvois.generator.databinding.ItemSplashOnboardingBinding
 
 class OnboardingAdapter(private val items: List<OnboardingItem>) :
     RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
         return OnboardingViewHolder(
-            ItemOnboardingBinding.inflate(
+            ItemSplashOnboardingBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -25,7 +25,7 @@ class OnboardingAdapter(private val items: List<OnboardingItem>) :
 
     override fun getItemCount(): Int = items.size
 
-    inner class OnboardingViewHolder(private val binding: ItemOnboardingBinding) :
+    inner class OnboardingViewHolder(private val binding: ItemSplashOnboardingBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: OnboardingItem) {

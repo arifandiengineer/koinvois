@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.koinvois.generator.R
-import com.koinvois.generator.databinding.FragmentOpenEstimatesBinding
+import com.koinvois.generator.databinding.FragmentEstimateOpenBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity
 import com.koinvois.generator.ui.estimates.adapter.AllEstimateAdapter
@@ -18,7 +18,7 @@ import com.koinvois.generator.utilities.extensions.visible
 
 class OpenEstimatesFragment : Fragment() {
 
-    private var binding: FragmentOpenEstimatesBinding? = null
+    private var binding: FragmentEstimateOpenBinding? = null
     private val viewModel: EstimatesMainViewModel by hiltNavGraphViewModels(R.id.estimate_navigation_graph)
     private var allEstimateAdapter: AllEstimateAdapter? = null
 
@@ -27,7 +27,7 @@ class OpenEstimatesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentOpenEstimatesBinding.inflate(inflater, container, false)
+        binding = FragmentEstimateOpenBinding.inflate(inflater, container, false)
 
         setUpRecyclerView()
 

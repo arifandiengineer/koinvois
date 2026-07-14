@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.InvoiceItem
-import com.koinvois.generator.databinding.ItemItemsInvoiceBinding
+import com.koinvois.generator.databinding.ItemInvoiceItemListBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 
@@ -19,7 +19,7 @@ class SelectedInvoiceItemsAdapter(
         () {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectedInvoiceItemsViewHolder {
-        val binding = ItemItemsInvoiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemInvoiceItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SelectedInvoiceItemsViewHolder(binding)
     }
 
@@ -36,7 +36,7 @@ class SelectedInvoiceItemsAdapter(
         return selectedItemsList.size ?: 0
     }
 
-    class SelectedInvoiceItemsViewHolder(val binding: ItemItemsInvoiceBinding) : RecyclerView.ViewHolder(binding.root) {
+    class SelectedInvoiceItemsViewHolder(val binding: ItemInvoiceItemListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(singleInvoiceItem: InvoiceItem?) {
 

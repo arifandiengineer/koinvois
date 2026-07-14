@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.database.models.Client
-import com.koinvois.generator.databinding.FragmentClientListForInvoiceBinding
+import com.koinvois.generator.databinding.ActivityInvoiceClientListBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.ui.invoices.adapter.AllClientsForInvoiceAdapter
 import com.koinvois.generator.utilities.extensions.hide
@@ -19,12 +19,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ClientListForInvoiceActivity : BaseActivity<FragmentClientListForInvoiceBinding>() {
+class ClientListForInvoiceActivity : BaseActivity<ActivityInvoiceClientListBinding>() {
 
     private val viewModel: InvoiceMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentClientListForInvoiceBinding =
-        FragmentClientListForInvoiceBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityInvoiceClientListBinding =
+        ActivityInvoiceClientListBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

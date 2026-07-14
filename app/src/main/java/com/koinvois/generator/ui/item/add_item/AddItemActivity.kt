@@ -12,7 +12,7 @@ import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.dialog.BaseDialog
 import com.koinvois.generator.domain.model.Item
-import com.koinvois.generator.databinding.FragmentAddItemBinding
+import com.koinvois.generator.databinding.ActivityItemAddBinding
 import com.koinvois.generator.ui.item.ItemMainViewModel
 import com.koinvois.generator.utilities.constants.Constants
 import com.koinvois.generator.utilities.extensions.*
@@ -21,15 +21,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AddItemActivity : BaseActivity<FragmentAddItemBinding>() {
+class AddItemActivity : BaseActivity<ActivityItemAddBinding>() {
 
     private val viewModel: ItemMainViewModel by viewModels()
     private val itemId: Int by lazy { intent.getIntExtra(EXTRA_ITEM_ID, -1) }
     private val itemType: String get() = if (itemId != -1) Constants.EXISTING_ITEM else Constants.NEW_ITEM
     private var currentItem: Item? = null
 
-    override fun inflateBinding(): FragmentAddItemBinding =
-        FragmentAddItemBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityItemAddBinding =
+        ActivityItemAddBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

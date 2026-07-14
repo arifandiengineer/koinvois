@@ -30,7 +30,7 @@ import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Invoice
-import com.koinvois.generator.databinding.FragmentEditInvoiceBinding
+import com.koinvois.generator.databinding.ActivityInvoiceEditBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientDetailForInvoiceActivity
 import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientListForInvoiceActivity
@@ -60,7 +60,7 @@ import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddInvoiceMainActivity : BaseActivity<FragmentEditInvoiceBinding>() {
+class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
@@ -80,8 +80,8 @@ class AddInvoiceMainActivity : BaseActivity<FragmentEditInvoiceBinding>() {
             }
         }
 
-    override fun inflateBinding(): FragmentEditInvoiceBinding =
-        FragmentEditInvoiceBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityInvoiceEditBinding =
+        ActivityInvoiceEditBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

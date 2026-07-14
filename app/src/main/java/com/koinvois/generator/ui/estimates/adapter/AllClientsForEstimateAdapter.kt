@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.Client
-import com.koinvois.generator.databinding.ItemClientInvoiceBinding
+import com.koinvois.generator.databinding.ItemInvoiceClientListBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 
 class AllClientsForEstimateAdapter(
@@ -19,7 +19,7 @@ class AllClientsForEstimateAdapter(
         viewType: Int
     ): AllClientsForInvoiceViewHolder {
         val binding =
-            ItemClientInvoiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemInvoiceClientListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AllClientsForInvoiceViewHolder(binding)
     }
 
@@ -36,7 +36,7 @@ class AllClientsForEstimateAdapter(
         return clientList.size
     }
 
-    class AllClientsForInvoiceViewHolder(private val binding: ItemClientInvoiceBinding) :
+    class AllClientsForInvoiceViewHolder(private val binding: ItemInvoiceClientListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(client: Client) {

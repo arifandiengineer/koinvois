@@ -25,7 +25,7 @@ import androidx.navigation.navOptions
 import com.koinvois.generator.R
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.domain.model.PersonalBusiness
-import com.koinvois.generator.databinding.FragmentAddBusinessDetailsSplashBinding
+import com.koinvois.generator.databinding.FragmentSplashBusinessDetailsAddBinding
 import com.koinvois.generator.ui.splash.SplashMainViewModel
 import com.koinvois.generator.utilities.extensions.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -41,7 +41,7 @@ class AddBusinessDetailsSplashFragment : Fragment() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
-    private var binding: FragmentAddBusinessDetailsSplashBinding? = null
+    private var binding: FragmentSplashBusinessDetailsAddBinding? = null
     private val viewModel: SplashMainViewModel by hiltNavGraphViewModels(R.id.splash_navigation_graph)
 
     private var currentStep = 1
@@ -76,7 +76,7 @@ class AddBusinessDetailsSplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddBusinessDetailsSplashBinding.inflate(inflater, container, false)
+        binding = FragmentSplashBusinessDetailsAddBinding.inflate(inflater, container, false)
         showStep(1)
         setClickListeners()
         setupTextWatchers()

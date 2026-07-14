@@ -384,7 +384,7 @@
                     android:background="@color/white"
                     android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_recent_invoice" />
+                    tools:listitem="@layout/item_dashboard_recent_invoice" />
 
                 <TextView
                     android:id="@+id/txtNoRecentInvoices"

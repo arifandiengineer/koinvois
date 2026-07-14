@@ -21,7 +21,7 @@ import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.dialog.BaseDialog
 import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.EstimateItem
-import com.koinvois.generator.databinding.FragmentItemDetailForEstimateBinding
+import com.koinvois.generator.databinding.ActivityEstimateItemDetailBinding
 import com.koinvois.generator.domain.calculation.ItemCalculator
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.enums.DBEnum
@@ -33,7 +33,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ItemDetailForEstimateActivity : BaseActivity<FragmentItemDetailForEstimateBinding>() {
+class ItemDetailForEstimateActivity : BaseActivity<ActivityEstimateItemDetailBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
     private val itemType: String by lazy { intent.getStringExtra(EXTRA_ITEM_TYPE) ?: DBEnum.NEW.entryType }
@@ -43,8 +43,8 @@ class ItemDetailForEstimateActivity : BaseActivity<FragmentItemDetailForEstimate
     private var dType = ItemDiscountTypeEnum.PERCENTAGE.discountTypeSmall
     private var dAmount = 0f
 
-    override fun inflateBinding(): FragmentItemDetailForEstimateBinding =
-        FragmentItemDetailForEstimateBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateItemDetailBinding =
+        ActivityEstimateItemDetailBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

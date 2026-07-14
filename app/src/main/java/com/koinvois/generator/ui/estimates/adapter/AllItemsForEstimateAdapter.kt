@@ -3,10 +3,12 @@ package com.koinvois.generator.ui.estimates.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.EstimateItem
 import com.koinvois.generator.database.models.Item
-import com.koinvois.generator.databinding.ItemItemsBinding
+import com.koinvois.generator.databinding.ItemInvoiceItemListBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
+import com.koinvois.generator.utilities.extensions.hide
 
 class AllItemsForEstimateAdapter(
     private val itemList: ArrayList<Item>,
@@ -16,7 +18,7 @@ class AllItemsForEstimateAdapter(
     RecyclerView.Adapter<AllItemsForEstimateAdapter.AllItemsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllItemsViewHolder {
-        val binding = ItemItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemInvoiceItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AllItemsViewHolder(binding)
     }
 
@@ -49,13 +51,15 @@ class AllItemsForEstimateAdapter(
         return itemList.size
     }
 
-    class AllItemsViewHolder(private val binding: ItemItemsBinding) :
+    class AllItemsViewHolder(private val binding: ItemInvoiceItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Item) {
             binding.txtItemName.text = item.itemName
-            binding.txtItemCost.text = item.itemUnitCost.toString()
+            binding.txtItemUnitCost.text = CurrencyFormatter.format(item.itemUnitCost?.toDouble() ?: 0.0)
             binding.txtItemDescription.text = item.itemDetails
+            binding.qtyContainer.hide()
+            binding.totalContainer.hide()
         }
     }
 }

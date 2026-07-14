@@ -17,7 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.database.models.PersonalBusiness
-import com.koinvois.generator.databinding.FragmentEditBusinessDetailsFromEstimateBinding
+import com.koinvois.generator.databinding.ActivityEstimateEditBusinessDetailsBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.extensions.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class EditBusinessDetailsFromEstimateActivity : BaseActivity<FragmentEditBusinessDetailsFromEstimateBinding>() {
+class EditBusinessDetailsFromEstimateActivity : BaseActivity<ActivityEstimateEditBusinessDetailsBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
 
@@ -56,8 +56,8 @@ class EditBusinessDetailsFromEstimateActivity : BaseActivity<FragmentEditBusines
             }
         }
 
-    override fun inflateBinding(): FragmentEditBusinessDetailsFromEstimateBinding =
-        FragmentEditBusinessDetailsFromEstimateBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateEditBusinessDetailsBinding =
+        ActivityEstimateEditBusinessDetailsBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         lifecycleScope.launch(Dispatchers.Main) {

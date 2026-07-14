@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.webkit.WebView
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentHomeBinding
+import com.koinvois.generator.databinding.ActivityHomeBinding
 
-class HomeActivity : BaseActivity<FragmentHomeBinding>() {
+class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
-    override fun inflateBinding(): FragmentHomeBinding =
-        FragmentHomeBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityHomeBinding =
+        ActivityHomeBinding.inflate(LayoutInflater.from(this))
 
     private fun createWebPrintJob(webView: WebView) {
         // Get a PrintManager instance

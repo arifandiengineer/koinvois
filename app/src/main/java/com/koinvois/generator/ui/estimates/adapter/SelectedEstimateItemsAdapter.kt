@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.EstimateItem
-import com.koinvois.generator.databinding.ItemItemsInvoiceBinding
+import com.koinvois.generator.databinding.ItemInvoiceItemListBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -25,7 +25,7 @@ class SelectedEstimateItemsAdapter(
         viewType: Int
     ): SelectedInvoiceItemsViewHolder {
         val binding =
-            ItemItemsInvoiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemInvoiceItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SelectedInvoiceItemsViewHolder(binding)
     }
 
@@ -42,7 +42,7 @@ class SelectedEstimateItemsAdapter(
         return selectedItemsList.size ?: 0
     }
 
-    class SelectedInvoiceItemsViewHolder(val binding: ItemItemsInvoiceBinding) :
+    class SelectedInvoiceItemsViewHolder(val binding: ItemInvoiceItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(singleInvoiceItem: EstimateItem?) {

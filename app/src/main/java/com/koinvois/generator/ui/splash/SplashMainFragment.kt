@@ -19,7 +19,7 @@ import androidx.navigation.navOptions
 import androidx.viewpager2.widget.ViewPager2
 import com.koinvois.generator.R
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
-import com.koinvois.generator.databinding.SplashMainFragmentBinding
+import com.koinvois.generator.databinding.FragmentSplashMainBinding
 import com.koinvois.generator.ui.lock.EnterPasswordActivity
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -36,7 +36,7 @@ class SplashMainFragment : Fragment() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
-    private var binding: SplashMainFragmentBinding? = null
+    private var binding: FragmentSplashMainBinding? = null
     private var isFirstTime = true
     private var lockMode = false
     private var languageChosen = false
@@ -52,7 +52,7 @@ class SplashMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SplashMainFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentSplashMainBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

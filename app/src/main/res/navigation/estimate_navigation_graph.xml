@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/fragmentMainEstimate"
         android:name="com.koinvois.generator.ui.estimates.EstimatesMainFragment"
-        tools:layout="@layout/estimates_main_fragment" />
+        tools:layout="@layout/fragment_estimate_main" />
 
 </navigation>

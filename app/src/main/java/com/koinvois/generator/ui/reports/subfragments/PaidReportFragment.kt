@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.koinvois.generator.R
 import com.koinvois.generator.core.utils.CurrencyFormatter
-import com.koinvois.generator.databinding.FragmentPaidReportBinding
+import com.koinvois.generator.databinding.FragmentReportPaidInvoicesBinding
 import com.koinvois.generator.ui.reports.ReportsMainViewModel
 import com.koinvois.generator.ui.reports.adapter.PaidReportAdapter
 import com.koinvois.generator.utilities.extensions.hide
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 class PaidReportFragment : Fragment() {
 
-    private var binding: FragmentPaidReportBinding? = null
+    private var binding: FragmentReportPaidInvoicesBinding? = null
     private val viewModel: ReportsMainViewModel by hiltNavGraphViewModels(R.id.report_navigation_graph)
     private var paidReportAdapter: PaidReportAdapter? = null
 
@@ -29,7 +29,7 @@ class PaidReportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPaidReportBinding.inflate(inflater, container, false)
+        binding = FragmentReportPaidInvoicesBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

@@ -20,7 +20,7 @@ import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.dialog.BaseDialog
 import com.koinvois.generator.database.models.EstimatePhoto
-import com.koinvois.generator.databinding.FragmentAddPhotoToEstimateBinding
+import com.koinvois.generator.databinding.ActivityEstimateAddPhotoBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.getString
@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class AddPhotoToEstimateActivity : BaseActivity<FragmentAddPhotoToEstimateBinding>() {
+class AddPhotoToEstimateActivity : BaseActivity<ActivityEstimateAddPhotoBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
     private var imagePicked: Boolean = false
@@ -76,8 +76,8 @@ class AddPhotoToEstimateActivity : BaseActivity<FragmentAddPhotoToEstimateBindin
             }
         }
 
-    override fun inflateBinding(): FragmentAddPhotoToEstimateBinding =
-        FragmentAddPhotoToEstimateBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateAddPhotoBinding =
+        ActivityEstimateAddPhotoBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

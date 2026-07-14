@@ -12,7 +12,7 @@ import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.dialog.BaseDialog
 import com.koinvois.generator.domain.model.Client
-import com.koinvois.generator.databinding.AddClientFragmentBinding
+import com.koinvois.generator.databinding.ActivityClientAddBinding
 import com.koinvois.generator.ui.client.ClientMainViewModel
 import com.koinvois.generator.utilities.constants.Constants
 import com.koinvois.generator.utilities.extensions.*
@@ -21,15 +21,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AddClientActivity : BaseActivity<AddClientFragmentBinding>() {
+class AddClientActivity : BaseActivity<ActivityClientAddBinding>() {
 
     private val viewModel: ClientMainViewModel by viewModels()
     private val clientId: Int by lazy { intent.getIntExtra(EXTRA_CLIENT_ID, -1) }
     private val clientType: String get() = if (clientId != -1) Constants.EXISTING_CLIENT else Constants.NEW_CLIENT
     private var client: Client? = null
 
-    override fun inflateBinding(): AddClientFragmentBinding =
-        AddClientFragmentBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityClientAddBinding =
+        ActivityClientAddBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setToolbar()

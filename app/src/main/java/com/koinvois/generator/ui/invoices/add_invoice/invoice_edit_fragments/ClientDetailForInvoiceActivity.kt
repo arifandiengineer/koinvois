@@ -10,18 +10,18 @@ import androidx.core.text.isDigitsOnly
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.database.models.Client
-import com.koinvois.generator.databinding.FragmentClientDetailForInvoiceBinding
+import com.koinvois.generator.databinding.ActivityInvoiceClientDetailBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ClientDetailForInvoiceActivity : BaseActivity<FragmentClientDetailForInvoiceBinding>() {
+class ClientDetailForInvoiceActivity : BaseActivity<ActivityInvoiceClientDetailBinding>() {
 
     private val viewModel: InvoiceMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentClientDetailForInvoiceBinding =
-        FragmentClientDetailForInvoiceBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityInvoiceClientDetailBinding =
+        ActivityInvoiceClientDetailBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setToolbar()

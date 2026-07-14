@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.koinvois.generator.R
-import com.koinvois.generator.databinding.FragmentPreviewInvoiceBinding
+import com.koinvois.generator.databinding.FragmentInvoicePreviewBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.utility
 import java.lang.String
 
 class PreviewInvoiceFragment : Fragment() {
 
-    private var binding: FragmentPreviewInvoiceBinding? = null
+    private var binding: FragmentInvoicePreviewBinding? = null
     private val viewModel: InvoiceMainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -23,7 +23,7 @@ class PreviewInvoiceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentPreviewInvoiceBinding.inflate(inflater, container, false)
+        binding = FragmentInvoicePreviewBinding.inflate(inflater, container, false)
 
         createHTML()
 

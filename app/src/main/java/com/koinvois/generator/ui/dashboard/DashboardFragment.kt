@@ -127,7 +127,7 @@ class DashboardFragment : Fragment() {
 
     private fun showExitDialog() {
         val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.exit_dialog)
+        dialog.setContentView(R.layout.dialog_exit)
         dialog.setCancelable(false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(androidx.core.content.ContextCompat.getColor(requireContext(), R.color.transparentColor)))
         dialog.window?.setLayout(

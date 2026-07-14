@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
-import com.koinvois.generator.databinding.LockMainFragmentBinding
+import com.koinvois.generator.databinding.ActivityLockMainBinding
 import com.koinvois.generator.utilities.enums.PinTypeEnum
 import com.koinvois.generator.utilities.extensions.getString
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LockMainActivity : BaseActivity<LockMainFragmentBinding>() {
+class LockMainActivity : BaseActivity<ActivityLockMainBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
@@ -35,8 +35,8 @@ class LockMainActivity : BaseActivity<LockMainFragmentBinding>() {
             finish()
         }
 
-    override fun inflateBinding(): LockMainFragmentBinding =
-        LockMainFragmentBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityLockMainBinding =
+        ActivityLockMainBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         lifecycleScope.launch(Dispatchers.Main) {

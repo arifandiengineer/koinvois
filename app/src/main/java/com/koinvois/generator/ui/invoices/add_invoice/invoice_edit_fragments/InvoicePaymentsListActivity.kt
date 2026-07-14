@@ -10,7 +10,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.utils.CurrencyFormatter
-import com.koinvois.generator.databinding.FragmentInvoicePaymentsListBinding
+import com.koinvois.generator.databinding.ActivityInvoicePaymentListBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.ui.invoices.adapter.PaymentsAdapter
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
@@ -18,12 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class InvoicePaymentsListActivity : BaseActivity<FragmentInvoicePaymentsListBinding>() {
+class InvoicePaymentsListActivity : BaseActivity<ActivityInvoicePaymentListBinding>() {
 
     private val viewModel: InvoiceMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentInvoicePaymentsListBinding =
-        FragmentInvoicePaymentsListBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityInvoicePaymentListBinding =
+        ActivityInvoicePaymentListBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setToolbar()

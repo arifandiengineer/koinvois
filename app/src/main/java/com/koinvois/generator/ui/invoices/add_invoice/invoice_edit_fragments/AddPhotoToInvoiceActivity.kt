@@ -20,7 +20,7 @@ import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.common.dialog.BaseDialog
 import com.koinvois.generator.database.models.InvoicePhoto
-import com.koinvois.generator.databinding.FragmentAddPhotoToInvoiceBinding
+import com.koinvois.generator.databinding.ActivityInvoiceAddPhotoBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.getString
@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class AddPhotoToInvoiceActivity : BaseActivity<FragmentAddPhotoToInvoiceBinding>() {
+class AddPhotoToInvoiceActivity : BaseActivity<ActivityInvoiceAddPhotoBinding>() {
 
     private val viewModel: InvoiceMainViewModel by viewModels()
     private var imagePicked: Boolean = false
@@ -76,8 +76,8 @@ class AddPhotoToInvoiceActivity : BaseActivity<FragmentAddPhotoToInvoiceBinding>
             }
         }
 
-    override fun inflateBinding(): FragmentAddPhotoToInvoiceBinding =
-        FragmentAddPhotoToInvoiceBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityInvoiceAddPhotoBinding =
+        ActivityInvoiceAddPhotoBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

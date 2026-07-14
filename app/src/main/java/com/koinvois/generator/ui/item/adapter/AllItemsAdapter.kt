@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.domain.model.Item
-import com.koinvois.generator.databinding.ItemItemsBinding
+import com.koinvois.generator.databinding.ItemItemMainListBinding
 
 class AllItemsAdapter(private val onItemClick: (Item) -> Unit) :
-    BaseRecyclerAdapter<Item, ItemItemsBinding>(ItemDiffCallback()) {
+    BaseRecyclerAdapter<Item, ItemItemMainListBinding>(ItemDiffCallback()) {
 
-    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemItemsBinding =
-        ItemItemsBinding.inflate(inflater, parent, false)
+    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemItemMainListBinding =
+        ItemItemMainListBinding.inflate(inflater, parent, false)
 
-    override fun onBind(binding: ItemItemsBinding, item: Item, position: Int) {
+    override fun onBind(binding: ItemItemMainListBinding, item: Item, position: Int) {
         binding.txtItemName.text = item.itemName
         binding.txtItemCost.text = item.itemUnitCost.toString()
         binding.txtItemDescription.text = item.itemDetails

@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentEstimateTaxBinding
+import com.koinvois.generator.databinding.ActivityEstimateTaxBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.enums.ItemTaxTypeEnum
 import com.koinvois.generator.utilities.extensions.*
@@ -19,12 +19,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class EstimateTaxActivity : BaseActivity<FragmentEstimateTaxBinding>() {
+class EstimateTaxActivity : BaseActivity<ActivityEstimateTaxBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentEstimateTaxBinding =
-        FragmentEstimateTaxBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateTaxBinding =
+        ActivityEstimateTaxBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setClickListeners()

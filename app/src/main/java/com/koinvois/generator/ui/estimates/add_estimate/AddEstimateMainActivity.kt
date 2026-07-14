@@ -29,7 +29,7 @@ import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.database.models.Estimate
-import com.koinvois.generator.databinding.FragmentAddEstimateMainBinding
+import com.koinvois.generator.databinding.ActivityEstimateEditBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.PreviewEstimateFragment
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateActivity
@@ -61,7 +61,7 @@ import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
+class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
@@ -76,8 +76,8 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
             }
         }
 
-    override fun inflateBinding(): FragmentAddEstimateMainBinding =
-        FragmentAddEstimateMainBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateEditBinding =
+        ActivityEstimateEditBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()
@@ -112,14 +112,12 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
     override fun onResume() {
         super.onResume()
 
-        val content = binding.editEstimateContent
-
         viewModel.selectedClient.let {
-            content.txtClientName.text = it?.clientName
+            binding.txtClientName.text = it?.clientName
         }
 
         viewModel.signatureObj?.let {
-            content.txtSignature.text = "Signed on ${it?.signatureDate}"
+            binding.txtSignature.text = "Signed on ${it?.signatureDate}"
         }
         var totalItemsCost = 0f
 
@@ -127,50 +125,50 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
             it.toString().let { it1 -> Log.e("obj", it1) }
             totalItemsCost += it.itemTotal ?: 0f
         }
-        content.txtTotalAmount.text = totalItemsCost.toString()
+        binding.txtTotalAmount.text = totalItemsCost.toString()
 
         viewModel.estimateNumber?.let {
-            content.txtEstimateNumber.text = it.toString()
+            binding.txtEstimateNumber.text = it.toString()
         } ?: run {
-            content.txtEstimateNumber.text = null
+            binding.txtEstimateNumber.text = null
         }
 
         viewModel.estimateDate?.let {
-            content.txtEstimateDate.text = it
+            binding.txtEstimateDate.text = it
         }
 
         viewModel.selectedItemsList?.let {
-            content.rvEstimateItems.adapter =
+            binding.rvEstimateItems.adapter =
                 SelectedEstimateItemsAdapter(it, viewModel) {
                     startActivity(ItemDetailForEstimateActivity.newIntent(this, DBEnum.OLD.entryType))
                 }
         }
 
         viewModel.photosForEstimate?.let {
-            content.rvPhotos.adapter =
+            binding.rvPhotos.adapter =
                 SelectedPhotosForEstimateAdapter(it, viewModel) {
                     startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.OLD.entryType))
                 }
         }
 
         viewModel.discountAmount?.let {
-            content.txtDiscountPrice.text = it.toString()
+            binding.txtDiscountPrice.text = it.toString()
         }
 
         viewModel.estimateNotes?.let {
-            content.txtNotes.setText(it)
+            binding.txtNotes.setText(it)
         }
 
         viewModel.estimateStatus?.let {
             when (it) {
                 EstimateStatusEnum.OPEN.status -> {
-                    content.btnMarkPaid.setText(R.string.label_mark_closed)
+                    binding.btnMarkPaid.setText(R.string.label_mark_closed)
                 }
                 EstimateStatusEnum.CLOSED.status -> {
-                    content.btnMarkPaid.setText(R.string.label_mark_open)
+                    binding.btnMarkPaid.setText(R.string.label_mark_open)
                 }
                 else -> {
-                    content.btnMarkPaid.setText(R.string.label_mark_closed)
+                    binding.btnMarkPaid.setText(R.string.label_mark_closed)
                 }
             }
         }
@@ -188,8 +186,6 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
     }
 
     private fun setClickListeners(context: Context) {
-        val content = binding.editEstimateContent
-
         binding.customToolbar.btnBack.setSafeOnClickListener {
             saveOnBack()
         }
@@ -198,23 +194,23 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
             showPopupMenu(it, context)
         }
 
-        content.txtSignature.setSafeOnClickListener {
+        binding.txtSignature.setSafeOnClickListener {
             startActivity(EstimateSignatureActivity.newIntent(this))
         }
 
-        content.txtEstimateDate.setSafeOnClickListener {
+        binding.txtEstimateDate.setSafeOnClickListener {
             startActivity(EstimateInformationActivity.newIntent(this))
         }
 
-        content.txtEstimateNumber.setSafeOnClickListener {
+        binding.txtEstimateNumber.setSafeOnClickListener {
             startActivity(EstimateInformationActivity.newIntent(this))
         }
 
-        content.txtBusinessInfo.setSafeOnClickListener {
+        binding.txtBusinessInfo.setSafeOnClickListener {
             startActivity(EditBusinessDetailsFromEstimateActivity.newIntent(this))
         }
 
-        content.cardClient.setSafeOnClickListener {
+        binding.cardClient.setSafeOnClickListener {
             viewModel.selectedClient?.let {
                 startActivity(ClientDetailForEstimateActivity.newIntent(this))
             } ?: run {
@@ -226,48 +222,48 @@ class AddEstimateMainActivity : BaseActivity<FragmentAddEstimateMainBinding>() {
                         startActivity(ClientDetailForEstimateActivity.newIntent(this))
                     }
                     null -> {
-                        content.root.showErrorSnackbar(getString(R.string.error_try_again))
+                        binding.root.showErrorSnackbar(getString(R.string.error_try_again))
                     }
                 }
             }
         }
 
-        content.txtAddItem.setSafeOnClickListener {
+        binding.txtAddItem.setSafeOnClickListener {
             startActivity(ItemDetailForEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
         }
 
-        content.txtDiscountPrice.setSafeOnClickListener {
+        binding.txtDiscountPrice.setSafeOnClickListener {
             startActivity(EstimateDiscountActivity.newIntent(this))
         }
 
-        content.txtTaxPrice.setSafeOnClickListener {
+        binding.txtTaxPrice.setSafeOnClickListener {
             startActivity(EstimateTaxActivity.newIntent(this))
         }
 
-        content.txtAddPhoto.setSafeOnClickListener {
+        binding.txtAddPhoto.setSafeOnClickListener {
             startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
         }
 
-        content.btnMarkPaid.setSafeOnClickListener {
+        binding.btnMarkPaid.setSafeOnClickListener {
             when (viewModel.estimateStatus) {
                 EstimateStatusEnum.OPEN.status -> {
                     viewModel.estimateStatus = EstimateStatusEnum.CLOSED.status
-                    content.btnMarkPaid.setText(R.string.label_mark_open)
+                    binding.btnMarkPaid.setText(R.string.label_mark_open)
                 }
                 EstimateStatusEnum.CLOSED.status -> {
                     viewModel.estimateStatus = EstimateStatusEnum.OPEN.status
-                    content.btnMarkPaid.setText(R.string.label_mark_closed)
+                    binding.btnMarkPaid.setText(R.string.label_mark_closed)
                 }
                 else -> {
                     viewModel.estimateStatus = EstimateStatusEnum.CLOSED.status
-                    content.btnMarkPaid.setText(R.string.label_mark_open)
+                    binding.btnMarkPaid.setText(R.string.label_mark_open)
                 }
             }
         }
 
-        content.txtNotes.addTextChangedListener(object : TextWatcher {
+        binding.txtNotes.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val notes = content.txtNotes.text.toString()
+                val notes = binding.txtNotes.text.toString()
                 viewModel.estimateNotes = notes
             }
 

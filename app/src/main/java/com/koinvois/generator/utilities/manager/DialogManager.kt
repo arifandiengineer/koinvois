@@ -17,7 +17,7 @@ object DialogManager {
 
         val waitDialog = Dialog(context)
         waitDialog.setCancelable(false)
-        waitDialog.setContentView(R.layout.waitcustomdiolog)
+        waitDialog.setContentView(R.layout.dialog_wait_custom)
         context.let {
             waitDialog.window?.setLayout(
                 it.getScreenWidth(),
@@ -55,7 +55,7 @@ object DialogManager {
     ): Dialog {
         val deleteConfirmationDialog = Dialog(context)
         deleteConfirmationDialog.setCancelable(false)
-        deleteConfirmationDialog.setContentView(R.layout.delet_confirm_dialog)
+        deleteConfirmationDialog.setContentView(R.layout.dialog_delete_confirm)
         context.let {
             deleteConfirmationDialog.window?.setLayout(
                 it.getScreenWidth(),

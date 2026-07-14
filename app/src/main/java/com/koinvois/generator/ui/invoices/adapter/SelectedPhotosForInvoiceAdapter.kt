@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koinvois.generator.database.models.InvoicePhoto
-import com.koinvois.generator.databinding.ItemInvoicePhotoBinding
+import com.koinvois.generator.databinding.ItemInvoicePhotoListBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 
@@ -16,7 +16,7 @@ class SelectedPhotosForInvoiceAdapter(
     RecyclerView.Adapter<SelectedPhotosForInvoiceAdapter.SelectedPhotosForInvoiceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectedPhotosForInvoiceViewHolder {
-        val binding = ItemInvoicePhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemInvoicePhotoListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SelectedPhotosForInvoiceViewHolder(binding)
     }
 
@@ -34,7 +34,7 @@ class SelectedPhotosForInvoiceAdapter(
         return selectedPhotoList.size
     }
 
-    class SelectedPhotosForInvoiceViewHolder(val binding: ItemInvoicePhotoBinding) : RecyclerView.ViewHolder(binding.root) {
+    class SelectedPhotosForInvoiceViewHolder(val binding: ItemInvoicePhotoListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(singleInvoicePhoto: InvoicePhoto) {
             binding.txtAdditionalDetails.text = singleInvoicePhoto.invoicePhotoAdditionalDetails

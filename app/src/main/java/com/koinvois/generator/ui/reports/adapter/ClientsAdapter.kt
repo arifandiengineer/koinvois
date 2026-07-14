@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.core.utils.CurrencyFormatter
-import com.koinvois.generator.databinding.ItemPaidClientsBinding
+import com.koinvois.generator.databinding.ItemReportClientBinding
 import com.koinvois.generator.ui.reports.ReportsMainViewModel
 
-class ClientsAdapter : BaseRecyclerAdapter<ReportsMainViewModel.ClientReportModel, ItemPaidClientsBinding>(
+class ClientsAdapter : BaseRecyclerAdapter<ReportsMainViewModel.ClientReportModel, ItemReportClientBinding>(
     ClientReportDiffCallback()
 ) {
 
-    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemPaidClientsBinding {
-        return ItemPaidClientsBinding.inflate(inflater, parent, false)
+    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemReportClientBinding {
+        return ItemReportClientBinding.inflate(inflater, parent, false)
     }
 
-    override fun onBind(binding: ItemPaidClientsBinding, item: ReportsMainViewModel.ClientReportModel, position: Int) {
+    override fun onBind(binding: ItemReportClientBinding, item: ReportsMainViewModel.ClientReportModel, position: Int) {
         Log.e("report", item.client)
 
         binding.txtClientName.text = item.client

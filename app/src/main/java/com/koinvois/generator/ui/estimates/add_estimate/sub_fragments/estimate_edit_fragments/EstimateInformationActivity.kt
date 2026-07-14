@@ -8,19 +8,19 @@ import androidx.activity.addCallback
 import androidx.activity.viewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.core.common.base.BaseActivity
-import com.koinvois.generator.databinding.FragmentEstimateInformationBinding
+import com.koinvois.generator.databinding.ActivityEstimateInfoBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.extensions.*
 import com.koinvois.generator.utilities.manager.DialogManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EstimateInformationActivity : BaseActivity<FragmentEstimateInformationBinding>() {
+class EstimateInformationActivity : BaseActivity<ActivityEstimateInfoBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
 
-    override fun inflateBinding(): FragmentEstimateInformationBinding =
-        FragmentEstimateInformationBinding.inflate(LayoutInflater.from(this))
+    override fun inflateBinding(): ActivityEstimateInfoBinding =
+        ActivityEstimateInfoBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
         setUpToolbar()

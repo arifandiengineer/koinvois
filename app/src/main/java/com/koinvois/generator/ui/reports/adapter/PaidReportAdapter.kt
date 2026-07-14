@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.koinvois.generator.core.common.adapter.BaseRecyclerAdapter
 import com.koinvois.generator.core.utils.CurrencyFormatter
-import com.koinvois.generator.databinding.ItemPaidReportBinding
+import com.koinvois.generator.databinding.ItemReportPaidInvoiceBinding
 import com.koinvois.generator.domain.model.Invoice
 
-class PaidReportAdapter : BaseRecyclerAdapter<Invoice, ItemPaidReportBinding>(InvoiceDiffCallback()) {
+class PaidReportAdapter : BaseRecyclerAdapter<Invoice, ItemReportPaidInvoiceBinding>(InvoiceDiffCallback()) {
 
-    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemPaidReportBinding =
-        ItemPaidReportBinding.inflate(inflater, parent, false)
+    override fun inflateBinding(inflater: LayoutInflater, parent: ViewGroup): ItemReportPaidInvoiceBinding =
+        ItemReportPaidInvoiceBinding.inflate(inflater, parent, false)
 
-    override fun onBind(binding: ItemPaidReportBinding, item: Invoice, position: Int) {
+    override fun onBind(binding: ItemReportPaidInvoiceBinding, item: Invoice, position: Int) {
         binding.txtClientName.text = item.invoiceClientName ?: "No Client"
         binding.txtInitials.text = item.invoiceClientName?.take(2)?.uppercase() ?: "NA"
         binding.txtInvoiceId.text = "INV-${item.invoiceNumber ?: item.invoiceId}"

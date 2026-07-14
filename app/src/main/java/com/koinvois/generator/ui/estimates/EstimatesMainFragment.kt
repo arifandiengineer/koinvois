@@ -9,7 +9,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.koinvois.generator.R
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.database.models.Estimate
-import com.koinvois.generator.databinding.EstimatesMainFragmentBinding
+import com.koinvois.generator.databinding.FragmentEstimateMainBinding
 import com.koinvois.generator.ui.estimates.add_estimate.AddEstimateMainActivity
 import com.koinvois.generator.ui.estimates.adapter.ViewPagerAdapterEstimates
 import com.koinvois.generator.utilities.enums.DBEnum
@@ -25,7 +25,7 @@ class EstimatesMainFragment : Fragment() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
 
-    private var _binding: EstimatesMainFragmentBinding? = null
+    private var _binding: FragmentEstimateMainBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: EstimatesMainViewModel by hiltNavGraphViewModels(R.id.estimate_navigation_graph)
@@ -34,7 +34,7 @@ class EstimatesMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = EstimatesMainFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentEstimateMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
