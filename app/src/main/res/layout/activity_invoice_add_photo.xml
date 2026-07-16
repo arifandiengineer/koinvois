@@ -12,10 +12,25 @@
         layout="@layout/view_custom_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/md_theme_primary"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:text="@string/action_save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnSave"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
         <LinearLayout
@@ -52,19 +67,19 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
                             app:cardBackgroundColor="@color/color_stat_green_bg"
-                            app:cardCornerRadius="32dp"
+                            app:cardCornerRadius="16dp"
                             app:cardElevation="0dp">
 
                             <ImageView
                                 android:id="@+id/imgPhoto"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="16dp"
+                                android:padding="8dp"
+                                android:scaleType="centerInside"
                                 android:src="@drawable/ic_add_photo_placeholder"
-                                app:tint="@color/color_success"
                                 android:contentDescription="@string/cd_add_photo" />
                         </com.google.android.material.card.MaterialCardView>
 

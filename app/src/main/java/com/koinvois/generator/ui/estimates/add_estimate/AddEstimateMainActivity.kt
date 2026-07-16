@@ -32,6 +32,7 @@ import com.koinvois.generator.database.models.Estimate
 import com.koinvois.generator.databinding.ActivityEstimateEditBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.PreviewEstimateFragment
+import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ItemListForEstimateActivity
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.AddPhotoToEstimateActivity
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientDetailForEstimateActivity
 import com.koinvois.generator.ui.estimates.add_estimate.sub_fragments.estimate_edit_fragments.ClientListForEstimateActivity
@@ -80,7 +81,10 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         ActivityEstimateEditBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
-        setUpToolbar()
+        val estimateType = intent.getStringExtra(EXTRA_ESTIMATE_TYPE) ?: "new"
+        val estimateId = intent.getIntExtra(EXTRA_ESTIMATE_ID, -1)
+
+        setUpToolbar(estimateType)
         setClickListeners(this)
 
         supportFragmentManager.beginTransaction()
@@ -91,12 +95,9 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
             if (binding.previewContainer.visibility == View.VISIBLE) {
                 hidePreview()
             } else {
-                saveOnBack()
+                showExitConfirmation()
             }
         }
-
-        val estimateType = intent.getStringExtra(EXTRA_ESTIMATE_TYPE) ?: "new"
-        val estimateId = intent.getIntExtra(EXTRA_ESTIMATE_ID, -1)
 
         if (viewModel.estimatePrimaryId == null) {
             lifecycleScope.launch(Dispatchers.Main) {
@@ -107,6 +108,20 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
                 }
             }
         }
+    }
+
+    private fun showExitConfirmation() {
+        BaseDialog.confirm(
+            context = this,
+            title = "Keluar?",
+            message = "Apakah anda yakin ingin meninggalkann halaman ini tanpa menyimpan?",
+            positiveText = "Ya, Keluar",
+            negativeText = "Batal",
+            onConfirm = {
+                viewModel.clearViewModel()
+                finish()
+            }
+        )
     }
 
     override fun onResume() {
@@ -174,8 +189,23 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         }
     }
 
-    private fun setUpToolbar() {
+    private fun setUpToolbar(estimateType: String) {
         binding.customToolbar.apply {
+            btnBack.visible()
+            txtToolbarTitle.text = if (estimateType == "new") {
+                "Add Estimate"
+            } else {
+                "Edit Estimate"
+            }
+
+            // Only show menu for existing estimate
+            if (estimateType == "new") {
+                imgSecondaryAction.hide()
+            } else {
+                imgSecondaryAction.visible()
+                imgSecondaryAction.setImageResource(R.drawable.icon_three_dot)
+            }
+
             imgRightAction.visible()
             imgRightAction.setImageResource(R.drawable.btn_forward)
             imgRightAction.setColorFilter(getColor(R.color.yellow_tab_indicator))
@@ -187,7 +217,11 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
 
     private fun setClickListeners(context: Context) {
         binding.customToolbar.btnBack.setSafeOnClickListener {
-            saveOnBack()
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.btnSaveEstimate.setSafeOnClickListener {
+            saveEstimate()
         }
 
         binding.customToolbar.imgSecondaryAction.setSafeOnClickListener {
@@ -211,25 +245,15 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         }
 
         binding.cardClient.setSafeOnClickListener {
-            viewModel.selectedClient?.let {
-                startActivity(ClientDetailForEstimateActivity.newIntent(this))
-            } ?: run {
-                when (viewModel.allClients?.isNotEmpty()) {
-                    true -> {
-                        startActivity(ClientListForEstimateActivity.newIntent(this))
-                    }
-                    false -> {
-                        startActivity(ClientDetailForEstimateActivity.newIntent(this))
-                    }
-                    null -> {
-                        binding.root.showErrorSnackbar(getString(R.string.error_try_again))
-                    }
-                }
-            }
+            startActivity(ClientListForEstimateActivity.newIntent(this))
         }
 
         binding.txtAddItem.setSafeOnClickListener {
-            startActivity(ItemDetailForEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
+            if (viewModel.allItems.isNullOrEmpty()) {
+                startActivity(ItemDetailForEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
+            } else {
+                startActivity(ItemListForEstimateActivity.newIntent(this))
+            }
         }
 
         binding.txtDiscountPrice.setSafeOnClickListener {
@@ -274,6 +298,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
 
     private fun showPreview() {
         binding.previewContainer.visible()
+        (supportFragmentManager.findFragmentById(R.id.previewContainer) as? PreviewEstimateFragment)?.refreshData()
     }
 
     private fun hidePreview() {
@@ -330,7 +355,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         )
     }
 
-    private fun saveOnBack() {
+    private fun saveEstimate() {
         lifecycleScope.launch(Dispatchers.Default) {
             with(viewModel) {
                 updateEstimate(
@@ -371,6 +396,10 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
                 finish()
             }
         }
+    }
+
+    private fun saveOnBack() {
+        // Moved logic to saveEstimate()
     }
 
     private fun testPDFJob(webView: WebView, actv: Activity) {

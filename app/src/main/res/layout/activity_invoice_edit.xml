@@ -18,7 +18,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/spacing_80"
-        app:layout_constraintBottom_toTopOf="@id/btnMarkPaid"
+        app:layout_constraintBottom_toTopOf="@id/bottomActions"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
         <LinearLayout
@@ -619,6 +619,8 @@
                             android:layout_marginStart="@dimen/spacing_8"
                             android:background="@drawable/bg_dashed_border"
                             android:gravity="center"
+                            android:minWidth="80dp"
+                            android:minHeight="60dp"
                             android:orientation="horizontal"
                             android:paddingHorizontal="@dimen/spacing_12"
                             android:paddingVertical="@dimen/spacing_12">
@@ -628,6 +630,7 @@
                                 android:src="@drawable/icon_add"
                                 app:tint="@color/color_stat_orange" />
                             <TextView
+                                android:id="@+id/txtAddPhotoLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/spacing_4"
@@ -741,8 +744,15 @@
                             android:background="@drawable/bg_dashed_border"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <!-- Placeholder for actual signature image or tap text -->
+                            <ImageView
+                                android:id="@+id/imgSignaturePreview"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="8dp"
+                                android:visibility="gone"
+                                android:contentDescription="@null" />
                             <TextView
+                                android:id="@+id/txtTapToAddSignature"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_tap_to_add_signature"
@@ -805,24 +815,50 @@
     </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom Button Bar -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMarkPaid"
+    <LinearLayout
+        android:id="@+id/bottomActions"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:backgroundTint="@color/md_theme_primary"
-        android:insetBottom="0dp"
-        android:insetTop="0dp"
-        tools:text="Mark as Paid"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_16"
-        android:textStyle="bold"
-        app:cornerRadius="0dp"
-        app:icon="@drawable/ic_check_circle_filled"
-        app:iconGravity="textStart"
-        app:iconPadding="@dimen/spacing_8"
-        app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMarkPaid"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            tools:text="Mark as Paid"
+            android:textAllCaps="false"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/ic_check_circle_filled"
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/spacing_8"
+            app:iconTint="@color/md_theme_primary"
+            app:strokeColor="@color/color_divider"
+            app:strokeWidth="1dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveInvoice"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/md_theme_primary"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:text="@string/action_save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:cornerRadius="0dp" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/previewContainer"

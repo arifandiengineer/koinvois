@@ -17,7 +17,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/btnMarkPaid"
+        app:layout_constraintBottom_toTopOf="@id/bottomActions"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -552,26 +552,50 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMarkPaid"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="@dimen/spacing_16"
-        android:layout_marginBottom="@dimen/spacing_16"
-        android:backgroundTint="@color/color_success"
-        android:text="@string/label_mark_closed"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_16"
-        android:textStyle="bold"
-        app:cornerRadius="12dp"
-        app:icon="@drawable/ic_check_circle_filled"
-        app:iconGravity="textStart"
-        app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!-- Bottom Button Bar -->
+    <LinearLayout
+        android:id="@+id/bottomActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_8"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMarkPaid"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/spacing_4"
+            android:backgroundTint="@color/white"
+            android:text="@string/label_mark_closed"
+            android:textAllCaps="false"
+            android:textColor="@color/color_success"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_check_circle_filled"
+            app:iconGravity="textStart"
+            app:iconTint="@color/color_success"
+            app:strokeColor="@color/color_divider"
+            app:strokeWidth="1dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveEstimate"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/spacing_4"
+            android:backgroundTint="@color/color_success"
+            android:text="@string/action_save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/previewContainer"

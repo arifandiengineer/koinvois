@@ -12,10 +12,25 @@
         layout="@layout/view_custom_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveItem"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/md_theme_primary"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:text="@string/label_save_item"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnSaveItem"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
         <LinearLayout
@@ -374,7 +389,7 @@
 
                     <!-- Tax Rate (Optional Row, hidden if not taxable) -->
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/groupTaxRateRow"
+                        android:id="@+id/groupTaxRate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone"

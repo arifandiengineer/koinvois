@@ -12,7 +12,6 @@ import com.koinvois.generator.databinding.FragmentEstimatePreviewBinding
 import com.koinvois.generator.ui.estimates.EstimatesMainViewModel
 import com.koinvois.generator.utilities.extensions.visible
 import com.koinvois.generator.utilities.utility
-import java.lang.String
 
 class PreviewEstimateFragment : Fragment() {
 
@@ -23,297 +22,214 @@ class PreviewEstimateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentEstimatePreviewBinding.inflate(inflater, container, false)
         setUpToolbar()
-        createHTML()
-
+        setupWebView()
         return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        refreshData()
+    }
+
+    private fun setupWebView() {
+        binding?.webView?.settings?.apply {
+            javaScriptEnabled = true
+            loadWithOverviewMode = true
+            useWideViewPort = true
+            builtInZoomControls = true
+            displayZoomControls = false
+            domStorageEnabled = true
+        }
     }
 
     private fun setUpToolbar() {
         binding?.customToolbar?.btnBack?.visible()
         binding?.customToolbar?.txtToolbarTitle?.text = getString(R.string.label_preview_estimate)
         binding?.customToolbar?.btnBack?.setOnClickListener {
-            requireActivity().finish()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+    }
+
+    fun refreshData() {
+        createHTML()
     }
 
     private fun createHTML() {
-
         val htmlContent = StringBuilder()
-        htmlContent.append(
-            String.format(
-                "<!DOCTYPE html>\n" +
-                        "<html lang=\"en\">\n" +
-                        "<head>\n" +
-                        "<meta charset=\"UTF-8\">" +
-                        "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
-                        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                        "    <style type=\"text/css\">      \n" +
-                        "    body { font-family: 'Roboto Condensed Roboto';  margin: 0; padding: 0; box-sizing: border-box}\n" +
-                        "        .main{ max-width: 1000px; min-width: 1000px;  margin: 10px auto }\n" +
-                        "        .mainWrapper{ margin: 10px 40px}\n" +
-                        "        .styled-table { border-collapse: collapse;  margin: 25px 0;  font-size: 11px;  font-family: 'PT Sans';" +
-                        "font-weight: bold;width: 100%%;border: 2px solid rgb(73, 72, 72) }\n" +
-                        "        .styled-table thead tr { background-color: rgb(73, 72, 72); color: #ffffff; text-align: left }\n" +
-                        "        .styled-table th,\n" +
-                        "        .styled-table td { padding: 12px 15px ; white-space: nowrap;}\n" +
-                        "        .styled-table tbody tr { border-bottom: 1px solid #dddddd  }\n" +
-                        "        .styled-table tbody tr:nth-of-type(even) { background-color: #f3f3f3  }\n" +
-                        "        .logo1{ width: 50px;   height: 50px }\n" +
-                        "        .invoicetag{ width: 100%%;    height: 40px; background-color: rgb(42, 68, 162)  }\n" +
-                        "        .footertag{ width: 100%%;  height: 5px; background-color: coral  }\n" +
-                        "        .invoiceWord{ font-size: 55px;   background-color: white; font-family: 'Times New Roman', Times, serif;  height: 40px;  width: 250px;  margin: 0;  margin-right: 4em; float: right; display: flex;    flex-direction: column;   align-items: center;     justify-content: center  }\n" +
-                        "        .signword{ font-size: 55px;  background-color: white; width: 170px;  margin: 0; margin-right: 4em;   float: right;  display: flex; flex-direction: column;   align-items: center;  justify-content: center }\n" +
-                        "        .subhead{ display: flex;      justify-content: space-between;   align-items: center   }\n" +
-                        "        .wrapper2{   min-width: 150px;   }\n" +
-                        "        .ivnum{ display: flex; align-items: center; justify-content: space-between    }\n" +
-                        "        .total{ display: flex;  align-items: center; color: white;height: 50px; padding: 0px 15px; font-size: 24px; width: 323px; justify-content: space-between;background-color: rgb(42, 68, 162); margin-top: -130px; margin-bottom: 150px; position: relative;  right: 0; overflow: visible; margin-right: -40px }\n" +
-                        "        .wrapper5{ display: flex;    flex-direction: row-reverse;   justify-content: space-between;  align-items: center      }\n" +
-                        "        .footer-content{ display: flex; width: 50%%;   justify-content: space-between;       margin-top: 10px; font-size: " +
-                        "12px;  font-weight: bold; align-items: center      ;       white-space: nowrap;\n }\n" +
-                        "        .font-size{ font-size: 17px;      font-weight: bold }\n" +
-                        "        .sign-line{ font-size: 17px;     font-weight: bold;     border-top: 4px solid darkgray;   padding-top: 5px}\n" +
-                        "        .imgs-section{ margin-top: -50px;    margin-bottom: 50px}\n" +
-                        "        .img-heading{ margin-bottom: -10px }\n" +
-                        "        @media screen and (max-width: 640px)\n" +
-                        "@media screen and (max-width: 490px){   .total{     font-size: 15px;     width: 160px;   } }\n" +
-                        "  @media screen and (max-width: 450px){  .total{margin-top: -160px;  margin-right: 0;  } }\n" +
-                        "        </style>\n" +
-                        "    <title>Document</title>\n" +
-                        "</head>\n" +
-                        "<body>\n" +
-                        "<main class=\"main\">\n" +
-                        "    <header>\n" +
-                        "        <div class=\"mainWrapper\">\n" +
-                        "            <div>\n" +
-                        "                <img class=\"logo1 \"src=\"data:image/bmp;base64,${
-                            utility.encodeToBase64(viewModel.businessUpdateModel?.businessLogo)
-                                .toString()
-                        }\"/>\n" +
-                        "            </div>\n" +
-                        "        </div>\n" +
-                        "        <div class=\"invoicetag\">\n" +
-                        "            <p class=\"invoiceWord\">ESTIMATE</p>\n" +
-                        "        </div>\n" +
-                        "    </header>\n" +
-                        "    <header>\n" +
-                        "        <div class=\"mainWrapper\">\n" +
-                        "            <h2 class=\"font-size\" style=\"margin:1px;\"> Estimate to:</h2>\n" +
-                        "<div class=\"subhead\">" +
-                        "<div >" +
-                        "<article>" +
-                        "                        <h3 class=\"font-size\">${viewModel.selectedClient?.clientName}</h3>\n" +
-                        "                        <address>\n" +
-                        "                            <p>\n" +
-                        "                                ${viewModel.selectedClient?.clientAddress1} <br>\n" +
-                        "                                ${viewModel.selectedClient?.clientAddress2} <br>\n" +
-                        " ${viewModel.selectedClient?.clientAddress3} <br>\n" +
-                        "                            </p>\n" +
-                        "                        </address>\n" +
-                        "                    </article>\n" +
-                        "                </div>\n" +
-                        "                <div style=\"margin: 0;\">\n" +
-                        "                    <div class=\"ivnum\">\n" +
-                        "                        <h3 class=\"font-size\" >Estimate# </h3>\n" +
-                        "                        <p>${viewModel.estimateNumber}</p>\n" +
-                        "                    </div>\n" +
-                        "                    <div class=\"ivnum\">\n" +
-                        "                        <h3 class=\"font-size\">Date </h3>\n" +
-                        "                        <p>${viewModel.estimateDate}</p>\n" +
-                        "                    </div>\n" +
-                        "                </div>\n" +
-                        "            </div>\n" +
-                        "    </header>\n" +
-                        "    <mainBody>\n" +
-                        "        <div class=\"mainWrapper\">\n" +
-                        "            <table class=\"styled-table\">\n" +
-                        "                <thead>\n" +
-                        "                <tr>\n" +
-                        "                    <th>SL.</th>\n" +
-                        "                    <th>Item Description</th>\n" +
-                        "                    <th>Price</th>\n" +
-                        "                    <th>Quantity</th>\n" +
-                        "                    <th>Total</th>\n" +
-                        "                </tr>\n" +
-                        "                </thead>\n"
-            )
-        )
+        
+        // CSS & Head
+        htmlContent.append("""
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    body { font-family: sans-serif; margin: 0; padding: 15px; color: #333; background: #fff; line-height: 1.4; }
+                    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+                    .logo { max-width: 80px; max-height: 80px; object-fit: contain; }
+                    .biz-info { text-align: right; }
+                    .biz-name { font-size: 18px; font-weight: bold; margin: 0; }
+                    .biz-email { font-size: 12px; color: #666; margin: 2px 0; }
+                    
+                    .invoice-bar { background: #E67E22; color: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+                    .invoice-label { font-size: 24px; font-weight: bold; margin: 0; }
+                    
+                    .details-grid { display: flex; justify-content: space-between; margin-bottom: 20px; }
+                    .bill-to { flex: 1; }
+                    .inv-meta { text-align: right; }
+                    .label { color: #888; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
+                    .value { font-weight: bold; font-size: 14px; margin-bottom: 10px; }
+                    
+                    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                    th { background: #f4f4f4; text-align: left; padding: 10px; font-size: 12px; border-bottom: 2px solid #ddd; }
+                    td { padding: 10px; font-size: 13px; border-bottom: 1px solid #eee; }
+                    .text-right { text-align: right; }
+                    
+                    .summary-section { display: flex; justify-content: flex-end; }
+                    .summary-table { width: 250px; }
+                    .summary-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; }
+                    .total-row { background: #E67E22; color: #fff; padding: 10px; margin-top: 10px; font-weight: bold; font-size: 18px; }
+                    
+                    .footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+                    .signature-area { text-align: right; }
+                    .signature-img { max-width: 150px; border-bottom: 1px solid #ccc; }
+                    
+                    .photos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+                    .photo-item { border: 1px solid #eee; padding: 5px; }
+                    .photo-img { width: 100%; height: auto; display: block; }
+                    .photo-desc { font-size: 10px; font-weight: bold; margin-top: 4px; }
+                </style>
+            </head>
+            <body>
+        """.trimIndent())
 
-        //if items list is not empty
-        if (viewModel.selectedItemsList?.isNotEmpty() == true) {
-            htmlContent.append("                <tbody>\n")
-            viewModel.selectedItemsList?.withIndex()?.forEach {
-                if (it.index % 2 == 0) {
-                    htmlContent.append(
-                        "                <tr>\n" +
-                                "                    <td>${it.index}</td>\n" +
-                                "                    <td>${it.value.estimateItemName}</td>\n" +
-                                "                    <td>\$${it.value.estimateItemUnitCost}</td>\n" +
-                                "                    <td>${it.value.estimateItemQuantity}</td>\n" +
-                                "                    <td>\$${it.value.itemTotal}</td>\n" +
-                                "                </tr>\n"
-                    )
-                } else {
-                    htmlContent.append(
-                        "                        <tr class=\"active-row\">\n" +
-                                "                    <td>${it.index}</td>\n" +
-                                "                    <td>${it.value.estimateItemName}</td>\n" +
-                                "                    <td>\$${it.value.estimateItemUnitCost}</td>\n" +
-                                "                    <td>${it.value.estimateItemQuantity}</td>\n" +
-                                "                    <td>\$${it.value.itemTotal}</td>\n" +
-                                "                </tr>\n"
-                    )
-                }
-            }
+        // Header
+        val logoBase64 = utility.encodeToBase64(viewModel.businessUpdateModel?.businessLogo) ?: ""
+        htmlContent.append("""
+            <div class="header">
+                <img class="logo" src="data:image/png;base64,$logoBase64" onerror="this.style.display='none'">
+                <div class="biz-info">
+                    <p class="biz-name">${viewModel.businessUpdateModel?.businessName ?: ""}</p>
+                    <p class="biz-email">${viewModel.businessUpdateModel?.businessEmail ?: ""}</p>
+                </div>
+            </div>
+            
+            <div class="invoice-bar">
+                <p class="invoice-label">ESTIMATE</p>
+                <span>#${viewModel.estimateNumber ?: ""}</span>
+            </div>
+            
+            <div class="details-grid">
+                <div class="bill-to">
+                    <div class="label">Estimate To</div>
+                    <div class="value">${viewModel.selectedClient?.clientName ?: ""}</div>
+                    <div style="font-size: 12px; color: #555;">
+                        ${viewModel.selectedClient?.clientAddress1 ?: ""}<br>
+                        ${viewModel.selectedClient?.clientAddress2 ?: ""}<br>
+                        ${viewModel.selectedClient?.clientAddress3 ?: ""}
+                    </div>
+                </div>
+                <div class="inv-meta">
+                    <div class="label">Date</div>
+                    <div class="value">${viewModel.estimateDate ?: ""}</div>
+                </div>
+            </div>
+        """.trimIndent())
 
-            htmlContent.append(" </tbody>\n")
-        }
-//table closer
-        htmlContent.append(
-            "            </table>\n" +
-                    "        </div>\n" +
-                    "    </mainBody>\n"
-        )
+        // Table
+        htmlContent.append("""
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th class="text-right">Price</th>
+                        <th class="text-right">Qty</th>
+                        <th class="text-right">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+        """.trimIndent())
 
-//bottom content
-        htmlContent.append(
-            "    <header>\n" +
-                    "        <div class=\"mainWrapper\">\n" +
-                    "            <h3 class=\"font-size\" style=\"margin-bottom: 10px; width: 500px; font:40px;\" > Thank you for your business</h3>\n" +
-                    "            <div class=\"subhead\">\n" +
-                    "                <div >\n" +
-                    "                    <article>\n" +
-                    "                        <h3 class=\"font-size\">Terms & Conditions</h3>\n" +
-                    "                        <p>\n" +
-                    //remove payment
-                    "                           Make this payment by" +
-                    "                        </p>\n" +
-                    "                    </article>\n" +
-                    "                </div>\n" +
-                    "                <div style=\"margin: 0;\">\n" +
-                    "                    <div class=\"wrapper2\">\n" +
-                    "                        <div class=\"ivnum\">\n" +
-                    "                            <p>sub Total: <p>\n" +
-                    "                            <p>${viewModel.estimateSubTotal}</p>\n" +
-                    "                        </div>\n" +
-                    "                        <div class=\"ivnum\">\n" +
-                    "                            <p>Tax </p>\n" +
-                    "                            <p>${viewModel.taxRate}</p>\n" +
-                    "                        </div>\n" +
-                    "                        <div class=\"ivnum\">\n" +
-                    "                            <p>Discount </p>\n" +
-                    "                            <p>${viewModel.discountTotalAmount}</p>\n" +
-                    "                        </div>\n" +
-                    "                    </div>\n" +
-                    "                </div>\n" +
-                    "            </div>\n" +
-                    "    </header>\n"
-        )
-
-        //payment information
-        htmlContent.append(
-            "    <header>\n" +
-                    "        <div class=\"mainWrapper\">\n" +
-                    "            <div class=\"subhead\">\n" +
-                    "                <div >\n" +
-                    "                    <article>\n" +
-                    "                        <h3 class=\"font-size\" >Payment Info</h3>\n" +
-                    "                        <p>\n" +
-                    //remove payment due
-                    "                            <br>\n" +
-                    "                        </p>\n" +
-                    "                    </article>\n" +
-                    "                </div>\n" +
-                    "            </div>\n" +
-                    "            <div class=\"wrapper5\">\n" +
-                    "                <div class=\"total\">\n" +
-                    "                    <span>Total </span>\n" +
-                    "                    <span >${viewModel.estimateTotal}</span>\n" +
-                    "                </div>\n" +
-                    "            </div>\n"
-        )
-//photos section
-        if (viewModel.photosForEstimate?.isNotEmpty() == true) {
-            htmlContent.append(
-                "            <div class=\"imgs-section\">\n"
-            )
-
-            viewModel.photosForEstimate?.forEach {
-                Log.e("photo", utility.encodeToBase64(it.estimatePhoto).toString())
-
-                htmlContent.append(
-                    "                <div >\n" +
-                            "                    <article>\n" +
-                            "                        <h4 class=\"img-heading\" >${it.estimatePhotoDescription}</h4>\n" +
-                            "                        <p style=\"margin-bottom: 4px\">\n" +
-                            "                            ${it.estimatePhotoAdditionalDetails}\n" +
-                            "                        </p>\n" +
-                            "                        <img src=\"data:image/bmp;base64,${
-                                utility.encodeToBase64(it.estimatePhoto).toString()
-                            } \" alt=\"user-image\" width=\"175px\" " +
-                            "height=\"175px\" />\n" +
-                            "                    </article>\n" +
-                            "                </div>\n"
-                )
-            }
-
-            htmlContent.append(
-                "            </div>\n" +
-                        "        </div>\n" +
-                        "        </div>\n" +
-                        "    </header>\n"
-            )
+        viewModel.selectedItemsList?.forEach { item ->
+            htmlContent.append("""
+                <tr>
+                    <td>${item.estimateItemName}</td>
+                    <td class="text-right">${item.estimateItemUnitCost}</td>
+                    <td class="text-right">${item.estimateItemQuantity}</td>
+                    <td class="text-right">${item.itemTotal}</td>
+                </tr>
+            """.trimIndent())
         }
 
-        //fotter
-        htmlContent.append(
-            "    <footerbody>\n" +
-                    "        <div class=\"footer-line\">\n" +
-                    "            <div class=\"footertag\">\n" +
-                    "                <div class=\"signword\">\n" +
-                    "                    <img src=\"data:image/bmp;base64,${
-                        utility.encodeToBase64(viewModel.signatureObj?.signatureBitmap) ?: ""
-                    }\" width=\"150\" height=\"150\" style=\"margin-top: -150px\" />\n" +
-                    "                    <div class=\"sign-line\"  >Authorised Sign</div>\n" +
-                    "                </div>\n" +
-                    "            </div>\n" +
-                    "        </div>\n" +
-                    "        <div class=\"mainWrapper\">\n" +
-                    "            <div class=\"footer-content\">\n" +
-                    "                <span> ${viewModel.businessUpdateModel?.businessPhoneNumber} </span>\n" +
-                    "                <span>|</span>\n" +
-                    "                <span>${viewModel.businessUpdateModel?.businessAddress1} </span>\n" +
-                    "                <span>|</span>\n" +
-                    "                <span>${viewModel.businessUpdateModel?.businessWebsite} </span>\n" +
-                    "            </div>\n" +
-                    "        </div>\n" +
-                    "    </footerbody>\n"
+        htmlContent.append("</tbody></table>")
 
-        )
+        // Summary
+        htmlContent.append("""
+            <div class="summary-section">
+                <div class="summary-table">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>${viewModel.estimateSubTotal ?: 0}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Discount</span>
+                        <span>-${viewModel.discountTotalAmount ?: 0}</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span>${viewModel.estimateTotal ?: 0}</span>
+                    </div>
+                </div>
+            </div>
+        """.trimIndent())
 
-        htmlContent.append(
-            "</main>\n" +
-                    "</body>\n" +
-                    "</html>"
-        )
+        // Footer & Signature
+        htmlContent.append("""
+            <div class="footer">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div style="font-size: 11px; color: #888;">
+                        ${viewModel.businessUpdateModel?.businessPhoneNumber ?: ""}<br>
+                        ${viewModel.businessUpdateModel?.businessWebsite ?: ""}
+                    </div>
+                    <div class="signature-area">
+        """.trimIndent())
 
-        binding?.webView?.settings?.useWideViewPort = true
-        binding?.webView?.settings?.loadWithOverviewMode = true
-        binding?.webView?.settings?.useWideViewPort = true
-        binding?.webView?.settings?.builtInZoomControls = true
-        binding?.webView?.settings?.domStorageEnabled = true
+        viewModel.signatureObj?.signatureBitmap?.let { sig ->
+            val sigBase64 = utility.encodeToBase64(sig)
+            htmlContent.append("""
+                <img class="signature-img" src="data:image/png;base64,$sigBase64">
+                <div class="label">Authorized Signature</div>
+            """.trimIndent())
+        }
 
+        htmlContent.append("</div></div>")
 
-        binding?.webView?.loadDataWithBaseURL(
-            null,
-            htmlContent.toString(),
-            "text/html",
-            "utf-8",
-            null
-        )
+        // Photos
+        if (!viewModel.photosForEstimate.isNullOrEmpty()) {
+            htmlContent.append("<div class='label' style='margin-top: 30px;'>Attachments</div>")
+            htmlContent.append("<div class='photos-grid'>")
+            viewModel.photosForEstimate?.forEach { photo ->
+                val pBase64 = utility.encodeToBase64(photo.estimatePhoto)
+                htmlContent.append("""
+                    <div class="photo-item">
+                        <img class="photo-img" src="data:image/png;base64,$pBase64">
+                        <div class="photo-desc">${photo.estimatePhotoDescription ?: ""}</div>
+                    </div>
+                """.trimIndent())
+            }
+            htmlContent.append("</div>")
+        }
 
+        htmlContent.append("</div></body></html>")
+
+        binding?.webView?.loadDataWithBaseURL(null, htmlContent.toString(), "text/html", "utf-8", null)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

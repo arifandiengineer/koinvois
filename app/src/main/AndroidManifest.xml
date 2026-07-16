@@ -2,14 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Camera is used optionally (attach photo to invoice/estimate, business logo);
-         required="false" so the app stays installable on camera-less devices (e.g. some tablets). -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <!-- TODO(core/pdf sprint): WRITE_EXTERNAL_STORAGE + requestLegacyExternalStorage are already
-         inert on API 30+ under targetSdk 35; PDF export/share file I/O needs a scoped-storage /
-         FileProvider audit before these can be removed. See Migration Notes, Sprint 1 report. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 

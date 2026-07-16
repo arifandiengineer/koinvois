@@ -45,7 +45,7 @@ class ItemDetailForInvoiceActivity : BaseActivity<ActivityInvoiceItemDetailBindi
         setClickListeners()
         setEditTestListeners()
         onBackPressedDispatcher.addCallback(this) {
-            lifecycleScope.launch(Dispatchers.Main) { saveOnBack() }
+            showExitConfirmation()
         }
     }
 
@@ -85,9 +85,12 @@ class ItemDetailForInvoiceActivity : BaseActivity<ActivityInvoiceItemDetailBindi
 
     private fun setClickListeners() {
         binding.customToolbar.btnBack.setSafeOnClickListener {
-            lifecycleScope.launch(Dispatchers.Main)
-            {
-                saveOnBack()
+            showExitConfirmation()
+        }
+
+        binding.btnSaveItem.setSafeOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main) {
+                saveData()
             }
         }
 
@@ -156,7 +159,20 @@ class ItemDetailForInvoiceActivity : BaseActivity<ActivityInvoiceItemDetailBindi
         bottomSheetDialog.show()
     }
 
-    private suspend fun saveOnBack() {
+    private fun showExitConfirmation() {
+        BaseDialog.confirm(
+            context = this,
+            title = "Keluar?",
+            message = "Apakah anda yakin ingin meninggalkann halaman ini?",
+            positiveText = "Ya, Keluar",
+            negativeText = "Batal",
+            onConfirm = {
+                finish()
+            }
+        )
+    }
+
+    private suspend fun saveData() {
         with(binding) {
             val discountType = txtItemDiscountType.text.toString()
             val itemUnitCost = if (editItemUnitCost.text.isNotEmpty()) {
@@ -211,12 +227,12 @@ class ItemDetailForInvoiceActivity : BaseActivity<ActivityInvoiceItemDetailBindi
                 }
                 viewModel.recalculateInvoiceSubTotal()
                 viewModel.recalculateInvoiceTotal()
+                viewModel.currentInvoiceItem = null
+                finish()
             } else {
                 Toast.makeText(this@ItemDetailForInvoiceActivity, getString(R.string.error_enter_item_name), Toast.LENGTH_SHORT).show()
             }
         }
-        viewModel.currentInvoiceItem = null
-        finish()
     }
 
     private fun setUpToolbar() {
@@ -228,6 +244,7 @@ class ItemDetailForInvoiceActivity : BaseActivity<ActivityInvoiceItemDetailBindi
                 binding.customToolbar.imgRightAction.visible()
                 binding.customToolbar.imgRightAction.setSafeOnClickListener {
                     startActivity(ItemsListForInvoiceActivity.newIntent(this))
+                    finish() // Close current add form to prevent stacking
                 }
             }
 

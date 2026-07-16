@@ -10,7 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
+import com.koinvois.generator.ui.splash.BusinessInputView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.toColorInt
@@ -139,7 +140,12 @@ class AddBusinessDetailsSplashFragment : Fragment() {
                 }
             }
 
-            btnForward1.setSafeOnClickListener { showStep(2) }
+            btnForward1.setSafeOnClickListener {
+                if (validateStep1()) {
+                    showStep(2)
+                }
+            }
+
             btnForward2.setSafeOnClickListener { showStep(3) }
             
             btnChoseImage.setSafeOnClickListener {
@@ -155,9 +161,63 @@ class AddBusinessDetailsSplashFragment : Fragment() {
             }
 
             btnCreateInvoice.setSafeOnClickListener {
-                navigateToMain()
+                if (validateStep1()) {
+                    navigateToMain()
+                } else {
+                    showStep(1)
+                }
             }
         }
+    }
+
+    private fun validateStep1(): Boolean {
+        binding?.let {
+            val name = it.editBusinessName.getText().trim()
+            val email = it.editBusinessEmail.getText().trim()
+            val phone = it.editBusinessPhone.getText().trim()
+            val address1 = it.editBusinessAddressLine1.getText().trim()
+
+            var isValid = true
+
+            if (name.isEmpty()) {
+                it.editBusinessName.setError("Nama bisnis wajib diisi")
+                isValid = false
+            } else {
+                it.editBusinessName.setError(null)
+            }
+
+            if (email.isEmpty()) {
+                it.editBusinessEmail.setError("Email wajib diisi")
+                isValid = false
+            } else {
+                it.editBusinessEmail.setError(null)
+            }
+
+            if (phone.isEmpty()) {
+                it.editBusinessPhone.setError("Nomor telepon wajib diisi")
+                isValid = false
+            } else {
+                it.editBusinessPhone.setError(null)
+            }
+
+            if (address1.isEmpty()) {
+                it.editBusinessAddressLine1.setError("Alamat (Baris 1) wajib diisi")
+                isValid = false
+            } else {
+                it.editBusinessAddressLine1.setError(null)
+            }
+
+            // Reset errors for optional fields
+            it.editBusinessAddressLine2.setError(null)
+            it.editBusinessAddressLine3.setError(null)
+
+            if (!isValid) {
+                Toast.makeText(requireContext(), "Harap isi semua kolom yang wajib", Toast.LENGTH_SHORT).show()
+            }
+
+            return isValid
+        }
+        return false
     }
 
     private fun setupTextWatchers() {

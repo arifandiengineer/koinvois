@@ -242,7 +242,7 @@ class EstimatesMainViewModel @Inject constructor(
     }
 
     fun clearViewModel() {
-//        invoicePrimaryId = null
+        estimatePrimaryId = null
         estimateNumber = null
         estimateDate = null
         estimateNotes = null

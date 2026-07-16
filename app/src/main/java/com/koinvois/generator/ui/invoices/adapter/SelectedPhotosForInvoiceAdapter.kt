@@ -39,6 +39,9 @@ class SelectedPhotosForInvoiceAdapter(
         fun bind(singleInvoicePhoto: InvoicePhoto) {
             binding.txtAdditionalDetails.text = singleInvoicePhoto.invoicePhotoAdditionalDetails
             binding.txtPhotoDescription.text = singleInvoicePhoto.invoicePhotoDescription
+            singleInvoicePhoto.invoicePhoto?.let {
+                binding.imgPhoto.setImageBitmap(it)
+            }
         }
     }
 }

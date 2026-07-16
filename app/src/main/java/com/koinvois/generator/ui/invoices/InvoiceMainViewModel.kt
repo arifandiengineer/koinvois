@@ -1,5 +1,6 @@
 package com.koinvois.generator.ui.invoices
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -31,6 +32,7 @@ import com.koinvois.generator.domain.usecase.invoice.UpdateInvoiceItemUseCase
 import com.koinvois.generator.domain.usecase.invoice.UpdateInvoicePhotoUseCase
 import com.koinvois.generator.domain.usecase.invoice.UpdateInvoiceUseCase
 import com.koinvois.generator.domain.usecase.item.GetAllItemsUseCase
+import com.koinvois.generator.core.utils.DateFormatter
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
 import com.koinvois.generator.utilities.enums.InvoiceStatusEnum
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -68,6 +70,7 @@ class InvoiceMainViewModel @Inject constructor(
     private val getAllClientsUseCase: GetAllClientsUseCase,
     private val getAllItemsUseCase: GetAllItemsUseCase,
     private val appPreferences: AppPreferencesDataStore,
+    private val dateFormatter: DateFormatter,
     private val draft: InvoiceDraftState,
 ) : ViewModel() {
 
@@ -251,7 +254,7 @@ class InvoiceMainViewModel @Inject constructor(
     }
 
     fun clearViewModel() {
-//        invoicePrimaryId = null
+        invoicePrimaryId = null
         invoiceNumber = null
         invoiceDate = null
         invoiceDueDate = null
@@ -354,8 +357,10 @@ class InvoiceMainViewModel @Inject constructor(
     }
 
     suspend fun loadInvoiceById(invoiceId: Int) {
+        Log.d("AutofillLog", "Loading Existing Invoice ID: $invoiceId")
         val invoice = getInvoiceByIdUseCase(invoiceId)
         loadViewModelData(invoice.toEntity())
+        Log.d("AutofillLog", "Existing Invoice Data Loaded: Number=${invoiceNumber}, Client=${selectedClient?.clientName}")
     }
 
     suspend fun prepareNewInvoice() {
@@ -364,14 +369,21 @@ class InvoiceMainViewModel @Inject constructor(
 
         invoicePrimaryId = tsLong.div(1000)
         invoiceNumber = invoiceNumberFromPref
+        invoiceDate = dateFormatter.today()
         invoiceStatus = InvoiceStatusEnum.UN_PAID.status
         invoiceTotal = 0f
+        
+        Log.d("AutofillLog", "Preparing New Invoice: ID=$invoicePrimaryId, Number=$invoiceNumber, Date=$invoiceDate")
+
+        // Auto-load business info for the new invoice
+        getBusiness()
+        Log.d("AutofillLog", "Business Loaded: ${businessUpdateModel?.businessName}")
 
         insertInvoice(
             Invoice(
                 invoiceId = (tsLong.div(1000)).toInt(),
                 invoiceNumber = invoiceNumberFromPref,
-                invoiceDate = null,
+                invoiceDate = invoiceDate,
                 invoiceTerms = null,
                 invoiceDueDate = null,
                 invoicePoNumber = null,

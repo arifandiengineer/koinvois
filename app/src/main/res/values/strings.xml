@@ -42,6 +42,7 @@
     <string name="title_items">Items</string>
     <string name="title_report">Report</string>
     <string name="label_add_client">Add Client</string>
+    <string name="label_add_invoice">Add Invoice</string>
     <string name="label_save_client">Save Client</string>
     <string name="label_edit_client">Edit Client</string>
     <string name="label_edit_item">Edit Item</string>

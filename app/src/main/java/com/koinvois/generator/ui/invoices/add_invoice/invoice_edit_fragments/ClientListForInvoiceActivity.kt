@@ -28,18 +28,23 @@ class ClientListForInvoiceActivity : BaseActivity<ActivityInvoiceClientListBindi
 
     override fun setupView() {
         setUpToolbar()
+    }
 
-        lifecycleScope.launch(Dispatchers.Main)
-        {
-            val allClients = viewModel.allClients
+    override fun onResume() {
+        super.onResume()
+        refreshClientList()
+    }
 
-            if (allClients?.isEmpty() == true) {
+    private fun refreshClientList() {
+        lifecycleScope.launch(Dispatchers.Main) {
+            val clients = viewModel.getAllClients()
+            if (clients.isEmpty()) {
                 binding.txtName.hide()
                 binding.rvAllClients.hide()
             } else {
                 binding.txtName.visible()
                 binding.rvAllClients.visible()
-                allClients?.let { setUpRecyclerView(it) }
+                setUpRecyclerView(clients)
             }
         }
     }
@@ -50,9 +55,17 @@ class ClientListForInvoiceActivity : BaseActivity<ActivityInvoiceClientListBindi
     }
 
     private fun setUpToolbar() {
-        binding.customToolbar.txtToolbarTitle.text = getString(R.string.title_clients)
-        binding.customToolbar.btnBack.setSafeOnClickListener {
-            finish()
+        binding.customToolbar.apply {
+            txtToolbarTitle.text = getString(R.string.title_clients)
+            btnBack.setSafeOnClickListener {
+                finish()
+            }
+            // Add Client button in toolbar
+            imgRightAction.visible()
+            imgRightAction.setImageResource(R.drawable.icon_add)
+            imgRightAction.setSafeOnClickListener {
+                startActivity(ClientDetailForInvoiceActivity.newIntent(this@ClientListForInvoiceActivity))
+            }
         }
     }
 

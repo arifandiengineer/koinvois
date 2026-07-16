@@ -10,6 +10,6 @@ object utility {
         val baos = ByteArrayOutputStream()
         image?.compress(Bitmap.CompressFormat.PNG, 100, baos)
         val b: ByteArray = baos.toByteArray()
-        return Base64.encodeToString(b, Base64.DEFAULT)
+        return Base64.encodeToString(b, Base64.NO_WRAP)
     }
 }

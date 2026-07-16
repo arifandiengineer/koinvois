@@ -18,7 +18,8 @@
       "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/domain/usecase/dashboard)",
       "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/ui/more)",
       "Bash(mkdir -p /Users/zaydanmubaraq/Documents/Project/koinvois/MainFiles/InvoiceMakerApp/app/src/main/java/com/koinvois/generator/ui/dashboard/adapter)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(./gradlew :app:compileDebugKotlin -q)"
     ]
   }
 }

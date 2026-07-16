@@ -49,10 +49,6 @@ class AddPhotoToInvoiceActivity : BaseActivity<ActivityInvoiceAddPhotoBinding>()
                     if (null != selectedImageUri) {
                         val path = getPathFromURI(selectedImageUri)
                         withContext(Dispatchers.Main) {
-                            binding.imgPhoto.layoutParams?.height = 500
-                            binding.imgPhoto.layoutParams?.width = 500
-                            binding.imgPhoto.requestLayout()
-
                             binding.imgPhoto.setImageURI(selectedImageUri)
                             imagePicked = true
                         }
@@ -67,9 +63,6 @@ class AddPhotoToInvoiceActivity : BaseActivity<ActivityInvoiceAddPhotoBinding>()
                 val imageBitmap = result.data?.extras?.let {
                     BundleCompat.getParcelable(it, "data", Bitmap::class.java)
                 } as Bitmap
-                binding.imgPhoto.layoutParams?.height = 500
-                binding.imgPhoto.layoutParams?.width = 500
-                binding.imgPhoto.requestLayout()
 
                 binding.imgPhoto.setImageBitmap(imageBitmap)
                 imagePicked = true
@@ -81,16 +74,22 @@ class AddPhotoToInvoiceActivity : BaseActivity<ActivityInvoiceAddPhotoBinding>()
 
     override fun setupView() {
         setUpToolbar()
-        onBackPressedDispatcher.addCallback(this) {
-            lifecycleScope.launch(Dispatchers.Main) { saveOnBack() }
-        }
+        onBackPressedDispatcher.addCallback(this) { finish() }
         setClickListeners()
         loadView()
     }
 
     private fun setClickListeners() {
+        binding.cardAddPhoto.setSafeOnClickListener {
+            createBottomSheetDialog(this)
+        }
         binding.imgPhoto.setSafeOnClickListener {
             createBottomSheetDialog(this)
+        }
+        binding.btnSave.setSafeOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main) {
+                saveOnBack()
+            }
         }
     }
 
@@ -233,9 +232,7 @@ class AddPhotoToInvoiceActivity : BaseActivity<ActivityInvoiceAddPhotoBinding>()
             }
 
             btnBack.setSafeOnClickListener {
-                lifecycleScope.launch(Dispatchers.Main) {
-                    saveOnBack()
-                }
+                finish()
             }
         }
     }
@@ -253,11 +250,7 @@ class AddPhotoToInvoiceActivity : BaseActivity<ActivityInvoiceAddPhotoBinding>()
                 }
 
                 photo.invoicePhoto?.let {
-                    imgPhoto.layoutParams?.height = 500
-                    imgPhoto.layoutParams?.width = 500
-                    imgPhoto.requestLayout()
                     imagePicked = true
-
                     imgPhoto.setImageBitmap(it)
                 }
             }

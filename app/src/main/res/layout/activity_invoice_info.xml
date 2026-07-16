@@ -12,6 +12,21 @@
         layout="@layout/view_custom_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/md_theme_primary"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:text="@string/action_save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/firstCard"
         android:layout_width="match_parent"

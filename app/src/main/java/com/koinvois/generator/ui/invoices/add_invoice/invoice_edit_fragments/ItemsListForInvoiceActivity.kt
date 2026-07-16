@@ -10,6 +10,8 @@ import com.koinvois.generator.core.common.base.BaseActivity
 import com.koinvois.generator.databinding.ActivityInvoiceItemsListBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
 import com.koinvois.generator.ui.invoices.adapter.AllItemsForInvoiceAdapter
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ItemDetailForInvoiceActivity
+import com.koinvois.generator.utilities.enums.DBEnum
 import com.koinvois.generator.utilities.extensions.hide
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
@@ -27,8 +29,16 @@ class ItemsListForInvoiceActivity : BaseActivity<ActivityInvoiceItemsListBinding
 
     override fun setupView() {
         setToolbar()
-        setRecyclerView()
         setClickListeners()
+        
+        // If empty, redirect to add new and finish this list activity
+        if (viewModel.allItems.isNullOrEmpty()) {
+            startActivity(ItemDetailForInvoiceActivity.newIntent(this, DBEnum.NEW.entryType))
+            finish()
+            return
+        }
+        
+        setRecyclerView()
     }
 
     private fun setClickListeners() {
@@ -53,7 +63,17 @@ class ItemsListForInvoiceActivity : BaseActivity<ActivityInvoiceItemsListBinding
     }
 
     private fun setToolbar() {
-        binding.customToolbar.txtToolbarTitle.text = getString(R.string.title_items)
+        binding.customToolbar.apply {
+            txtToolbarTitle.text = getString(R.string.title_items)
+            btnBack.setSafeOnClickListener { finish() }
+            
+            // Add Item button in toolbar
+            imgRightAction.visible()
+            imgRightAction.setImageResource(R.drawable.icon_add)
+            imgRightAction.setSafeOnClickListener {
+                startActivity(ItemDetailForInvoiceActivity.newIntent(this@ItemsListForInvoiceActivity, DBEnum.NEW.entryType))
+            }
+        }
     }
 
     companion object {

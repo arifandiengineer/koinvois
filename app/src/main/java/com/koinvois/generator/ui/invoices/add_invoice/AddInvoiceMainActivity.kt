@@ -1,15 +1,12 @@
 package com.koinvois.generator.ui.invoices.add_invoice
 
-import android.Manifest
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
-import android.net.Uri
 import android.os.Environment
-import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -20,7 +17,6 @@ import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -32,6 +28,7 @@ import com.koinvois.generator.core.utils.CurrencyFormatter
 import com.koinvois.generator.database.models.Invoice
 import com.koinvois.generator.databinding.ActivityInvoiceEditBinding
 import com.koinvois.generator.ui.invoices.InvoiceMainViewModel
+import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ItemsListForInvoiceActivity
 import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientDetailForInvoiceActivity
 import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.ClientListForInvoiceActivity
 import com.koinvois.generator.ui.invoices.add_invoice.invoice_edit_fragments.DiscountActivity
@@ -71,20 +68,14 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
             Log.e("sender", result.data?.action.toString())
         }
 
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
-                    testPDFJob(webView, this)
-                }
-            }
-        }
-
     override fun inflateBinding(): ActivityInvoiceEditBinding =
         ActivityInvoiceEditBinding.inflate(LayoutInflater.from(this))
 
     override fun setupView() {
-        setUpToolbar()
+        val invoiceType = intent.getStringExtra(EXTRA_INVOICE_TYPE) ?: "new"
+        val invoiceId = intent.getIntExtra(EXTRA_INVOICE_ID, -1)
+
+        setUpToolbar(invoiceType)
         setClickListeners()
         observePaymentSummary()
 
@@ -96,12 +87,9 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
             if (binding.previewContainer.visibility == View.VISIBLE) {
                 hidePreview()
             } else {
-                saveOnBack()
+                showExitConfirmation()
             }
         }
-
-        val invoiceType = intent.getStringExtra(EXTRA_INVOICE_TYPE) ?: "new"
-        val invoiceId = intent.getIntExtra(EXTRA_INVOICE_ID, -1)
 
         if (viewModel.invoicePrimaryId == null) {
             lifecycleScope.launch(Dispatchers.Main) {
@@ -110,19 +98,37 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
                 } else if (invoiceId != -1) {
                     viewModel.loadInvoiceById(invoiceId)
                 }
+                refreshInvoiceUi()
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
+        refreshInvoiceUi()
+    }
+
+    private fun refreshInvoiceUi() {
+        Log.d("AutofillLog", "UI Refresh - Number: ${viewModel.invoiceNumber}, Date: ${viewModel.invoiceDate}, Business: ${viewModel.businessUpdateModel?.businessName}")
 
         viewModel.selectedClient.let {
-            binding.txtClientName.text = it?.clientName
+            binding.txtClientName.text = it?.clientName ?: getString(R.string.fallback_no_client)
         }
 
+        binding.txtBusinessInfo.text = viewModel.businessUpdateModel?.businessName ?: getString(R.string.label_business_info)
+
         viewModel.signatureObj?.let {
-            // binding.txtSignature.text = "Signed on ${it?.signatureDate}"
+            if (it.signatureBitmap != null) {
+                binding.imgSignaturePreview.visible()
+                binding.imgSignaturePreview.setImageBitmap(it.signatureBitmap)
+                binding.txtTapToAddSignature.hide()
+            } else {
+                binding.imgSignaturePreview.hide()
+                binding.txtTapToAddSignature.visible()
+            }
+        } ?: run {
+            binding.imgSignaturePreview.hide()
+            binding.txtTapToAddSignature.visible()
         }
         viewModel.recalculateInvoiceSubTotal()
         viewModel.recalculateInvoiceTotal()
@@ -155,10 +161,17 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
         }
 
         viewModel.photosForInvoice?.let {
-            binding.rvPhotos.adapter =
-                SelectedPhotosForInvoiceAdapter(it, viewModel) {
-                    startActivity(AddPhotoToInvoiceActivity.newIntent(this, DBEnum.OLD.entryType))
-                }
+            if (it.isNotEmpty()) {
+                binding.txtAddPhotoLabel.text = "Update Photo"
+                binding.rvPhotos.adapter =
+                    SelectedPhotosForInvoiceAdapter(it, viewModel) {
+                        startActivity(AddPhotoToInvoiceActivity.newIntent(this, DBEnum.OLD.entryType))
+                    }
+            } else {
+                binding.txtAddPhotoLabel.text = getString(R.string.label_add_photo)
+            }
+        } ?: run {
+            binding.txtAddPhotoLabel.text = getString(R.string.label_add_photo)
         }
 
         viewModel.invoicePaymentInstructions?.let {
@@ -201,19 +214,27 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
         }
     }
 
-    private fun setUpToolbar() {
+    private fun setUpToolbar(invoiceType: String) {
         binding.customToolbar.apply {
             btnBack.visible()
-            txtToolbarTitle.text = getString(R.string.label_edit_invoice)
-
-            // Three-dot menu for Share/Delete
-            imgSecondaryAction.visible()
-            imgSecondaryAction.setImageResource(R.drawable.icon_three_dot)
-            imgSecondaryAction.setSafeOnClickListener {
-                showPopupMenu(it)
+            txtToolbarTitle.text = if (invoiceType == "new") {
+                getString(R.string.label_add_invoice)
+            } else {
+                getString(R.string.label_edit_invoice)
             }
 
-            // Forward button now shows the Preview overlay in place of the old ViewPager tab
+            // Three-dot menu only for existing invoice
+            if (invoiceType == "new") {
+                imgSecondaryAction.hide()
+            } else {
+                imgSecondaryAction.visible()
+                imgSecondaryAction.setImageResource(R.drawable.icon_three_dot)
+                imgSecondaryAction.setSafeOnClickListener {
+                    showPopupMenu(it)
+                }
+            }
+
+            // Forward button shows the Preview
             imgRightAction.visible()
             imgRightAction.setImageResource(R.drawable.btn_forward)
             imgRightAction.setColorFilter(getColor(R.color.yellow_tab_indicator))
@@ -227,6 +248,20 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
         }
     }
 
+    private fun showExitConfirmation() {
+        BaseDialog.confirm(
+            context = this,
+            title = "Keluar?",
+            message = "Apakah anda yakin ingin meninggalkann halaman ini tanpa menyimpan?",
+            positiveText = "Ya, Keluar",
+            negativeText = "Batal",
+            onConfirm = {
+                viewModel.clearViewModel()
+                finish()
+            }
+        )
+    }
+
     private fun setClickListeners() {
 
         binding.txtTaxPrice.setSafeOnClickListener {
@@ -238,7 +273,14 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
         }
 
         binding.txtAddPhoto.setSafeOnClickListener {
-            startActivity(AddPhotoToInvoiceActivity.newIntent(this, DBEnum.NEW.entryType))
+            val photos = viewModel.photosForInvoice
+            if (!photos.isNullOrEmpty()) {
+                // If photo exists, edit the first one
+                viewModel.currentSelectedPhoto = photos[0]
+                startActivity(AddPhotoToInvoiceActivity.newIntent(this, DBEnum.OLD.entryType))
+            } else {
+                startActivity(AddPhotoToInvoiceActivity.newIntent(this, DBEnum.NEW.entryType))
+            }
         }
 
         binding.btnInvoiceDate.setSafeOnClickListener {
@@ -258,25 +300,21 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
         }
 
         binding.secondCard.setSafeOnClickListener {
-            viewModel.selectedClient?.let {
-                startActivity(ClientDetailForInvoiceActivity.newIntent(this))
-            } ?: run {
-                when (viewModel.allClients?.isNotEmpty()) {
-                    true -> {
-                        startActivity(ClientListForInvoiceActivity.newIntent(this))
-                    }
-                    false -> {
-                        startActivity(ClientDetailForInvoiceActivity.newIntent(this))
-                    }
-                    null -> {
-                        binding.root.showErrorSnackbar(getString(R.string.error_try_again))
-                    }
-                }
-            }
+            // Always go to Client List so user can choose OR add new from there
+            startActivity(ClientListForInvoiceActivity.newIntent(this))
         }
 
         binding.txtAddItem.setSafeOnClickListener {
-            startActivity(ItemDetailForInvoiceActivity.newIntent(this, DBEnum.NEW.entryType))
+            // New logic: if items are empty, go direct to add form. Otherwise go to list.
+            if (viewModel.allItems.isNullOrEmpty()) {
+                startActivity(ItemDetailForInvoiceActivity.newIntent(this, DBEnum.NEW.entryType))
+            } else {
+                startActivity(ItemsListForInvoiceActivity.newIntent(this))
+            }
+        }
+
+        binding.btnSaveInvoice.setSafeOnClickListener {
+            saveInvoice()
         }
 
         binding.txtDiscountPrice.setSafeOnClickListener {
@@ -327,6 +365,8 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
 
     private fun showPreview() {
         binding.previewContainer.visible()
+        // Refresh the fragment to ensure it has latest data from ViewModel/Draft
+        (supportFragmentManager.findFragmentById(R.id.previewContainer) as? PreviewInvoiceFragment)?.refreshData()
     }
 
     private fun hidePreview() {
@@ -334,15 +374,25 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
     }
 
     fun shareInvoice() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            == PackageManager.PERMISSION_GRANTED) {
-            binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
-                testPDFJob(webView, this)
+        // The generated PDF is written to app-specific external storage (see testPDFJob),
+        // which needs no runtime permission on any API level, so WRITE_EXTERNAL_STORAGE is
+        // not required here.
+
+        // previewContainer is `visibility="gone"` (0x0, never laid out) until the user opens
+        // the preview overlay. Printing a WebView that was never measured/laid out produces a
+        // blank PDF, so it must be made visible and given a layout pass - and its HTML must
+        // finish loading (onPageFinished) - before the print job is triggered.
+        binding.previewContainer.visible()
+        val previewFragment =
+            supportFragmentManager.findFragmentById(R.id.previewContainer) as? PreviewInvoiceFragment
+        previewFragment?.refreshData {
+            binding.previewContainer.post {
+                binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
+                    testPDFJob(webView, this) {
+                        binding.previewContainer.hide()
+                    }
+                }
             }
-        } else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            showSnackBar(this)
-        } else {
-            launcher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
     }
 
@@ -383,7 +433,7 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
         }.show()
     }
 
-    private fun saveOnBack() {
+    private fun saveInvoice() {
         lifecycleScope.launch(Dispatchers.Default) {
             with(viewModel) {
                 updateInvoice(
@@ -429,24 +479,38 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
         }
     }
 
-    private fun testPDFJob(webView: WebView, activity: Activity) {
-        val directory: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS + "/Invoices/")
+    private fun saveOnBack() {
+        // Method kept but logic moved to saveInvoice() to avoid auto-save on back
+    }
+
+    private fun testPDFJob(webView: WebView, activity: Activity, onDone: () -> Unit = {}) {
+        // App-specific external storage: no runtime permission needed on any API level,
+        // and unaffected by scoped storage (unlike getExternalStoragePublicDirectory, which
+        // silently fails to write on API 30+ since requestLegacyExternalStorage is inert
+        // once targetSdk >= 30 - see AndroidManifest.xml TODO).
+        val directory = File(activity.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Invoices")
+        directory.mkdirs()
         val waitDialog: Dialog = DialogManager.makeWaitDialog(activity)
         waitDialog.show()
 
-        val directoryPath = directory.absolutePath
+        // PdfView/PdfPrint treats this as the exact output file path, not a directory,
+        // so it must include a filename with the .pdf extension.
+        val filePath = File(directory, "Invoice_${viewModel.invoiceNumber ?: System.currentTimeMillis()}.pdf").absolutePath
         PdfView.createWebPrintJob(
             activity,
             webView,
-            directoryPath,
+            filePath,
             object : PdfView.Callback {
                 override fun success(path: String?) {
                     waitDialog.dismiss()
                     path?.let { fileChooser(activity, it) }
+                    onDone()
                 }
 
                 override fun failure(p0: Int) {
                     waitDialog.dismiss()
+                    Snackbar.make(binding.root, "Failed to generate PDF for sharing", Snackbar.LENGTH_LONG).show()
+                    onDone()
                 }
             })
     }
@@ -472,21 +536,6 @@ class AddInvoiceMainActivity : BaseActivity<ActivityInvoiceEditBinding>() {
             )
         }
         invoiceSenderLauncher.launch(chooser)
-    }
-
-    private fun showSnackBar(context: Context) {
-        val mySnackbar = Snackbar.make(
-            binding.root,
-            "Open Settings and allow storage permission to continue !",
-            Snackbar.LENGTH_LONG
-        ).setAction("Open Setting") {
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            val uri: Uri = Uri.fromParts("package", context.packageName, null)
-            intent.data = uri
-            startActivity(intent)
-        }
-        mySnackbar.setActionTextColor(ContextCompat.getColor(context, R.color.primary_color))
-        mySnackbar.show()
     }
 
     companion object {

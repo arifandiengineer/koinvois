@@ -38,4 +38,7 @@ class BusinessInputView @JvmOverloads constructor(
     fun getText(): String = binding.editText.text.toString()
     fun setText(text: String) = binding.editText.setText(text)
     fun getEditText() = binding.editText
+    fun setError(error: String?) {
+        binding.editText.error = error
+    }
 }

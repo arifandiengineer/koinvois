@@ -3,6 +3,7 @@ package com.koinvois.generator.ui.dashboard
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,6 +59,7 @@ class DashboardFragment : Fragment() {
 
     private fun setupAdapter() {
         recentInvoiceAdapter = RecentInvoiceAdapter { invoice ->
+            Log.d("AutofillLog", "Dashboard Click - Invoice ID: ${invoice.invoiceId}")
             startActivity(
                 AddInvoiceMainActivity.newIntent(requireContext(), DBEnum.OLD.entryType, invoice.invoiceId)
             )

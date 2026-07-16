@@ -29,7 +29,7 @@ class InvoiceInformationActivity : BaseActivity<ActivityInvoiceInfoBinding>() {
     override fun setupView() {
         setClickListeners()
         setUpToolbar()
-        onBackPressedDispatcher.addCallback(this) { saveOnExit() }
+        onBackPressedDispatcher.addCallback(this) { finish() }
         setObservers()
     }
 
@@ -39,6 +39,10 @@ class InvoiceInformationActivity : BaseActivity<ActivityInvoiceInfoBinding>() {
 
         viewModel.invoiceDate?.let {
             binding.editInvoiceDate.text = it
+        }
+        
+        viewModel.invoiceTerms?.let {
+            binding.editInvoiceTerms.text = it
         }
 
         viewModel.invoiceDueDate?.let {
@@ -52,6 +56,10 @@ class InvoiceInformationActivity : BaseActivity<ActivityInvoiceInfoBinding>() {
 
     private fun setClickListeners() {
         binding.customToolbar.btnBack.setSafeOnClickListener {
+            finish()
+        }
+
+        binding.btnSave.setSafeOnClickListener {
             saveOnExit()
         }
 
@@ -122,9 +130,10 @@ class InvoiceInformationActivity : BaseActivity<ActivityInvoiceInfoBinding>() {
     }
 
     private fun saveOnExit() {
-        if (binding.txtInvoiceNumber.text?.isNotEmpty() == true) {
+        if (binding.editInvoiceNumber.text?.isNotEmpty() == true) {
             viewModel.invoiceNumber = binding.editInvoiceNumber.getInt()
             viewModel.invoiceDate = binding.editInvoiceDate.text.toString()
+            viewModel.invoiceTerms = binding.editInvoiceTerms.text.toString()
             viewModel.invoiceDueDate = binding.editInvoiceDueDate.text?.toString()
             viewModel.invoicePoNumber = binding.editInvoicePoNumber.getStringText()
 

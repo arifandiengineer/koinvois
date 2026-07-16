@@ -9,36 +9,55 @@
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_14"
+        android:paddingVertical="@dimen/spacing_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/spacing_16"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/color_divider"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:id="@+id/imgPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_ph" />
+        </com.google.android.material.card.MaterialCardView>
+
         <TextView
             android:id="@+id/txtPhotoDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_14"
-            android:paddingStart="@dimen/spacing_14"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:layout_marginEnd="@dimen/spacing_16"
             tools:text="Photo Description"
             android:textColor="@color/color_text_primary"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/cardImg"
+            app:layout_constraintTop_toTopOf="@id/cardImg" />
 
         <TextView
             android:id="@+id/txtAdditionalDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_14"
-            android:paddingStart="@dimen/spacing_14"
+            android:layout_marginTop="2dp"
             tools:text="Photo Additional Details"
-            android:textColor="@color/dim_text_color"
-            android:textSize="@dimen/text_size_18"
-            app:layout_constraintEnd_toEndOf="parent"
-
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintEnd_toEndOf="@id/txtPhotoDescription"
             app:layout_constraintStart_toStartOf="@id/txtPhotoDescription"
             app:layout_constraintTop_toBottomOf="@id/txtPhotoDescription" />
 
