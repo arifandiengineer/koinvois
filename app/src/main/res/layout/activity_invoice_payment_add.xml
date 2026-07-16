@@ -4,156 +4,289 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_background"
     tools:context=".ui.invoices.add_invoice.invoice_edit_fragments.InvoiceAddPaymentActivity">
 
     <include
         android:id="@+id/customToolbar"
-        layout="@layout/view_custom_toolbar" />
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/firstCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_30"
-        android:layout_marginTop="@dimen/spacing_30"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16">
 
-            <TextView
-                android:id="@+id/txtPaymentAmount"
-                android:layout_width="0dp"
+            <!-- Primary Payment Details Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/firstCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_10"
-                android:paddingHorizontal="@dimen/spacing_14"
-                android:text="@string/label_amount_colon"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toStartOf="@+id/editPaymentAmount"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.5" />
+                android:layout_marginBottom="@dimen/spacing_16"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-            <EditText
-                android:id="@+id/editPaymentAmount"
-                android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/spacing_8">
+
+                    <!-- Amount Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/spacing_16"
+                        android:paddingVertical="@dimen/spacing_12">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconAmountContainer"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_wallet"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtAmountLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_amount_colon"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/editPaymentAmount"
+                            app:layout_constraintStart_toEndOf="@id/iconAmountContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/editPaymentAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:hint="@string/label_default_amount"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/spacing_16"
+                        android:background="@color/color_divider" />
+
+                    <!-- Payment Method Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/spacing_16"
+                        android:paddingVertical="@dimen/spacing_12">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconMethodContainer"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_taxable"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtMethodLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_payment_method_colon"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/editPaymentMethod"
+                            app:layout_constraintStart_toEndOf="@id/iconMethodContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/editPaymentMethod"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:text="@string/label_cash"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/spacing_16"
+                        android:background="@color/color_divider" />
+
+                    <!-- Date Row -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/spacing_16"
+                        android:paddingVertical="@dimen/spacing_12">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconDateContainer"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_calendar"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtDateLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_date_colon"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/editPaymentDate"
+                            app:layout_constraintStart_toEndOf="@id/iconDateContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/editPaymentDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:hint="@string/label_date_header"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Notes Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/secondCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/label_default_amount"
-                android:inputType="number"
-                android:paddingHorizontal="@dimen/spacing_14"
-                android:textColor="@color/black"
-                android:textColorHint="@color/dim_text_color"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintBottom_toBottomOf="@id/txtPaymentAmount"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtPaymentAmount"
-                app:layout_constraintWidth_percent="0.5" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-            <TextView
-                android:id="@+id/txtPaymentMethod"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_10"
-                android:paddingHorizontal="@dimen/spacing_14"
-                android:text="@string/label_payment_method_colon"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toStartOf="@+id/editPaymentMethod"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editPaymentAmount"
-                app:layout_constraintWidth_percent="0.5" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_16">
 
-            <TextView
-                android:id="@+id/editPaymentMethod"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:paddingHorizontal="@dimen/spacing_14"
-                android:text="@string/label_cash"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintBottom_toBottomOf="@id/txtPaymentMethod"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtPaymentMethod"
-                app:layout_constraintWidth_percent="0.5" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iconNotesContainer"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        app:cardBackgroundColor="@color/color_stat_green_bg"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/txtPaymentDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_10"
-                android:paddingHorizontal="@dimen/spacing_14"
-                android:text="@string/label_date_colon"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintBottom_toBottomOf="@id/editPaymentDate"
-                app:layout_constraintEnd_toStartOf="@+id/editPaymentDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editPaymentMethod"
-                app:layout_constraintWidth_percent="0.5" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_document_text"
+                            app:tint="@color/color_success" />
+                    </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/editPaymentDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_10"
-                android:background="@null"
-                android:gravity="end"
-                android:paddingHorizontal="@dimen/spacing_14"
-                android:text="@string/label_date_header"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtPaymentDate"
-                app:layout_constraintWidth_percent="0.5" />
+                    <TextView
+                        android:id="@+id/titleNotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_12"
+                        android:text="@string/label_notes"
+                        android:textColor="@color/color_success"
+                        android:textSize="@dimen/text_size_16"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iconNotesContainer"
+                        app:layout_constraintStart_toEndOf="@id/iconNotesContainer"
+                        app:layout_constraintTop_toTopOf="@id/iconNotesContainer" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <EditText
+                        android:id="@+id/editPaymentNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="top"
+                        android:hint="@string/label_notes"
+                        android:inputType="textMultiLine"
+                        android:padding="@dimen/spacing_12"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintTop_toBottomOf="@id/iconNotesContainer" />
 
-    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/secondCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_30"
-        android:layout_marginTop="@dimen/spacing_12"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstCard">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/editPaymentNotes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="start"
-                android:hint="@string/label_notes"
-                android:minLines="4"
-                android:padding="@dimen/spacing_10"
-                android:textColor="@color/black"
-                android:textColorHint="@color/dim_text_color"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

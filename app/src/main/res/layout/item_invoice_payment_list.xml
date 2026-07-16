@@ -6,55 +6,112 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_14"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="@dimen/spacing_16"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/iconContainer"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            app:cardBackgroundColor="@color/color_stat_green_bg"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:padding="10dp"
+                android:src="@drawable/ic_calendar"
+                app:tint="@color/color_success" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/paymentDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/spacing_16"
-            android:paddingTop="@dimen/spacing_10"
-            tools:text="Date"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_16"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="@dimen/spacing_16"
+            android:textColor="@color/color_text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/statusBadge"
+            app:layout_constraintStart_toEndOf="@id/iconContainer"
+            app:layout_constraintTop_toTopOf="@id/iconContainer"
+            tools:text="15 Jul 2026" />
 
         <TextView
             android:id="@+id/txtPaymentNotes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@id/paymentDate"
+            app:layout_constraintStart_toStartOf="@id/paymentDate"
+            app:layout_constraintTop_toBottomOf="@id/paymentDate"
+            tools:text="Payment for invoice #INV-0001" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/statusBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/spacing_16"
-            tools:text="Notes"
-            android:textColor="@color/dim_text_color"
-            android:textSize="@dimen/text_size_16"
-            app:layout_constraintStart_toStartOf="@id/paymentDate"
-            app:layout_constraintTop_toBottomOf="@id/paymentDate" />
+            app:cardBackgroundColor="@color/color_stat_green_bg"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toStartOf="@id/imgArrow"
+            app:layout_constraintTop_toTopOf="@id/paymentDate">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="Paid"
+                android:textColor="@color/color_success"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/paymentAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/spacing_16"
-            android:paddingTop="@dimen/spacing_10"
-            tools:text="123123"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_16"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/color_text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/statusBadge"
+            app:layout_constraintTop_toBottomOf="@id/statusBadge"
+            tools:text="$400.00" />
+
+        <ImageView
+            android:id="@+id/imgArrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_chevron_right"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/paymentDate" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_text_secondary"
+            android:contentDescription="@null" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/rv_seperator_color"
-        android:padding="@dimen/spacing_14"
+        android:layout_marginHorizontal="@dimen/spacing_16"
+        android:background="@color/color_divider"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

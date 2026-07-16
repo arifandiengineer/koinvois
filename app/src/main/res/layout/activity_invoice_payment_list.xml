@@ -4,132 +4,187 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_background"
     tools:context=".ui.invoices.add_invoice.invoice_edit_fragments.InvoicePaymentsListActivity">
 
     <include
         android:id="@+id/customToolbar"
-        layout="@layout/view_custom_toolbar" />
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/spacing_20">
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/firstCard"
-                android:layout_width="0dp"
+            <!-- Total Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_30"
-                android:layout_marginTop="@dimen/spacing_30"
-                android:paddingBottom="@dimen/spacing_2"
-                app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_20">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/paymentTotalView"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/txtTotalLabel"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/invoice_txt_grey_bg"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text="@string/label_total"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtTotalInvoicePaymentAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/color_primary"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtTotalLabel"
+                        tools:text="$1,500.00" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardBackgroundColor="@color/color_stat_blue_bg"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/txtTotalInvoicePayment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/spacing_16"
-                            android:paddingVertical="@dimen/spacing_10"
-                            android:text="@string/label_total"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="12dp"
+                            android:src="@drawable/ic_wallet"
+                            app:tint="@color/color_primary"
+                            android:contentDescription="@null" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                        <TextView
-                            android:id="@+id/txtTotalInvoicePaymentAmount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/spacing_16"
-                            android:paddingVertical="@dimen/spacing_10"
-                            android:text="@string/label_amount"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:layout_marginBottom="@dimen/spacing_12"
+                android:text="Payment History"
+                android:textColor="@color/color_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvPayments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/paymentTotalView"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/item_invoice_payment_list" />
+            <!-- Payment List Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                    <TextView
-                        android:id="@+id/txtAddPayment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/spacing_16"
-                        android:paddingVertical="@dimen/spacing_10"
-                        android:text="@string/label_add_payment"
-                        android:textColor="@color/dim_text_color"
-                        android:textSize="@dimen/text_size_16"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rvPayments" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPayments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_invoice_payment_list" />
+            </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:id="@+id/txtAddPaymentFigure"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/spacing_16"
-                        android:paddingVertical="@dimen/spacing_10"
-                        android:text="@string/label_default_amount"
-                        android:textColor="@color/dim_text_color"
-                        android:textSize="@dimen/text_size_16"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rvPayments" />
+            <!-- Add Payment Button -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnContainerAddPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:background="@drawable/bg_dashed_border"
+                android:padding="@dimen/spacing_16">
+
+                <ImageView
+                    android:id="@+id/imgAdd"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/icon_add"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/color_primary" />
+
+                <TextView
+                    android:id="@+id/txtAddPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_12"
+                    android:text="@string/label_add_payment"
+                    android:textColor="@color/color_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imgAdd"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtAddPaymentFigure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_default_amount"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Summary Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/paidView"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/grey_invoice_bg"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/txtAddPaymentFigure">
+                        android:background="@color/color_stat_blue_bg"
+                        android:padding="@dimen/spacing_16">
 
                         <TextView
                             android:id="@+id/txtPaied"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/spacing_16"
-                            android:paddingVertical="@dimen/spacing_10"
                             android:text="@string/status_paid"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_16"
+                            android:textColor="@color/color_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -137,48 +192,76 @@
                             android:id="@+id/txtPaidAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/spacing_16"
-                            android:paddingVertical="@dimen/spacing_10"
-                            android:text="@string/label_paid_amount"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_16"
+                            android:textColor="@color/color_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="$1,500.00" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/txtBalanceDueAfterPayment"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/spacing_16"
-                        android:paddingVertical="@dimen/spacing_16"
-                        android:text="@string/label_balance_due"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_16"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/paidView" />
+                        android:padding="@dimen/spacing_16">
 
+                        <TextView
+                            android:id="@+id/txtBalanceDueAfterPayment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_balance_due"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/txtBalanceDueAfterPaymentAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/spacing_16"
-                        android:paddingVertical="@dimen/spacing_16"
-                        tools:text="500"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_16"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/paidView" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/txtBalanceDueAfterPaymentAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_error"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="$500.00" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
+            <!-- Footer Info -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@drawable/bg_translucent_card"
+                android:backgroundTint="@color/color_stat_blue_bg"
+                android:padding="@dimen/spacing_12">
 
-            </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/imgInfo"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_info_outline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/color_primary"
+                    android:contentDescription="@null" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_12"
+                    android:text="All payments are automatically saved and reflected in your invoice."
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imgInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
-
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,231 +4,532 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_background"
     tools:context=".ui.invoices.add_invoice.invoice_edit_fragments.EditBusinessDetailsFromInvoiceActivity">
 
     <include
         android:id="@+id/customToolbar"
-        layout="@layout/view_custom_toolbar" />
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16">
 
             <ImageView
                 android:id="@+id/imgImagePicker"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="@dimen/spacing_30"
-                android:src="@drawable/add_business_icon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/spacing_16"
                 android:contentDescription="@string/cd_choose_business_logo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/add_business_icon" />
 
-            <androidx.cardview.widget.CardView
+            <!-- Card 1: Business Information -->
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/firstCard"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_30"
-                android:layout_marginTop="@dimen/spacing_30"
-                app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgImagePicker">
+                android:layout_marginBottom="@dimen/spacing_16"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
 
-                    <EditText
-                        android:id="@+id/editBusinessName"
-                        android:layout_width="0dp"
+                    <!-- Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_business_name"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editBusinessOwnerName"
-                        android:layout_width="0dp"
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardBackgroundColor="@color/color_stat_blue_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_business"
+                                app:tint="@color/color_primary" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:text="Business Information"
+                            android:textColor="@color/color_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Business Name -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_business_owner_name"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintEnd_toEndOf="@id/editBusinessName"
-                        app:layout_constraintStart_toStartOf="@id/editBusinessName"
-                        app:layout_constraintTop_toBottomOf="@id/editBusinessName" />
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-                    <EditText
-                        android:id="@+id/editBusinessNumber"
-                        android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/icName"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_business"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
+
+                        <EditText
+                            android:id="@+id/editBusinessName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_business_name"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icName"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Owner Name -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:layout_marginBottom="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_business_number"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@id/editBusinessOwnerName"
-                        app:layout_constraintStart_toStartOf="@id/editBusinessOwnerName"
-                        app:layout_constraintTop_toBottomOf="@id/editBusinessOwnerName" />
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/icOwner"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_user_outline"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
 
-            </androidx.cardview.widget.CardView>
+                        <EditText
+                            android:id="@+id/editBusinessOwnerName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_business_owner_name"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icOwner"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.cardview.widget.CardView
+                    <!-- Business Number -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
+
+                        <ImageView
+                            android:id="@+id/icNumber"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_document_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
+
+                        <EditText
+                            android:id="@+id/editBusinessNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_business_number"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icNumber"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card 2: Business Address -->
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/secondCard"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_30"
-                android:layout_marginTop="@dimen/spacing_30"
-                app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/firstCard">
+                android:layout_marginBottom="@dimen/spacing_16"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
 
-                    <EditText
-                        android:id="@+id/editAddress1"
-                        android:layout_width="0dp"
+                    <!-- Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_address_line_1"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editAddress2"
-                        android:layout_width="0dp"
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardBackgroundColor="@color/color_stat_blue_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_location"
+                                app:tint="@color/color_primary" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:text="Business Address"
+                            android:textColor="@color/color_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Address 1 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_address_line_2"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editAddress1" />
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-                    <EditText
-                        android:id="@+id/editAddress3"
-                        android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/icAddr1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_home_outline"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
+
+                        <EditText
+                            android:id="@+id/editAddress1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_address_line_1"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icAddr1"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Address 2 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:layout_marginBottom="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_address_line_3"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editAddress2" />
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/icAddr2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_home_outline"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
 
-            </androidx.cardview.widget.CardView>
+                        <EditText
+                            android:id="@+id/editAddress2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_address_line_2"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icAddr2"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.cardview.widget.CardView
+                    <!-- Address 3 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
+
+                        <ImageView
+                            android:id="@+id/icAddr3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_home_outline"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
+
+                        <EditText
+                            android:id="@+id/editAddress3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_address_line_3"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icAddr3"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card 3: Contact Information -->
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/thirdCard"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_30"
-                android:layout_marginTop="@dimen/spacing_30"
-                android:layout_marginBottom="@dimen/spacing_8"
-                app:cardCornerRadius="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/secondCard">
+                android:layout_marginBottom="@dimen/spacing_16"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
 
-                    <EditText
-                        android:id="@+id/editEmail"
-                        android:layout_width="0dp"
+                    <!-- Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_email"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editPhoneNumber"
-                        android:layout_width="0dp"
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:cardBackgroundColor="@color/color_stat_blue_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="6dp"
+                                android:src="@drawable/contact_us_icon"
+                                app:tint="@color/color_primary" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:text="Contact Information"
+                            android:textColor="@color/color_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Email -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_phone"
-                        android:inputType="phone"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editEmail" />
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-                    <EditText
-                        android:id="@+id/editMobileNumber"
-                        android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/icEmail"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_mail_outline"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
+
+                        <EditText
+                            android:id="@+id/editEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_email"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icEmail"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Phone -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_mobile"
-                        android:inputType="phone"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editPhoneNumber" />
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-                    <EditText
-                        android:id="@+id/editWebsite"
-                        android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/icPhone"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_phone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
+
+                        <EditText
+                            android:id="@+id/editPhoneNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_phone"
+                            android:inputType="phone"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icPhone"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Mobile -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_16"
-                        android:layout_marginTop="@dimen/spacing_26"
-                        android:layout_marginBottom="@dimen/spacing_26"
-                        android:background="@null"
-                        android:hint="@string/hint_website"
-                        android:textSize="@dimen/text_size_18"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editMobileNumber" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-            </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/icMobile"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_phone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <EditText
+                            android:id="@+id/editMobileNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_mobile"
+                            android:inputType="phone"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icMobile"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <!-- Website -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
+
+                        <ImageView
+                            android:id="@+id/icWebsite"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_website"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_neutral_icon_grey" />
+
+                        <EditText
+                            android:id="@+id/editWebsite"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_website"
+                            android:inputType="textUri"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/icWebsite"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

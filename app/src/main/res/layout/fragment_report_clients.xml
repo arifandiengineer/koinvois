@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_paid_clients" />
+                    tools:listitem="@layout/item_report_paid_invoice" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

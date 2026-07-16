@@ -47,6 +47,10 @@ class InvoicePaymentsListActivity : BaseActivity<ActivityInvoicePaymentListBindi
                 }
 
                 launch {
+                    binding.txtTotalInvoicePaymentAmount.text = CurrencyFormatter.format(viewModel.invoiceTotal)
+                }
+
+                launch {
                     viewModel.balanceDue.collect { balance ->
                         binding.txtBalanceDueAfterPaymentAmount.text = CurrencyFormatter.format(balance)
                     }
@@ -60,7 +64,7 @@ class InvoicePaymentsListActivity : BaseActivity<ActivityInvoicePaymentListBindi
             finish()
         }
 
-        binding.txtAddPayment.setSafeOnClickListener {
+        binding.btnContainerAddPayment.setSafeOnClickListener {
             startActivity(InvoiceAddPaymentActivity.newIntent(this))
         }
     }

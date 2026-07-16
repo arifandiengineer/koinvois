@@ -4,293 +4,541 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_background"
     tools:context=".ui.invoices.add_invoice.invoice_edit_fragments.ItemDetailForInvoiceActivity">
 
     <include
         android:id="@+id/customToolbar"
-        layout="@layout/view_custom_toolbar" />
+        layout="@layout/view_custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/firstCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_30"
-        android:layout_marginTop="@dimen/spacing_40"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputItemDescription"
-                style="@style/Widget.App.TextInputLayout"
-                android:layout_width="0dp"
+            <!-- Primary Details Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/firstCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:hint="@string/hint_description"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.5">
+                android:layout_marginBottom="@dimen/spacing_16"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editItemDescription"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_16" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <!-- Description Input Section -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/descriptionContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_input_border"
+                        android:padding="@dimen/spacing_12">
 
-            <TextView
-                android:id="@+id/txtItemUnitCost"
-                android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/imgDescIcon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_document_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_success" />
+
+                        <EditText
+                            android:id="@+id/editItemDescription"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_12"
+                            android:background="@null"
+                            android:hint="@string/hint_description"
+                            android:inputType="text"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgDescIcon"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Row: Unit Cost -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:paddingVertical="@dimen/spacing_8">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconUnitCostContainer"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_wallet"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtItemUnitCost"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_unit_cost"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/editItemUnitCost"
+                            app:layout_constraintStart_toEndOf="@id/iconUnitCostContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/editItemUnitCost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:hint="@string/label_default_amount"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_divider" />
+
+                    <!-- Row: Quantity -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/spacing_8">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconQtyContainer"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_onboarding_organized"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtQuantity"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_quantity_colon"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/editQuantity"
+                            app:layout_constraintStart_toEndOf="@id/iconQtyContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/editQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:hint="@string/hint_quantity_default"
+                            android:inputType="number"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_divider" />
+
+                    <!-- Row: Discount Type -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/spacing_8">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconDiscountContainer"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_percent"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtDiscount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_discount"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/txtItemDiscountType"
+                            app:layout_constraintStart_toEndOf="@id/iconDiscountContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txtItemDiscountType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:text="@string/label_percentage"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_divider" />
+
+                    <!-- Row: Discount Amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/spacing_8">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="outstanding_invoices" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconDiscountAmtContainer"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_taxable"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtDiscountAmount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_discount_amount"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/editDiscountAmount"
+                            app:layout_constraintStart_toEndOf="@id/iconDiscountAmtContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/editDiscountAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:hint="@string/hint_percentage_default"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_divider" />
+
+                    <!-- Row: Taxable -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/spacing_8">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconTaxableContainer"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_document_text"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtItemTaxable"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_taxable_colon"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/switchItemTaxable"
+                            app:layout_constraintStart_toEndOf="@id/iconTaxableContainer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchItemTaxable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Tax Rate (Optional Row, hidden if not taxable) -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/groupTaxRateRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:paddingVertical="@dimen/spacing_8">
+
+                        <View
+                            android:id="@+id/taxRateDivider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/color_divider"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/iconTaxRateContainer"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            app:cardBackgroundColor="@color/color_stat_green_bg"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/taxRateDivider">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@null"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_percent"
+                                app:tint="@color/color_success" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/txtTax"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:text="@string/label_tax_rate_colon"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/editTaxRate"
+                            app:layout_constraintStart_toEndOf="@id/iconTaxRateContainer"
+                            app:layout_constraintTop_toTopOf="@id/iconTaxRateContainer" />
+
+                        <EditText
+                            android:id="@+id/editTaxRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:hint="@string/hint_percentage_default"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/iconTaxRateContainer" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Total Section -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:background="@drawable/bg_translucent_card"
+                        android:backgroundTint="@color/color_stat_green_bg"
+                        android:padding="@dimen/spacing_12">
+
+                        <TextView
+                            android:id="@+id/txtTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_total_colon"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_18"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txtTotalBalanceAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="$0.00"
+                            android:textColor="@color/color_success"
+                            android:textSize="@dimen/text_size_18"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Additional Details Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/secondCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:paddingStart="@dimen/spacing_14"
-                android:text="@string/label_unit_cost"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
-                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
-                app:layout_constraintTop_toBottomOf="@id/inputItemDescription" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-            <EditText
-                android:id="@+id/editItemUnitCost"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/label_default_amount"
-                android:inputType="number"
-                android:paddingEnd="@dimen/spacing_14"
-                android:textColor="@color/black"
-                android:textColorHint="@color/dim_text_color"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtItemUnitCost"
-                app:layout_constraintWidth_percent="0.5" />
-
-            <TextView
-                android:id="@+id/txtQuantity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:paddingStart="@dimen/spacing_14"
-
-                android:text="@string/label_quantity_colon"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
-                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
-                app:layout_constraintTop_toBottomOf="@+id/editItemUnitCost" />
-
-            <EditText
-                android:id="@+id/editQuantity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_quantity_default"
-                android:inputType="number"
-                android:paddingEnd="@dimen/spacing_14"
-                android:textColor="@color/black"
-                android:textColorHint="@color/dim_text_color"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
-                app:layout_constraintTop_toTopOf="@id/txtQuantity" />
-
-            <TextView
-                android:id="@+id/txtDiscount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:paddingStart="@dimen/spacing_14"
-                android:text="@string/label_discount"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
-                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
-                app:layout_constraintTop_toBottomOf="@+id/editQuantity" />
-
-            <TextView
-                android:id="@+id/txtItemDiscountType"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingEnd="@dimen/spacing_14"
-                android:text="@string/label_percentage"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
-                app:layout_constraintTop_toTopOf="@id/txtDiscount" />
-
-            <TextView
-                android:id="@+id/txtDiscountAmount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:paddingStart="@dimen/spacing_14"
-                android:text="@string/label_discount_amount"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
-                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
-                app:layout_constraintTop_toBottomOf="@+id/txtItemDiscountType" />
-
-            <EditText
-                android:id="@+id/editDiscountAmount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_percentage_default"
-                android:inputType="number"
-                android:paddingEnd="@dimen/spacing_14"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
-                app:layout_constraintTop_toTopOf="@id/txtDiscountAmount" />
-
-            <TextView
-                android:id="@+id/txtItemTaxable"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_20"
-                android:paddingStart="@dimen/spacing_14"
-                android:text="@string/label_taxable_colon"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
-                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
-                app:layout_constraintTop_toBottomOf="@+id/editDiscountAmount" />
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switchItemTaxable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                app:layout_constraintBottom_toBottomOf="@id/txtItemTaxable"
-                app:layout_constraintEnd_toEndOf="@id/editItemUnitCost"
-                app:layout_constraintTop_toTopOf="@id/txtItemTaxable" />
-
-            <TextView
-                android:id="@+id/txtTax"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/spacing_14"
-                android:text="@string/label_tax_rate_colon"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="@+id/inputItemDescription"
-                app:layout_constraintStart_toStartOf="@+id/inputItemDescription"
-                app:layout_constraintTop_toBottomOf="@+id/switchItemTaxable" />
-
-            <EditText
-                android:id="@+id/editTaxRate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_percentage_default"
-                android:inputType="number"
-                android:paddingEnd="@dimen/spacing_14"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/editItemUnitCost"
-                app:layout_constraintTop_toTopOf="@id/txtTax" />
-
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/groupTaxRate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:constraint_referenced_ids="txtTax,editTaxRate" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_30"
-                android:background="@drawable/invoice_txt_grey_bg"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTaxRate">
-
-                <TextView
-                    android:id="@+id/txtTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/spacing_10"
-                    android:layout_marginStart="@dimen/spacing_16"
-                    android:text="@string/label_total_colon"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_16"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtTotalBalanceAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/spacing_10"
-                    android:layout_marginEnd="@dimen/spacing_16"
-                    tools:text="$0.00"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_16"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/secondCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_30"
-        android:layout_marginTop="@dimen/spacing_36"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstCard">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputItemDetails"
-                style="@style/Widget.App.TextInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_additional_details"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editItemDetails"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="start|top"
-                    android:lines="4"
-                    android:textSize="@dimen/text_size_16" />
+                    android:padding="@dimen/spacing_16">
 
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iconDetailsContainer"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        app:cardBackgroundColor="@color/color_stat_green_bg"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_additional_details"
+                            app:tint="@color/color_success" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/titleDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_12"
+                        android:text="@string/hint_additional_details"
+                        android:textColor="@color/color_success"
+                        android:textSize="@dimen/text_size_16"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iconDetailsContainer"
+                        app:layout_constraintStart_toEndOf="@id/iconDetailsContainer"
+                        app:layout_constraintTop_toTopOf="@id/iconDetailsContainer" />
+
+                    <EditText
+                        android:id="@+id/editItemDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:background="@drawable/bg_input_border"
+                        android:gravity="top"
+                        android:hint="@string/hint_enter_additional_details"
+                        android:inputType="textMultiLine"
+                        android:padding="@dimen/spacing_12"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintTop_toBottomOf="@id/iconDetailsContainer" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

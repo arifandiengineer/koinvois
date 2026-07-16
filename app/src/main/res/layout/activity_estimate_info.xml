@@ -14,135 +14,200 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/firstCard"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
         android:layout_marginHorizontal="@dimen/spacing_20"
         android:layout_marginTop="@dimen/spacing_24"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:strokeWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/customToolbar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingVertical="@dimen/spacing_8">
 
             <!-- Estimate Number Row -->
-            <TextView
-                android:id="@+id/txtEstimateNumber"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/spacing_20"
-                android:paddingVertical="@dimen/spacing_16"
-                android:text="@string/label_estimate_number_colon"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toStartOf="@+id/editEstimateNumber"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.5" />
+                android:paddingHorizontal="@dimen/spacing_16"
+                android:paddingVertical="@dimen/spacing_12">
 
-            <EditText
-                android:id="@+id/editEstimateNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_estimate_number_default"
-                android:inputType="number"
-                android:paddingHorizontal="@dimen/spacing_20"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/text_size_16"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/txtEstimateNumber"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtEstimateNumber"
-                app:layout_constraintWidth_percent="0.5" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/iconNumberContainer"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@color/color_stat_green_bg"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@null"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_document_text"
+                        app:tint="@color/color_success" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/txtEstimateNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:text="@string/label_estimate_number_colon"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/editEstimateNumber"
+                    app:layout_constraintStart_toEndOf="@id/iconNumberContainer"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editEstimateNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="@string/hint_estimate_number_default"
+                    android:inputType="number"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:id="@+id/divider1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginHorizontal="@dimen/spacing_20"
-                android:background="@color/color_divider"
-                app:layout_constraintTop_toBottomOf="@id/txtEstimateNumber" />
+                android:layout_marginHorizontal="@dimen/spacing_16"
+                android:background="@color/color_divider" />
 
             <!-- Date Row -->
-            <TextView
-                android:id="@+id/txtEstimateDate"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/spacing_20"
-                android:paddingVertical="@dimen/spacing_16"
-                android:text="@string/label_date_colon"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintEnd_toStartOf="@+id/editEstimateDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider1"
-                app:layout_constraintWidth_percent="0.5" />
+                android:paddingHorizontal="@dimen/spacing_16"
+                android:paddingVertical="@dimen/spacing_12">
 
-            <TextView
-                android:id="@+id/editEstimateDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:hint="@string/label_date"
-                android:paddingHorizontal="@dimen/spacing_20"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/text_size_16"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/txtEstimateDate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtEstimateDate"
-                app:layout_constraintWidth_percent="0.5" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/iconDateContainer"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@color/color_stat_green_bg"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@null"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="@color/color_success" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/txtEstimateDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:text="@string/label_date_colon"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/editEstimateDate"
+                    app:layout_constraintStart_toEndOf="@id/iconDateContainer"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/editEstimateDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:hint="@string/label_date"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginHorizontal="@dimen/spacing_20"
-                android:background="@color/color_divider"
-                app:layout_constraintTop_toBottomOf="@id/txtEstimateDate" />
+                android:layout_marginHorizontal="@dimen/spacing_16"
+                android:background="@color/color_divider" />
 
             <!-- PO Number Row -->
-            <TextView
-                android:id="@+id/txtEstimatePoNumber"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/spacing_20"
-                android:paddingVertical="@dimen/spacing_16"
-                android:text="@string/label_po_number_colon"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/editEstimatePoNumber"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider2"
-                app:layout_constraintWidth_percent="0.5" />
+                android:paddingHorizontal="@dimen/spacing_16"
+                android:paddingVertical="@dimen/spacing_12">
 
-            <EditText
-                android:id="@+id/editEstimatePoNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="end"
-                android:hint="@string/hint_po_number"
-                android:paddingHorizontal="@dimen/spacing_20"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/text_size_16"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/txtEstimatePoNumber"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtEstimatePoNumber"
-                app:layout_constraintWidth_percent="0.5" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/iconPoContainer"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@color/color_stat_green_bg"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@null"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_taxable"
+                        app:tint="@color/color_success" />
+                </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    android:id="@+id/txtEstimatePoNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:text="@string/label_po_number_colon"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/editEstimatePoNumber"
+                    app:layout_constraintStart_toEndOf="@id/iconPoContainer"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editEstimatePoNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="@string/hint_po_number"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
