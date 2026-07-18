@@ -1,28 +1,21 @@
 package com.koinvois.generator.ui.estimates.add_estimate
 
-import android.Manifest
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
-import android.graphics.Color
-import android.net.Uri
 import android.os.Environment
-import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.webkit.WebView
-import android.widget.TextView
 import androidx.activity.addCallback
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.koinvois.generator.R
@@ -68,15 +61,6 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
 
     private val viewModel: EstimatesMainViewModel by viewModels()
 
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
-                    testPDFJob(webView, this)
-                }
-            }
-        }
-
     override fun inflateBinding(): ActivityEstimateEditBinding =
         ActivityEstimateEditBinding.inflate(LayoutInflater.from(this))
 
@@ -85,7 +69,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         val estimateId = intent.getIntExtra(EXTRA_ESTIMATE_ID, -1)
 
         setUpToolbar(estimateType)
-        setClickListeners(this)
+        setClickListeners()
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.previewContainer, PreviewEstimateFragment())
@@ -106,6 +90,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
                 } else if (estimateId != -1) {
                     viewModel.loadEstimateById(estimateId)
                 }
+                refreshEstimateUi()
             }
         }
     }
@@ -126,7 +111,10 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
 
     override fun onResume() {
         super.onResume()
+        refreshEstimateUi()
+    }
 
+    private fun refreshEstimateUi() {
         viewModel.selectedClient.let {
             binding.txtClientName.text = it?.clientName
         }
@@ -215,7 +203,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         }
     }
 
-    private fun setClickListeners(context: Context) {
+    private fun setClickListeners() {
         binding.customToolbar.btnBack.setSafeOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -225,7 +213,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         }
 
         binding.customToolbar.imgSecondaryAction.setSafeOnClickListener {
-            showPopupMenu(it, context)
+            showPopupMenu(it)
         }
 
         binding.txtSignature.setSafeOnClickListener {
@@ -265,7 +253,14 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         }
 
         binding.txtAddPhoto.setSafeOnClickListener {
-            startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
+            val photos = viewModel.photosForEstimate
+            if (!photos.isNullOrEmpty()) {
+                // If photo exists, edit the first one
+                viewModel.currentSelectedPhoto = photos[0]
+                startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.OLD.entryType))
+            } else {
+                startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.NEW.entryType))
+            }
         }
 
         binding.btnMarkPaid.setSafeOnClickListener {
@@ -305,20 +300,30 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         binding.previewContainer.hide()
     }
 
-    private fun shareEstimate(context: Context) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            == PackageManager.PERMISSION_GRANTED) {
-            binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
-                testPDFJob(webView, this)
+    private fun shareEstimate() {
+        // The generated PDF is written to app-specific external storage (see testPDFJob),
+        // which needs no runtime permission on any API level, so WRITE_EXTERNAL_STORAGE is
+        // not required here.
+
+        // previewContainer is `visibility="gone"` (never laid out) until the user opens the
+        // preview overlay. Printing a WebView that was never measured/laid out produces a
+        // blank PDF, so it must be made visible and given a layout pass - and its HTML must
+        // finish loading (onPageFinished) - before the print job is triggered.
+        binding.previewContainer.visible()
+        val previewFragment =
+            supportFragmentManager.findFragmentById(R.id.previewContainer) as? PreviewEstimateFragment
+        previewFragment?.refreshData {
+            binding.previewContainer.post {
+                binding.root.findViewById<WebView>(R.id.webView)?.let { webView ->
+                    testPDFJob(webView, this) {
+                        binding.previewContainer.hide()
+                    }
+                }
             }
-        } else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            showSnackBar(context)
-        } else {
-            launcher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
     }
 
-    private fun showPopupMenu(view: View, context: Context) {
+    private fun showPopupMenu(view: View) {
         PopupMenu(view.context, view).apply {
             menuInflater.inflate(R.menu.popup_men, menu)
             setOnMenuItemClickListener { item ->
@@ -327,7 +332,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
                         deleteEstimate()
                     }
                     R.id.menuItemShare -> {
-                        shareEstimate(context)
+                        shareEstimate()
                     }
                 }
                 true
@@ -402,24 +407,34 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         // Moved logic to saveEstimate()
     }
 
-    private fun testPDFJob(webView: WebView, actv: Activity) {
-        val directory: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS + "/Estimates/")
+    private fun testPDFJob(webView: WebView, actv: Activity, onDone: () -> Unit = {}) {
+        // App-specific external storage: no runtime permission needed on any API level,
+        // and unaffected by scoped storage (unlike getExternalStoragePublicDirectory, which
+        // silently fails to write on API 30+ since requestLegacyExternalStorage is inert
+        // once targetSdk >= 30 - see AndroidManifest.xml TODO).
+        val directory = File(actv.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Estimates")
+        directory.mkdirs()
         val waitDialog: Dialog = DialogManager.makeWaitDialog(actv)
         waitDialog.show()
 
-        val directoryPath = directory.absolutePath
+        // PdfView/PdfPrint treats this as the exact output file path, not a directory,
+        // so it must include a filename with the .pdf extension.
+        val filePath = File(directory, "Estimate_${viewModel.estimateNumber ?: System.currentTimeMillis()}.pdf").absolutePath
         PdfView.createWebPrintJob(
             actv,
             webView,
-            directoryPath,
+            filePath,
             object : PdfView.Callback {
                 override fun success(path: String?) {
                     waitDialog.dismiss()
                     path?.let { fileChooser(actv, it) }
+                    onDone()
                 }
 
                 override fun failure(p0: Int) {
                     waitDialog.dismiss()
+                    Snackbar.make(binding.root, "Failed to generate PDF for sharing", Snackbar.LENGTH_LONG).show()
+                    onDone()
                 }
             })
     }
@@ -445,29 +460,6 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
             )
         }
         startActivity(chooser)
-    }
-
-    private fun showSnackBar(context: Context) {
-        val mySnackbar = Snackbar.make(
-            binding.root,
-            "Open Settings and allow storage permission to continue !",
-            Snackbar.LENGTH_LONG
-        ).setAction("Open Setting") {
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            val uri: Uri = Uri.fromParts("package", context.packageName, null)
-            intent.data = uri
-            startActivity(intent)
-        }
-
-        mySnackbar.setActionTextColor(ContextCompat.getColor(context, R.color.primary_color))
-
-        val snackbarView = mySnackbar.view
-        snackbarView.setBackgroundColor(Color.WHITE)
-        val textView = snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-        textView?.setTextColor(Color.BLACK)
-        textView?.textSize = 18f
-
-        mySnackbar.show()
     }
 
     companion object {

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/spacing_100"
+        android:paddingBottom="@dimen/spacing_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -341,63 +341,6 @@
 
             </GridLayout>
 
-            <!-- Recent Invoices Section -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_20"
-                android:layout_marginTop="@dimen/spacing_16">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dashboard_recent_invoices"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/text_size_18"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/btnViewAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="@string/dashboard_view_all"
-                    android:textColor="@color/color_accent_deep_green"
-                    android:textSize="@dimen/text_size_14"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_20"
-                android:layout_marginTop="@dimen/spacing_12"
-                app:cardBackgroundColor="@color/color_surface"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:strokeWidth="0dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvRecentInvoices"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_dashboard_recent_invoice" />
-
-                <TextView
-                    android:id="@+id/txtNoRecentInvoices"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/spacing_32"
-                    android:text="@string/text_no_recent_invoices"
-                    android:textColor="@color/color_text_secondary"
-                    android:visibility="gone" />
-
-            </com.google.android.material.card.MaterialCardView>
-
             <!-- Quick Actions Section -->
             <TextView
                 android:layout_width="wrap_content"
@@ -526,10 +469,70 @@
 
             </GridLayout>
 
+            <!-- Recent Invoices Section -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dashboard_recent_invoices"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/text_size_18"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnViewAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/dashboard_view_all"
+                    android:textColor="@color/color_accent_deep_green"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_12"
+                app:cardBackgroundColor="@color/color_surface"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecentInvoices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    tools:itemCount="1"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_dashboard_recent_invoice" />
+
+                <TextView
+                    android:id="@+id/txtNoRecentInvoices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_32"
+                    android:text="@string/text_no_recent_invoices"
+                    android:textColor="@color/color_text_secondary"
+                    android:visibility="gone" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
             <!-- Spacer for Bottom Navigation -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="@dimen/spacing_8" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

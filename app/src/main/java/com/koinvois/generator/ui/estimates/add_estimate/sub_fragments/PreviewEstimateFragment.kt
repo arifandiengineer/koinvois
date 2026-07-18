@@ -2,6 +2,8 @@ package com.koinvois.generator.ui.estimates.add_estimate.sub_fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import android.view.LayoutInflater
@@ -52,7 +54,15 @@ class PreviewEstimateFragment : Fragment() {
         }
     }
 
-    fun refreshData() {
+    fun refreshData(onLoaded: (() -> Unit)? = null) {
+        // Always (re)set the client: a stale one from a previous call would otherwise keep
+        // firing its (now-invalid) onLoaded closure on every future page load.
+        binding?.webView?.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                onLoaded?.invoke()
+            }
+        }
         createHTML()
     }
 
