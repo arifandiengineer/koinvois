@@ -1,6 +1,6 @@
 package com.koinvois.generator.utilities.extensions
 
-import android.icu.text.SimpleDateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun Date.toStringFormat(format: String, locale: Locale = Locale.getDefault()): String {

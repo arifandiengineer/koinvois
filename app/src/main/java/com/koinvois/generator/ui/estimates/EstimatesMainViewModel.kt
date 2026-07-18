@@ -10,6 +10,9 @@ import com.koinvois.generator.data_models.Signature
 import com.koinvois.generator.database.models.*
 import com.koinvois.generator.utilities.enums.EstimateStatusEnum
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
+import com.koinvois.generator.core.di.DefaultDispatcher
+import com.koinvois.generator.domain.calculation.DiscountCalculator
+import com.koinvois.generator.domain.calculation.TaxCalculator
 import com.koinvois.generator.domain.usecase.business.AddBusinessUseCase
 import com.koinvois.generator.domain.usecase.business.GetBusinessUseCase
 import com.koinvois.generator.domain.usecase.business.UpdateBusinessUseCase
@@ -18,6 +21,7 @@ import com.koinvois.generator.domain.usecase.estimate.*
 import com.koinvois.generator.domain.usecase.item.GetAllItemsUseCase
 import com.koinvois.generator.utilities.extensions.toStringFormat
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -48,6 +52,7 @@ class EstimatesMainViewModel @Inject constructor(
     private val getAllItemsUseCase: GetAllItemsUseCase,
     private val appPreferences: AppPreferencesDataStore,
     private val draft: EstimateDraftState,
+    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : ViewModel() {
 
     val allEstimatesLive: LiveData<List<Estimate>> =
@@ -107,6 +112,9 @@ class EstimatesMainViewModel @Inject constructor(
     var estimateTotal: Float?
         get() = draft.estimateTotal
         set(value) { draft.estimateTotal = value }
+    var taxAmount: Float
+        get() = draft.taxAmount
+        set(value) { draft.taxAmount = value }
     var photosForEstimate: ArrayList<EstimatePhoto>?
         get() = draft.photosForEstimate
         set(value) { draft.photosForEstimate = value }
@@ -127,7 +135,7 @@ class EstimatesMainViewModel @Inject constructor(
         set(value) { draft.allItems = value }
 
     init {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(defaultDispatcher) {
             allClients = getAllClientsUseCase().map { it.toEntity() } as ArrayList<Client>
             allItems = getAllItemsUseCase().map { it.toEntity() } as ArrayList<Item>
         }
@@ -232,13 +240,41 @@ class EstimatesMainViewModel @Inject constructor(
 
         discountType = fullEstimate.estimateDiscountType
         discountAmount = fullEstimate.estimateDiscountAmount
-        // discountPercentage = invoice.invoiceDiscountPercentage
+        
         taxType = fullEstimate.estimateTaxType
         taxLabel = fullEstimate.estimateTaxLabel
         currentEstimateItem = null
         taxRate = fullEstimate.estimateTaxRate
         taxInclusive = fullEstimate.estimateTaxInclusive
 
+        recalculateEstimateSubTotal()
+        recalculateEstimateTotal()
+    }
+
+    fun recalculateEstimateSubTotal() {
+        estimateSubTotal = selectedItemsList?.sumOf { (it.itemTotal ?: 0f).toDouble() }?.toFloat() ?: 0f
+    }
+
+    fun recalculateEstimateTotal() {
+        discountTotalAmount = DiscountCalculator.calculateDiscountTotal(
+            subTotal = estimateSubTotal,
+            discountType = discountType,
+            discountAmount = discountAmount
+        )
+        val subTotalAfterDiscount = (estimateSubTotal ?: 0f) - (discountTotalAmount ?: 0f)
+        val taxableItems = selectedItemsList
+            ?.filter { it.estimateItemTaxable == true }
+            ?.map { it.itemTaxRate to it.itemTotal }
+            ?: emptyList()
+        val taxResult = TaxCalculator.calculateTax(
+            taxType = taxType,
+            taxRate = taxRate,
+            taxInclusive = taxInclusive,
+            subTotalAfterDiscount = subTotalAfterDiscount,
+            taxableItems = taxableItems
+        )
+        taxAmount = taxResult.taxAmount
+        estimateTotal = subTotalAfterDiscount + taxResult.totalAdjustment
     }
 
     fun clearViewModel() {
@@ -256,7 +292,7 @@ class EstimatesMainViewModel @Inject constructor(
         currentEstimateItem = null
         discountType = null
         discountAmount = null
-        // discountPercentage = null
+        
         discountTotalAmount = null
         taxType = null
         taxLabel = null

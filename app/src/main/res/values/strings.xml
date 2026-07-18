@@ -180,6 +180,11 @@
     <string name="label_about_us">About Us</string>
     <string name="label_rate_us">Rate Us</string>
     <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="label_reset_data">Reset All Data</string>
+    <string name="label_reset_data_desc">Permanently delete all your invoices, clients, and items</string>
+    <string name="msg_confirm_reset">Are you sure you want to reset all data? This action cannot be undone.</string>
+    <string name="label_reset">Reset</string>
+    <string name="label_data_cleared">All data has been cleared.</string>
     <string name="label_contact_us">Contact Us</string>
     <string name="label_language">Language</string>
     <string name="label_select_language">Select Language</string>

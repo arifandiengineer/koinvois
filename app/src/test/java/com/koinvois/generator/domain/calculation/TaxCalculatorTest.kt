@@ -6,66 +6,84 @@ import org.junit.Test
 
 class TaxCalculatorTest {
 
-    private val none = ItemTaxTypeEnum.NONE.taxTypeCapital
     private val onTheTotal = ItemTaxTypeEnum.ON_THE_TOTAL.taxTypeCapital
     private val deducted = ItemTaxTypeEnum.DEDUCTED.taxTypeCapital
     private val perItem = ItemTaxTypeEnum.PER_ITEM.taxTypeCapital
+    private val noTax = ItemTaxTypeEnum.NONE.taxTypeCapital
 
     @Test
-    fun `none - always zero amount and adjustment`() {
-        val result = TaxCalculator.calculateTax(none, 10f, false, 1000f)
-        assertEquals(0f, result.taxAmount)
-        assertEquals(0f, result.totalAdjustment)
-    }
-
-    @Test
-    fun `on the total - 10 percent of 1000 adds 100 to total`() {
-        val result = TaxCalculator.calculateTax(onTheTotal, 10f, false, 1000f)
+    fun `on the total - adds percentage to subtotal`() {
+        val result = TaxCalculator.calculateTax(
+            taxType = onTheTotal,
+            taxRate = 10f,
+            taxInclusive = false,
+            subTotalAfterDiscount = 1000f
+        )
         assertEquals(100f, result.taxAmount)
         assertEquals(100f, result.totalAdjustment)
     }
 
     @Test
-    fun `on the total - tax inclusive shows amount but does not adjust total`() {
-        val result = TaxCalculator.calculateTax(onTheTotal, 10f, true, 1000f)
-        assertEquals(100f, result.taxAmount)
-        assertEquals(0f, result.totalAdjustment)
-    }
-
-    @Test
-    fun `deducted - 10 percent of 1000 subtracts 100 from total`() {
-        val result = TaxCalculator.calculateTax(deducted, 10f, false, 1000f)
-        assertEquals(100f, result.taxAmount)
-        assertEquals(-100f, result.totalAdjustment)
-    }
-
-    @Test
-    fun `per item - sums taxable items at their own rate and adds to total`() {
+    fun `deducted - subtracts percentage from subtotal`() {
         val result = TaxCalculator.calculateTax(
-            perItem, null, false, 1000f,
-            taxableItems = listOf(10f to 500f, 5f to 200f)
+            taxType = deducted,
+            taxRate = 5f,
+            taxInclusive = false,
+            subTotalAfterDiscount = 1000f
         )
-        // (10% * 500) + (5% * 200) = 50 + 10 = 60
-        assertEquals(60f, result.taxAmount)
-        assertEquals(60f, result.totalAdjustment)
+        assertEquals(50f, result.taxAmount)
+        assertEquals(-50f, result.totalAdjustment)
     }
 
     @Test
-    fun `per item - empty list returns zero`() {
-        val result = TaxCalculator.calculateTax(perItem, null, false, 1000f)
+    fun `tax inclusive - shows tax amount but does not adjust total`() {
+        val result = TaxCalculator.calculateTax(
+            taxType = onTheTotal,
+            taxRate = 10f,
+            taxInclusive = true,
+            subTotalAfterDiscount = 1100f // 1000 + 100 tax
+        )
+        assertEquals(110f, result.taxAmount)
+        assertEquals(0f, result.totalAdjustment)
+    }
+
+    @Test
+    fun `per item - sums tax from taxable items`() {
+        val taxableItems = listOf(
+            Pair(10f, 100f), // 10 tax
+            Pair(5f, 200f)   // 10 tax
+        )
+        val result = TaxCalculator.calculateTax(
+            taxType = perItem,
+            taxRate = null, // ignored for per item
+            taxInclusive = false,
+            subTotalAfterDiscount = 300f,
+            taxableItems = taxableItems
+        )
+        assertEquals(20f, result.taxAmount)
+        assertEquals(20f, result.totalAdjustment)
+    }
+
+    @Test
+    fun `none - returns zero`() {
+        val result = TaxCalculator.calculateTax(
+            taxType = noTax,
+            taxRate = 10f,
+            taxInclusive = false,
+            subTotalAfterDiscount = 1000f
+        )
         assertEquals(0f, result.taxAmount)
         assertEquals(0f, result.totalAdjustment)
     }
 
     @Test
-    fun `null subtotal treated as zero for on the total`() {
-        val result = TaxCalculator.calculateTax(onTheTotal, 10f, false, null)
-        assertEquals(0f, result.taxAmount)
-    }
-
-    @Test
-    fun `unknown tax type returns zero`() {
-        val result = TaxCalculator.calculateTax("something else", 10f, false, 1000f)
+    fun `null tax type - returns zero`() {
+        val result = TaxCalculator.calculateTax(
+            taxType = null,
+            taxRate = 10f,
+            taxInclusive = false,
+            subTotalAfterDiscount = 1000f
+        )
         assertEquals(0f, result.taxAmount)
         assertEquals(0f, result.totalAdjustment)
     }

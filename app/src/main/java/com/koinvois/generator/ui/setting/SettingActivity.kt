@@ -20,6 +20,8 @@ import com.koinvois.generator.utilities.enums.PinTypeEnum
 import com.koinvois.generator.utilities.extensions.setSafeOnClickListener
 import com.koinvois.generator.utilities.extensions.visible
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.koinvois.generator.core.common.dialog.BaseDialog
+import com.koinvois.generator.database.AppDataBase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -31,6 +33,7 @@ import javax.inject.Inject
 class SettingActivity : BaseActivity<ActivitySettingBinding>() {
 
     @Inject lateinit var appPreferences: AppPreferencesDataStore
+    @Inject lateinit var database: AppDataBase
 
     private val viewModel: SettingViewModel by viewModels()
 
@@ -133,6 +136,34 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         binding.txtSelectedCurrency.setSafeOnClickListener {
             showCurrencySelection()
         }
+
+        binding.txtPrivacyPolicy.setSafeOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = android.net.Uri.parse("https:
+            startActivity(intent)
+        }
+
+        binding.txtResetData.setSafeOnClickListener {
+            BaseDialog.confirm(
+                context = this,
+                title = getString(R.string.label_reset_data),
+                message = getString(R.string.msg_confirm_reset),
+                positiveText = getString(R.string.label_reset),
+                negativeText = getString(R.string.cancel),
+                onConfirm = {
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        database.clearAllTables()
+                        withContext(Dispatchers.Main) {
+                            android.widget.Toast.makeText(
+                                this@SettingActivity,
+                                getString(R.string.label_data_cleared),
+                                android.widget.Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            )
+        }
     }
 
     private fun showLanguageSelection() {
@@ -153,9 +184,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     }
 
     private fun updateLanguage(languageCode: String) {
-        // AppCompatDelegate persists the locale and automatically recreates every
-        // currently-alive AppCompatActivity (this one included) to apply it —
-        // no manual finish()/restart and no full app restart needed.
+        
+        
+        
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageCode))
     }
 
@@ -177,9 +208,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     }
 
     private fun updateCurrency(currencyCode: String) {
-        // Update the in-memory formatter immediately so any screen resumed
-        // after this one re-renders with the new currency automatically
-        // (see BaseActivity.onResume) — no restart needed.
+        
+        
+        
         CurrencyFormatter.setCurrencyCode(currencyCode)
         setCurrencyValue()
         lifecycleScope.launch(Dispatchers.Default) {

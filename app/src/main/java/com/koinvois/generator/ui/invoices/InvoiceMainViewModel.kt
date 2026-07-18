@@ -18,24 +18,15 @@ import com.koinvois.generator.domain.usecase.business.AddBusinessUseCase
 import com.koinvois.generator.domain.usecase.business.GetBusinessUseCase
 import com.koinvois.generator.domain.usecase.business.UpdateBusinessUseCase
 import com.koinvois.generator.domain.usecase.client.GetAllClientsUseCase
-import com.koinvois.generator.domain.usecase.invoice.AddInvoiceItemUseCase
-import com.koinvois.generator.domain.usecase.invoice.AddInvoicePhotoUseCase
-import com.koinvois.generator.domain.usecase.invoice.AddInvoiceUseCase
-import com.koinvois.generator.domain.usecase.invoice.DeleteInvoiceItemUseCase
-import com.koinvois.generator.domain.usecase.invoice.DeleteInvoicePhotoUseCase
-import com.koinvois.generator.domain.usecase.invoice.DeleteInvoiceUseCase
-import com.koinvois.generator.domain.usecase.invoice.GetInvoiceByIdUseCase
-import com.koinvois.generator.domain.usecase.invoice.GetInvoiceItemsByInvoiceIdUseCase
-import com.koinvois.generator.domain.usecase.invoice.GetInvoicePhotosByInvoiceIdUseCase
-import com.koinvois.generator.domain.usecase.invoice.ObserveAllInvoicesUseCase
-import com.koinvois.generator.domain.usecase.invoice.UpdateInvoiceItemUseCase
-import com.koinvois.generator.domain.usecase.invoice.UpdateInvoicePhotoUseCase
-import com.koinvois.generator.domain.usecase.invoice.UpdateInvoiceUseCase
+import com.koinvois.generator.domain.usecase.invoice.*
 import com.koinvois.generator.domain.usecase.item.GetAllItemsUseCase
 import com.koinvois.generator.core.utils.DateFormatter
 import com.koinvois.generator.core.data.preferences.AppPreferencesDataStore
+import com.koinvois.generator.core.di.DefaultDispatcher
+import com.koinvois.generator.core.di.MainDispatcher
 import com.koinvois.generator.utilities.enums.InvoiceStatusEnum
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -72,6 +63,8 @@ class InvoiceMainViewModel @Inject constructor(
     private val appPreferences: AppPreferencesDataStore,
     private val dateFormatter: DateFormatter,
     private val draft: InvoiceDraftState,
+    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    @MainDispatcher private val mainDispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
@@ -199,7 +192,7 @@ class InvoiceMainViewModel @Inject constructor(
         set(value) { draft.allItems = value }
 
     init {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(defaultDispatcher) {
             allClients = getAllClientsUseCase().map { it.toEntity() } as ArrayList<Client>
             allItems = getAllItemsUseCase().map { it.toEntity() } as ArrayList<Item>
         }
@@ -271,7 +264,7 @@ class InvoiceMainViewModel @Inject constructor(
         currentInvoiceItem = null
         discountType = null
         discountAmount = null
-        // discountPercentage = null
+        
         discountTotalAmount = null
         taxType = null
         taxLabel = null
@@ -318,14 +311,17 @@ class InvoiceMainViewModel @Inject constructor(
 
         discountType = fullInvoice.invoiceDiscountType
         discountAmount = fullInvoice.invoiceDiscountAmount
-        // discountPercentage = invoice.invoiceDiscountPercentage
+        
         taxType = fullInvoice.invoiceTaxType
         taxLabel = fullInvoice.invoiceTaxLabel
         currentInvoiceItem = null
         taxRate = fullInvoice.invoiceTaxRate
         taxInclusive = fullInvoice.invoiceTaxInclusive
 
-        // TODO: Load payments from database if available
+        recalculateInvoiceSubTotal()
+        recalculateInvoiceTotal()
+
+        
         draft.invoicePaymentsFlow.value = emptyList()
 
     }
@@ -375,7 +371,7 @@ class InvoiceMainViewModel @Inject constructor(
         
         Log.d("AutofillLog", "Preparing New Invoice: ID=$invoicePrimaryId, Number=$invoiceNumber, Date=$invoiceDate")
 
-        // Auto-load business info for the new invoice
+        
         getBusiness()
         Log.d("AutofillLog", "Business Loaded: ${businessUpdateModel?.businessName}")
 
@@ -422,7 +418,7 @@ class InvoiceMainViewModel @Inject constructor(
     }
 
     fun deleteInvoiceById(invoiceId: Int) {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(mainDispatcher) {
             deleteInvoiceUseCase(invoiceId.toLong())
         }
     }

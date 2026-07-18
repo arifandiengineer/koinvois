@@ -3,11 +3,13 @@ package com.koinvois.generator.ui.reports
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.koinvois.generator.R
+import com.koinvois.generator.core.di.DefaultDispatcher
 import com.koinvois.generator.domain.model.Invoice
 import com.koinvois.generator.domain.usecase.reports.GetAllInvoicesForReportUseCase
 import com.koinvois.generator.domain.usecase.reports.GetAllPaidInvoicesForReportUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +20,8 @@ import javax.inject.Inject
 class ReportsMainViewModel @Inject constructor(
     @ApplicationContext private val context: android.content.Context,
     private val getAllInvoicesForReportUseCase: GetAllInvoicesForReportUseCase,
-    private val getAllPaidInvoicesForReportUseCase: GetAllPaidInvoicesForReportUseCase
+    private val getAllPaidInvoicesForReportUseCase: GetAllPaidInvoicesForReportUseCase,
+    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : ViewModel() {
 
     private val _paidInvoices = MutableStateFlow<List<Invoice>>(emptyList())
@@ -32,12 +35,12 @@ class ReportsMainViewModel @Inject constructor(
     }
 
     fun loadReports() {
-        viewModelScope.launch(Dispatchers.Default) {
-            // Load Paid Invoices
+        viewModelScope.launch(defaultDispatcher) {
+            
             val paidList = getAllPaidInvoicesForReportUseCase()
             _paidInvoices.value = paidList
 
-            // Load Client Revenue Report
+            
             val allInvoices = getAllInvoicesForReportUseCase()
             val groupedByClient = allInvoices.groupBy { 
                 it.invoiceClientName ?: context.getString(R.string.fallback_no_client) 

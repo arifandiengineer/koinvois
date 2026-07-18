@@ -7,13 +7,6 @@ import com.koinvois.generator.database.models.EstimateItem
 import com.koinvois.generator.database.models.EstimatePhoto
 import com.koinvois.generator.database.models.PersonalBusiness
 
-/**
- * Process-lifetime holder for the in-progress estimate draft, shared across the
- * estimate edit Activities (each screen has its own EstimatesMainViewModel instance
- * via `by viewModels()`, but they all inject this same @Singleton so the draft
- * stays consistent across Activity boundaries the way hiltNavGraphViewModels
- * used to keep it consistent across Fragment destinations in one nav graph).
- */
 @javax.inject.Singleton
 class EstimateDraftState @javax.inject.Inject constructor() {
 
@@ -35,6 +28,7 @@ class EstimateDraftState @javax.inject.Inject constructor() {
     var taxRate: Float? = null
     var taxInclusive: Boolean? = null
     var estimateTotal: Float? = null
+    var taxAmount: Float = 0f
     var photosForEstimate: ArrayList<EstimatePhoto>? = arrayListOf()
     var signatureObj: Signature? = null
     var estimateNotes: String? = null

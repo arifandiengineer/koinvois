@@ -72,6 +72,16 @@ android {
         dataBinding true
         buildConfig true
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
@@ -94,8 +104,12 @@ dependencies {
     implementation libs.kotlinx.coroutines.android
 
     testImplementation libs.junit
+    testImplementation libs.mockk
+    testImplementation libs.kotlinx.coroutines.test
+    testImplementation libs.androidx.arch.core.testing
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.core
+    androidTestImplementation libs.mockk.android
 
     // Hilt
     implementation libs.hilt.android

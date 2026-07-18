@@ -128,6 +128,8 @@
     <color name="color_stat_blue_bg">#E3F2FD</color>
     <color name="color_stat_green_bg">#E8F5E9</color>
     <color name="color_stat_purple">#9C27B0</color>
+    <color name="color_stat_red">#F44336</color>
+    <color name="color_stat_red_bg">#FFEBEE</color>
 
     <!-- ============================================================
          Legacy resources — UNCHANGED, per the existing Fase 1 audit

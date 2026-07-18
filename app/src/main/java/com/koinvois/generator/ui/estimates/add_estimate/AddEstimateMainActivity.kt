@@ -116,19 +116,21 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
 
     private fun refreshEstimateUi() {
         viewModel.selectedClient.let {
-            binding.txtClientName.text = it?.clientName
+            binding.txtClientName.text = it?.clientName ?: getString(R.string.fallback_no_client)
         }
 
         viewModel.signatureObj?.let {
-            binding.txtSignature.text = "Signed on ${it?.signatureDate}"
+            binding.txtSignature.text = "Signed on ${it.signatureDate}"
         }
-        var totalItemsCost = 0f
 
-        viewModel.selectedItemsList?.forEach {
-            it.toString().let { it1 -> Log.e("obj", it1) }
-            totalItemsCost += it.itemTotal ?: 0f
-        }
-        binding.txtTotalAmount.text = totalItemsCost.toString()
+        viewModel.recalculateEstimateSubTotal()
+        viewModel.recalculateEstimateTotal()
+
+        binding.txtTotalAmount.text = viewModel.estimateSubTotal?.toString() ?: "0.0"
+        binding.txtDiscountPrice.text = viewModel.discountTotalAmount?.toString() ?: "0.0"
+        binding.txtTaxPrice.text = viewModel.taxAmount.toString()
+        binding.txtTotalPrice.text = viewModel.estimateTotal?.toString() ?: "0.0"
+        binding.txtTotalBalanceAmount.text = viewModel.estimateTotal?.toString() ?: "0.0"
 
         viewModel.estimateNumber?.let {
             binding.txtEstimateNumber.text = it.toString()
@@ -186,7 +188,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
                 "Edit Estimate"
             }
 
-            // Only show menu for existing estimate
+            
             if (estimateType == "new") {
                 imgSecondaryAction.hide()
             } else {
@@ -255,7 +257,7 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
         binding.txtAddPhoto.setSafeOnClickListener {
             val photos = viewModel.photosForEstimate
             if (!photos.isNullOrEmpty()) {
-                // If photo exists, edit the first one
+                
                 viewModel.currentSelectedPhoto = photos[0]
                 startActivity(AddPhotoToEstimateActivity.newIntent(this, DBEnum.OLD.entryType))
             } else {
@@ -301,14 +303,14 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
     }
 
     private fun shareEstimate() {
-        // The generated PDF is written to app-specific external storage (see testPDFJob),
-        // which needs no runtime permission on any API level, so WRITE_EXTERNAL_STORAGE is
-        // not required here.
+        
+        
+        
 
-        // previewContainer is `visibility="gone"` (never laid out) until the user opens the
-        // preview overlay. Printing a WebView that was never measured/laid out produces a
-        // blank PDF, so it must be made visible and given a layout pass - and its HTML must
-        // finish loading (onPageFinished) - before the print job is triggered.
+        
+        
+        
+        
         binding.previewContainer.visible()
         val previewFragment =
             supportFragmentManager.findFragmentById(R.id.previewContainer) as? PreviewEstimateFragment
@@ -404,21 +406,21 @@ class AddEstimateMainActivity : BaseActivity<ActivityEstimateEditBinding>() {
     }
 
     private fun saveOnBack() {
-        // Moved logic to saveEstimate()
+        
     }
 
     private fun testPDFJob(webView: WebView, actv: Activity, onDone: () -> Unit = {}) {
-        // App-specific external storage: no runtime permission needed on any API level,
-        // and unaffected by scoped storage (unlike getExternalStoragePublicDirectory, which
-        // silently fails to write on API 30+ since requestLegacyExternalStorage is inert
-        // once targetSdk >= 30 - see AndroidManifest.xml TODO).
+        
+        
+        
+        
         val directory = File(actv.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Estimates")
         directory.mkdirs()
         val waitDialog: Dialog = DialogManager.makeWaitDialog(actv)
         waitDialog.show()
 
-        // PdfView/PdfPrint treats this as the exact output file path, not a directory,
-        // so it must include a filename with the .pdf extension.
+        
+        
         val filePath = File(directory, "Estimate_${viewModel.estimateNumber ?: System.currentTimeMillis()}.pdf").absolutePath
         PdfView.createWebPrintJob(
             actv,
